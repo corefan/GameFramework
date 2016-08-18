@@ -9991,6 +9991,806 @@
             游戏框架组件初始化。
             </summary>
         </member>
+        <member name="T:UnityGameFramework.Runtime.VarBool">
+            <summary>
+            bool 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBool.#ctor">
+            <summary>
+            初始化 bool 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBool.#ctor(System.Boolean)">
+            <summary>
+            初始化 bool 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBool.op_Implicit(System.Boolean)~UnityGameFramework.Runtime.VarBool">
+            <summary>
+            从 bool 到 bool 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBool.op_Implicit(UnityGameFramework.Runtime.VarBool)~System.Boolean">
+            <summary>
+            从 bool 变量类到 bool 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarByte">
+            <summary>
+            byte 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarByte.#ctor">
+            <summary>
+            初始化 byte 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarByte.#ctor(System.Byte)">
+            <summary>
+            初始化 byte 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarByte.op_Implicit(System.Byte)~UnityGameFramework.Runtime.VarByte">
+            <summary>
+            从 byte 到 byte 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarByte.op_Implicit(UnityGameFramework.Runtime.VarByte)~System.Byte">
+            <summary>
+            从 byte 变量类到 byte 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarBytes">
+            <summary>
+            byte[] 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBytes.#ctor">
+            <summary>
+            初始化 byte[] 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBytes.#ctor(System.Byte[])">
+            <summary>
+            初始化 byte[] 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBytes.op_Implicit(System.Byte[])~UnityGameFramework.Runtime.VarBytes">
+            <summary>
+            从 byte[] 到 byte[] 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarBytes.op_Implicit(UnityGameFramework.Runtime.VarBytes)~System.Byte[]">
+            <summary>
+            从 byte[] 变量类到 byte[] 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarChar">
+            <summary>
+            char 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChar.#ctor">
+            <summary>
+            初始化 char 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChar.#ctor(System.Char)">
+            <summary>
+            初始化 char 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChar.op_Implicit(System.Char)~UnityGameFramework.Runtime.VarChar">
+            <summary>
+            从 char 到 char 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChar.op_Implicit(UnityGameFramework.Runtime.VarChar)~System.Char">
+            <summary>
+            从 char 变量类到 char 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarChars">
+            <summary>
+            char[] 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChars.#ctor">
+            <summary>
+            初始化 char[] 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChars.#ctor(System.Char[])">
+            <summary>
+            初始化 char[] 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChars.op_Implicit(System.Char[])~UnityGameFramework.Runtime.VarChars">
+            <summary>
+            从 char[] 到 char[] 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarChars.op_Implicit(UnityGameFramework.Runtime.VarChars)~System.Char[]">
+            <summary>
+            从 char[] 变量类到 char[] 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarColor">
+            <summary>
+            Color 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarColor.#ctor">
+            <summary>
+            初始化 Color 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarColor.#ctor(UnityEngine.Color)">
+            <summary>
+            初始化 Color 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarColor.op_Implicit(UnityEngine.Color)~UnityGameFramework.Runtime.VarColor">
+            <summary>
+            从 Color 到 Color 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarColor.op_Implicit(UnityGameFramework.Runtime.VarColor)~UnityEngine.Color">
+            <summary>
+            从 Color 变量类到 Color 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarDateTime">
+            <summary>
+            DateTime 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDateTime.#ctor">
+            <summary>
+            初始化 DateTime 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDateTime.#ctor(System.DateTime)">
+            <summary>
+            初始化 DateTime 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDateTime.op_Implicit(System.DateTime)~UnityGameFramework.Runtime.VarDateTime">
+            <summary>
+            从 DateTime 到 DateTime 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDateTime.op_Implicit(UnityGameFramework.Runtime.VarDateTime)~System.DateTime">
+            <summary>
+            从 DateTime 变量类到 DateTime 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarDecimal">
+            <summary>
+            decimal 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDecimal.#ctor">
+            <summary>
+            初始化 decimal 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDecimal.#ctor(System.Decimal)">
+            <summary>
+            初始化 decimal 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDecimal.op_Implicit(System.Decimal)~UnityGameFramework.Runtime.VarDecimal">
+            <summary>
+            从 decimal 到 decimal 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDecimal.op_Implicit(UnityGameFramework.Runtime.VarDecimal)~System.Decimal">
+            <summary>
+            从 decimal 变量类到 decimal 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarDouble">
+            <summary>
+            double 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDouble.#ctor">
+            <summary>
+            初始化 double 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDouble.#ctor(System.Double)">
+            <summary>
+            初始化 double 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDouble.op_Implicit(System.Double)~UnityGameFramework.Runtime.VarDouble">
+            <summary>
+            从 double 到 double 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarDouble.op_Implicit(UnityGameFramework.Runtime.VarDouble)~System.Double">
+            <summary>
+            从 double 变量类到 double 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarFloat">
+            <summary>
+            float 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarFloat.#ctor">
+            <summary>
+            初始化 float 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarFloat.#ctor(System.Single)">
+            <summary>
+            初始化 float 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarFloat.op_Implicit(System.Single)~UnityGameFramework.Runtime.VarFloat">
+            <summary>
+            从 float 到 float 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarFloat.op_Implicit(UnityGameFramework.Runtime.VarFloat)~System.Single">
+            <summary>
+            从 float 变量类到 float 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarGameObject">
+            <summary>
+            GameObject 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarGameObject.#ctor">
+            <summary>
+            初始化 GameObject 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarGameObject.#ctor(UnityEngine.GameObject)">
+            <summary>
+            初始化 GameObject 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarGameObject.op_Implicit(UnityEngine.GameObject)~UnityGameFramework.Runtime.VarGameObject">
+            <summary>
+            从 GameObject 到 GameObject 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarGameObject.op_Implicit(UnityGameFramework.Runtime.VarGameObject)~UnityEngine.GameObject">
+            <summary>
+            从 GameObject 变量类到 GameObject 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarInt">
+            <summary>
+            int 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarInt.#ctor">
+            <summary>
+            初始化 int 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarInt.#ctor(System.Int32)">
+            <summary>
+            初始化 int 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarInt.op_Implicit(System.Int32)~UnityGameFramework.Runtime.VarInt">
+            <summary>
+            从 int 到 int 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarInt.op_Implicit(UnityGameFramework.Runtime.VarInt)~System.Int32">
+            <summary>
+            从 int 变量类到 int 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarLong">
+            <summary>
+            long 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarLong.#ctor">
+            <summary>
+            初始化 long 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarLong.#ctor(System.Int64)">
+            <summary>
+            初始化 long 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarLong.op_Implicit(System.Int64)~UnityGameFramework.Runtime.VarLong">
+            <summary>
+            从 long 到 long 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarLong.op_Implicit(UnityGameFramework.Runtime.VarLong)~System.Int64">
+            <summary>
+            从 long 变量类到 long 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarMaterial">
+            <summary>
+            Material 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarMaterial.#ctor">
+            <summary>
+            初始化 Material 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarMaterial.#ctor(UnityEngine.Material)">
+            <summary>
+            初始化 Material 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarMaterial.op_Implicit(UnityEngine.Material)~UnityGameFramework.Runtime.VarMaterial">
+            <summary>
+            从 Material 到 Material 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarMaterial.op_Implicit(UnityGameFramework.Runtime.VarMaterial)~UnityEngine.Material">
+            <summary>
+            从 Material 变量类到 Material 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarObject">
+            <summary>
+            object 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarObject.#ctor">
+            <summary>
+            初始化 object 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarObject.#ctor(System.Object)">
+            <summary>
+            初始化 object 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarQuaternion">
+            <summary>
+            Quaternion 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarQuaternion.#ctor">
+            <summary>
+            初始化 Quaternion 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarQuaternion.#ctor(UnityEngine.Quaternion)">
+            <summary>
+            初始化 Quaternion 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarQuaternion.op_Implicit(UnityEngine.Quaternion)~UnityGameFramework.Runtime.VarQuaternion">
+            <summary>
+            从 Quaternion 到 Quaternion 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarQuaternion.op_Implicit(UnityGameFramework.Runtime.VarQuaternion)~UnityEngine.Quaternion">
+            <summary>
+            从 Quaternion 变量类到 Quaternion 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarRect">
+            <summary>
+            Rect 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarRect.#ctor">
+            <summary>
+            初始化 Rect 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarRect.#ctor(UnityEngine.Rect)">
+            <summary>
+            初始化 Rect 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarRect.op_Implicit(UnityEngine.Rect)~UnityGameFramework.Runtime.VarRect">
+            <summary>
+            从 Rect 到 Rect 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarRect.op_Implicit(UnityGameFramework.Runtime.VarRect)~UnityEngine.Rect">
+            <summary>
+            从 Rect 变量类到 Rect 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarSByte">
+            <summary>
+            sbyte 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarSByte.#ctor">
+            <summary>
+            初始化 sbyte 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarSByte.#ctor(System.SByte)">
+            <summary>
+            初始化 sbyte 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarSByte.op_Implicit(System.SByte)~UnityGameFramework.Runtime.VarSByte">
+            <summary>
+            从 sbyte 到 sbyte 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarSByte.op_Implicit(UnityGameFramework.Runtime.VarSByte)~System.SByte">
+            <summary>
+            从 sbyte 变量类到 sbyte 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarShort">
+            <summary>
+            short 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarShort.#ctor">
+            <summary>
+            初始化 short 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarShort.#ctor(System.Int16)">
+            <summary>
+            初始化 short 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarShort.op_Implicit(System.Int16)~UnityGameFramework.Runtime.VarShort">
+            <summary>
+            从 short 到 short 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarShort.op_Implicit(UnityGameFramework.Runtime.VarShort)~System.Int16">
+            <summary>
+            从 short 变量类到 short 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarString">
+            <summary>
+            string 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarString.#ctor">
+            <summary>
+            初始化 string 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarString.#ctor(System.String)">
+            <summary>
+            初始化 string 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarString.op_Implicit(System.String)~UnityGameFramework.Runtime.VarString">
+            <summary>
+            从 string 到 string 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarString.op_Implicit(UnityGameFramework.Runtime.VarString)~System.String">
+            <summary>
+            从 string 变量类到 string 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarTexture">
+            <summary>
+            Texture 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTexture.#ctor">
+            <summary>
+            初始化 Texture 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTexture.#ctor(UnityEngine.Texture)">
+            <summary>
+            初始化 Texture 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTexture.op_Implicit(UnityEngine.Texture)~UnityGameFramework.Runtime.VarTexture">
+            <summary>
+            从 Texture 到 Texture 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTexture.op_Implicit(UnityGameFramework.Runtime.VarTexture)~UnityEngine.Texture">
+            <summary>
+            从 Texture 变量类到 Texture 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarTransform">
+            <summary>
+            Transform 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTransform.#ctor">
+            <summary>
+            初始化 Transform 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTransform.#ctor(UnityEngine.Transform)">
+            <summary>
+            初始化 Transform 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTransform.op_Implicit(UnityEngine.Transform)~UnityGameFramework.Runtime.VarTransform">
+            <summary>
+            从 Transform 到 Transform 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarTransform.op_Implicit(UnityGameFramework.Runtime.VarTransform)~UnityEngine.Transform">
+            <summary>
+            从 Transform 变量类到 Transform 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarUInt">
+            <summary>
+            uint 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUInt.#ctor">
+            <summary>
+            初始化 uint 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUInt.#ctor(System.UInt32)">
+            <summary>
+            初始化 uint 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUInt.op_Implicit(System.UInt32)~UnityGameFramework.Runtime.VarUInt">
+            <summary>
+            从 uint 到 uint 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUInt.op_Implicit(UnityGameFramework.Runtime.VarUInt)~System.UInt32">
+            <summary>
+            从 uint 变量类到 uint 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarULong">
+            <summary>
+            ulong 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarULong.#ctor">
+            <summary>
+            初始化 ulong 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarULong.#ctor(System.UInt64)">
+            <summary>
+            初始化 ulong 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarULong.op_Implicit(System.UInt64)~UnityGameFramework.Runtime.VarULong">
+            <summary>
+            从 ulong 到 ulong 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarULong.op_Implicit(UnityGameFramework.Runtime.VarULong)~System.UInt64">
+            <summary>
+            从 ulong 变量类到 ulong 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarUnityObject">
+            <summary>
+            Object 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUnityObject.#ctor">
+            <summary>
+            初始化 Object 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUnityObject.#ctor(UnityEngine.Object)">
+            <summary>
+            初始化 Object 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUnityObject.op_Implicit(UnityEngine.Object)~UnityGameFramework.Runtime.VarUnityObject">
+            <summary>
+            从 Object 到 Object 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUnityObject.op_Implicit(UnityGameFramework.Runtime.VarUnityObject)~UnityEngine.Object">
+            <summary>
+            从 Object 变量类到 Object 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarUShort">
+            <summary>
+            ushort 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUShort.#ctor">
+            <summary>
+            初始化 ushort 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUShort.#ctor(System.UInt16)">
+            <summary>
+            初始化 ushort 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUShort.op_Implicit(System.UInt16)~UnityGameFramework.Runtime.VarUShort">
+            <summary>
+            从 ushort 到 ushort 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarUShort.op_Implicit(UnityGameFramework.Runtime.VarUShort)~System.UInt16">
+            <summary>
+            从 short 变量类到 short 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarVector2">
+            <summary>
+            Vector2 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector2.#ctor">
+            <summary>
+            初始化 Vector2 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector2.#ctor(UnityEngine.Vector2)">
+            <summary>
+            初始化 Vector2 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector2.op_Implicit(UnityEngine.Vector2)~UnityGameFramework.Runtime.VarVector2">
+            <summary>
+            从 Vector2 到 Vector2 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector2.op_Implicit(UnityGameFramework.Runtime.VarVector2)~UnityEngine.Vector2">
+            <summary>
+            从 Vector2 变量类到 Vector2 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarVector3">
+            <summary>
+            Vector3 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector3.#ctor">
+            <summary>
+            初始化 Vector3 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector3.#ctor(UnityEngine.Vector3)">
+            <summary>
+            初始化 Vector3 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector3.op_Implicit(UnityEngine.Vector3)~UnityGameFramework.Runtime.VarVector3">
+            <summary>
+            从 Vector3 到 Vector3 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector3.op_Implicit(UnityGameFramework.Runtime.VarVector3)~UnityEngine.Vector3">
+            <summary>
+            从 Vector3 变量类到 Vector3 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.VarVector4">
+            <summary>
+            Vector4 变量类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector4.#ctor">
+            <summary>
+            初始化 Vector4 变量类的新实例。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector4.#ctor(UnityEngine.Vector4)">
+            <summary>
+            初始化 Vector4 变量类的新实例。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector4.op_Implicit(UnityEngine.Vector4)~UnityGameFramework.Runtime.VarVector4">
+            <summary>
+            从 Vector4 到 Vector4 变量类的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.VarVector4.op_Implicit(UnityGameFramework.Runtime.VarVector4)~UnityEngine.Vector4">
+            <summary>
+            从 Vector4 变量类到 Vector4 的隐式转换。
+            </summary>
+            <param name="value">值。</param>
+        </member>
         <member name="T:UnityGameFramework.Runtime.DataNodeComponent">
             <summary>
             数据结点组件。
