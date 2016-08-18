@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4521337-404A-4FC8-A49B-E76E0D801422}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UnityGameFramework.Runtime</RootNamespace>
+    <AssemblyName>UnityGameFramework.Runtime</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PostBuildEvent>copy "$(TargetDir)UnityGameFramework.Runtime.dll" "$(SolutionDir)UnityPlugin\Assets\GameFramework\Libraries\UnityGameFramework.Runtime.dll" /y
+copy "$(TargetDir)UnityGameFramework.Runtime.xml" "$(SolutionDir)UnityPlugin\Assets\GameFramework\Libraries\UnityGameFramework.Runtime.xml" /y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\UnityGameFramework.Runtime.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\UnityGameFramework.Runtime.xml</DocumentationFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\3rdParty\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="GameFramework">
+      <HintPath>..\3rdParty\GameFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionItems\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="3rdParty\SharpZLib\BZip2\BZip2.cs" />
+    <Compile Include="3rdParty\SharpZLib\BZip2\BZip2Constants.cs" />
+    <Compile Include="3rdParty\SharpZLib\BZip2\BZip2Exception.cs" />
+    <Compile Include="3rdParty\SharpZLib\BZip2\BZip2InputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\BZip2\BZip2OutputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Checksums\Adler32.cs" />
+    <Compile Include="3rdParty\SharpZLib\Checksums\CRC32.cs" />
+    <Compile Include="3rdParty\SharpZLib\Checksums\IChecksum.cs" />
+    <Compile Include="3rdParty\SharpZLib\Checksums\StrangeCRC.cs" />
+    <Compile Include="3rdParty\SharpZLib\Core\FileSystemScanner.cs" />
+    <Compile Include="3rdParty\SharpZLib\Core\INameTransform.cs" />
+    <Compile Include="3rdParty\SharpZLib\Core\IScanFilter.cs" />
+    <Compile Include="3rdParty\SharpZLib\Core\NameFilter.cs" />
+    <Compile Include="3rdParty\SharpZLib\Core\PathFilter.cs" />
+    <Compile Include="3rdParty\SharpZLib\Core\StreamUtils.cs" />
+    <Compile Include="3rdParty\SharpZLib\Core\WindowsPathUtils.cs" />
+    <Compile Include="3rdParty\SharpZLib\Encryption\PkzipClassic.cs" />
+    <Compile Include="3rdParty\SharpZLib\Encryption\ZipAESStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Encryption\ZipAESTransform.cs" />
+    <Compile Include="3rdParty\SharpZLib\GZip\GZIPConstants.cs" />
+    <Compile Include="3rdParty\SharpZLib\GZip\GZipException.cs" />
+    <Compile Include="3rdParty\SharpZLib\GZip\GzipInputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\GZip\GzipOutputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Lzw\LzwConstants.cs" />
+    <Compile Include="3rdParty\SharpZLib\Lzw\LzwException.cs" />
+    <Compile Include="3rdParty\SharpZLib\Lzw\LzwInputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\SharpZipBaseException.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\InvalidHeaderException.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\TarArchive.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\TarBuffer.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\TarEntry.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\TarException.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\TarHeader.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\TarInputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Tar\TarOutputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\Deflater.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\Inflater.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\FastZip.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\IEntryFactory.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\WindowsNameTransform.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipConstants.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipEntry.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipEntryFactory.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipException.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipExtraData.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipFile.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipHelperStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipInputStream.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipNameTransform.cs" />
+    <Compile Include="3rdParty\SharpZLib\Zip\ZipOutputStream.cs" />
+    <Compile Include="Base\BaseComponent.cs" />
+    <Compile Include="Base\GameEntry.cs" />
+    <Compile Include="Base\GameFrameworkComponent.cs" />
+    <Compile Include="DataNode\DataNodeComponent.cs" />
+    <Compile Include="DataTable\DataTableComponent.cs" />
+    <Compile Include="DataTable\DataTableHelperBase.cs" />
+    <Compile Include="DataTable\DefaultDataTableHelper.cs" />
+    <Compile Include="DataTable\LoadDataTableInfo.cs" />
+    <Compile Include="Debugger\DebuggerComponent.ConsoleWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.ConsoleWindow.LogNode.cs" />
+    <Compile Include="Debugger\DebuggerComponent.cs" />
+    <Compile Include="Debugger\DebuggerComponent.EnvironmentInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.FpsCounter.cs" />
+    <Compile Include="Debugger\DebuggerComponent.GeneralSettingsWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.GraphicsInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.InputAccelerationInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.InputCompassInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.InputGyroscopeInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.InputLocationInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.InputSummaryInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.InputTouchInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.ObjectPoolInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.OperationSettingsWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.PathInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.ProfilerInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.QualityInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.QualitySettingsWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.RuntimeMemoryInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.RuntimeMemoryInformationWindow.Sample.cs" />
+    <Compile Include="Debugger\DebuggerComponent.SceneInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.ScreenInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.ScrollableDebuggerWindowBase.cs" />
+    <Compile Include="Debugger\DebuggerComponent.SystemInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.TimeInformationWindow.cs" />
+    <Compile Include="Debugger\DebuggerComponent.WebPlayerInformationWindow.cs" />
+    <Compile Include="Download\DownloadAgentHelperBase.cs" />
+    <Compile Include="Download\DownloadComponent.cs" />
+    <Compile Include="Download\UnityWebRequestDownloadAgentHelper.cs" />
+    <Compile Include="Download\WWWDownloadAgentHelper.cs" />
+    <Compile Include="Entity\AttachEntityInfo.cs" />
+    <Compile Include="Entity\DefaultEntityGroupHelper.cs" />
+    <Compile Include="Entity\DefaultEntityHelper.cs" />
+    <Compile Include="Entity\Entity.cs" />
+    <Compile Include="Entity\EntityComponent.cs" />
+    <Compile Include="Entity\EntityComponent.EntityGroup.cs" />
+    <Compile Include="Entity\EntityGroupHelperBase.cs" />
+    <Compile Include="Entity\EntityHelperBase.cs" />
+    <Compile Include="Entity\EntityLogic.cs" />
+    <Compile Include="Entity\ShowEntityInfo.cs" />
+    <Compile Include="Event\EventComponent.cs" />
+    <Compile Include="Event\EventId.cs" />
+    <Compile Include="Event\Internal\CloseUIFormCompleteEventArgs.cs" />
+    <Compile Include="Event\Internal\DownloadFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\DownloadStartEventArgs.cs" />
+    <Compile Include="Event\Internal\DownloadSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\DownloadUpdateEventArgs.cs" />
+    <Compile Include="Event\Internal\HideEntityCompleteEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadDataTableFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadDataTableSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadDictionaryFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadDictionarySuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadManifestFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadManifestSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadSceneDependencyEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadSceneFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadSceneSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\LoadSceneUpdateEventArgs.cs" />
+    <Compile Include="Event\Internal\NetworkClosedEventArgs.cs" />
+    <Compile Include="Event\Internal\NetworkConnectedEventArgs.cs" />
+    <Compile Include="Event\Internal\NetworkCustomErrorEventArgs.cs" />
+    <Compile Include="Event\Internal\NetworkErrorEventArgs.cs" />
+    <Compile Include="Event\Internal\NetworkMissHeartBeatEventArgs.cs" />
+    <Compile Include="Event\Internal\NetworkSendPacketEventArgs.cs" />
+    <Compile Include="Event\Internal\OpenUIFormFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\OpenUIFormSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\PlaySoundFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\PlaySoundSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\ResourceCheckCompleteEventArgs.cs" />
+    <Compile Include="Event\Internal\ResourceInitCompleteEventArgs.cs" />
+    <Compile Include="Event\Internal\ResourceUpdateAllCompleteEventArgs.cs" />
+    <Compile Include="Event\Internal\ResourceUpdateChangedEventArgs.cs" />
+    <Compile Include="Event\Internal\ResourceUpdateFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\ResourceUpdateStartEventArgs.cs" />
+    <Compile Include="Event\Internal\ResourceUpdateSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\ShowEntityFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\ShowEntitySuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\UnloadSceneFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\UnloadSceneSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\VersionListUpdateFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\VersionListUpdateSuccessEventArgs.cs" />
+    <Compile Include="Event\Internal\WebRequestFailureEventArgs.cs" />
+    <Compile Include="Event\Internal\WebRequestStartEventArgs.cs" />
+    <Compile Include="Event\Internal\WebRequestSuccessEventArgs.cs" />
+    <Compile Include="Fsm\FsmComponent.cs" />
+    <Compile Include="Localization\DefaultLocalizationHelper.cs" />
+    <Compile Include="Localization\LoadDictionaryInfo.cs" />
+    <Compile Include="Localization\LocalizationComponent.cs" />
+    <Compile Include="Localization\LocalizationHelperBase.cs" />
+    <Compile Include="Network\DefaultNetworkHelper.cs" />
+    <Compile Include="Network\NetworkComponent.cs" />
+    <Compile Include="Network\NetworkComponent.NetworkChannel.cs" />
+    <Compile Include="Network\NetworkHelperBase.cs" />
+    <Compile Include="ObjectPool\ObjectPoolComponent.cs" />
+    <Compile Include="Procedure\ProcedureComponent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource\DefaultLoadResourceAgentHelper.cs" />
+    <Compile Include="Resource\DefaultResourceHelper.cs" />
+    <Compile Include="Resource\LoadResourceAgentHelperBase.cs" />
+    <Compile Include="Resource\ResourceComponent.cs" />
+    <Compile Include="Resource\ResourceHelperBase.cs" />
+    <Compile Include="Scene\SceneComponent.cs" />
+    <Compile Include="Setting\DefaultSettingHelper.cs" />
+    <Compile Include="Setting\SettingComponent.cs" />
+    <Compile Include="Setting\SettingHelperBase.cs" />
+    <Compile Include="Sound\DefaultSoundAgentHelper.cs" />
+    <Compile Include="Sound\DefaultSoundGroupHelper.cs" />
+    <Compile Include="Sound\DefaultSoundHelper.cs" />
+    <Compile Include="Sound\PlaySoundInfo.cs" />
+    <Compile Include="Sound\SoundAgentHelperBase.cs" />
+    <Compile Include="Sound\SoundComponent.cs" />
+    <Compile Include="Sound\SoundComponent.SoundGroup.cs" />
+    <Compile Include="Sound\SoundGroupHelperBase.cs" />
+    <Compile Include="Sound\SoundHelperBase.cs" />
+    <Compile Include="UI\DefaultUIFormHelper.cs" />
+    <Compile Include="UI\DefaultUIGroupHelper.cs" />
+    <Compile Include="UI\UIComponent.cs" />
+    <Compile Include="UI\UIComponent.UIGroup.cs" />
+    <Compile Include="UI\UIForm.cs" />
+    <Compile Include="UI\UIFormHelperBase.cs" />
+    <Compile Include="UI\UIFormLogic.cs" />
+    <Compile Include="UI\UIGroupHelperBase.cs" />
+    <Compile Include="UI\UIIntKey.cs" />
+    <Compile Include="UI\UIStringKey.cs" />
+    <Compile Include="Utility\JsonHelper.cs" />
+    <Compile Include="Utility\UnityExtension.cs" />
+    <Compile Include="Utility\ZipHelper.cs" />
+    <Compile Include="WebRequest\UnityWebRequestAgentHelper.cs" />
+    <Compile Include="WebRequest\WebRequestAgentHelperBase.cs" />
+    <Compile Include="WebRequest\WebRequestComponent.cs" />
+    <Compile Include="WebRequest\WWWFormInfo.cs" />
+    <Compile Include="WebRequest\WWWWebRequestAgentHelper.cs" />
+  </ItemGroup>
+</Project>
