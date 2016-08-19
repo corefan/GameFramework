@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: -1020251996, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Skin: {fileID: 11400000, guid: a4c1cc1e6676f0e48a527bad48941f98, type: 2}
   m_ShowFullWindow: 0
   m_ConsoleWindow:
     m_LockScroll: 1

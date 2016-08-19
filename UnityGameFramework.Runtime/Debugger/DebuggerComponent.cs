@@ -40,6 +40,9 @@ namespace UnityGameFramework.Runtime
         private float m_WindowScale = DefaultWindowScale;
 
         [SerializeField]
+        private GUISkin m_Skin = null;
+
+        [SerializeField]
         private bool m_ShowFullWindow = false;
 
         [SerializeField]
@@ -206,8 +209,12 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
+            GUISkin cachedGuiSkin = GUI.skin;
             Matrix4x4 cachedMatrix = GUI.matrix;
+
+            GUI.skin = m_Skin;
             GUI.matrix = Matrix4x4.Scale(new Vector3(m_WindowScale, m_WindowScale, 1f));
+
             if (m_ShowFullWindow)
             {
                 m_WindowRect = GUILayout.Window(0, m_WindowRect, DrawWindow, "<b>GAME FRAMEWORK DEBUGGER</b>");
@@ -216,7 +223,9 @@ namespace UnityGameFramework.Runtime
             {
                 m_IconRect = GUILayout.Window(0, m_IconRect, DrawDebuggerWindowIcon, "<b>DEBUGGER</b>");
             }
+
             GUI.matrix = cachedMatrix;
+            GUI.skin = cachedGuiSkin;
         }
 
         /// <summary>
