@@ -17,4 +17,4 @@ This is a game framework based on Unity 5.4 and later versions.
 
 - JIANG Han (Garfield)
   - garfield@gameframework.cn
-  - [https://github.com/jehovah0121/](https://github.com/jehovah0121/)
+  - [https://github.com/garfieldjiang/](https://github.com/garfieldjiang/)
