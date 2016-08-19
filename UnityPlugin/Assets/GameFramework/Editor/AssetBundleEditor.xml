@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <AssetBundleEditor>
+    <Setting>
+      <SourceAssetRootPath>Assets</SourceAssetRootPath>
+      <SourceAssetSearchPaths>
+      <!--
+        <SourceAssetSearchPath RelativePath="Relative Path From SourceAssetRootPath" />
+      -->
+      </SourceAssetSearchPaths>
+      <SourceAssetUnionTypeFilter>t:Scene t:Prefab t:TextAsset t:ScriptableObject t:AudioClip t:Font</SourceAssetUnionTypeFilter>
+      <SourceAssetUnionLabelFilter>l:AssetBundleMust</SourceAssetUnionLabelFilter>
+      <SourceAssetExceptTypeFilter>t:Script t:Shader</SourceAssetExceptTypeFilter>
+      <SourceAssetExceptLabelFilter>l:AssetBundleIgnore</SourceAssetExceptLabelFilter>
+      <AssetSorter>Name</AssetSorter>
+    </Setting>
+    <AssetBundles />
+    <Assets />
+  </AssetBundleEditor>
+</UnityGameFramework>
