@@ -1,4 +1,4 @@
-# GameFramework
+ï»¿# GameFramework
 
 ## Introduction
 
@@ -6,7 +6,7 @@ This is a game framework based on Unity 5.4 and later versions.
 
 ## Home page
 
-- ¼òÌåÖÐÎÄ - [http://gameframework.cn/](http://gameframework.cn/)
+- ç®€ä½“ä¸­æ–‡ - [http://gameframework.cn/](http://gameframework.cn/)
 - English - Coming soon.
 
 ## Authors
