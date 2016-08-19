@@ -9965,11 +9965,11 @@
             <param name="typeName">要获取的游戏框架组件类型名称。</param>
             <returns>要获取的游戏框架组件。</returns>
         </member>
-        <member name="M:UnityGameFramework.Runtime.GameEntry.AddComponent(UnityGameFramework.Runtime.GameFrameworkComponent)">
+        <member name="M:UnityGameFramework.Runtime.GameEntry.RegisterComponent(UnityGameFramework.Runtime.GameFrameworkComponent)">
             <summary>
-            增加游戏框架组件。
+            注册游戏框架组件。
             </summary>
-            <param name="gameFrameworkComponent">要增加的游戏框架组件。</param>
+            <param name="gameFrameworkComponent">要注册的游戏框架组件。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.GameEntry.Restart">
             <summary>
