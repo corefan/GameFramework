@@ -1,4 +1,4 @@
-﻿# GameFramework
+# Game Framework
 
 ## Introduction
 
