@@ -42,11 +42,13 @@ Game Framework provides the following 17 builtin modules, and more will be devel
 
 Game Framework includes 3 assemblies:
 
-- GameFramework.dll - encapsulates fundamental game logic like data management, resource management, object pools, FSMs, localisation, events, entities, network, user interfaces and sounds. This assembly doesn’t depend on the Unity engine (and therefore it’s fairly possible to make some UnrealGameFramework based on this assembly).
+- [b]GameFramework.dll[/b] - encapsulates fundamental game logic like data management, resource management, object pools, FSMs, localisation, events, entities, network, user interfaces and sounds. This assembly doesn’t depend on the Unity engine (and therefore it’s fairly possible to make some UnrealGameFramework based on this assembly).
 
 - UnityGameFramework.Runtime.dll - implements GameFramework.dll depending on UnityEngine.dll. This part is open-source on GitHub conforming to the MIT license.
 
 - UnityGameFramework.Editor.dll - implements tools and inspectors based on UnityEditor.dll.
+
+[<img src="http://gameframework.cn/wp-content/uploads/2016/04/Game-Framework.png">]
 
 We'll refer to Game Framework as GF and Unity Game Framework as UGF for short in technical articles related to this Game Framework.
 
