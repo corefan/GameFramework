@@ -14,11 +14,11 @@ Game Framework provides the following 17 builtin modules, and more will be devel
 
 5. **Entity** - provides the ability to manage entities and groups of entities, where an entity is defined as any dynamically created objects in the game scene. It shows or hides entities, attach one entity to another (such as weapons, horses or snatching up another entity). Entities could avoid being destroyed instantly after use, and hence be recycled for reuse.
 
-6. **Event** - gives the mechanism for the game logic to fire or observe events. Many modules in the GameFramework fires events after operations, and observing these events will largely decouple game logic modules. The user can define his own game logic events, too.
+6. **Event** - gives the mechanism for the game logic to fire or observe events. Many modules in the Game Framework fires events after operations, and observing these events will largely decouple game logic modules. The user can define his own game logic events, too.
 
 7. **FSM** - provides the ability to create, use and destroy finite state machines. It’d be a good choice to use this module for some state-machine-like game logic.
 
-8. **Localization** - provides the ability to localise the game. GameFramework not only supports the localisation of texts, but also assets of all kinds. For example, a firework effect in the game can be localised as various versions, so that the player will see a "新年好" - like effect in the Chinese version, while "Happy New Year" - like in the English version.
+8. **Localization** - provides the ability to localise the game. Game Framework not only supports the localisation of texts, but also assets of all kinds. For example, a firework effect in the game can be localised as various versions, so that the player will see a "新年好" - like effect in the Chinese version, while "Happy New Year" - like in the English version.
 
 9. **Network** - provides socket connections where TCP is currently supported and both IPv4 and IPv6 are valid. The user can establish several connections to different servers at the same time. For example, the user can connect to a normal game server, and another server for voice chat. The 'Packet' class is ready for inheritance and implemented if the user wants to take use of protocol libraries such as ProtoBuf.
 
