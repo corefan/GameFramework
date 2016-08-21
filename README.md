@@ -22,11 +22,11 @@ Game Framework provides the following 17 builtin modules, and more will be devel
 
 9. **Network** - provides socket connections where TCP is currently supported and both IPv4 and IPv6 are valid. The user can establish several connections to different servers at the same time. For example, the user can connect to a normal game server, and another server for voice chat. The 'Packet' class is ready for inheritance and implemented if the user wants to take use of protocol libraries such as ProtoBuf.
 
-10. **Object Pool** - provides the ability to cache objects in pools. It avoids frequent creation and destruction operations of game objects, and hence improves the game performance. GameFramework itself uses object pools, and the user could conveniently create and manage his own pools.
+10. **Object Pool** - provides the ability to cache objects in pools. It avoids frequent creation and destruction operations of game objects, and hence improves the game performance. Game Framework itself uses object pools, and the user could conveniently create and manage his own pools.
 
 11. **Procedure** - is in fact an FSM of the whole lifecycle of the game. It’d be a very good habit to decouple different game states via procedures. For a network game, you probably need procedures of checking resources, updating resources, checking the server list, selecting a server, logging in a server and creating avatars. For a standalone game, you perhaps need to switch between procedures of the menu and the real gameplay. The user could add procedures by simply subclassing and implementing the 'ProcedureBase' class.
 
-12. **Resource** - provides only asynchronous interfaces to load resources. We don’t recommend synchronous approaches for better play experience, and GameFramework itself uses a complete system of asynchronous resource loading. We load everything asynchronously, including simple things like data tables and localisation texts, and complex things like entities, scenes and UIs.
+12. **Resource** - provides only asynchronous interfaces to load resources. We don’t recommend synchronous approaches for better play experience, and Game Framework itself uses a complete system of asynchronous resource loading. We load everything asynchronously, including simple things like data tables and localisation texts, and complex things like entities, scenes and UIs.
 
 13. **Scene** - provides features to manage scenes. It supports simultaneous loading of multiple scenes, and the user is allowed to unload a scene at any time. Therefore partial loading/unloading of scenes could be easily implemented.
 
