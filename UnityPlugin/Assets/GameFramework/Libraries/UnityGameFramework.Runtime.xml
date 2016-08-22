@@ -15305,6 +15305,11 @@
             获取或设置声音空间混合量。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.DefaultSoundAgentHelper.MaxDistance">
+            <summary>
+            获取或设置声音最大距离。
+            </summary>
+        </member>
         <member name="M:UnityGameFramework.Runtime.DefaultSoundAgentHelper.Play">
             <summary>
             播放声音。
@@ -15407,6 +15412,11 @@
         <member name="P:UnityGameFramework.Runtime.SoundAgentHelperBase.SpatialBlend">
             <summary>
             获取或设置声音空间混合量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.SoundAgentHelperBase.MaxDistance">
+            <summary>
+            获取或设置声音最大距离。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.SoundAgentHelperBase.Play">

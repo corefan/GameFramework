@@ -97,6 +97,15 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置声音最大距离。
+        /// </summary>
+        public abstract float MaxDistance
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 播放声音。
         /// </summary>
         public abstract void Play();

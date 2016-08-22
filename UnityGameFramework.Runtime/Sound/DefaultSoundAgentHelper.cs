@@ -151,6 +151,22 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置声音最大距离。
+        /// </summary>
+        public override float MaxDistance
+        {
+            get
+            {
+                return m_AudioSource.maxDistance;
+            }
+
+            set
+            {
+                m_AudioSource.maxDistance = value;
+            }
+        }
+
+        /// <summary>
         /// 播放声音。
         /// </summary>
         public override void Play()
@@ -235,6 +251,7 @@ namespace UnityGameFramework.Runtime
             m_CachedTransform = transform;
             m_AudioSource = gameObject.GetOrAddComponent<AudioSource>();
             m_AudioSource.playOnAwake = false;
+            m_AudioSource.rolloffMode = AudioRolloffMode.Custom;
         }
 
         private void Update()
