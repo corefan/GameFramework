@@ -11642,13 +11642,13 @@
             <param name="entityId">实体编号。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.HideEntity(GameFramework.Entity.IEntity)">
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.HideEntity(UnityGameFramework.Runtime.Entity)">
             <summary>
             隐藏实体。
             </summary>
             <param name="entity">实体。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.HideEntity(GameFramework.Entity.IEntity,System.Object)">
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.HideEntity(UnityGameFramework.Runtime.Entity,System.Object)">
             <summary>
             隐藏实体。
             </summary>
@@ -11861,27 +11861,27 @@
             <param name="parentEntityId">被解除的父实体的实体编号。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.DetachChildEntities(GameFramework.Entity.IEntity)">
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.DetachChildEntities(UnityGameFramework.Runtime.Entity)">
             <summary>
             解除所有子实体。
             </summary>
             <param name="parentEntity">被解除的父实体。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.DetachChildEntities(GameFramework.Entity.IEntity,System.Object)">
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.DetachChildEntities(UnityGameFramework.Runtime.Entity,System.Object)">
             <summary>
             解除所有子实体。
             </summary>
             <param name="parentEntity">被解除的父实体。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.SetInstanceLocked(GameFramework.Entity.IEntity,System.Boolean)">
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.SetInstanceLocked(UnityGameFramework.Runtime.Entity,System.Boolean)">
             <summary>
             设置实体实例是否被加锁。
             </summary>
             <param name="entity">实体。</param>
             <param name="locked">实体实例是否被加锁。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.SetInstancePriority(GameFramework.Entity.IEntity,System.Int32)">
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.SetInstancePriority(UnityGameFramework.Runtime.Entity,System.Int32)">
             <summary>
             设置实体实例的优先级。
             </summary>

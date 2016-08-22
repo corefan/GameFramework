@@ -331,7 +331,7 @@ namespace UnityGameFramework.Runtime
         /// 隐藏实体。
         /// </summary>
         /// <param name="entity">实体。</param>
-        public void HideEntity(IEntity entity)
+        public void HideEntity(Entity entity)
         {
             m_EntityManager.HideEntity(entity);
         }
@@ -341,7 +341,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="entity">实体。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void HideEntity(IEntity entity, object userData)
+        public void HideEntity(Entity entity, object userData)
         {
             m_EntityManager.HideEntity(entity, userData);
         }
@@ -681,7 +681,7 @@ namespace UnityGameFramework.Runtime
         /// 解除所有子实体。
         /// </summary>
         /// <param name="parentEntity">被解除的父实体。</param>
-        public void DetachChildEntities(IEntity parentEntity)
+        public void DetachChildEntities(Entity parentEntity)
         {
             m_EntityManager.DetachChildEntities(parentEntity);
         }
@@ -691,7 +691,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="parentEntity">被解除的父实体。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void DetachChildEntities(IEntity parentEntity, object userData)
+        public void DetachChildEntities(Entity parentEntity, object userData)
         {
             m_EntityManager.DetachChildEntities(parentEntity, userData);
         }
@@ -701,7 +701,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="entity">实体。</param>
         /// <param name="locked">实体实例是否被加锁。</param>
-        public void SetInstanceLocked(IEntity entity, bool locked)
+        public void SetInstanceLocked(Entity entity, bool locked)
         {
             m_EntityManager.SetInstanceLocked(entity, locked);
         }
@@ -711,7 +711,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="entity">实体。</param>
         /// <param name="priority">实体实例优先级。</param>
-        public void SetInstancePriority(IEntity entity, int priority)
+        public void SetInstancePriority(Entity entity, int priority)
         {
             m_EntityManager.SetInstancePriority(entity, priority);
         }
