@@ -23,7 +23,4 @@
   <assembly fullname="UnityGameFramework.Runtime">
     <namespace fullname="UnityGameFramework.Runtime" preserve="all" />
   </assembly>
-  <assembly fullname="UnityGameFramework.Middleware">
-    <namespace fullname="UnityGameFramework.Middleware" preserve="all" />
-  </assembly>
 </linker>
