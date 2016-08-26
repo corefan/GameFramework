@@ -27,7 +27,7 @@ namespace Game
 
         protected override void OnDestroy(ProcedureOwner procedureOwner)
         {
-
+            base.OnDestroy(procedureOwner);
         }
     }
 }
