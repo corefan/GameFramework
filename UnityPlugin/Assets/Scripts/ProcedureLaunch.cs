@@ -1,5 +1,4 @@
 ﻿using GameFramework.Procedure;
-using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
 namespace Game
@@ -9,9 +8,6 @@ namespace Game
         protected override void OnInit(ProcedureOwner procedureOwner)
         {
             base.OnInit(procedureOwner);
-            BaseComponent baseComponent = GameEntry.GetComponent<BaseComponent>();
-            baseComponent.GameVersion = "1.0.0";
-            baseComponent.InternalApplicationVersion = 0;
         }
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
