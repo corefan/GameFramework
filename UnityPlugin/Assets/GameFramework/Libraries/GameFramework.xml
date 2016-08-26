@@ -4701,9 +4701,16 @@
             </summary>
             <param name="fsm">有限状态机引用。</param>
         </member>
-        <member name="M:GameFramework.Fsm.FsmState`1.RegisterEventHandler(System.Int32,GameFramework.Fsm.FsmEventHandler{`0})">
+        <member name="M:GameFramework.Fsm.FsmState`1.SubscribeEvent(System.Int32,GameFramework.Fsm.FsmEventHandler{`0})">
             <summary>
-            注册有限状态机事件响应函数。
+            订阅有限状态机事件。
+            </summary>
+            <param name="eventId">事件编号。</param>
+            <param name="eventHandler">有限状态机事件响应函数。</param>
+        </member>
+        <member name="M:GameFramework.Fsm.FsmState`1.UnsubscribeEvent(System.Int32,GameFramework.Fsm.FsmEventHandler{`0})">
+            <summary>
+            取消订阅有限状态机事件。
             </summary>
             <param name="eventId">事件编号。</param>
             <param name="eventHandler">有限状态机事件响应函数。</param>
