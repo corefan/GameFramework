@@ -50,7 +50,7 @@ Game Framework includes 3 assemblies:
 
 - **UnityGameFramework.Editor.dll** - implements tools and inspectors based on UnityEditor.dll.
 
-![Game Framework](http://gameframework.cn/wp-content/uploads/2016/04/Game-Framework.png)  
+![Game Framework](http://gameframework.cn/wp-content/uploads/2016/04/Game-Framework.png)
 
 We'll refer to Game Framework as GF and Unity Game Framework as UGF for short in technical articles related to this Game Framework.
 
