@@ -28,6 +28,7 @@ namespace UnityGameFramework.Runtime
         private bool m_PerformGCCollect = false;
         private AsyncOperation m_AsyncOperation = null;
         private float m_LastOperationElapse = 0f;
+        private ResourceHelperBase m_ResourceHelper = null;
 
         [SerializeField]
         private ResourceMode m_ResourceMode = ResourceMode.Package;
@@ -347,19 +348,19 @@ namespace UnityGameFramework.Runtime
                 m_ResourceManager.UpdateRetryCount = m_UpdateRetryCount;
             }
 
-            ResourceHelperBase resourceHelper = Utility.Helper.CreateHelper(m_ResourceHelperTypeName, m_CustomResourceHelper);
-            if (resourceHelper == null)
+            m_ResourceHelper = Utility.Helper.CreateHelper(m_ResourceHelperTypeName, m_CustomResourceHelper);
+            if (m_ResourceHelper == null)
             {
                 Log.Error("Can not create resource helper.");
                 return;
             }
 
-            resourceHelper.name = string.Format("Resource Helper");
-            Transform transform = resourceHelper.transform;
+            m_ResourceHelper.name = string.Format("Resource Helper");
+            Transform transform = m_ResourceHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;
 
-            m_ResourceManager.SetResourceHelper(resourceHelper);
+            m_ResourceManager.SetResourceHelper(m_ResourceHelper);
 
             if (m_InstanceRoot == null)
             {
@@ -631,7 +632,7 @@ namespace UnityGameFramework.Runtime
             AssetBundleManifest assetBundleManifest = manifestAsset as AssetBundleManifest;
             if (assetBundleManifest != null)
             {
-                m_CustomResourceHelper.AssetBundleManifest = assetBundleManifest;
+                m_ResourceHelper.AssetBundleManifest = assetBundleManifest;
                 m_EventComponent.Fire(this, new LoadManifestSuccessEventArgs(manifestAssetName));
             }
             else
