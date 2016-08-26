@@ -22,7 +22,10 @@ namespace UnityGameFramework.Runtime
         private EventComponent m_EventComponent = null;
 
         [SerializeField]
-        private NetworkHelperBase m_NetworkHelper = null;
+        private string m_NetworkHelperTypeName = "UnityGameFramework.Runtime.DefaultNetworkHelper";
+
+        [SerializeField]
+        private NetworkHelperBase m_CustomNetworkHelper = null;
 
         [SerializeField]
         private NetworkChannel[] m_NetworkChannels = null;
@@ -69,16 +72,19 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            if (m_NetworkHelper == null)
+            NetworkHelperBase networkHelper = Utility.Helper.CreateHelper(m_NetworkHelperTypeName, m_CustomNetworkHelper);
+            if (networkHelper == null)
             {
-                m_NetworkHelper = (new GameObject()).AddComponent<DefaultNetworkHelper>();
-                m_NetworkHelper.name = string.Format("Network Helper");
-                Transform transform = m_NetworkHelper.transform;
-                transform.SetParent(this.transform);
-                transform.localScale = Vector3.one;
+                Log.Error("Can not create network helper.");
+                return;
             }
 
-            m_NetworkManager.SetNetworkHelper(m_NetworkHelper);
+            networkHelper.name = string.Format("Network Helper");
+            Transform transform = networkHelper.transform;
+            transform.SetParent(this.transform);
+            transform.localScale = Vector3.one;
+
+            m_NetworkManager.SetNetworkHelper(networkHelper);
 
             foreach (NetworkChannel networkChannel in m_NetworkChannels)
             {

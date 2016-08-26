@@ -135,7 +135,7 @@ namespace UnityGameFramework.Runtime
         {
             get
             {
-                return string.Empty;
+                return null;
             }
         }
 

@@ -81,7 +81,8 @@ namespace UnityGameFramework.Runtime
             }
             else if (m_EntityGroup != entityGroup)
             {
-                throw new GameFrameworkException("Entity group is inconsistent for non-new-instance entity.");
+                Log.Error("Entity group is inconsistent for non-new-instance entity.");
+                return;
             }
 
             ShowEntityInfo showEntityInfo = userData as ShowEntityInfo;

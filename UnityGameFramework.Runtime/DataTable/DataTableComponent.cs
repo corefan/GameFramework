@@ -23,7 +23,10 @@ namespace UnityGameFramework.Runtime
         private EventComponent m_EventComponent = null;
 
         [SerializeField]
-        private DataTableHelperBase m_DataTableHelper = null;
+        private string m_DataTableHelperTypeName = "UnityGameFramework.Runtime.DefaultDataTableHelper";
+
+        [SerializeField]
+        private DataTableHelperBase m_CustomDataTableHelper = null;
 
         /// <summary>
         /// 游戏框架组件初始化。
@@ -68,16 +71,19 @@ namespace UnityGameFramework.Runtime
                 m_DataTableManager.SetResourceManager(GameFrameworkEntry.GetModule<IResourceManager>());
             }
 
-            if (m_DataTableHelper == null)
+            DataTableHelperBase dataTableHelper = Utility.Helper.CreateHelper(m_DataTableHelperTypeName, m_CustomDataTableHelper);
+            if (dataTableHelper == null)
             {
-                m_DataTableHelper = (new GameObject()).AddComponent<DefaultDataTableHelper>();
-                m_DataTableHelper.name = string.Format("Data Table Helper");
-                Transform transform = m_DataTableHelper.transform;
-                transform.SetParent(this.transform);
-                transform.localScale = Vector3.one;
+                Log.Error("Can not create data table helper.");
+                return;
             }
 
-            m_DataTableManager.SetDataTableHelper(m_DataTableHelper);
+            dataTableHelper.name = string.Format("Data Table Helper");
+            Transform transform = dataTableHelper.transform;
+            transform.SetParent(this.transform);
+            transform.localScale = Vector3.one;
+
+            m_DataTableManager.SetDataTableHelper(dataTableHelper);
         }
 
         /// <summary>
@@ -289,7 +295,7 @@ namespace UnityGameFramework.Runtime
         {
             if (CreateDataTable<T>(name, text) == null)
             {
-                Log.Warning("Add data table failed in ReflectionCreateDataTable.");
+                Log.Warning("Add data table failure in ReflectionCreateDataTable.");
             }
         }
 

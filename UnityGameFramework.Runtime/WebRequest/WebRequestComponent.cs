@@ -24,18 +24,21 @@ namespace UnityGameFramework.Runtime
         private Transform m_InstanceRoot = null;
 
         [SerializeField]
-        private WebRequestAgentHelperBase m_WebRequestAgentHelperTemplate = null;
+        private string m_WebRequestAgentHelperTypeName = "UnityGameFramework.Runtime.UnityWebRequestAgentHelper";
+
+        [SerializeField]
+        private WebRequestAgentHelperBase m_CustomWebRequestAgentHelper = null;
 
         [SerializeField]
         private int m_WebRequestAgentHelperCount = 1;
 
         [SerializeField]
-        private float m_WebRequestTimeout = 30f;
+        private float m_Timeout = 30f;
 
         /// <summary>
         /// 获取 Web 请求代理总数量。
         /// </summary>
-        public int WebRequestTotalAgentCount
+        public int TotalAgentCount
         {
             get
             {
@@ -46,7 +49,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 获取可用 Web 请求代理数量。
         /// </summary>
-        public int WebRequestFreeAgentCount
+        public int FreeAgentCount
         {
             get
             {
@@ -57,7 +60,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 获取工作中 Web 请求代理数量。
         /// </summary>
-        public int WebRequestWorkingAgentCount
+        public int WorkingAgentCount
         {
             get
             {
@@ -68,7 +71,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 获取等待 Web 请求数量。
         /// </summary>
-        public int WebRequestWaitingTaskCount
+        public int WaitingTaskCount
         {
             get
             {
@@ -79,7 +82,7 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 获取或设置 Web 请求超时时长，以秒为单位。
         /// </summary>
-        public float WebRequestTimeout
+        public float Timeout
         {
             get
             {
@@ -87,7 +90,7 @@ namespace UnityGameFramework.Runtime
             }
             set
             {
-                m_WebRequestManager.Timeout = m_WebRequestTimeout = value;
+                m_WebRequestManager.Timeout = m_Timeout = value;
             }
         }
 
@@ -105,7 +108,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            m_WebRequestManager.Timeout = m_WebRequestTimeout;
+            m_WebRequestManager.Timeout = m_Timeout;
             m_WebRequestManager.WebRequestStart += OnWebRequestStart;
             m_WebRequestManager.WebRequestSuccess += OnWebRequestSuccess;
             m_WebRequestManager.WebRequestFailure += OnWebRequestFailure;
@@ -128,21 +131,7 @@ namespace UnityGameFramework.Runtime
 
             for (int i = 0; i < m_WebRequestAgentHelperCount; i++)
             {
-                WebRequestAgentHelperBase helper = null;
-                if (m_WebRequestAgentHelperTemplate != null)
-                {
-                    helper = Instantiate(m_WebRequestAgentHelperTemplate);
-                }
-                else
-                {
-                    helper = (new GameObject()).AddComponent<UnityWebRequestAgentHelper>();
-                }
-
-                helper.name = string.Format("Web Request Agent Helper - {0}", i.ToString());
-                Transform transform = helper.transform;
-                transform.SetParent(m_InstanceRoot);
-                transform.localScale = Vector3.one;
-                m_WebRequestManager.AddWebRequestAgentHelper(helper);
+                AddWebRequestAgentHelper(i);
             }
         }
 
@@ -229,6 +218,27 @@ namespace UnityGameFramework.Runtime
         public void RemoveAllWebRequests()
         {
             m_WebRequestManager.RemoveAllWebRequests();
+        }
+
+        /// <summary>
+        /// 增加 Web 请求代理辅助器。
+        /// </summary>
+        /// <param name="index">Web 请求代理辅助器索引。</param>
+        private void AddWebRequestAgentHelper(int index)
+        {
+            WebRequestAgentHelperBase webRequestAgentHelper = Utility.Helper.CreateHelper(m_WebRequestAgentHelperTypeName, m_CustomWebRequestAgentHelper, index);
+            if (webRequestAgentHelper == null)
+            {
+                Log.Error("Can not create web request agent helper.");
+                return;
+            }
+
+            webRequestAgentHelper.name = string.Format("Web Request Agent Helper - {0}", index.ToString());
+            Transform transform = webRequestAgentHelper.transform;
+            transform.SetParent(m_InstanceRoot);
+            transform.localScale = Vector3.one;
+
+            m_WebRequestManager.AddWebRequestAgentHelper(webRequestAgentHelper);
         }
 
         /// <summary>

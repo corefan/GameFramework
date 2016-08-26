@@ -270,6 +270,7 @@ copy "$(TargetDir)UnityGameFramework.Runtime.xml" "$(SolutionDir)UnityPlugin\Ass
     <Compile Include="UI\UIGroupHelperBase.cs" />
     <Compile Include="UI\UIIntKey.cs" />
     <Compile Include="UI\UIStringKey.cs" />
+    <Compile Include="Utility\Helper.cs" />
     <Compile Include="Utility\JsonHelper.cs" />
     <Compile Include="Utility\UnityExtension.cs" />
     <Compile Include="Utility\ZipHelper.cs" />

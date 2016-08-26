@@ -29,10 +29,16 @@ namespace UnityGameFramework.Runtime
         private Transform m_InstanceRoot = null;
 
         [SerializeField]
-        private UIGroupHelperBase m_UIGroupHelperTemplate = null;
+        private string m_UIFormHelperTypeName = "UnityGameFramework.Runtime.DefaultUIFormHelper";
 
         [SerializeField]
-        private UIFormHelperBase m_UIFormHelper = null;
+        private UIFormHelperBase m_CustomUIFormHelper = null;
+
+        [SerializeField]
+        private string m_UIGroupHelperTypeName = "UnityGameFramework.Runtime.DefaultUIGroupHelper";
+
+        [SerializeField]
+        private UIGroupHelperBase m_CustomUIGroupHelper = null;
 
         [SerializeField]
         private UIGroup[] m_UIGroups = null;
@@ -110,20 +116,23 @@ namespace UnityGameFramework.Runtime
             m_UIManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
             m_UIManager.InstanceCapacity = m_InstanceCapacity;
 
-            if (m_UIFormHelper == null)
+            UIFormHelperBase uiFormHelper = Utility.Helper.CreateHelper(m_UIFormHelperTypeName, m_CustomUIFormHelper);
+            if (uiFormHelper == null)
             {
-                m_UIFormHelper = (new GameObject()).AddComponent<DefaultUIFormHelper>();
-                m_UIFormHelper.name = string.Format("UI Form Helper");
-                Transform transform = m_UIFormHelper.transform;
-                transform.SetParent(this.transform);
-                transform.localScale = Vector3.one;
+                Log.Error("Can not create UI form helper.");
+                return;
             }
 
-            m_UIManager.SetUIFormHelper(m_UIFormHelper);
+            uiFormHelper.name = string.Format("UI Form Helper");
+            Transform transform = uiFormHelper.transform;
+            transform.SetParent(this.transform);
+            transform.localScale = Vector3.one;
+
+            m_UIManager.SetUIFormHelper(uiFormHelper);
 
             if (m_InstanceRoot == null)
             {
-                m_InstanceRoot = (new GameObject("UI Instances")).transform;
+                m_InstanceRoot = (new GameObject("UI Form Instances")).transform;
                 m_InstanceRoot.SetParent(gameObject.transform);
             }
 
@@ -133,7 +142,7 @@ namespace UnityGameFramework.Runtime
             {
                 if (!AddUIGroup(uiGroup.Name, uiGroup.Depth))
                 {
-                    Log.Warning("Add UI group '{0}' failed.", uiGroup.Name);
+                    Log.Warning("Add UI group '{0}' failure.", uiGroup.Name);
                     continue;
                 }
             }
@@ -191,23 +200,20 @@ namespace UnityGameFramework.Runtime
                 return false;
             }
 
-            UIGroupHelperBase helper = null;
-            if (m_UIGroupHelperTemplate != null)
+            UIGroupHelperBase uiGroupHelper = Utility.Helper.CreateHelper(m_UIGroupHelperTypeName, m_CustomUIGroupHelper, UIGroupCount);
+            if (uiGroupHelper == null)
             {
-                helper = Instantiate(m_UIGroupHelperTemplate);
-            }
-            else
-            {
-                helper = (new GameObject()).AddComponent<DefaultUIGroupHelper>();
+                Log.Error("Can not create UI group helper.");
+                return false;
             }
 
-            helper.name = string.Format("UI Group - {0}", uiGroupName);
-            helper.gameObject.layer = LayerMask.NameToLayer("UI");
-            Transform transform = helper.transform;
+            uiGroupHelper.name = string.Format("UI Group - {0}", uiGroupName);
+            uiGroupHelper.gameObject.layer = LayerMask.NameToLayer("UI");
+            Transform transform = uiGroupHelper.transform;
             transform.SetParent(m_InstanceRoot);
             transform.localScale = Vector3.one;
 
-            return m_UIManager.AddUIGroup(uiGroupName, depth, helper);
+            return m_UIManager.AddUIGroup(uiGroupName, depth, uiGroupHelper);
         }
 
         /// <summary>

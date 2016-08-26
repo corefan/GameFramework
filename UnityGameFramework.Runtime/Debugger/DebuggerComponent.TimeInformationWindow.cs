@@ -45,12 +45,12 @@ namespace UnityGameFramework.Runtime
 
                 if (timeScale < 1f)
                 {
-                    return "Slow";
+                    return "Slower";
                 }
 
                 if (timeScale > 1f)
                 {
-                    return "Fast";
+                    return "Faster";
                 }
 
                 return "Normal";

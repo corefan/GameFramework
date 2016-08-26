@@ -32,10 +32,16 @@ namespace UnityGameFramework.Runtime
         private Transform m_InstanceRoot = null;
 
         [SerializeField]
-        private EntityGroupHelperBase m_EntityGroupHelperTemplate = null;
+        private string m_EntityHelperTypeName = "UnityGameFramework.Runtime.DefaultEntityHelper";
 
         [SerializeField]
-        private EntityHelperBase m_EntityHelper = null;
+        private EntityHelperBase m_CustomEntityHelper = null;
+
+        [SerializeField]
+        private string m_EntityGroupHelperTypeName = "UnityGameFramework.Runtime.DefaultEntityGroupHelper";
+
+        [SerializeField]
+        private EntityGroupHelperBase m_CustomEntityGroupHelper = null;
 
         [SerializeField]
         private EntityGroup[] m_EntityGroups = null;
@@ -124,16 +130,19 @@ namespace UnityGameFramework.Runtime
             m_EntityManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
             m_EntityManager.AssetCapacity = m_AssetCapacity;
 
-            if (m_EntityHelper == null)
+            EntityHelperBase entityHelper = Utility.Helper.CreateHelper(m_EntityHelperTypeName, m_CustomEntityHelper);
+            if (entityHelper == null)
             {
-                m_EntityHelper = (new GameObject()).AddComponent<DefaultEntityHelper>();
-                m_EntityHelper.name = string.Format("Entity Helper");
-                Transform transform = m_EntityHelper.transform;
-                transform.SetParent(this.transform);
-                transform.localScale = Vector3.one;
+                Log.Error("Can not create entity helper.");
+                return;
             }
 
-            m_EntityManager.SetEntityHelper(m_EntityHelper);
+            entityHelper.name = string.Format("Entity Helper");
+            Transform transform = entityHelper.transform;
+            transform.SetParent(this.transform);
+            transform.localScale = Vector3.one;
+
+            m_EntityManager.SetEntityHelper(entityHelper);
 
             if (m_InstanceRoot == null)
             {
@@ -143,7 +152,11 @@ namespace UnityGameFramework.Runtime
 
             foreach (EntityGroup entityGroup in m_EntityGroups)
             {
-                AddEntityGroup(entityGroup.Name, entityGroup.InstanceCapacity);
+                if (!AddEntityGroup(entityGroup.Name, entityGroup.InstanceCapacity))
+                {
+                    Log.Warning("Add entity group '{0}'.", entityGroup.Name);
+                    continue;
+                }
             }
         }
 
@@ -180,9 +193,10 @@ namespace UnityGameFramework.Runtime
         /// 增加实体组。
         /// </summary>
         /// <param name="entityGroupName">实体组名称。</param>
-        public void AddEntityGroup(string entityGroupName)
+        /// <returns>是否增加实体组成功。</returns>
+        public bool AddEntityGroup(string entityGroupName)
         {
-            AddEntityGroup(entityGroupName, DefaultInstanceCapacity);
+            return AddEntityGroup(entityGroupName, DefaultInstanceCapacity);
         }
 
         /// <summary>
@@ -190,30 +204,27 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="entityGroupName">实体组名称。</param>
         /// <param name="instanceCapacity">实体实例对象池容量。</param>
-        public void AddEntityGroup(string entityGroupName, int instanceCapacity)
+        /// <returns>是否增加实体组成功。</returns>
+        public bool AddEntityGroup(string entityGroupName, int instanceCapacity)
         {
             if (m_EntityManager.HasEntityGroup(entityGroupName))
             {
-                Log.Warning("Entity group '{0}' is already exist.", entityGroupName);
-                return;
+                return false;
             }
 
-            EntityGroupHelperBase helper = null;
-            if (m_EntityGroupHelperTemplate != null)
+            EntityGroupHelperBase entityGroupHelper = Utility.Helper.CreateHelper(m_EntityGroupHelperTypeName, m_CustomEntityGroupHelper, EntityGroupCount);
+            if (entityGroupHelper == null)
             {
-                helper = Instantiate(m_EntityGroupHelperTemplate);
-            }
-            else
-            {
-                helper = (new GameObject()).AddComponent<DefaultEntityGroupHelper>();
+                Log.Error("Can not create entity group helper.");
+                return false;
             }
 
-            helper.name = string.Format("Entity Group - {0}", entityGroupName);
-            Transform transform = helper.transform;
+            entityGroupHelper.name = string.Format("Entity Group - {0}", entityGroupName);
+            Transform transform = entityGroupHelper.transform;
             transform.SetParent(m_InstanceRoot);
             transform.localScale = Vector3.one;
 
-            m_EntityManager.AddEntityGroup(entityGroupName, instanceCapacity, helper);
+            return m_EntityManager.AddEntityGroup(entityGroupName, instanceCapacity, entityGroupHelper);
         }
 
         /// <summary>

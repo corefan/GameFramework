@@ -48,14 +48,14 @@ namespace UnityGameFramework.Runtime
             MethodInfo methodInfo = m_DataTableComponent.GetType().GetMethod("ReflectionCreateDataTable", BindingFlags.NonPublic | BindingFlags.Instance);
             if (methodInfo == null)
             {
-                Log.Warning("Get ReflectionCreateDataTable method failed.");
+                Log.Warning("Get ReflectionCreateDataTable method failure.");
                 return false;
             }
 
             methodInfo = methodInfo.MakeGenericMethod(dataTableType);
             if (methodInfo == null)
             {
-                Log.Warning("Make 'CreateDataTable<{0}>' method failed.", dataTableType.Name);
+                Log.Warning("Make 'CreateDataTable<{0}>' method failure.", dataTableType.Name);
                 return false;
             }
 
@@ -66,7 +66,7 @@ namespace UnityGameFramework.Runtime
             }
             catch (Exception exception)
             {
-                string errorMessage = string.Format("Invoke 'CreateDataTable<{0}>' method failed with exception '{1}'.", dataTableType.FullName, string.Format("{0}\n{1}", exception.Message, exception.StackTrace));
+                string errorMessage = string.Format("Invoke 'CreateDataTable<{0}>' method failure with exception '{1}'.", dataTableType.FullName, string.Format("{0}\n{1}", exception.Message, exception.StackTrace));
                 if (exception.InnerException != null)
                 {
                     errorMessage += string.Format(" Inner exception is '{0}'.", exception.InnerException.Message);
@@ -105,7 +105,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="dataTableAsset">要释放的数据表资源。</param>
         public override void ReleaseDataTableAsset(object dataTableAsset)
         {
-            m_ResourceComponent.UnloadUnusedAssets(false, "release data table");
+            m_ResourceComponent.UnloadUnusedAssets(false);
         }
 
         private void Start()

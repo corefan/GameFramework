@@ -105,7 +105,8 @@ namespace UnityGameFramework.Runtime
             }
             else if (m_UIGroup != uiGroup)
             {
-                throw new GameFrameworkException("UI group is inconsistent for non-new-instance UI form.");
+                Log.Error("UI group is inconsistent for non-new-instance UI form.");
+                return;
             }
 
             m_DepthInUIGroup = 0;

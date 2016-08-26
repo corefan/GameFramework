@@ -10,7 +10,6 @@ using GameFramework.Fsm;
 using GameFramework.Procedure;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace UnityGameFramework.Runtime
@@ -22,13 +21,13 @@ namespace UnityGameFramework.Runtime
     public sealed class ProcedureComponent : GameFrameworkComponent
     {
         private IProcedureManager m_ProcedureManager = null;
-        private ProcedureBase m_FirstProcedure = null;
+        private ProcedureBase m_EntranceProcedure = null;
 
         [SerializeField]
-        private List<string> m_ProcedureClassNames = null;
+        private string[] m_AvailableProcedureTypeNames = null;
 
         [SerializeField]
-        private string m_FirstProcedureClassName = null;
+        private string m_EntranceProcedureTypeName = null;
 
         /// <summary>
         /// 获取当前流程。
@@ -60,41 +59,40 @@ namespace UnityGameFramework.Runtime
         {
             IFsmManager fsmManager = GameFrameworkEntry.GetModule<IFsmManager>();
 
-            ProcedureBase[] procedures = new ProcedureBase[m_ProcedureClassNames.Count];
-            for (int i = 0; i < m_ProcedureClassNames.Count; i++)
+            ProcedureBase[] procedures = new ProcedureBase[m_AvailableProcedureTypeNames.Length];
+            for (int i = 0; i < m_AvailableProcedureTypeNames.Length; i++)
             {
-                Type procedureType = Utility.Assembly.GetTypeWithinLoadedAssemblies(m_ProcedureClassNames[i]);
+                Type procedureType = Utility.Assembly.GetTypeWithinLoadedAssemblies(m_AvailableProcedureTypeNames[i]);
                 if (procedureType == null)
                 {
-                    throw new GameFrameworkException(string.Format("Can not find procedure type '{0}'.", m_ProcedureClassNames[i]));
+                    Log.Error("Can not find procedure type '{0}'.", m_AvailableProcedureTypeNames[i]);
+                    yield break;
                 }
 
                 procedures[i] = Activator.CreateInstance(procedureType) as ProcedureBase;
                 if (procedures[i] == null)
                 {
-                    throw new GameFrameworkException(string.Format("Can not create procedure instance '{0}'.", m_ProcedureClassNames[i]));
+                    Log.Error("Can not create procedure instance '{0}'.", m_AvailableProcedureTypeNames[i]);
+                    yield break;
                 }
 
-                if (m_ProcedureClassNames[i] == m_FirstProcedureClassName)
+                if (m_EntranceProcedureTypeName == m_AvailableProcedureTypeNames[i])
                 {
-                    m_FirstProcedure = procedures[i];
+                    m_EntranceProcedure = procedures[i];
                 }
+            }
+
+            if (m_EntranceProcedure == null)
+            {
+                Log.Error("Entrance procedure is invalid.");
+                yield break;
             }
 
             m_ProcedureManager.Initialize(fsmManager, procedures);
 
             yield return new WaitForEndOfFrame();
-            StartProcedure();
-        }
 
-        internal void StartProcedure()
-        {
-            if (m_FirstProcedure == null)
-            {
-                throw new GameFrameworkException("First procedure is invalid.");
-            }
-
-            m_ProcedureManager.StartProcedure(m_FirstProcedure.GetType());
+            m_ProcedureManager.StartProcedure(m_EntranceProcedure.GetType());
         }
 
         /// <summary>

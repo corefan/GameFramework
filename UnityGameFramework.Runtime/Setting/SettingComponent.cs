@@ -20,7 +20,10 @@ namespace UnityGameFramework.Runtime
         private ISettingManager m_SettingManager = null;
 
         [SerializeField]
-        private SettingHelperBase m_SettingHelper = null;
+        private string m_SettingHelperTypeName = "UnityGameFramework.Runtime.DefaultSettingHelper";
+
+        [SerializeField]
+        private SettingHelperBase m_CustomSettingHelper = null;
 
         /// <summary>
         /// 游戏框架组件初始化。
@@ -36,16 +39,19 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            if (m_SettingHelper == null)
+            SettingHelperBase settingHelper = Utility.Helper.CreateHelper(m_SettingHelperTypeName, m_CustomSettingHelper);
+            if (settingHelper == null)
             {
-                m_SettingHelper = (new GameObject()).AddComponent<DefaultSettingHelper>();
-                m_SettingHelper.name = string.Format("Setting Helper");
-                Transform transform = m_SettingHelper.transform;
-                transform.SetParent(this.transform);
-                transform.localScale = Vector3.one;
+                Log.Error("Can not create setting helper.");
+                return;
             }
 
-            m_SettingManager.SetSettingHelper(m_SettingHelper);
+            settingHelper.name = string.Format("Setting Helper");
+            Transform transform = settingHelper.transform;
+            transform.SetParent(this.transform);
+            transform.localScale = Vector3.one;
+
+            m_SettingManager.SetSettingHelper(settingHelper);
         }
 
         private void Start()

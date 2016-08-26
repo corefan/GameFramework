@@ -65,7 +65,7 @@ namespace UnityGameFramework.Runtime
             bool retVal = SceneManager.UnloadScene(sceneName);
             if (retVal)
             {
-                m_ResourceComponent.UnloadUnusedAssets(false, "release scene");
+                m_ResourceComponent.UnloadUnusedAssets(false);
             }
 
             return retVal;

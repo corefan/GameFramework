@@ -24,7 +24,10 @@ namespace UnityGameFramework.Runtime
         private Transform m_InstanceRoot = null;
 
         [SerializeField]
-        private DownloadAgentHelperBase m_DownloadAgentHelperTemplate = null;
+        private string m_DownloadAgentHelperTypeName = "UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper";
+
+        [SerializeField]
+        private DownloadAgentHelperBase m_CustomDownloadAgentHelper = null;
 
         [SerializeField]
         private int m_DownloadAgentHelperCount = 1;
@@ -159,21 +162,7 @@ namespace UnityGameFramework.Runtime
 
             for (int i = 0; i < m_DownloadAgentHelperCount; i++)
             {
-                DownloadAgentHelperBase helper = null;
-                if (m_DownloadAgentHelperTemplate != null)
-                {
-                    helper = Instantiate(m_DownloadAgentHelperTemplate);
-                }
-                else
-                {
-                    helper = (new GameObject()).AddComponent<UnityWebRequestDownloadAgentHelper>();
-                }
-
-                helper.name = string.Format("Download Agent Helper - {0}", i.ToString());
-                Transform transform = helper.transform;
-                transform.SetParent(m_InstanceRoot);
-                transform.localScale = Vector3.one;
-                m_DownloadManager.AddDownloadAgentHelper(helper);
+                AddDownloadAgentHelper(i);
             }
         }
 
@@ -215,6 +204,27 @@ namespace UnityGameFramework.Runtime
         public void RemoveAllDownload()
         {
             m_DownloadManager.RemoveAllDownload();
+        }
+
+        /// <summary>
+        /// 增加下载代理辅助器。
+        /// </summary>
+        /// <param name="index">下载代理辅助器索引。</param>
+        private void AddDownloadAgentHelper(int index)
+        {
+            DownloadAgentHelperBase downloadAgentHelper = Utility.Helper.CreateHelper(m_DownloadAgentHelperTypeName, m_CustomDownloadAgentHelper, index);
+            if (downloadAgentHelper == null)
+            {
+                Log.Error("Can not create download agent helper.");
+                return;
+            }
+
+            downloadAgentHelper.name = string.Format("Download Agent Helper - {0}", index.ToString());
+            Transform transform = downloadAgentHelper.transform;
+            transform.SetParent(m_InstanceRoot);
+            transform.localScale = Vector3.one;
+
+            m_DownloadManager.AddDownloadAgentHelper(downloadAgentHelper);
         }
 
         private void OnDownloadStart(object sender, GameFramework.Download.DownloadStartEventArgs e)

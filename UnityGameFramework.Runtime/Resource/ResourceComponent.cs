@@ -22,14 +22,15 @@ namespace UnityGameFramework.Runtime
     {
         private IResourceManager m_ResourceManager = null;
         private EventComponent m_EventComponent = null;
+        private bool m_EditorResourceMode = false;
+        private bool m_ForceUnloadUnusedAssets = false;
         private bool m_PreorderUnloadUnusedAssets = false;
-        private string m_PreorderUnloadUnusedAssetsReason = null;
-        private bool m_PreorderGarbageCollect = false;
+        private bool m_PerformGCCollect = false;
         private AsyncOperation m_AsyncOperation = null;
         private float m_LastOperationElapse = 0f;
 
         [SerializeField]
-        private ResourceMode m_ResourceMode = ResourceMode.Unspecified;
+        private ResourceMode m_ResourceMode = ResourceMode.Package;
 
         [SerializeField]
         private float m_UnloadUnusedAssetsInterval = 60f;
@@ -38,19 +39,28 @@ namespace UnityGameFramework.Runtime
         private int m_ResourceCapacity = 8;
 
         [SerializeField]
+        private string m_UpdatePrefixUri = null;
+
+        [SerializeField]
         private int m_UpdateRetryCount = 3;
 
         [SerializeField]
         private Transform m_InstanceRoot = null;
 
         [SerializeField]
-        private LoadResourceAgentHelperBase m_LoadResourceAgentHelperTemplate = null;
+        private string m_ResourceHelperTypeName = "UnityGameFramework.Runtime.DefaultResourceHelper";
+
+        [SerializeField]
+        private ResourceHelperBase m_CustomResourceHelper = null;
+
+        [SerializeField]
+        private string m_LoadResourceAgentHelperTypeName = "UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper";
+
+        [SerializeField]
+        private LoadResourceAgentHelperBase m_CustomLoadResourceAgentHelper = null;
 
         [SerializeField]
         private int m_LoadResourceAgentHelperCount = 3;
-
-        [SerializeField]
-        private ResourceHelperBase m_ResourceHelper = null;
 
         /// <summary>
         /// 获取资源只读路径。
@@ -177,7 +187,7 @@ namespace UnityGameFramework.Runtime
             }
             set
             {
-                m_ResourceManager.UpdatePrefixUri = value;
+                m_ResourceManager.UpdatePrefixUri = m_UpdatePrefixUri = value;
             }
         }
 
@@ -301,8 +311,8 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            bool useEditorResources = baseComponent.EditorResourceMode;
-            m_ResourceManager = useEditorResources ? baseComponent.EditorResourceHelper : GameFrameworkEntry.GetModule<IResourceManager>();
+            m_EditorResourceMode = baseComponent.EditorResourceMode;
+            m_ResourceManager = m_EditorResourceMode ? baseComponent.EditorResourceHelper : GameFrameworkEntry.GetModule<IResourceManager>();
             if (m_ResourceManager == null)
             {
                 Log.Fatal("Resource manager is invalid.");
@@ -322,63 +332,55 @@ namespace UnityGameFramework.Runtime
             m_ResourceManager.SetReadOnlyPath(Application.streamingAssetsPath);
             m_ResourceManager.SetReadWritePath(Application.temporaryCachePath);
 
-            if (!useEditorResources)
+            if (m_EditorResourceMode)
             {
-                SetResourceMode(m_ResourceMode);
-                m_ResourceManager.SetDownloadManager(GameFrameworkEntry.GetModule<IDownloadManager>());
-                m_ResourceManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
-                m_ResourceManager.ResourceCapacity = m_ResourceCapacity;
-                if (m_ResourceMode == ResourceMode.Updatable)
-                {
-                    m_ResourceManager.UpdateRetryCount = m_UpdateRetryCount;
-                }
+                return;
+            }
 
-                if (m_ResourceHelper == null)
-                {
-                    m_ResourceHelper = (new GameObject()).AddComponent<DefaultResourceHelper>();
-                    m_ResourceHelper.name = string.Format("Resource Helper");
-                    Transform transform = m_ResourceHelper.transform;
-                    transform.SetParent(this.transform);
-                    transform.localScale = Vector3.one;
-                }
+            SetResourceMode(m_ResourceMode);
+            m_ResourceManager.SetDownloadManager(GameFrameworkEntry.GetModule<IDownloadManager>());
+            m_ResourceManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
+            m_ResourceManager.ResourceCapacity = m_ResourceCapacity;
+            if (m_ResourceMode == ResourceMode.Updatable)
+            {
+                m_ResourceManager.UpdatePrefixUri = m_UpdatePrefixUri;
+                m_ResourceManager.UpdateRetryCount = m_UpdateRetryCount;
+            }
 
-                m_ResourceManager.SetResourceHelper(m_ResourceHelper);
+            ResourceHelperBase resourceHelper = Utility.Helper.CreateHelper(m_ResourceHelperTypeName, m_CustomResourceHelper);
+            if (resourceHelper == null)
+            {
+                Log.Error("Can not create resource helper.");
+                return;
+            }
 
-                if (m_InstanceRoot == null)
-                {
-                    m_InstanceRoot = (new GameObject("Load Resource Agent Instances")).transform;
-                    m_InstanceRoot.SetParent(gameObject.transform);
-                }
+            resourceHelper.name = string.Format("Resource Helper");
+            Transform transform = resourceHelper.transform;
+            transform.SetParent(this.transform);
+            transform.localScale = Vector3.one;
 
-                for (int i = 0; i < m_LoadResourceAgentHelperCount; i++)
-                {
-                    LoadResourceAgentHelperBase helper = null;
-                    if (m_LoadResourceAgentHelperTemplate != null)
-                    {
-                        helper = Instantiate(m_LoadResourceAgentHelperTemplate);
-                    }
-                    else
-                    {
-                        helper = (new GameObject()).AddComponent<DefaultLoadResourceAgentHelper>();
-                    }
+            m_ResourceManager.SetResourceHelper(resourceHelper);
 
-                    helper.name = string.Format("Load Resource Agent Helper - {0}", i.ToString());
-                    Transform transform = helper.transform;
-                    transform.SetParent(m_InstanceRoot);
-                    transform.localScale = Vector3.one;
-                    m_ResourceManager.AddLoadResourceAgentHelper(helper);
-                }
+            if (m_InstanceRoot == null)
+            {
+                m_InstanceRoot = (new GameObject("Load Resource Agent Instances")).transform;
+                m_InstanceRoot.SetParent(gameObject.transform);
+            }
+
+            for (int i = 0; i < m_LoadResourceAgentHelperCount; i++)
+            {
+                AddLoadResourceAgentHelper(i);
             }
         }
 
         private void Update()
         {
             m_LastOperationElapse += Time.unscaledDeltaTime;
-            if (m_AsyncOperation == null && (m_PreorderUnloadUnusedAssets || m_LastOperationElapse >= m_UnloadUnusedAssetsInterval))
+            if (m_AsyncOperation == null && (m_ForceUnloadUnusedAssets || m_PreorderUnloadUnusedAssets && m_LastOperationElapse >= m_UnloadUnusedAssetsInterval))
             {
-                Log.Info("Unload unused assets for reason '{0}'...", m_PreorderUnloadUnusedAssetsReason ?? "unknown");
+                Log.Debug("Unload unused assets...");
+                m_ForceUnloadUnusedAssets = false;
                 m_PreorderUnloadUnusedAssets = false;
-                m_PreorderUnloadUnusedAssetsReason = null;
                 m_LastOperationElapse = 0f;
                 m_AsyncOperation = Resources.UnloadUnusedAssets();
             }
@@ -386,11 +388,10 @@ namespace UnityGameFramework.Runtime
             if (m_AsyncOperation != null && m_AsyncOperation.isDone)
             {
                 m_AsyncOperation = null;
-
-                if (m_PreorderGarbageCollect)
+                if (m_PerformGCCollect)
                 {
-                    Log.Info("Garbage collect...");
-                    m_PreorderGarbageCollect = false;
+                    Log.Debug("GC.Collect...");
+                    m_PerformGCCollect = false;
                     GC.Collect();
                 }
             }
@@ -425,15 +426,29 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 释放未被使用的资源。
+        /// 预订执行释放未被使用的资源。
         /// </summary>
-        /// <param name="performGarbageCollect">是否使用垃圾回收。</param>
-        /// <param name="reason">释放未被使用资源的原因。</param>
-        public void UnloadUnusedAssets(bool performGarbageCollect, string reason)
+        /// <param name="performGCCollect">是否使用垃圾回收。</param>
+        public void UnloadUnusedAssets(bool performGCCollect)
         {
             m_PreorderUnloadUnusedAssets = true;
-            m_PreorderUnloadUnusedAssetsReason = reason;
-            m_PreorderGarbageCollect = performGarbageCollect;
+            if (performGCCollect)
+            {
+                m_PerformGCCollect = performGCCollect;
+            }
+        }
+
+        /// <summary>
+        /// 强制执行释放未被使用的资源。
+        /// </summary>
+        /// <param name="performGCCollect">是否使用垃圾回收。</param>
+        public void ForceUnloadUnusedAssets(bool performGCCollect)
+        {
+            m_ForceUnloadUnusedAssets = true;
+            if (performGCCollect)
+            {
+                m_PerformGCCollect = performGCCollect;
+            }
         }
 
         /// <summary>
@@ -590,12 +605,33 @@ namespace UnityGameFramework.Runtime
             return m_ResourceManager.GetResourceGroupProgress(resourceGroupName);
         }
 
+        /// <summary>
+        /// 增加加载资源代理辅助器。
+        /// </summary>
+        /// <param name="index">加载资源代理辅助器索引。</param>
+        private void AddLoadResourceAgentHelper(int index)
+        {
+            LoadResourceAgentHelperBase loadResourceAgentHelper = Utility.Helper.CreateHelper(m_LoadResourceAgentHelperTypeName, m_CustomLoadResourceAgentHelper, index);
+            if (loadResourceAgentHelper == null)
+            {
+                Log.Error("Can not create load resource agent helper.");
+                return;
+            }
+
+            loadResourceAgentHelper.name = string.Format("Load Resource Agent Helper - {0}", index.ToString());
+            Transform transform = loadResourceAgentHelper.transform;
+            transform.SetParent(m_InstanceRoot);
+            transform.localScale = Vector3.one;
+
+            m_ResourceManager.AddLoadResourceAgentHelper(loadResourceAgentHelper);
+        }
+
         private void LoadManifestSuccessHandler(string manifestAssetName, object manifestAsset, object userData)
         {
             AssetBundleManifest assetBundleManifest = manifestAsset as AssetBundleManifest;
             if (assetBundleManifest != null)
             {
-                m_ResourceHelper.AssetBundleManifest = assetBundleManifest;
+                m_CustomResourceHelper.AssetBundleManifest = assetBundleManifest;
                 m_EventComponent.Fire(this, new LoadManifestSuccessEventArgs(manifestAssetName));
             }
             else
@@ -603,7 +639,7 @@ namespace UnityGameFramework.Runtime
                 m_EventComponent.Fire(this, new LoadManifestFailureEventArgs(manifestAssetName, "Loaded asset is not manifest."));
             }
 
-            UnloadUnusedAssets(false, "release manifest");
+            UnloadUnusedAssets(false);
         }
 
         private void LoadManifestFailureHandler(string manifestAssetName, LoadResourceStatus status, string errorMessage, object userData)

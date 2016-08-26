@@ -22,6 +22,17 @@ namespace UnityGameFramework.Runtime
         private IEventManager m_EventManager = null;
 
         /// <summary>
+        /// 获取事件数量。
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                return m_EventManager.Count;
+            }
+        }
+
+        /// <summary>
         /// 游戏框架组件初始化。
         /// </summary>
         protected internal override void Awake()

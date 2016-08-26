@@ -30,6 +30,17 @@ public static class UnityExtension
     }
 
     /// <summary>
+    /// 获取 GameObject 是否在场景中。
+    /// </summary>
+    /// <param name="gameObject">目标对象。</param>
+    /// <returns>GameObject 是否在场景中。</returns>
+    /// <remarks>若返回 true，表明此 GameObject 是一个场景中的实例对象；若返回 false，表明此 GameObject 是一个 Prefab。</remarks>
+    public static bool InScene(this GameObject gameObject)
+    {
+        return gameObject.scene.name != null;
+    }
+
+    /// <summary>
     /// 取 <see cref="UnityEngine.Vector3" /> 的 (x, z) 转换为 Vector2。
     /// </summary>
     /// <param name="vector3">要转换的 Vector3。</param>

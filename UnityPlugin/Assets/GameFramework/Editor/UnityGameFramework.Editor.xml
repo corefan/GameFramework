@@ -44,9 +44,29 @@
             从内存解密加载。
             </summary>
         </member>
+        <member name="T:UnityGameFramework.Editor.GameFrameworkInspector">
+            <summary>
+            游戏框架 Inspector 抽象类。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Editor.GameFrameworkInspector.OnInspectorGUI">
+            <summary>
+            绘制事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Editor.GameFrameworkInspector.OnCompileStart">
+            <summary>
+            编译开始事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Editor.GameFrameworkInspector.OnCompileComplete">
+            <summary>
+            编译完成事件。
+            </summary>
+        </member>
         <member name="T:UnityGameFramework.Editor.BuildSettings">
             <summary>
-            构建配置的实用函数。
+            构建配置相关的实用函数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.BuildSettings.DefaultScenes">
@@ -59,9 +79,14 @@
             将构建场景设置为所有。
             </summary>
         </member>
+        <member name="T:UnityGameFramework.Editor.ContextMenu">
+            <summary>
+            上下文相关的实用函数。
+            </summary>
+        </member>
         <member name="T:UnityGameFramework.Editor.GameObjectCounter">
             <summary>
-            统计 Game Object 数量的实用函数。
+            统计 Game Object 数量相关的实用函数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.GameObjectCounter.CountGameObjects">
@@ -71,22 +96,12 @@
         </member>
         <member name="T:UnityGameFramework.Editor.Help">
             <summary>
-            帮助的实用函数。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Editor.Help.OpenHomepage">
-            <summary>
-            打开文档。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Editor.Help.OpenAPI">
-            <summary>
-            打开 API。
+            帮助相关的实用函数。
             </summary>
         </member>
         <member name="T:UnityGameFramework.Editor.OpenFolder">
             <summary>
-            打开目录的实用函数。
+            打开目录相关的实用函数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.OpenFolder.OpenFolderTemporaryCachePath">
@@ -111,7 +126,7 @@
         </member>
         <member name="T:UnityGameFramework.Editor.ProjectSaver">
             <summary>
-            存储整个工程的实用函数。
+            存储整个工程相关的实用函数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.ProjectSaver.SaveAssets">
@@ -122,7 +137,7 @@
         </member>
         <member name="T:UnityGameFramework.Editor.ScriptableObjectCreator">
             <summary>
-            <see cref="T:UnityEngine.ScriptableObject" /> 创建器的实用函数。
+            <see cref="T:UnityEngine.ScriptableObject" /> 创建器相关的实用函数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.ScriptableObjectCreator.CreateAsset``1">
@@ -153,7 +168,7 @@
         </member>
         <member name="T:UnityGameFramework.Editor.TransformPathCopier">
             <summary>
-            Transform 路径复制器。
+            Transform 路径相关的实用函数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.TransformPathCopier.CopyTransformPath">
@@ -166,6 +181,18 @@
             检查是否可复制 Transform 路径。
             </summary>
             <returns>是否可复制 Transform 路径。</returns>
+        </member>
+        <member name="T:Utility.Type">
+            <summary>
+            类型相关的实用函数。
+            </summary>
+        </member>
+        <member name="M:Utility.Type.GetTypeNames(System.Type)">
+            <summary>
+            获取指定基类的所有子类的名称。
+            </summary>
+            <param name="typeBase">基类类型。</param>
+            <returns>指定基类的所有子类的名称。</returns>
         </member>
     </members>
 </doc>

@@ -29,7 +29,7 @@ namespace UnityGameFramework.Runtime
         private float m_GameSpeedBeforePause = 1f;
 
         [SerializeField]
-        private bool m_EditorResourceMode = false;
+        private bool m_EditorResourceMode = true;
 
         [SerializeField]
         private Language m_EditorLanguage = Language.Unspecified;
@@ -41,10 +41,10 @@ namespace UnityGameFramework.Runtime
         private float m_GameSpeed = 1f;
 
         [SerializeField]
-        private bool m_RunInBackground = false;
+        private bool m_RunInBackground = true;
 
         [SerializeField]
-        private bool m_NeverSleep = false;
+        private bool m_NeverSleep = true;
 
         /// <summary>
         /// 获取或设置游戏版本号。

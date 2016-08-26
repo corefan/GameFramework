@@ -11312,6 +11312,12 @@
             移除全部下载任务。
             </summary>
         </member>
+        <member name="M:UnityGameFramework.Runtime.DownloadComponent.AddDownloadAgentHelper(System.Int32)">
+            <summary>
+            增加下载代理辅助器。
+            </summary>
+            <param name="index">下载代理辅助器索引。</param>
+        </member>
         <member name="T:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper">
             <summary>
             使用 UnityWebRequest 实现的下载代理辅助器。
@@ -11568,6 +11574,7 @@
             增加实体组。
             </summary>
             <param name="entityGroupName">实体组名称。</param>
+            <returns>是否增加实体组成功。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.EntityComponent.AddEntityGroup(System.String,System.Int32)">
             <summary>
@@ -11575,6 +11582,7 @@
             </summary>
             <param name="entityGroupName">实体组名称。</param>
             <param name="instanceCapacity">实体实例对象池容量。</param>
+            <returns>是否增加实体组成功。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.EntityComponent.HasEntity(System.Int32)">
             <summary>
@@ -12002,6 +12010,11 @@
         <member name="T:UnityGameFramework.Runtime.EventComponent">
             <summary>
             事件组件。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.EventComponent.Count">
+            <summary>
+            获取事件数量。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.EventComponent.Awake">
@@ -14674,12 +14687,17 @@
             <param name="decryptResourceCallback">要设置的解密资源回调函数。</param>
             <remarks>如果不设置，将使用默认的解密资源回调函数。</remarks>
         </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceComponent.UnloadUnusedAssets(System.Boolean,System.String)">
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.UnloadUnusedAssets(System.Boolean)">
             <summary>
-            释放未被使用的资源。
+            预订执行释放未被使用的资源。
             </summary>
-            <param name="performGarbageCollect">是否使用垃圾回收。</param>
-            <param name="reason">释放未被使用资源的原因。</param>
+            <param name="performGCCollect">是否使用垃圾回收。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.ForceUnloadUnusedAssets(System.Boolean)">
+            <summary>
+            强制执行释放未被使用的资源。
+            </summary>
+            <param name="performGCCollect">是否使用垃圾回收。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.ResourceComponent.InitResources">
             <summary>
@@ -14786,6 +14804,12 @@
             获取资源组准备进度。
             </summary>
             <param name="resourceGroupName">要检查的资源组名称。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.AddLoadResourceAgentHelper(System.Int32)">
+            <summary>
+            增加加载资源代理辅助器。
+            </summary>
+            <param name="index">加载资源代理辅助器索引。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.ResourceHelperBase">
             <summary>
@@ -15497,6 +15521,14 @@
             </summary>
             <returns>所有声音组。</returns>
         </member>
+        <member name="M:UnityGameFramework.Runtime.SoundComponent.AddSoundGroup(System.String,System.Int32)">
+            <summary>
+            增加声音组。
+            </summary>
+            <param name="soundGroupName">声音组名称。</param>
+            <param name="soundAgentHelperCount">声音代理辅助器数量。</param>
+            <returns>是否增加声音组成功。</returns>
+        </member>
         <member name="M:UnityGameFramework.Runtime.SoundComponent.AddSoundGroup(System.String,System.Boolean,System.Boolean,System.Single,System.Int32)">
             <summary>
             增加声音组。
@@ -15601,6 +15633,14 @@
             <summary>
             停止所有声音。
             </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.SoundComponent.AddSoundAgentHelper(System.String,System.Int32)">
+            <summary>
+            增加声音代理辅助器。
+            </summary>
+            <param name="soundGroupName">声音组名称。</param>
+            <param name="index">声音代理辅助器索引。</param>
+            <returns>是否增加声音代理辅助器成功。</returns>
         </member>
         <member name="T:UnityGameFramework.Runtime.SoundGroupHelperBase">
             <summary>
@@ -16126,27 +16166,27 @@
             Web 请求组件。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.WebRequestTotalAgentCount">
+        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.TotalAgentCount">
             <summary>
             获取 Web 请求代理总数量。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.WebRequestFreeAgentCount">
+        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.FreeAgentCount">
             <summary>
             获取可用 Web 请求代理数量。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.WebRequestWorkingAgentCount">
+        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.WorkingAgentCount">
             <summary>
             获取工作中 Web 请求代理数量。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.WebRequestWaitingTaskCount">
+        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.WaitingTaskCount">
             <summary>
             获取等待 Web 请求数量。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.WebRequestTimeout">
+        <member name="P:UnityGameFramework.Runtime.WebRequestComponent.Timeout">
             <summary>
             获取或设置 Web 请求超时时长，以秒为单位。
             </summary>
@@ -16217,6 +16257,12 @@
             移除全部 Web 请求任务。
             </summary>
         </member>
+        <member name="M:UnityGameFramework.Runtime.WebRequestComponent.AddWebRequestAgentHelper(System.Int32)">
+            <summary>
+            增加 Web 请求代理辅助器。
+            </summary>
+            <param name="index">Web 请求代理辅助器索引。</param>
+        </member>
         <member name="M:UnityGameFramework.Runtime.WebRequestComponent.AddWebRequest(System.String,System.Byte[],UnityEngine.WWWForm,System.Object)">
             <summary>
             增加 Web 请求任务。
@@ -16262,6 +16308,30 @@
             释放资源。
             </summary>
             <param name="disposing">释放资源标记。</param>
+        </member>
+        <member name="T:Utility.Helper">
+            <summary>
+            辅助器创建器相关的实用函数。
+            </summary>
+        </member>
+        <member name="M:Utility.Helper.CreateHelper``1(System.String,``0)">
+            <summary>
+            创建辅助器。
+            </summary>
+            <typeparam name="T">要创建的辅助器类型。</typeparam>
+            <param name="helperTypeName">要创建的辅助器类型名称。</param>
+            <param name="customHelper">若要创建的辅助器类型为空时，使用的自定义辅助器类型。</param>
+            <returns>创建的辅助器。</returns>
+        </member>
+        <member name="M:Utility.Helper.CreateHelper``1(System.String,``0,System.Int32)">
+            <summary>
+            创建辅助器。
+            </summary>
+            <typeparam name="T">要创建的辅助器类型。</typeparam>
+            <param name="helperTypeName">要创建的辅助器类型名称。</param>
+            <param name="customHelper">若要创建的辅助器类型为空时，使用的自定义辅助器类型。</param>
+            <param name="index">要创建的辅助器索引。</param>
+            <returns>创建的辅助器。</returns>
         </member>
         <member name="T:Utility.JsonHelper">
             <summary>
@@ -16322,6 +16392,14 @@
             <typeparam name="T">要获取或增加的组件。</typeparam>
             <param name="gameObject">目标对象。</param>
             <returns>获取或增加的组件。</returns>
+        </member>
+        <member name="M:UnityExtension.InScene(UnityEngine.GameObject)">
+            <summary>
+            获取 GameObject 是否在场景中。
+            </summary>
+            <param name="gameObject">目标对象。</param>
+            <returns>GameObject 是否在场景中。</returns>
+            <remarks>若返回 true，表明此 GameObject 是一个场景中的实例对象；若返回 false，表明此 GameObject 是一个 Prefab。</remarks>
         </member>
         <member name="M:UnityExtension.ToVector2(UnityEngine.Vector3)">
             <summary>

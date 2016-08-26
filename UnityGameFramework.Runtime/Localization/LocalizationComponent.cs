@@ -22,7 +22,10 @@ namespace UnityGameFramework.Runtime
         private EventComponent m_EventComponent = null;
 
         [SerializeField]
-        private LocalizationHelperBase m_LocalizationHelper = null;
+        private string m_LocalizationHelperTypeName = "UnityGameFramework.Runtime.DefaultLocalizationHelper";
+
+        [SerializeField]
+        private LocalizationHelperBase m_CustomLocalizationHelper = null;
 
         /// <summary>
         /// 获取或设置本地化语言。
@@ -104,16 +107,19 @@ namespace UnityGameFramework.Runtime
                 m_LocalizationManager.SetResourceManager(GameFrameworkEntry.GetModule<IResourceManager>());
             }
 
-            if (m_LocalizationHelper == null)
+            LocalizationHelperBase localizationHelper = Utility.Helper.CreateHelper(m_LocalizationHelperTypeName, m_CustomLocalizationHelper);
+            if (localizationHelper == null)
             {
-                m_LocalizationHelper = (new GameObject()).AddComponent<DefaultLocalizationHelper>();
-                m_LocalizationHelper.name = string.Format("Localization Helper");
-                Transform transform = m_LocalizationHelper.transform;
-                transform.SetParent(this.transform);
-                transform.localScale = Vector3.one;
+                Log.Error("Can not create localization helper.");
+                return;
             }
 
-            m_LocalizationManager.SetLocalizationHelper(m_LocalizationHelper);
+            localizationHelper.name = string.Format("Localization Helper");
+            Transform transform = localizationHelper.transform;
+            transform.SetParent(this.transform);
+            transform.localScale = Vector3.one;
+
+            m_LocalizationManager.SetLocalizationHelper(localizationHelper);
             m_LocalizationManager.Language = (baseComponent.EditorResourceMode && baseComponent.EditorLanguage != Language.Unspecified ? baseComponent.EditorLanguage : m_LocalizationManager.SystemLanguage);
         }
 

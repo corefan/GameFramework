@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 76731548, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DataTableHelper: {fileID: 0}
+  m_DataTableHelperTypeName: UnityGameFramework.Runtime.DefaultDataTableHelper
+  m_CustomDataTableHelper: {fileID: 0}
 --- !u!1 &148383887
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,11 +175,14 @@ MonoBehaviour:
   m_ResourceMode: 1
   m_UnloadUnusedAssetsInterval: 60
   m_ResourceCapacity: 8
+  m_UpdatePrefixUri: 
   m_UpdateRetryCount: 3
   m_InstanceRoot: {fileID: 0}
-  m_LoadResourceAgentHelperTemplate: {fileID: 0}
+  m_ResourceHelperTypeName: UnityGameFramework.Runtime.DefaultResourceHelper
+  m_CustomResourceHelper: {fileID: 0}
+  m_LoadResourceAgentHelperTypeName: UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper
+  m_CustomLoadResourceAgentHelper: {fileID: 0}
   m_LoadResourceAgentHelperCount: 3
-  m_ResourceHelper: {fileID: 0}
 --- !u!1 &272392047
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +327,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InstanceCapacity: 8
   m_InstanceRoot: {fileID: 0}
-  m_UIGroupHelperTemplate: {fileID: 0}
-  m_UIFormHelper: {fileID: 0}
+  m_UIFormHelperTypeName: UnityGameFramework.Runtime.DefaultUIFormHelper
+  m_CustomUIFormHelper: {fileID: 0}
+  m_UIGroupHelperTypeName: UnityGameFramework.Runtime.DefaultUIGroupHelper
+  m_CustomUIGroupHelper: {fileID: 0}
   m_UIGroups: []
 --- !u!1 &770863696
 GameObject:
@@ -355,8 +361,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AssetCapacity: 4
   m_InstanceRoot: {fileID: 0}
-  m_EntityGroupHelperTemplate: {fileID: 0}
-  m_EntityHelper: {fileID: 0}
+  m_EntityHelperTypeName: UnityGameFramework.Runtime.DefaultEntityHelper
+  m_CustomEntityHelper: {fileID: 0}
+  m_EntityGroupHelperTypeName: UnityGameFramework.Runtime.DefaultEntityGroupHelper
+  m_CustomEntityGroupHelper: {fileID: 0}
   m_EntityGroups: []
 --- !u!4 &770863698
 Transform:
@@ -452,9 +460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InstanceRoot: {fileID: 0}
-  m_WebRequestAgentHelperTemplate: {fileID: 0}
+  m_WebRequestAgentHelperTypeName: UnityGameFramework.Runtime.UnityWebRequestAgentHelper
+  m_CustomWebRequestAgentHelper: {fileID: 0}
   m_WebRequestAgentHelperCount: 1
-  m_WebRequestTimeout: 30
+  m_Timeout: 30
 --- !u!1 &1086617749
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 872561723, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LocalizationHelper: {fileID: 0}
+  m_LocalizationHelperTypeName: UnityGameFramework.Runtime.DefaultLocalizationHelper
+  m_CustomLocalizationHelper: {fileID: 0}
 --- !u!1 &1173349962
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,9 +628,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AssetCapacity: 4
   m_InstanceRoot: {fileID: 0}
-  m_SoundGroupHelperTemplate: {fileID: 0}
-  m_SoundAgentHelperTemplate: {fileID: 0}
-  m_SoundHelper: {fileID: 0}
+  m_SoundHelperTypeName: UnityGameFramework.Runtime.DefaultSoundHelper
+  m_CustomSoundHelper: {fileID: 0}
+  m_SoundGroupHelperTypeName: UnityGameFramework.Runtime.DefaultSoundGroupHelper
+  m_CustomSoundGroupHelper: {fileID: 0}
+  m_SoundAgentHelperTypeName: UnityGameFramework.Runtime.DefaultSoundAgentHelper
+  m_CustomSoundAgentHelper: {fileID: 0}
   m_SoundGroups: []
 --- !u!1 &1430062238
 GameObject:
@@ -662,9 +675,9 @@ MonoBehaviour:
   m_Script: {fileID: 1950136716, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProcedureClassNames:
+  m_AvailableProcedureTypeNames:
   - Game.ProcedureLaunch
-  m_FirstProcedureClassName: Game.ProcedureLaunch
+  m_EntranceProcedureTypeName: Game.ProcedureLaunch
 --- !u!1 &1588687919
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +719,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InstanceRoot: {fileID: 0}
-  m_DownloadAgentHelperTemplate: {fileID: 0}
+  m_DownloadAgentHelperTypeName: UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper
+  m_CustomDownloadAgentHelper: {fileID: 0}
   m_DownloadAgentHelperCount: 1
   m_Timeout: 30
   m_FlushSize: 1048576
@@ -790,7 +804,8 @@ MonoBehaviour:
   m_Script: {fileID: 1281041741, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SettingHelper: {fileID: 0}
+  m_SettingHelperTypeName: UnityGameFramework.Runtime.DefaultSettingHelper
+  m_CustomSettingHelper: {fileID: 0}
 --- !u!1 &1960066087
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +880,7 @@ MonoBehaviour:
   m_FrameRate: 30
   m_GameSpeed: 1
   m_RunInBackground: 1
-  m_NeverSleep: 0
+  m_NeverSleep: 1
 --- !u!1 &2066208293
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,5 +921,6 @@ MonoBehaviour:
   m_Script: {fileID: -1749772448, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NetworkHelper: {fileID: 0}
+  m_NetworkHelperTypeName: UnityGameFramework.Runtime.DefaultNetworkHelper
+  m_CustomNetworkHelper: {fileID: 0}
   m_NetworkChannels: []
