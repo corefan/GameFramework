@@ -5,7 +5,7 @@
 
 ---
 
-## ABOUT GAME FRAMEWORK
+## INTRODUCTION
 
 Game Framework is literally a game framework, based on Unity 5.4 game engine. It encapsulates commonly used game modules during development, and, to a large degree, standardises the process, enhances the development speed and ensures the product quality.
 
@@ -56,6 +56,8 @@ Game Framework includes 3 assemblies:
 - **UnityGameFramework.Runtime.dll** - implements GameFramework.dll depending on UnityEngine.dll. This part is open-source on GitHub conforming to the MIT license.
 
 - **UnityGameFramework.Editor.dll** - implements tools and inspectors based on UnityEditor.dll.
+
+![Game Framework](http://gameframework.cn/wp-content/uploads/2016/04/Game-Framework.png)
 
 We'll refer to Game Framework as GF and Unity Game Framework as UGF for short in technical articles related to this Game Framework.
 
