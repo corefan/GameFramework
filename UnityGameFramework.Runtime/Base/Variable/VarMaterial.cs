@@ -11,12 +11,12 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// Material 变量类。
+    /// UnityEngine.Material 变量类。
     /// </summary>
     public class VarMaterial : Variable<Material>
     {
         /// <summary>
-        /// 初始化 Material 变量类的新实例。
+        /// 初始化 UnityEngine.Material 变量类的新实例。
         /// </summary>
         public VarMaterial()
         {
@@ -24,7 +24,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 初始化 Material 变量类的新实例。
+        /// 初始化 UnityEngine.Material 变量类的新实例。
         /// </summary>
         /// <param name="value">值。</param>
         public VarMaterial(Material value)
@@ -34,7 +34,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Material 到 Material 变量类的隐式转换。
+        /// 从 UnityEngine.Material 到 UnityEngine.Material 变量类的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator VarMaterial(Material value)
@@ -43,7 +43,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Material 变量类到 Material 的隐式转换。
+        /// 从 UnityEngine.Material 变量类到 UnityEngine.Material 的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator Material(VarMaterial value)

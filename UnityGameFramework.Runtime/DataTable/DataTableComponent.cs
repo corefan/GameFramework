@@ -100,6 +100,64 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 加载数据表。
         /// </summary>
+        /// <typeparam name="T">数据表类型。</typeparam>
+        /// <param name="dataTableName">数据表名称。</param>
+        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        public void LoadDataTable<T>(string dataTableName, string dataTableAssetName) where T : IDataRow
+        {
+            LoadDataTable(dataTableName, typeof(T), null, dataTableAssetName, null);
+        }
+
+        /// <summary>
+        /// 加载数据表。
+        /// </summary>
+        /// <param name="dataTableName">数据表名称。</param>
+        /// <param name="dataTableType">数据表类型。</param>
+        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        public void LoadDataTable(string dataTableName, Type dataTableType, string dataTableAssetName)
+        {
+            LoadDataTable(dataTableName, dataTableType, null, dataTableAssetName, null);
+        }
+
+        /// <summary>
+        /// 加载数据表。
+        /// </summary>
+        /// <typeparam name="T">数据表类型。</typeparam>
+        /// <param name="dataTableName">数据表名称。</param>
+        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public void LoadDataTable<T>(string dataTableName, string dataTableAssetName, object userData) where T : IDataRow
+        {
+            LoadDataTable(dataTableName, typeof(T), null, dataTableAssetName, userData);
+        }
+
+        /// <summary>
+        /// 加载数据表。
+        /// </summary>
+        /// <param name="dataTableName">数据表名称。</param>
+        /// <param name="dataTableType">数据表类型。</param>
+        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public void LoadDataTable(string dataTableName, Type dataTableType, string dataTableAssetName, object userData)
+        {
+            LoadDataTable(dataTableName, dataTableType, null, dataTableAssetName, userData);
+        }
+
+        /// <summary>
+        /// 加载数据表。
+        /// </summary>
+        /// <typeparam name="T">数据表类型。</typeparam>
+        /// <param name="dataTableName">数据表名称。</param>
+        /// <param name="dataTableNameInType">数据表类型下的名称。</param>
+        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        public void LoadDataTable<T>(string dataTableName, string dataTableNameInType, string dataTableAssetName) where T : IDataRow
+        {
+            LoadDataTable(dataTableName, typeof(T), dataTableNameInType, dataTableAssetName, null);
+        }
+
+        /// <summary>
+        /// 加载数据表。
+        /// </summary>
         /// <param name="dataTableName">数据表名称。</param>
         /// <param name="dataTableType">数据表类型。</param>
         /// <param name="dataTableNameInType">数据表类型下的名称。</param>
@@ -107,6 +165,19 @@ namespace UnityGameFramework.Runtime
         public void LoadDataTable(string dataTableName, Type dataTableType, string dataTableNameInType, string dataTableAssetName)
         {
             LoadDataTable(dataTableName, dataTableType, dataTableNameInType, dataTableAssetName, null);
+        }
+
+        /// <summary>
+        /// 加载数据表。
+        /// </summary>
+        /// <typeparam name="T">数据表类型。</typeparam>
+        /// <param name="dataTableName">数据表名称。</param>
+        /// <param name="dataTableNameInType">数据表类型下的名称。</param>
+        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public void LoadDataTable<T>(string dataTableName, string dataTableNameInType, string dataTableAssetName, object userData) where T : IDataRow
+        {
+            LoadDataTable(dataTableName, typeof(T), dataTableNameInType, dataTableAssetName, userData);
         }
 
         /// <summary>

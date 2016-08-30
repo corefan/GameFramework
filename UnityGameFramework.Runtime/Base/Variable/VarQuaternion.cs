@@ -11,12 +11,12 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// Quaternion 变量类。
+    /// UnityEngine.Quaternion 变量类。
     /// </summary>
     public class VarQuaternion : Variable<Quaternion>
     {
         /// <summary>
-        /// 初始化 Quaternion 变量类的新实例。
+        /// 初始化 UnityEngine.Quaternion 变量类的新实例。
         /// </summary>
         public VarQuaternion()
         {
@@ -24,7 +24,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 初始化 Quaternion 变量类的新实例。
+        /// 初始化 UnityEngine.Quaternion 变量类的新实例。
         /// </summary>
         /// <param name="value">值。</param>
         public VarQuaternion(Quaternion value)
@@ -34,7 +34,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Quaternion 到 Quaternion 变量类的隐式转换。
+        /// 从 UnityEngine.Quaternion 到 UnityEngine.Quaternion 变量类的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator VarQuaternion(Quaternion value)
@@ -43,7 +43,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Quaternion 变量类到 Quaternion 的隐式转换。
+        /// 从 UnityEngine.Quaternion 变量类到 UnityEngine.Quaternion 的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator Quaternion(VarQuaternion value)

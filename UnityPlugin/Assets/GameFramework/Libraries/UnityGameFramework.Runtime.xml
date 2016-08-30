@@ -10133,57 +10133,57 @@
         </member>
         <member name="T:UnityGameFramework.Runtime.VarColor">
             <summary>
-            Color 变量类。
+            UnityEngine.Color 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarColor.#ctor">
             <summary>
-            初始化 Color 变量类的新实例。
+            初始化 UnityEngine.Color 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarColor.#ctor(UnityEngine.Color)">
             <summary>
-            初始化 Color 变量类的新实例。
+            初始化 UnityEngine.Color 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarColor.op_Implicit(UnityEngine.Color)~UnityGameFramework.Runtime.VarColor">
             <summary>
-            从 Color 到 Color 变量类的隐式转换。
+            从 UnityEngine.Color 到 UnityEngine.Color 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarColor.op_Implicit(UnityGameFramework.Runtime.VarColor)~UnityEngine.Color">
             <summary>
-            从 Color 变量类到 Color 的隐式转换。
+            从 UnityEngine.Color 变量类到 UnityEngine.Color 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.VarDateTime">
             <summary>
-            DateTime 变量类。
+            System.DateTime 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarDateTime.#ctor">
             <summary>
-            初始化 DateTime 变量类的新实例。
+            初始化 System.DateTime 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarDateTime.#ctor(System.DateTime)">
             <summary>
-            初始化 DateTime 变量类的新实例。
+            初始化 System.DateTime 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarDateTime.op_Implicit(System.DateTime)~UnityGameFramework.Runtime.VarDateTime">
             <summary>
-            从 DateTime 到 DateTime 变量类的隐式转换。
+            从 System.DateTime 到 System.DateTime 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarDateTime.op_Implicit(UnityGameFramework.Runtime.VarDateTime)~System.DateTime">
             <summary>
-            从 DateTime 变量类到 DateTime 的隐式转换。
+            从 System.DateTime 变量类到 System.DateTime 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
@@ -10273,29 +10273,29 @@
         </member>
         <member name="T:UnityGameFramework.Runtime.VarGameObject">
             <summary>
-            GameObject 变量类。
+            UnityEngine.GameObject 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarGameObject.#ctor">
             <summary>
-            初始化 GameObject 变量类的新实例。
+            初始化 UnityEngine.GameObject 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarGameObject.#ctor(UnityEngine.GameObject)">
             <summary>
-            初始化 GameObject 变量类的新实例。
+            初始化 UnityEngine.GameObject 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarGameObject.op_Implicit(UnityEngine.GameObject)~UnityGameFramework.Runtime.VarGameObject">
             <summary>
-            从 GameObject 到 GameObject 变量类的隐式转换。
+            从 UnityEngine.GameObject 到 UnityEngine.GameObject 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarGameObject.op_Implicit(UnityGameFramework.Runtime.VarGameObject)~UnityEngine.GameObject">
             <summary>
-            从 GameObject 变量类到 GameObject 的隐式转换。
+            从 UnityEngine.GameObject 变量类到 UnityEngine.GameObject 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
@@ -10357,29 +10357,29 @@
         </member>
         <member name="T:UnityGameFramework.Runtime.VarMaterial">
             <summary>
-            Material 变量类。
+            UnityEngine.Material 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarMaterial.#ctor">
             <summary>
-            初始化 Material 变量类的新实例。
+            初始化 UnityEngine.Material 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarMaterial.#ctor(UnityEngine.Material)">
             <summary>
-            初始化 Material 变量类的新实例。
+            初始化 UnityEngine.Material 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarMaterial.op_Implicit(UnityEngine.Material)~UnityGameFramework.Runtime.VarMaterial">
             <summary>
-            从 Material 到 Material 变量类的隐式转换。
+            从 UnityEngine.Material 到 UnityEngine.Material 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarMaterial.op_Implicit(UnityGameFramework.Runtime.VarMaterial)~UnityEngine.Material">
             <summary>
-            从 Material 变量类到 Material 的隐式转换。
+            从 UnityEngine.Material 变量类到 UnityEngine.Material 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
@@ -10401,57 +10401,57 @@
         </member>
         <member name="T:UnityGameFramework.Runtime.VarQuaternion">
             <summary>
-            Quaternion 变量类。
+            UnityEngine.Quaternion 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarQuaternion.#ctor">
             <summary>
-            初始化 Quaternion 变量类的新实例。
+            初始化 UnityEngine.Quaternion 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarQuaternion.#ctor(UnityEngine.Quaternion)">
             <summary>
-            初始化 Quaternion 变量类的新实例。
+            初始化 UnityEngine.Quaternion 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarQuaternion.op_Implicit(UnityEngine.Quaternion)~UnityGameFramework.Runtime.VarQuaternion">
             <summary>
-            从 Quaternion 到 Quaternion 变量类的隐式转换。
+            从 UnityEngine.Quaternion 到 UnityEngine.Quaternion 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarQuaternion.op_Implicit(UnityGameFramework.Runtime.VarQuaternion)~UnityEngine.Quaternion">
             <summary>
-            从 Quaternion 变量类到 Quaternion 的隐式转换。
+            从 UnityEngine.Quaternion 变量类到 UnityEngine.Quaternion 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.VarRect">
             <summary>
-            Rect 变量类。
+            UnityEngine.Rect 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarRect.#ctor">
             <summary>
-            初始化 Rect 变量类的新实例。
+            初始化 UnityEngine.Rect 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarRect.#ctor(UnityEngine.Rect)">
             <summary>
-            初始化 Rect 变量类的新实例。
+            初始化 UnityEngine.Rect 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarRect.op_Implicit(UnityEngine.Rect)~UnityGameFramework.Runtime.VarRect">
             <summary>
-            从 Rect 到 Rect 变量类的隐式转换。
+            从 UnityEngine.Rect 到 UnityEngine.Rect 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarRect.op_Implicit(UnityGameFramework.Runtime.VarRect)~UnityEngine.Rect">
             <summary>
-            从 Rect 变量类到 Rect 的隐式转换。
+            从 UnityEngine.Rect 变量类到 UnityEngine.Rect 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
@@ -10541,57 +10541,57 @@
         </member>
         <member name="T:UnityGameFramework.Runtime.VarTexture">
             <summary>
-            Texture 变量类。
+            UnityEngine.Texture 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTexture.#ctor">
             <summary>
-            初始化 Texture 变量类的新实例。
+            初始化 UnityEngine.Texture 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTexture.#ctor(UnityEngine.Texture)">
             <summary>
-            初始化 Texture 变量类的新实例。
+            初始化 UnityEngine.Texture 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTexture.op_Implicit(UnityEngine.Texture)~UnityGameFramework.Runtime.VarTexture">
             <summary>
-            从 Texture 到 Texture 变量类的隐式转换。
+            从 UnityEngine.Texture 到 UnityEngine.Texture 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTexture.op_Implicit(UnityGameFramework.Runtime.VarTexture)~UnityEngine.Texture">
             <summary>
-            从 Texture 变量类到 Texture 的隐式转换。
+            从 UnityEngine.Texture 变量类到 UnityEngine.Texture 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.VarTransform">
             <summary>
-            Transform 变量类。
+            UnityEngine.Transform 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTransform.#ctor">
             <summary>
-            初始化 Transform 变量类的新实例。
+            初始化 UnityEngine.Transform 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTransform.#ctor(UnityEngine.Transform)">
             <summary>
-            初始化 Transform 变量类的新实例。
+            初始化 UnityEngine.Transform 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTransform.op_Implicit(UnityEngine.Transform)~UnityGameFramework.Runtime.VarTransform">
             <summary>
-            从 Transform 到 Transform 变量类的隐式转换。
+            从 UnityEngine.Transform 到 UnityEngine.Transform 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarTransform.op_Implicit(UnityGameFramework.Runtime.VarTransform)~UnityEngine.Transform">
             <summary>
-            从 Transform 变量类到 Transform 的隐式转换。
+            从 UnityEngine.Transform 变量类到 UnityEngine.Transform 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
@@ -10653,29 +10653,29 @@
         </member>
         <member name="T:UnityGameFramework.Runtime.VarUnityObject">
             <summary>
-            Object 变量类。
+            UnityEngine.Object 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarUnityObject.#ctor">
             <summary>
-            初始化 Object 变量类的新实例。
+            初始化 UnityEngine.Object 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarUnityObject.#ctor(UnityEngine.Object)">
             <summary>
-            初始化 Object 变量类的新实例。
+            初始化 UnityEngine.Object 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarUnityObject.op_Implicit(UnityEngine.Object)~UnityGameFramework.Runtime.VarUnityObject">
             <summary>
-            从 Object 到 Object 变量类的隐式转换。
+            从 UnityEngine.Object 到 UnityEngine.Object 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarUnityObject.op_Implicit(UnityGameFramework.Runtime.VarUnityObject)~UnityEngine.Object">
             <summary>
-            从 Object 变量类到 Object 的隐式转换。
+            从 UnityEngine.Object 变量类到 UnityEngine.Object 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
@@ -10709,85 +10709,85 @@
         </member>
         <member name="T:UnityGameFramework.Runtime.VarVector2">
             <summary>
-            Vector2 变量类。
+            UnityEngine.Vector2 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector2.#ctor">
             <summary>
-            初始化 Vector2 变量类的新实例。
+            初始化 UnityEngine.Vector2 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector2.#ctor(UnityEngine.Vector2)">
             <summary>
-            初始化 Vector2 变量类的新实例。
+            初始化 UnityEngine.Vector2 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector2.op_Implicit(UnityEngine.Vector2)~UnityGameFramework.Runtime.VarVector2">
             <summary>
-            从 Vector2 到 Vector2 变量类的隐式转换。
+            从 UnityEngine.Vector2 到 UnityEngine.Vector2 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector2.op_Implicit(UnityGameFramework.Runtime.VarVector2)~UnityEngine.Vector2">
             <summary>
-            从 Vector2 变量类到 Vector2 的隐式转换。
+            从 UnityEngine.Vector2 变量类到 UnityEngine.Vector2 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.VarVector3">
             <summary>
-            Vector3 变量类。
+            UnityEngine.Vector3 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector3.#ctor">
             <summary>
-            初始化 Vector3 变量类的新实例。
+            初始化 UnityEngine.Vector3 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector3.#ctor(UnityEngine.Vector3)">
             <summary>
-            初始化 Vector3 变量类的新实例。
+            初始化 UnityEngine.Vector3 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector3.op_Implicit(UnityEngine.Vector3)~UnityGameFramework.Runtime.VarVector3">
             <summary>
-            从 Vector3 到 Vector3 变量类的隐式转换。
+            从 UnityEngine.Vector3 到 UnityEngine.Vector3 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector3.op_Implicit(UnityGameFramework.Runtime.VarVector3)~UnityEngine.Vector3">
             <summary>
-            从 Vector3 变量类到 Vector3 的隐式转换。
+            从 UnityEngine.Vector3 变量类到 UnityEngine.Vector3 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.VarVector4">
             <summary>
-            Vector4 变量类。
+            UnityEngine.Vector4 变量类。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector4.#ctor">
             <summary>
-            初始化 Vector4 变量类的新实例。
+            初始化 UnityEngine.Vector4 变量类的新实例。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector4.#ctor(UnityEngine.Vector4)">
             <summary>
-            初始化 Vector4 变量类的新实例。
+            初始化 UnityEngine.Vector4 变量类的新实例。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector4.op_Implicit(UnityEngine.Vector4)~UnityGameFramework.Runtime.VarVector4">
             <summary>
-            从 Vector4 到 Vector4 变量类的隐式转换。
+            从 UnityEngine.Vector4 到 UnityEngine.Vector4 变量类的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.VarVector4.op_Implicit(UnityGameFramework.Runtime.VarVector4)~UnityEngine.Vector4">
             <summary>
-            从 Vector4 变量类到 Vector4 的隐式转换。
+            从 UnityEngine.Vector4 变量类到 UnityEngine.Vector4 的隐式转换。
             </summary>
             <param name="value">值。</param>
         </member>
@@ -10918,6 +10918,49 @@
             获取数据表数量。
             </summary>
         </member>
+        <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable``1(System.String,System.String)">
+            <summary>
+            加载数据表。
+            </summary>
+            <typeparam name="T">数据表类型。</typeparam>
+            <param name="dataTableName">数据表名称。</param>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable(System.String,System.Type,System.String)">
+            <summary>
+            加载数据表。
+            </summary>
+            <param name="dataTableName">数据表名称。</param>
+            <param name="dataTableType">数据表类型。</param>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable``1(System.String,System.String,System.Object)">
+            <summary>
+            加载数据表。
+            </summary>
+            <typeparam name="T">数据表类型。</typeparam>
+            <param name="dataTableName">数据表名称。</param>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable(System.String,System.Type,System.String,System.Object)">
+            <summary>
+            加载数据表。
+            </summary>
+            <param name="dataTableName">数据表名称。</param>
+            <param name="dataTableType">数据表类型。</param>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable``1(System.String,System.String,System.String)">
+            <summary>
+            加载数据表。
+            </summary>
+            <typeparam name="T">数据表类型。</typeparam>
+            <param name="dataTableName">数据表名称。</param>
+            <param name="dataTableNameInType">数据表类型下的名称。</param>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+        </member>
         <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable(System.String,System.Type,System.String,System.String)">
             <summary>
             加载数据表。
@@ -10926,6 +10969,16 @@
             <param name="dataTableType">数据表类型。</param>
             <param name="dataTableNameInType">数据表类型下的名称。</param>
             <param name="dataTableAssetName">数据表资源名称。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable``1(System.String,System.String,System.String,System.Object)">
+            <summary>
+            加载数据表。
+            </summary>
+            <typeparam name="T">数据表类型。</typeparam>
+            <param name="dataTableName">数据表名称。</param>
+            <param name="dataTableNameInType">数据表类型下的名称。</param>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.DataTableComponent.LoadDataTable(System.String,System.Type,System.String,System.String,System.Object)">
             <summary>
@@ -11618,6 +11671,15 @@
             <param name="entity">实体。</param>
             <returns>实体是否合法。</returns>
         </member>
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.ShowEntity``1(System.Int32,System.String,System.String)">
+            <summary>
+            显示实体。
+            </summary>
+            <typeparam name="T">实体逻辑类型。</typeparam>
+            <param name="entityId">实体编号。</param>
+            <param name="entityAssetName">实体资源名称。</param>
+            <param name="entityGroupName">实体组名称。</param>
+        </member>
         <member name="M:UnityGameFramework.Runtime.EntityComponent.ShowEntity(System.Int32,System.Type,System.String,System.String)">
             <summary>
             显示实体。
@@ -11626,6 +11688,16 @@
             <param name="entityLogicType">实体逻辑类型。</param>
             <param name="entityAssetName">实体资源名称。</param>
             <param name="entityGroupName">实体组名称。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.ShowEntity``1(System.Int32,System.String,System.String,System.Object)">
+            <summary>
+            显示实体。
+            </summary>
+            <typeparam name="T">实体逻辑类型。</typeparam>
+            <param name="entityId">实体编号。</param>
+            <param name="entityAssetName">实体资源名称。</param>
+            <param name="entityGroupName">实体组名称。</param>
+            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.EntityComponent.ShowEntity(System.Int32,System.Type,System.String,System.String,System.Object)">
             <summary>

@@ -11,12 +11,12 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// Texture 变量类。
+    /// UnityEngine.Texture 变量类。
     /// </summary>
     public class VarTexture : Variable<Texture>
     {
         /// <summary>
-        /// 初始化 Texture 变量类的新实例。
+        /// 初始化 UnityEngine.Texture 变量类的新实例。
         /// </summary>
         public VarTexture()
         {
@@ -24,7 +24,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 初始化 Texture 变量类的新实例。
+        /// 初始化 UnityEngine.Texture 变量类的新实例。
         /// </summary>
         /// <param name="value">值。</param>
         public VarTexture(Texture value)
@@ -34,7 +34,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Texture 到 Texture 变量类的隐式转换。
+        /// 从 UnityEngine.Texture 到 UnityEngine.Texture 变量类的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator VarTexture(Texture value)
@@ -43,7 +43,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Texture 变量类到 Texture 的隐式转换。
+        /// 从 UnityEngine.Texture 变量类到 UnityEngine.Texture 的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator Texture(VarTexture value)

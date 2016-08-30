@@ -11,12 +11,12 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// Object 变量类。
+    /// UnityEngine.Object 变量类。
     /// </summary>
     public class VarUnityObject : Variable<Object>
     {
         /// <summary>
-        /// 初始化 Object 变量类的新实例。
+        /// 初始化 UnityEngine.Object 变量类的新实例。
         /// </summary>
         public VarUnityObject()
         {
@@ -24,7 +24,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 初始化 Object 变量类的新实例。
+        /// 初始化 UnityEngine.Object 变量类的新实例。
         /// </summary>
         /// <param name="value">值。</param>
         public VarUnityObject(Object value)
@@ -34,7 +34,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Object 到 Object 变量类的隐式转换。
+        /// 从 UnityEngine.Object 到 UnityEngine.Object 变量类的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator VarUnityObject(Object value)
@@ -43,7 +43,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Object 变量类到 Object 的隐式转换。
+        /// 从 UnityEngine.Object 变量类到 UnityEngine.Object 的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator Object(VarUnityObject value)

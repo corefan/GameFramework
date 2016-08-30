@@ -4,44 +4,64 @@
         <name>UnityGameFramework.Editor</name>
     </assembly>
     <members>
-        <member name="T:UnityGameFramework.Editor.AssetBundleBuilder">
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundleAnalyzer">
+            <summary>
+            资源包分析器。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundleBuilder">
             <summary>
             资源包生成器。
             </summary>
         </member>
-        <member name="T:UnityGameFramework.Editor.BuildAssetBundle">
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.BuildAssetBundle">
             <summary>
             生成资源包。
             </summary>
         </member>
-        <member name="T:UnityGameFramework.Editor.AssetBundleEditor">
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.Asset">
             <summary>
-            资源包编辑器。
+            资源。
             </summary>
         </member>
-        <member name="T:UnityGameFramework.Editor.AssetBundleLoadType">
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundle">
+            <summary>
+            资源包。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundleCollection">
+            <summary>
+            资源包收集器。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundleLoadType">
             <summary>
             资源加载方式类型。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Editor.AssetBundleLoadType.LoadFromFile">
+        <member name="F:UnityGameFramework.Editor.AssetBundleTools.AssetBundleLoadType.LoadFromFile">
             <summary>
             从文件加载。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Editor.AssetBundleLoadType.LoadFromMemory">
+        <member name="F:UnityGameFramework.Editor.AssetBundleTools.AssetBundleLoadType.LoadFromMemory">
             <summary>
             从内存加载。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Editor.AssetBundleLoadType.LoadFromMemoryAndQuickDecrypt">
+        <member name="F:UnityGameFramework.Editor.AssetBundleTools.AssetBundleLoadType.LoadFromMemoryAndQuickDecrypt">
             <summary>
             从内存快速解密加载。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Editor.AssetBundleLoadType.LoadFromMemoryAndDecrypt">
+        <member name="F:UnityGameFramework.Editor.AssetBundleTools.AssetBundleLoadType.LoadFromMemoryAndDecrypt">
             <summary>
             从内存解密加载。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundleEditor">
+            <summary>
+            资源包编辑器。
             </summary>
         </member>
         <member name="T:UnityGameFramework.Editor.GameFrameworkInspector">

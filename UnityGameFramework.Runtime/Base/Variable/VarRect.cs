@@ -11,12 +11,12 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// Rect 变量类。
+    /// UnityEngine.Rect 变量类。
     /// </summary>
     public class VarRect : Variable<Rect>
     {
         /// <summary>
-        /// 初始化 Rect 变量类的新实例。
+        /// 初始化 UnityEngine.Rect 变量类的新实例。
         /// </summary>
         public VarRect()
         {
@@ -24,7 +24,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 初始化 Rect 变量类的新实例。
+        /// 初始化 UnityEngine.Rect 变量类的新实例。
         /// </summary>
         /// <param name="value">值。</param>
         public VarRect(Rect value)
@@ -34,7 +34,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Rect 到 Rect 变量类的隐式转换。
+        /// 从 UnityEngine.Rect 到 UnityEngine.Rect 变量类的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator VarRect(Rect value)
@@ -43,7 +43,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Rect 变量类到 Rect 的隐式转换。
+        /// 从 UnityEngine.Rect 变量类到 UnityEngine.Rect 的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator Rect(VarRect value)

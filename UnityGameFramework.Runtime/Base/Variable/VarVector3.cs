@@ -11,12 +11,12 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// Vector3 变量类。
+    /// UnityEngine.Vector3 变量类。
     /// </summary>
     public class VarVector3 : Variable<Vector3>
     {
         /// <summary>
-        /// 初始化 Vector3 变量类的新实例。
+        /// 初始化 UnityEngine.Vector3 变量类的新实例。
         /// </summary>
         public VarVector3()
         {
@@ -24,7 +24,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 初始化 Vector3 变量类的新实例。
+        /// 初始化 UnityEngine.Vector3 变量类的新实例。
         /// </summary>
         /// <param name="value">值。</param>
         public VarVector3(Vector3 value)
@@ -34,7 +34,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Vector3 到 Vector3 变量类的隐式转换。
+        /// 从 UnityEngine.Vector3 到 UnityEngine.Vector3 变量类的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator VarVector3(Vector3 value)
@@ -43,7 +43,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Vector3 变量类到 Vector3 的隐式转换。
+        /// 从 UnityEngine.Vector3 变量类到 UnityEngine.Vector3 的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator Vector3(VarVector3 value)

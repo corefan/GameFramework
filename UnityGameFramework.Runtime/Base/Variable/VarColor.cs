@@ -11,12 +11,12 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// Color 变量类。
+    /// UnityEngine.Color 变量类。
     /// </summary>
     public class VarColor : Variable<Color>
     {
         /// <summary>
-        /// 初始化 Color 变量类的新实例。
+        /// 初始化 UnityEngine.Color 变量类的新实例。
         /// </summary>
         public VarColor()
         {
@@ -24,7 +24,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 初始化 Color 变量类的新实例。
+        /// 初始化 UnityEngine.Color 变量类的新实例。
         /// </summary>
         /// <param name="value">值。</param>
         public VarColor(Color value)
@@ -34,7 +34,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Color 到 Color 变量类的隐式转换。
+        /// 从 UnityEngine.Color 到 UnityEngine.Color 变量类的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator VarColor(Color value)
@@ -43,7 +43,7 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 从 Color 变量类到 Color 的隐式转换。
+        /// 从 UnityEngine.Color 变量类到 UnityEngine.Color 的隐式转换。
         /// </summary>
         /// <param name="value">值。</param>
         public static implicit operator Color(VarColor value)
