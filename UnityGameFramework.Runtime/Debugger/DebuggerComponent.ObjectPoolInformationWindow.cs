@@ -35,7 +35,7 @@ namespace UnityGameFramework.Runtime
                     DrawItem("Object Pool Count", m_ObjectPoolComponent.Count.ToString());
                 }
                 GUILayout.EndVertical();
-                ObjectPoolBase[] objectPools = m_ObjectPoolComponent.GetAllObjectPools();
+                ObjectPoolBase[] objectPools = m_ObjectPoolComponent.GetAllObjectPools(true);
                 foreach (ObjectPoolBase objectPool in objectPools)
                 {
                     DrawObjectPool(objectPool);
@@ -49,31 +49,36 @@ namespace UnityGameFramework.Runtime
                 {
                     DrawItem("Type", objectPool.ObjectType.FullName);
                     DrawItem("Capacity", string.Format("{0} / {1}", objectPool.Count.ToString(), objectPool.Capacity.ToString()));
+                    DrawItem("Order", objectPool.Order.ToString());
                     ObjectInfo[] objectInfos = objectPool.GetAllObjectInfos();
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Label("<b>Name</b>");
+                        GUILayout.Label("<b>Locked</b>", GUILayout.Width(60f));
+                        GUILayout.Label(objectPool.AllowMultiSpawn ? "<b>Count</b>" : "<b>In Use</b>", GUILayout.Width(60f));
+                        GUILayout.Label("<b>Priority</b>", GUILayout.Width(60f));
+                        GUILayout.Label("<b>Last Use Time</b>", GUILayout.Width(120f));
+                    }
+                    GUILayout.EndHorizontal();
+
                     if (objectInfos.Length > 0)
                     {
-                        GUILayout.BeginHorizontal();
+                        foreach (ObjectInfo objectInfo in objectInfos)
                         {
-                            GUILayout.Label("<b>Name</b>");
-                            GUILayout.Label("<b>Locked</b>", GUILayout.Width(60f));
-                            GUILayout.Label("<b>Count</b>", GUILayout.Width(60f));
-                            GUILayout.Label("<b>Priority</b>", GUILayout.Width(60f));
-                            GUILayout.Label("<b>Last Use Time</b>", GUILayout.Width(120f));
+                            GUILayout.BeginHorizontal();
+                            {
+                                GUILayout.Label(objectInfo.Name);
+                                GUILayout.Label(objectInfo.Locked.ToString(), GUILayout.Width(60f));
+                                GUILayout.Label(objectPool.AllowMultiSpawn ? objectInfo.SpawnCount.ToString() : objectInfo.IsInUse.ToString(), GUILayout.Width(60f));
+                                GUILayout.Label(objectInfo.Priority.ToString(), GUILayout.Width(60f));
+                                GUILayout.Label(objectInfo.LastUseTime.ToString("yyyy-MM-dd HH:mm:ss"), GUILayout.Width(120f));
+                            }
+                            GUILayout.EndHorizontal();
                         }
-                        GUILayout.EndHorizontal();
                     }
-
-                    foreach (ObjectInfo objectInfo in objectInfos)
+                    else
                     {
-                        GUILayout.BeginHorizontal();
-                        {
-                            GUILayout.Label(objectInfo.Name);
-                            GUILayout.Label(objectInfo.Locked.ToString(), GUILayout.Width(60f));
-                            GUILayout.Label(objectInfo.SpawnCount.ToString(), GUILayout.Width(60f));
-                            GUILayout.Label(objectInfo.Priority.ToString(), GUILayout.Width(60f));
-                            GUILayout.Label(objectInfo.LastUseTime.ToString("yyyy-MM-dd HH:mm:ss"), GUILayout.Width(120f));
-                        }
-                        GUILayout.EndHorizontal();
+                        GUILayout.Label("<i>Object Pool is Empty ...</i>");
                     }
                 }
                 GUILayout.EndVertical();

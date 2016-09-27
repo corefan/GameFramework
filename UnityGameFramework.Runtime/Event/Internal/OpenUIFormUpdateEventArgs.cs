@@ -10,31 +10,42 @@ using GameFramework.Event;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 打开界面成功事件。
+    /// 打开界面更新事件。
     /// </summary>
-    public sealed class OpenUIFormSuccessEventArgs : GameEventArgs
+    public sealed class OpenUIFormUpdateEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化打开界面成功事件的新实例。
+        /// 初始化打开界面更新事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
-        public OpenUIFormSuccessEventArgs(GameFramework.UI.OpenUIFormSuccessEventArgs e)
+        public OpenUIFormUpdateEventArgs(GameFramework.UI.OpenUIFormUpdateEventArgs e)
         {
+            UIFormTypeId = e.UIFormTypeId;
             UIFormAssetName = e.UIFormAssetName;
-            UIForm = e.UIForm as UIForm;
-            Duration = e.Duration;
+            UIGroupName = e.UIGroupName;
+            PauseCoveredUIForm = e.PauseCoveredUIForm;
+            Progress = e.Progress;
             UserData = e.UserData;
         }
 
         /// <summary>
-        /// 获取打开界面成功事件编号。
+        /// 获取打开界面更新事件编号。
         /// </summary>
         public override int Id
         {
             get
             {
-                return (int)EventId.OpenUIFormSuccess;
+                return (int)EventId.OpenUIFormUpdate;
             }
+        }
+
+        /// <summary>
+        /// 获取界面类型编号。
+        /// </summary>
+        public int UIFormTypeId
+        {
+            get;
+            private set;
         }
 
         /// <summary>
@@ -47,18 +58,27 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取打开成功的界面。
+        /// 获取界面组名称。
         /// </summary>
-        public UIForm UIForm
+        public string UIGroupName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取加载持续时间。
+        /// 获取是否暂停被覆盖的界面。
         /// </summary>
-        public float Duration
+        public bool PauseCoveredUIForm
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取打开界面进度。
+        /// </summary>
+        public float Progress
         {
             get;
             private set;

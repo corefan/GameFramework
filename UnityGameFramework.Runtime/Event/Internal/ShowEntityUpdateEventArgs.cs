@@ -6,79 +6,81 @@
 //------------------------------------------------------------
 
 using GameFramework.Event;
+using System;
 
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 加载场景依赖资源事件。
+    /// 显示实体更新事件。
     /// </summary>
-    public sealed class LoadSceneDependencyEventArgs : GameEventArgs
+    public sealed class ShowEntityUpdateEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化加载场景依赖资源事件的新实例。
+        /// 初始化显示实体更新事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
-        public LoadSceneDependencyEventArgs(GameFramework.Scene.LoadSceneDependencyEventArgs e)
+        public ShowEntityUpdateEventArgs(GameFramework.Entity.ShowEntityUpdateEventArgs e)
         {
-            SceneName = e.SceneName;
-            SceneAssetName = e.SceneAssetName;
-            DependencyResourceName = e.DependencyResourceName;
-            LoadedCount = e.LoadedCount;
-            TotalCount = e.TotalCount;
-            UserData = e.UserData;
+            ShowEntityInfo showEntityInfo = e.UserData as ShowEntityInfo;
+            EntityId = e.EntityId;
+            EntityLogicType = showEntityInfo.EntityLogicType;
+            EntityAssetName = e.EntityAssetName;
+            EntityGroupName = e.EntityGroupName;
+            Progress = e.Progress;
+            UserData = showEntityInfo.UserData;
         }
 
         /// <summary>
-        /// 获取加载场景更新事件编号。
+        /// 获取显示实体更新事件编号。
         /// </summary>
         public override int Id
         {
             get
             {
-                return (int)EventId.LoadSceneDependency;
+                return (int)EventId.ShowEntityUpdate;
             }
         }
 
         /// <summary>
-        /// 获取场景名称。
+        /// 获取实体编号。
         /// </summary>
-        public string SceneName
+        public int EntityId
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取场景资源名称。
+        /// 获取实体逻辑类型。
         /// </summary>
-        public string SceneAssetName
+        public Type EntityLogicType
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取被加载的依赖资源名称。
+        /// 获取实体资源名称。
         /// </summary>
-        public string DependencyResourceName
+        public string EntityAssetName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取当前已加载依赖资源数量。
+        /// 获取实体组名称。
         /// </summary>
-        public int LoadedCount
+        public string EntityGroupName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取总共加载依赖资源数量。
+        /// 获取显示实体进度。
         /// </summary>
-        public int TotalCount
+        public float Progress
         {
             get;
             private set;

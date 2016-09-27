@@ -70,16 +70,16 @@ namespace UnityGameFramework.Runtime
                 {
                     if (loadSceneInfos[i].AsyncOperation.allowSceneActivation)
                     {
-                        if (loadSceneInfos[i].LoadSceneSuccessCallback != null)
+                        if (loadSceneInfos[i].LoadSceneCallbacks.LoadSceneSuccessCallback != null)
                         {
-                            loadSceneInfos[i].LoadSceneSuccessCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, loadSceneInfos[i].UserData);
+                            loadSceneInfos[i].LoadSceneCallbacks.LoadSceneSuccessCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, (float)(DateTime.Now - loadSceneInfos[i].StartTime).TotalSeconds, loadSceneInfos[i].UserData);
                         }
                     }
                     else
                     {
-                        if (loadSceneInfos[i].LoadSceneFailureCallback != null)
+                        if (loadSceneInfos[i].LoadSceneCallbacks.LoadSceneFailureCallback != null)
                         {
-                            loadSceneInfos[i].LoadSceneFailureCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, LoadResourceStatus.NotExist, "Can not load this scene from asset database.", loadSceneInfos[i].UserData);
+                            loadSceneInfos[i].LoadSceneCallbacks.LoadSceneFailureCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, LoadResourceStatus.NotExist, "Can not load this scene from asset database.", loadSceneInfos[i].UserData);
                         }
                     }
 
@@ -87,9 +87,9 @@ namespace UnityGameFramework.Runtime
                 }
                 else
                 {
-                    if (loadSceneInfos[i].LoadSceneUpdateCallback != null)
+                    if (loadSceneInfos[i].LoadSceneCallbacks.LoadSceneUpdateCallback != null)
                     {
-                        loadSceneInfos[i].LoadSceneUpdateCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, loadSceneInfos[i].AsyncOperation.progress, loadSceneInfos[i].UserData);
+                        loadSceneInfos[i].LoadSceneCallbacks.LoadSceneUpdateCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, loadSceneInfos[i].AsyncOperation.progress, loadSceneInfos[i].UserData);
                     }
                 }
             }
@@ -291,7 +291,22 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取或设置加载资源对象池的容量。
+        /// 获取或设置资源对象池的容量。
+        /// </summary>
+        public int AssetCapacity
+        {
+            get
+            {
+                throw new NotSupportedException("AssetCapacity");
+            }
+            set
+            {
+                throw new NotSupportedException("AssetCapacity");
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池的容量。
         /// </summary>
         public int ResourceCapacity
         {
@@ -496,80 +511,88 @@ namespace UnityGameFramework.Runtime
         /// 异步加载资源。
         /// </summary>
         /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
-        public void LoadAsset(string assetName, LoadAssetSuccessCallback loadAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback)
+        /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
+        public void LoadAsset(string assetName, LoadAssetCallbacks loadAssetCallbacks)
         {
-            LoadAsset(assetName, loadAssetSuccessCallback, loadAssetFailureCallback, null);
+            LoadAsset(assetName, loadAssetCallbacks, null);
         }
 
         /// <summary>
         /// 异步加载资源。
         /// </summary>
         /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+        /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadAsset(string assetName, LoadAssetSuccessCallback loadAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback, object userData)
+        public void LoadAsset(string assetName, LoadAssetCallbacks loadAssetCallbacks, object userData)
         {
+            if (loadAssetCallbacks == null)
+            {
+                throw new GameFrameworkException("Load asset callbacks is invalid.");
+            }
+
 #if UNITY_EDITOR
+            DateTime startTime = DateTime.Now;
             UnityEngine.Object asset = AssetDatabase.LoadMainAssetAtPath(assetName);
             if (asset != null)
             {
-                if (loadAssetSuccessCallback != null)
+                if (loadAssetCallbacks.LoadAssetSuccessCallback != null)
                 {
-                    loadAssetSuccessCallback(assetName, asset, userData);
+                    loadAssetCallbacks.LoadAssetSuccessCallback(assetName, asset, (float)(DateTime.Now - startTime).TotalSeconds, userData);
                 }
 
                 return;
             }
 
-            if (loadAssetFailureCallback != null)
+            if (loadAssetCallbacks.LoadAssetFailureCallback != null)
             {
-                loadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, "Can not load this resource from asset database.", userData);
+                loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, "Can not load this asset from asset database.", userData);
             }
 #endif
         }
 
         /// <summary>
-        /// 异步加载并实例化资源。
+        /// 异步实例化资源。
         /// </summary>
-        /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
-        public void LoadAndInstantiateAsset(string assetName, LoadAndInstantiateAssetSuccessCallback loadAndInstantiateAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback)
+        /// <param name="assetName">要实例化资源的名称。</param>
+        /// <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
+        public void InstantiateAsset(string assetName, InstantiateAssetCallbacks instantiateAssetCallbacks)
         {
-            LoadAndInstantiateAsset(assetName, loadAndInstantiateAssetSuccessCallback, loadAssetFailureCallback, null);
+            InstantiateAsset(assetName, instantiateAssetCallbacks, null);
         }
 
         /// <summary>
-        /// 异步加载并实例化资源。
+        /// 异步实例化资源。
         /// </summary>
-        /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+        /// <param name="assetName">要实例化资源的名称。</param>
+        /// <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadAndInstantiateAsset(string assetName, LoadAndInstantiateAssetSuccessCallback loadAndInstantiateAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback, object userData)
+        public void InstantiateAsset(string assetName, InstantiateAssetCallbacks instantiateAssetCallbacks, object userData)
         {
+            if (instantiateAssetCallbacks == null)
+            {
+                throw new GameFrameworkException("Instantiate asset callbacks is invalid.");
+            }
+
 #if UNITY_EDITOR
+            DateTime startTime = DateTime.Now;
             UnityEngine.Object asset = AssetDatabase.LoadMainAssetAtPath(assetName);
             if (asset != null)
             {
-                UnityEngine.Object instance = UnityEngine.Object.Instantiate(asset);
+                UnityEngine.Object instance = Instantiate(asset);
                 if (instance != null)
                 {
-                    if (loadAndInstantiateAssetSuccessCallback != null)
+                    if (instantiateAssetCallbacks.InstantiateAssetSuccessCallback != null)
                     {
-                        loadAndInstantiateAssetSuccessCallback(assetName, asset, instance, userData);
+                        instantiateAssetCallbacks.InstantiateAssetSuccessCallback(assetName, instance, (float)(DateTime.Now - startTime).TotalSeconds, userData);
                     }
 
                     return;
                 }
             }
 
-            if (loadAssetFailureCallback != null)
+            if (instantiateAssetCallbacks.InstantiateAssetFailureCallback != null)
             {
-                loadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, "Can not load and instantiate this resource from asset database.", userData);
+                instantiateAssetCallbacks.InstantiateAssetFailureCallback(assetName, LoadResourceStatus.NotExist, "Can not instantiate this asset from asset database.", userData);
             }
 #endif
         }
@@ -577,41 +600,41 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 异步加载场景。
         /// </summary>
-        /// <param name="sceneName">要加载的场景名。</param>
-        /// <param name="assetName">要加载场景资源的名称。</param>
-        /// <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
-        /// <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-        /// <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-        /// <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
-        public void LoadScene(string sceneName, string assetName, LoadSceneSuccessCallback loadSceneSuccessCallback, LoadSceneFailureCallback loadSceneFailureCallback, LoadSceneUpdateCallback loadSceneUpdateCallback, LoadSceneDependencyCallback loadSceneDependencyCallback)
+        /// <param name="sceneName">要加载的场景名称。</param>
+        /// <param name="sceneAssetName">要加载场景资源的名称。</param>
+        /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
+        public void LoadScene(string sceneName, string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks)
         {
-            LoadScene(sceneName, assetName, loadSceneSuccessCallback, loadSceneFailureCallback, loadSceneUpdateCallback, loadSceneDependencyCallback, null);
+            LoadScene(sceneName, sceneAssetName, loadSceneCallbacks, null);
         }
 
         /// <summary>
         /// 异步加载场景。
         /// </summary>
-        /// <param name="sceneName">要加载的场景名。</param>
-        /// <param name="assetName">要加载场景资源的名称。</param>
-        /// <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
-        /// <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-        /// <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-        /// <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
+        /// <param name="sceneName">要加载的场景名称。</param>
+        /// <param name="sceneAssetName">要加载场景资源的名称。</param>
+        /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadScene(string sceneName, string assetName, LoadSceneSuccessCallback loadSceneSuccessCallback, LoadSceneFailureCallback loadSceneFailureCallback, LoadSceneUpdateCallback loadSceneUpdateCallback, LoadSceneDependencyCallback loadSceneDependencyCallback, object userData)
+        public void LoadScene(string sceneName, string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks, object userData)
         {
+            if (loadSceneCallbacks == null)
+            {
+                throw new GameFrameworkException("Load scene callbacks is invalid.");
+            }
+
             if (string.IsNullOrEmpty(sceneName))
             {
                 throw new GameFrameworkException("Scene name is invalid.");
             }
 
+            DateTime startTime = DateTime.Now;
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             if (asyncOperation == null)
             {
                 return;
             }
 
-            m_LoadSceneInfos.Add(new LoadSceneInfo(asyncOperation, sceneName, assetName, loadSceneSuccessCallback, loadSceneFailureCallback, loadSceneUpdateCallback, userData));
+            m_LoadSceneInfos.Add(new LoadSceneInfo(asyncOperation, sceneName, sceneAssetName, startTime, loadSceneCallbacks, userData));
         }
 
         /// <summary>
@@ -625,13 +648,12 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 实例化资源。
+        /// 回收资源或资源实例。
         /// </summary>
-        /// <param name="resource">要实例化的资源。</param>
-        /// <returns>实例化的资源。</returns>
-        public object Instantiate(object resource)
+        /// <param name="assetOrInstance">要回收的资源或资源实例。</param>
+        public void Recycle(object assetOrInstance)
         {
-            return UnityEngine.Object.Instantiate(resource as UnityEngine.Object);
+            // Do nothing in editor resource mode.
         }
 
         /// <summary>
@@ -693,19 +715,17 @@ namespace UnityGameFramework.Runtime
             private readonly AsyncOperation m_AsyncOperation;
             private readonly string m_SceneName;
             private readonly string m_SceneAssetName;
-            private readonly LoadSceneSuccessCallback m_LoadSceneSuccessCallback;
-            private readonly LoadSceneFailureCallback m_LoadSceneFailureCallback;
-            private readonly LoadSceneUpdateCallback m_LoadSceneUpdateCallback;
+            private readonly DateTime m_StartTime;
+            private readonly LoadSceneCallbacks m_LoadSceneCallbacks;
             private readonly object m_UserData;
 
-            public LoadSceneInfo(AsyncOperation asyncOperation, string sceneName, string sceneAssetName, LoadSceneSuccessCallback loadSceneSuccessCallback, LoadSceneFailureCallback loadSceneFailureCallback, LoadSceneUpdateCallback loadSceneUpdateCallback, object userData)
+            public LoadSceneInfo(AsyncOperation asyncOperation, string sceneName, string sceneAssetName, DateTime startTime, LoadSceneCallbacks loadSceneCallbacks, object userData)
             {
                 m_AsyncOperation = asyncOperation;
                 m_SceneName = sceneName;
                 m_SceneAssetName = sceneAssetName;
-                m_LoadSceneSuccessCallback = loadSceneSuccessCallback;
-                m_LoadSceneFailureCallback = loadSceneFailureCallback;
-                m_LoadSceneUpdateCallback = loadSceneUpdateCallback;
+                m_StartTime = startTime;
+                m_LoadSceneCallbacks = loadSceneCallbacks;
                 m_UserData = userData;
             }
 
@@ -733,27 +753,19 @@ namespace UnityGameFramework.Runtime
                 }
             }
 
-            public LoadSceneSuccessCallback LoadSceneSuccessCallback
+            public DateTime StartTime
             {
                 get
                 {
-                    return m_LoadSceneSuccessCallback;
+                    return m_StartTime;
                 }
             }
 
-            public LoadSceneFailureCallback LoadSceneFailureCallback
+            public LoadSceneCallbacks LoadSceneCallbacks
             {
                 get
                 {
-                    return m_LoadSceneFailureCallback;
-                }
-            }
-
-            public LoadSceneUpdateCallback LoadSceneUpdateCallback
-            {
-                get
-                {
-                    return m_LoadSceneUpdateCallback;
+                    return m_LoadSceneCallbacks;
                 }
             }
 

@@ -977,6 +977,14 @@
             关闭并清理游戏框架模块。
             </summary>
         </member>
+        <member name="T:GameFramework.GameFrameworkPredicate`1">
+            <summary>
+            表示定义一组条件并确定指定对象是否符合这些条件的方法。
+            </summary>
+            <typeparam name="T">要比较的对象的类型。</typeparam>
+            <param name="obj">要按照由此委托表示的方法中定义的条件进行比较的对象。</param>
+            <returns>如果 obj 符合由此委托表示的方法中定义的条件，则为 true，否则为 false。</returns>
+        </member>
         <member name="T:GameFramework.Log">
             <summary>
             日志类。
@@ -1793,6 +1801,11 @@
             初始化数据表管理器的新实例。
             </summary>
         </member>
+        <member name="P:GameFramework.DataTable.DataTableManager.Count">
+            <summary>
+            获取数据表数量。
+            </summary>
+        </member>
         <member name="E:GameFramework.DataTable.DataTableManager.LoadDataTableSuccess">
             <summary>
             加载数据表成功事件。
@@ -1803,9 +1816,14 @@
             加载数据表失败事件。
             </summary>
         </member>
-        <member name="P:GameFramework.DataTable.DataTableManager.Count">
+        <member name="E:GameFramework.DataTable.DataTableManager.LoadDataTableUpdate">
             <summary>
-            获取数据表数量。
+            加载数据表更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.DataTable.DataTableManager.LoadDataTableDependencyAsset">
+            <summary>
+            加载数据表时加载依赖资源事件。
             </summary>
         </member>
         <member name="M:GameFramework.DataTable.DataTableManager.Update(System.Single,System.Single)">
@@ -1997,13 +2015,27 @@
             <param name="id">数据表行的编号。</param>
             <returns>是否存在数据表行。</returns>
         </member>
-        <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.TryGetDataRow(System.Int32,`0@)">
+        <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.HasDataRow(GameFramework.GameFrameworkPredicate{`0})">
+            <summary>
+            检查是否存在数据表行。
+            </summary>
+            <param name="condition">要检查的条件。</param>
+            <returns>是否存在数据表行。</returns>
+        </member>
+        <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.GetDataRow(System.Int32)">
             <summary>
             获取数据表行。
             </summary>
             <param name="id">数据表行的编号。</param>
-            <param name="dataRow">数据表行。</param>
-            <returns>是否存在数据表行。</returns>
+            <returns>数据表行。</returns>
+        </member>
+        <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.GetDataRow(GameFramework.GameFrameworkPredicate{`0})">
+            <summary>
+            获取符合条件的数据表行。
+            </summary>
+            <param name="condition">要检查的条件。</param>
+            <returns>符合条件的数据表行。</returns>
+            <remarks>当存在多个符合条件的数据表行时，仅返回第一个符合条件的数据表行。</remarks>
         </member>
         <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.AddDataRow(System.String)">
             <summary>
@@ -2016,6 +2048,13 @@
             获取全部数据表行。
             </summary>
             <returns>全部数据表行。</returns>
+        </member>
+        <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.GetAllDataRows(GameFramework.GameFrameworkPredicate{`0})">
+            <summary>
+            获取全部符合条件的数据表行。
+            </summary>
+            <param name="condition">要检查的条件。</param>
+            <returns>全部符合条件的数据表行。</returns>
         </member>
         <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.GetEnumerator">
             <summary>
@@ -2074,19 +2113,40 @@
             <param name="id">数据表行的编号。</param>
             <returns>是否存在数据表行。</returns>
         </member>
-        <member name="M:GameFramework.DataTable.IDataTable`1.TryGetDataRow(System.Int32,`0@)">
+        <member name="M:GameFramework.DataTable.IDataTable`1.HasDataRow(GameFramework.GameFrameworkPredicate{`0})">
+            <summary>
+            检查是否存在数据表行。
+            </summary>
+            <param name="condition">要检查的条件。</param>
+            <returns>是否存在数据表行。</returns>
+        </member>
+        <member name="M:GameFramework.DataTable.IDataTable`1.GetDataRow(System.Int32)">
             <summary>
             获取数据表行。
             </summary>
             <param name="id">数据表行的编号。</param>
-            <param name="dataRow">数据表行。</param>
-            <returns>是否存在数据表行。</returns>
+            <returns>数据表行。</returns>
+        </member>
+        <member name="M:GameFramework.DataTable.IDataTable`1.GetDataRow(GameFramework.GameFrameworkPredicate{`0})">
+            <summary>
+            获取符合条件的数据表行。
+            </summary>
+            <param name="condition">要检查的条件。</param>
+            <returns>符合条件的数据表行。</returns>
+            <remarks>当存在多个符合条件的数据表行时，仅返回第一个符合条件的数据表行。</remarks>
         </member>
         <member name="M:GameFramework.DataTable.IDataTable`1.GetAllDataRows">
             <summary>
             获取全部数据表行。
             </summary>
             <returns>全部数据表行。</returns>
+        </member>
+        <member name="M:GameFramework.DataTable.IDataTable`1.GetAllDataRows(GameFramework.GameFrameworkPredicate{`0})">
+            <summary>
+            获取全部符合条件的数据表行。
+            </summary>
+            <param name="condition">要检查的条件。</param>
+            <returns>全部符合条件的数据表行。</returns>
         </member>
         <member name="T:GameFramework.DataTable.IDataTableHelper">
             <summary>
@@ -2119,6 +2179,11 @@
             数据表管理器接口。
             </summary>
         </member>
+        <member name="P:GameFramework.DataTable.IDataTableManager.Count">
+            <summary>
+            获取数据表数量。
+            </summary>
+        </member>
         <member name="E:GameFramework.DataTable.IDataTableManager.LoadDataTableSuccess">
             <summary>
             加载数据表成功事件。
@@ -2129,9 +2194,14 @@
             加载数据表失败事件。
             </summary>
         </member>
-        <member name="P:GameFramework.DataTable.IDataTableManager.Count">
+        <member name="E:GameFramework.DataTable.IDataTableManager.LoadDataTableUpdate">
             <summary>
-            获取数据表数量。
+            加载数据表更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.DataTable.IDataTableManager.LoadDataTableDependencyAsset">
+            <summary>
+            加载数据表时加载依赖资源事件。
             </summary>
         </member>
         <member name="M:GameFramework.DataTable.IDataTableManager.SetResourceManager(GameFramework.Resource.IResourceManager)">
@@ -2272,6 +2342,46 @@
             <param name="name">数据表名称。</param>
             <returns>是否销毁数据表成功。</returns>
         </member>
+        <member name="T:GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs">
+            <summary>
+            加载数据表时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs.#ctor(System.String,System.String,System.Int32,System.Int32,System.Object)">
+            <summary>
+            初始化加载数据表时加载依赖资源事件的新实例。
+            </summary>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
+            <param name="loadedCount">当前已加载依赖资源数量。</param>
+            <param name="totalCount">总共加载依赖资源数量。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs.DataTableAssetName">
+            <summary>
+            获取数据表资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
         <member name="T:GameFramework.DataTable.LoadDataTableFailureEventArgs">
             <summary>
             加载数据表失败事件。
@@ -2305,11 +2415,12 @@
             加载数据表成功事件。
             </summary>
         </member>
-        <member name="M:GameFramework.DataTable.LoadDataTableSuccessEventArgs.#ctor(System.String,System.Object)">
+        <member name="M:GameFramework.DataTable.LoadDataTableSuccessEventArgs.#ctor(System.String,System.Single,System.Object)">
             <summary>
             初始化加载数据表成功事件的新实例。
             </summary>
             <param name="dataTableAssetName">数据表资源名称。</param>
+            <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="P:GameFramework.DataTable.LoadDataTableSuccessEventArgs.DataTableAssetName">
@@ -2317,7 +2428,40 @@
             获取数据表资源名称。
             </summary>
         </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
+            </summary>
+        </member>
         <member name="P:GameFramework.DataTable.LoadDataTableSuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:GameFramework.DataTable.LoadDataTableUpdateEventArgs">
+            <summary>
+            加载数据表更新事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.DataTable.LoadDataTableUpdateEventArgs.#ctor(System.String,System.Single,System.Object)">
+            <summary>
+            初始化加载数据表更新事件的新实例。
+            </summary>
+            <param name="dataTableAssetName">数据表资源名称。</param>
+            <param name="progress">加载数据表进度。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableUpdateEventArgs.DataTableAssetName">
+            <summary>
+            获取数据表资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableUpdateEventArgs.Progress">
+            <summary>
+            获取加载数据表进度。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.LoadDataTableUpdateEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -3216,11 +3360,6 @@
             获取实体组数量。
             </summary>
         </member>
-        <member name="P:GameFramework.Entity.EntityManager.AssetCapacity">
-            <summary>
-            获取或设置实体资源对象池的容量。
-            </summary>
-        </member>
         <member name="E:GameFramework.Entity.EntityManager.ShowEntitySuccess">
             <summary>
             显示实体成功事件。
@@ -3229,6 +3368,16 @@
         <member name="E:GameFramework.Entity.EntityManager.ShowEntityFailure">
             <summary>
             显示实体失败事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Entity.EntityManager.ShowEntityUpdate">
+            <summary>
+            显示实体更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Entity.EntityManager.ShowEntityDependencyAsset">
+            <summary>
+            显示实体时加载依赖资源事件。
             </summary>
         </member>
         <member name="E:GameFramework.Entity.EntityManager.HideEntityComplete">
@@ -3325,10 +3474,10 @@
         </member>
         <member name="M:GameFramework.Entity.EntityManager.IsLoadingEntity(System.Int32)">
             <summary>
-            是否正在加载实体。
+            是否正在显示实体。
             </summary>
             <param name="entityId">实体编号。</param>
-            <returns>是否正在加载实体。</returns>
+            <returns>是否正在显示实体。</returns>
         </member>
         <member name="M:GameFramework.Entity.EntityManager.IsValidEntity(GameFramework.Entity.IEntity)">
             <summary>
@@ -3552,11 +3701,6 @@
             <param name="entityId">实体编号。</param>
             <returns>实体信息。</returns>
         </member>
-        <member name="T:GameFramework.Entity.EntityManager.EntityAssetObject">
-            <summary>
-            实体资源对象。
-            </summary>
-        </member>
         <member name="T:GameFramework.Entity.EntityManager.EntityGroup">
             <summary>
             实体组。
@@ -3772,12 +3916,6 @@
             <param name="userData">用户自定义数据。</param>
             <returns>实体。</returns>
         </member>
-        <member name="M:GameFramework.Entity.IEntityHelper.ReleaseEntityAsset(System.Object)">
-            <summary>
-            释放实体资源。
-            </summary>
-            <param name="entityAsset">要释放的实体资源。</param>
-        </member>
         <member name="M:GameFramework.Entity.IEntityHelper.ReleaseEntityInstance(System.Object)">
             <summary>
             释放实体实例。
@@ -3799,11 +3937,6 @@
             获取实体组数量。
             </summary>
         </member>
-        <member name="P:GameFramework.Entity.IEntityManager.AssetCapacity">
-            <summary>
-            获取或设置实体资源对象池的容量。
-            </summary>
-        </member>
         <member name="E:GameFramework.Entity.IEntityManager.ShowEntitySuccess">
             <summary>
             显示实体成功事件。
@@ -3812,6 +3945,16 @@
         <member name="E:GameFramework.Entity.IEntityManager.ShowEntityFailure">
             <summary>
             显示实体失败事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Entity.IEntityManager.ShowEntityUpdate">
+            <summary>
+            显示实体更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Entity.IEntityManager.ShowEntityDependencyAsset">
+            <summary>
+            显示实体时加载依赖资源事件。
             </summary>
         </member>
         <member name="E:GameFramework.Entity.IEntityManager.HideEntityComplete">
@@ -4116,6 +4259,58 @@
             <param name="entity">实体。</param>
             <param name="priority">实体实例优先级。</param>
         </member>
+        <member name="T:GameFramework.Entity.ShowEntityDependencyAssetEventArgs">
+            <summary>
+            显示实体时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.#ctor(System.Int32,System.String,System.String,System.String,System.Int32,System.Int32,System.Object)">
+            <summary>
+            初始化显示实体时加载依赖资源事件的新实例。
+            </summary>
+            <param name="entityId">实体编号。</param>
+            <param name="entityAssetName">实体资源名称。</param>
+            <param name="entityGroupName">实体组名称。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
+            <param name="loadedCount">当前已加载依赖资源数量。</param>
+            <param name="totalCount">总共加载依赖资源数量。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.EntityId">
+            <summary>
+            获取实体编号。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.EntityAssetName">
+            <summary>
+            获取实体资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.EntityGroupName">
+            <summary>
+            获取实体组名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
         <member name="T:GameFramework.Entity.ShowEntityFailureEventArgs">
             <summary>
             显示实体失败事件。
@@ -4161,12 +4356,13 @@
             显示实体成功事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Entity.ShowEntitySuccessEventArgs.#ctor(System.String,GameFramework.Entity.IEntity,System.Object)">
+        <member name="M:GameFramework.Entity.ShowEntitySuccessEventArgs.#ctor(System.String,GameFramework.Entity.IEntity,System.Single,System.Object)">
             <summary>
             初始化显示实体成功事件的新实例。
             </summary>
             <param name="entityAssetName">实体资源名称。</param>
             <param name="entity">加载成功的实体。</param>
+            <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="P:GameFramework.Entity.ShowEntitySuccessEventArgs.EntityAssetName">
@@ -4176,10 +4372,55 @@
         </member>
         <member name="P:GameFramework.Entity.ShowEntitySuccessEventArgs.Entity">
             <summary>
-            获取加载成功的实体。
+            获取显示成功的实体。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntitySuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
             </summary>
         </member>
         <member name="P:GameFramework.Entity.ShowEntitySuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Entity.ShowEntityUpdateEventArgs">
+            <summary>
+            显示实体更新事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Entity.ShowEntityUpdateEventArgs.#ctor(System.Int32,System.String,System.String,System.Single,System.Object)">
+            <summary>
+            初始化显示实体更新事件的新实例。
+            </summary>
+            <param name="entityId">实体编号。</param>
+            <param name="entityAssetName">实体资源名称。</param>
+            <param name="entityGroupName">实体组名称。</param>
+            <param name="progress">显示实体进度。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityUpdateEventArgs.EntityId">
+            <summary>
+            获取实体编号。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityUpdateEventArgs.EntityAssetName">
+            <summary>
+            获取实体资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityUpdateEventArgs.EntityGroupName">
+            <summary>
+            获取实体组名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityUpdateEventArgs.Progress">
+            <summary>
+            获取显示实体进度。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.ShowEntityUpdateEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -5021,6 +5262,16 @@
             加载字典失败事件。
             </summary>
         </member>
+        <member name="E:GameFramework.Localization.ILocalizationManager.LoadDictionaryUpdate">
+            <summary>
+            加载字典更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Localization.ILocalizationManager.LoadDictionaryDependencyAsset">
+            <summary>
+            加载字典时加载依赖资源事件。
+            </summary>
+        </member>
         <member name="M:GameFramework.Localization.ILocalizationManager.SetResourceManager(GameFramework.Resource.IResourceManager)">
             <summary>
             设置资源管理器。
@@ -5358,6 +5609,46 @@
             越南语。
             </summary>
         </member>
+        <member name="T:GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs">
+            <summary>
+            加载字典时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs.#ctor(System.String,System.String,System.Int32,System.Int32,System.Object)">
+            <summary>
+            初始化加载字典时加载依赖资源事件的新实例。
+            </summary>
+            <param name="dictionaryAssetName">字典资源名称。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
+            <param name="loadedCount">当前已加载依赖资源数量。</param>
+            <param name="totalCount">总共加载依赖资源数量。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs.DictionaryAssetName">
+            <summary>
+            获取字典资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
         <member name="T:GameFramework.Localization.LoadDictionaryFailureEventArgs">
             <summary>
             加载字典失败事件。
@@ -5391,11 +5682,12 @@
             加载字典成功事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Localization.LoadDictionarySuccessEventArgs.#ctor(System.String,System.Object)">
+        <member name="M:GameFramework.Localization.LoadDictionarySuccessEventArgs.#ctor(System.String,System.Single,System.Object)">
             <summary>
             初始化加载字典成功事件的新实例。
             </summary>
             <param name="dictionaryAssetName">字典资源名称。</param>
+            <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="P:GameFramework.Localization.LoadDictionarySuccessEventArgs.DictionaryAssetName">
@@ -5403,7 +5695,40 @@
             获取字典资源名称。
             </summary>
         </member>
+        <member name="P:GameFramework.Localization.LoadDictionarySuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
+            </summary>
+        </member>
         <member name="P:GameFramework.Localization.LoadDictionarySuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Localization.LoadDictionaryUpdateEventArgs">
+            <summary>
+            加载字典更新事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Localization.LoadDictionaryUpdateEventArgs.#ctor(System.String,System.Single,System.Object)">
+            <summary>
+            初始化加载字典更新事件的新实例。
+            </summary>
+            <param name="dictionaryAssetName">字典资源名称。</param>
+            <param name="progress">加载字典进度。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryUpdateEventArgs.DictionaryAssetName">
+            <summary>
+            获取字典资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryUpdateEventArgs.Progress">
+            <summary>
+            获取加载字典进度。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Localization.LoadDictionaryUpdateEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -5441,6 +5766,16 @@
         <member name="E:GameFramework.Localization.LocalizationManager.LoadDictionaryFailure">
             <summary>
             加载字典失败事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Localization.LocalizationManager.LoadDictionaryUpdate">
+            <summary>
+            加载字典更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Localization.LocalizationManager.LoadDictionaryDependencyAsset">
+            <summary>
+            加载字典时加载依赖资源事件。
             </summary>
         </member>
         <member name="M:GameFramework.Localization.LocalizationManager.Update(System.Single,System.Single)">
@@ -6355,9 +6690,19 @@
             获取对象池中对象的数量。
             </summary>
         </member>
+        <member name="P:GameFramework.ObjectPool.IObjectPool`1.AllowMultiSpawn">
+            <summary>
+            获取是否允许对象被多次获取。
+            </summary>
+        </member>
         <member name="P:GameFramework.ObjectPool.IObjectPool`1.Capacity">
             <summary>
             获取或设置对象池的容量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.ObjectPool.IObjectPool`1.Order">
+            <summary>
+            获取或设置对象池顺序。
             </summary>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPool`1.SetRefreshObjectCallback(GameFramework.ObjectPool.RefreshObjectCallback{`0})">
@@ -6384,6 +6729,19 @@
             </summary>
             <param name="obj">对象。</param>
             <param name="spawned">对象是否已被获取。</param>
+        </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPool`1.CanSpawn">
+            <summary>
+            检查对象。
+            </summary>
+            <returns>要检查的对象是否存在。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPool`1.CanSpawn(System.String)">
+            <summary>
+            检查对象。
+            </summary>
+            <param name="name">对象名称。</param>
+            <returns>要检查的对象是否存在。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPool`1.Spawn">
             <summary>
@@ -6494,6 +6852,13 @@
             </summary>
             <returns>所有对象池。</returns>
         </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPoolManager.GetAllObjectPools(System.Boolean)">
+            <summary>
+            获取所有对象池。
+            </summary>
+            <param name="ordered">是否根据对象池顺序排序。</param>
+            <returns>所有对象池。</returns>
+        </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1">
             <summary>
             创建允许单次获取的对象池。
@@ -6526,6 +6891,25 @@
             <param name="capacity">对象池的容量。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1(System.Int32,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1">
             <summary>
             创建允许多次获取的对象池。
@@ -6556,6 +6940,25 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1(System.Int32,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.DestroyObjectPool``1">
@@ -6609,6 +7012,31 @@
             <param name="name">对象名称。</param>
             <param name="target">对象。</param>
         </member>
+        <member name="M:GameFramework.ObjectPool.ObjectBase.#ctor(System.String,System.Object,System.Boolean)">
+            <summary>
+            初始化对象的新实例。
+            </summary>
+            <param name="name">对象名称。</param>
+            <param name="target">对象。</param>
+            <param name="locked">对象是否被加锁。</param>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectBase.#ctor(System.String,System.Object,System.Int32)">
+            <summary>
+            初始化对象的新实例。
+            </summary>
+            <param name="name">对象名称。</param>
+            <param name="target">对象。</param>
+            <param name="priority">对象的优先级。</param>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectBase.#ctor(System.String,System.Object,System.Boolean,System.Int32)">
+            <summary>
+            初始化对象的新实例。
+            </summary>
+            <param name="name">对象名称。</param>
+            <param name="target">对象。</param>
+            <param name="locked">对象是否被加锁。</param>
+            <param name="priority">对象的优先级。</param>
+        </member>
         <member name="P:GameFramework.ObjectPool.ObjectBase.Name">
             <summary>
             获取对象名称。
@@ -6632,6 +7060,16 @@
         <member name="P:GameFramework.ObjectPool.ObjectBase.LastUseTime">
             <summary>
             获取对象上次使用时间。
+            </summary>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectBase.OnSpawn">
+            <summary>
+            获取对象时的事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectBase.OnUnspawn">
+            <summary>
+            回收对象时的事件。
             </summary>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectBase.Release">
@@ -6715,9 +7153,19 @@
             获取对象池中对象的数量。
             </summary>
         </member>
+        <member name="P:GameFramework.ObjectPool.ObjectPoolBase.AllowMultiSpawn">
+            <summary>
+            获取是否允许对象被多次获取。
+            </summary>
+        </member>
         <member name="P:GameFramework.ObjectPool.ObjectPoolBase.Capacity">
             <summary>
             获取或设置对象池的容量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.ObjectPool.ObjectPoolBase.Order">
+            <summary>
+            获取或设置对象池顺序。
             </summary>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolBase.Release">
@@ -6810,6 +7258,13 @@
             </summary>
             <returns>所有对象池。</returns>
         </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.GetAllObjectPools(System.Boolean)">
+            <summary>
+            获取所有对象池。
+            </summary>
+            <param name="ordered">是否根据对象池顺序排序。</param>
+            <returns>所有对象池。</returns>
+        </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1">
             <summary>
             创建允许单次获取的对象池。
@@ -6842,6 +7297,25 @@
             <param name="capacity">对象池的容量。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1(System.Int32,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1">
             <summary>
             创建允许多次获取的对象池。
@@ -6872,6 +7346,25 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1(System.Int32,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.DestroyObjectPool``1">
@@ -6907,7 +7400,7 @@
             释放对象池中的所有未使用对象。
             </summary>
         </member>
-        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateObjectPool``1(System.String,System.Boolean,System.Int32)">
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateObjectPool``1(System.String,System.Boolean,System.Int32,System.Int32)">
             <summary>
             创建对象池。
             </summary>
@@ -6915,6 +7408,7 @@
             <param name="name">对象池名称。</param>
             <param name="allowMultiSpawn">是否允许对象被多次获取。</param>
             <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
             <returns>要创建的对象池。</returns>
         </member>
         <member name="T:GameFramework.ObjectPool.ObjectPoolManager.Object`1">
@@ -6988,13 +7482,14 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
         </member>
-        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.#ctor(System.String,System.Boolean,System.Int32)">
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.#ctor(System.String,System.Boolean,System.Int32,System.Int32)">
             <summary>
             初始化对象池的新实例。
             </summary>
             <param name="name">对象池名称。</param>
             <param name="allowMultiSpawn">是否允许对象被多次获取。</param>
             <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
         </member>
         <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.ObjectType">
             <summary>
@@ -7006,9 +7501,19 @@
             获取对象池中对象的数量。
             </summary>
         </member>
+        <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.AllowMultiSpawn">
+            <summary>
+            获取是否允许对象被多次获取。
+            </summary>
+        </member>
         <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Capacity">
             <summary>
             获取或设置对象池的容量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Order">
+            <summary>
+            获取或设置对象池顺序。
             </summary>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.SetRefreshObjectCallback(GameFramework.ObjectPool.RefreshObjectCallback{`0})">
@@ -7035,6 +7540,19 @@
             </summary>
             <param name="obj">对象。</param>
             <param name="spawned">对象是否已被获取。</param>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.CanSpawn">
+            <summary>
+            检查对象。
+            </summary>
+            <returns>要检查的对象是否存在。</returns>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.CanSpawn(System.String)">
+            <summary>
+            检查对象。
+            </summary>
+            <param name="name">对象名称。</param>
+            <returns>要检查的对象是否存在。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Spawn">
             <summary>
@@ -7392,14 +7910,7 @@
             通过加载资源代理辅助器开始异步加载资源。
             </summary>
             <param name="resource">资源。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-        </member>
-        <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.LoadAndInstantiateAsset(System.Object,System.String)">
-            <summary>
-            通过加载资源代理辅助器开始异步加载资源并实例化。
-            </summary>
-            <param name="resource">资源。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
+            <param name="resourceChildName">要加载的子资源名。</param>
         </member>
         <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.LoadScene(System.Object,System.String)">
             <summary>
@@ -7408,10 +7919,130 @@
             <param name="resource">资源。</param>
             <param name="sceneName">场景名称。</param>
         </member>
+        <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.Instantiate(System.Object)">
+            <summary>
+            实例化资源。
+            </summary>
+            <param name="asset">要实例化的资源。</param>
+            <returns>实例化后的资源。</returns>
+        </member>
         <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.Reset">
             <summary>
             重置加载资源代理辅助器。
             </summary>
+        </member>
+        <member name="T:GameFramework.Resource.InstantiateAssetCallbacks">
+            <summary>
+            实例化资源回调函数集。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Resource.InstantiateAssetCallbacks.#ctor(GameFramework.Resource.InstantiateAssetSuccessCallback)">
+            <summary>
+            初始化实例化资源回调函数集的新实例。
+            </summary>
+            <param name="instantiateAssetSuccessCallback">实例化资源成功回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.InstantiateAssetCallbacks.#ctor(GameFramework.Resource.InstantiateAssetSuccessCallback,GameFramework.Resource.InstantiateAssetFailureCallback)">
+            <summary>
+            初始化实例化资源回调函数集的新实例。
+            </summary>
+            <param name="instantiateAssetSuccessCallback">实例化资源成功回调函数。</param>
+            <param name="instantiateAssetFailureCallback">实例化资源失败回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.InstantiateAssetCallbacks.#ctor(GameFramework.Resource.InstantiateAssetSuccessCallback,GameFramework.Resource.InstantiateAssetUpdateCallback)">
+            <summary>
+            初始化实例化资源回调函数集的新实例。
+            </summary>
+            <param name="instantiateAssetSuccessCallback">实例化资源成功回调函数。</param>
+            <param name="instantiateAssetUpdateCallback">实例化资源更新回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.InstantiateAssetCallbacks.#ctor(GameFramework.Resource.InstantiateAssetSuccessCallback,GameFramework.Resource.InstantiateAssetDependencyAssetCallback)">
+            <summary>
+            初始化实例化资源回调函数集的新实例。
+            </summary>
+            <param name="instantiateAssetSuccessCallback">实例化资源成功回调函数。</param>
+            <param name="instantiateAssetDependencyAssetCallback">实例化资源时实例化依赖资源回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.InstantiateAssetCallbacks.#ctor(GameFramework.Resource.InstantiateAssetSuccessCallback,GameFramework.Resource.InstantiateAssetFailureCallback,GameFramework.Resource.InstantiateAssetUpdateCallback)">
+            <summary>
+            初始化实例化资源回调函数集的新实例。
+            </summary>
+            <param name="instantiateAssetSuccessCallback">实例化资源成功回调函数。</param>
+            <param name="instantiateAssetFailureCallback">实例化资源失败回调函数。</param>
+            <param name="instantiateAssetUpdateCallback">实例化资源更新回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.InstantiateAssetCallbacks.#ctor(GameFramework.Resource.InstantiateAssetSuccessCallback,GameFramework.Resource.InstantiateAssetFailureCallback,GameFramework.Resource.InstantiateAssetDependencyAssetCallback)">
+            <summary>
+            初始化实例化资源回调函数集的新实例。
+            </summary>
+            <param name="instantiateAssetSuccessCallback">实例化资源成功回调函数。</param>
+            <param name="instantiateAssetFailureCallback">实例化资源失败回调函数。</param>
+            <param name="instantiateAssetDependencyAssetCallback">实例化资源时实例化依赖资源回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.InstantiateAssetCallbacks.#ctor(GameFramework.Resource.InstantiateAssetSuccessCallback,GameFramework.Resource.InstantiateAssetFailureCallback,GameFramework.Resource.InstantiateAssetUpdateCallback,GameFramework.Resource.InstantiateAssetDependencyAssetCallback)">
+            <summary>
+            初始化实例化资源回调函数集的新实例。
+            </summary>
+            <param name="instantiateAssetSuccessCallback">实例化资源成功回调函数。</param>
+            <param name="instantiateAssetFailureCallback">实例化资源失败回调函数。</param>
+            <param name="instantiateAssetUpdateCallback">实例化资源更新回调函数。</param>
+            <param name="instantiateAssetDependencyAssetCallback">实例化资源时实例化依赖资源回调函数。</param>
+        </member>
+        <member name="P:GameFramework.Resource.InstantiateAssetCallbacks.InstantiateAssetSuccessCallback">
+            <summary>
+            获取实例化资源成功回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.InstantiateAssetCallbacks.InstantiateAssetFailureCallback">
+            <summary>
+            获取实例化资源失败回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.InstantiateAssetCallbacks.InstantiateAssetUpdateCallback">
+            <summary>
+            获取实例化资源更新回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.InstantiateAssetCallbacks.InstantiateAssetDependencyAssetCallback">
+            <summary>
+            获取实例化资源时实例化依赖资源回调函数。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Resource.InstantiateAssetDependencyAssetCallback">
+            <summary>
+            实例化资源时加载依赖资源回调函数。
+            </summary>
+            <param name="assetName">要实例化的资源名称。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
+            <param name="loadedCount">当前已加载依赖资源数量。</param>
+            <param name="totalCount">总共加载依赖资源数量。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="T:GameFramework.Resource.InstantiateAssetFailureCallback">
+            <summary>
+            实例化资源失败回调函数。
+            </summary>
+            <param name="assetName">要实例化的资源名称。</param>
+            <param name="status">加载资源状态。</param>
+            <param name="errorMessage">错误信息。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="T:GameFramework.Resource.InstantiateAssetSuccessCallback">
+            <summary>
+            实例化资源成功回调函数。
+            </summary>
+            <param name="assetName">要实例化的资源名称。</param>
+            <param name="instance">已实例化的资源。</param>
+            <param name="duration">实例化持续时间。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="T:GameFramework.Resource.InstantiateAssetUpdateCallback">
+            <summary>
+            实例化资源更新回调函数。
+            </summary>
+            <param name="assetName">要实例化的资源名称。</param>
+            <param name="progress">加载资源进度。</param>
+            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="T:GameFramework.Resource.IResourceHelper">
             <summary>
@@ -7425,20 +8056,6 @@
             <param name="fileUri">文件路径。</param>
             <param name="loadBytesCallback">读取数据流回调函数。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceHelper.GetDependencies(System.String)">
-            <summary>
-            获取依赖资源。
-            </summary>
-            <param name="resourceName">资源名称。</param>
-            <returns>被依赖的资源名称。</returns>
-        </member>
-        <member name="M:GameFramework.Resource.IResourceHelper.Instantiate(System.Object)">
-            <summary>
-            实例化资源。
-            </summary>
-            <param name="asset">要实例化的资源。</param>
-            <returns>实例化后的资源。</returns>
-        </member>
         <member name="M:GameFramework.Resource.IResourceHelper.UnloadScene(System.String)">
             <summary>
             卸载场景。
@@ -7446,11 +8063,11 @@
             <param name="sceneName">场景名称。</param>
             <returns>是否成功卸载场景。</returns>
         </member>
-        <member name="M:GameFramework.Resource.IResourceHelper.ReleaseResource(System.Object)">
+        <member name="M:GameFramework.Resource.IResourceHelper.Release(System.Object)">
             <summary>
             释放资源。
             </summary>
-            <param name="resource">要释放的资源。</param>
+            <param name="objectToRelease">要释放的资源。</param>
         </member>
         <member name="T:GameFramework.Resource.IResourceManager">
             <summary>
@@ -7542,9 +8159,14 @@
             获取等待加载资源任务数量。
             </summary>
         </member>
+        <member name="P:GameFramework.Resource.IResourceManager.AssetCapacity">
+            <summary>
+            获取或设置资源对象池的容量。
+            </summary>
+        </member>
         <member name="P:GameFramework.Resource.IResourceManager.ResourceCapacity">
             <summary>
-            获取或设置加载资源对象池的容量。
+            获取或设置资源对象池的容量。
             </summary>
         </member>
         <member name="E:GameFramework.Resource.IResourceManager.ResourceInitComplete">
@@ -7678,61 +8300,51 @@
             使用可更新模式并更新资源。
             </summary>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback)">
+        <member name="M:GameFramework.Resource.IResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetCallbacks)">
             <summary>
             异步加载资源。
             </summary>
             <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:GameFramework.Resource.IResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetCallbacks,System.Object)">
             <summary>
             异步加载资源。
             </summary>
             <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetCallbacks">加载资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadAndInstantiateAsset(System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback)">
+        <member name="M:GameFramework.Resource.IResourceManager.InstantiateAsset(System.String,GameFramework.Resource.InstantiateAssetCallbacks)">
             <summary>
-            异步加载并实例化资源。
+            异步实例化资源。
             </summary>
-            <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="assetName">要实例化资源的名称。</param>
+            <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadAndInstantiateAsset(System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:GameFramework.Resource.IResourceManager.InstantiateAsset(System.String,GameFramework.Resource.InstantiateAssetCallbacks,System.Object)">
             <summary>
-            异步加载并实例化资源。
+            异步实例化资源。
             </summary>
-            <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="assetName">要实例化资源的名称。</param>
+            <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback,GameFramework.Resource.LoadSceneDependencyCallback)">
+        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名。</param>
-            <param name="assetName">要加载场景资源的名称。</param>
-            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
-            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-            <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载场景资源的名称。</param>
+            <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback,GameFramework.Resource.LoadSceneDependencyCallback,System.Object)">
+        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名。</param>
-            <param name="assetName">要加载场景资源的名称。</param>
-            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
-            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-            <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载场景资源的名称。</param>
+            <param name="loadSceneCallbacks">加载场景回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:GameFramework.Resource.IResourceManager.UnloadScene(System.String)">
@@ -7742,12 +8354,11 @@
             <param name="sceneName">场景名称。</param>
             <returns>是否成功卸载场景。</returns>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.Instantiate(System.Object)">
+        <member name="M:GameFramework.Resource.IResourceManager.Recycle(System.Object)">
             <summary>
-            实例化资源。
+            回收资源或资源实例。
             </summary>
-            <param name="resource">要实例化的资源。</param>
-            <returns>实例化的资源。</returns>
+            <param name="assetOrInstance">要回收的资源或资源实例。</param>
         </member>
         <member name="M:GameFramework.Resource.IResourceManager.GetResourceGroupReady(System.String)">
             <summary>
@@ -7785,20 +8396,98 @@
             </summary>
             <param name="resourceGroupName">要检查的资源组名称。</param>
         </member>
-        <member name="T:GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback">
+        <member name="T:GameFramework.Resource.LoadAssetCallbacks">
             <summary>
-            加载资源并实例化成功回调函数。
+            加载资源回调函数集。
             </summary>
-            <param name="assetName">资源名称。</param>
-            <param name="asset">已加载的资源。</param>
-            <param name="instance">已加载并实例化的资源。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadAssetCallbacks.#ctor(GameFramework.Resource.LoadAssetSuccessCallback)">
+            <summary>
+            初始化加载资源回调函数集的新实例。
+            </summary>
+            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadAssetCallbacks.#ctor(GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback)">
+            <summary>
+            初始化加载资源回调函数集的新实例。
+            </summary>
+            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
+            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadAssetCallbacks.#ctor(GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetUpdateCallback)">
+            <summary>
+            初始化加载资源回调函数集的新实例。
+            </summary>
+            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
+            <param name="loadAssetUpdateCallback">加载资源更新回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadAssetCallbacks.#ctor(GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetDependencyAssetCallback)">
+            <summary>
+            初始化加载资源回调函数集的新实例。
+            </summary>
+            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
+            <param name="loadAssetDependencyAssetCallback">加载资源时加载依赖资源回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadAssetCallbacks.#ctor(GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,GameFramework.Resource.LoadAssetUpdateCallback)">
+            <summary>
+            初始化加载资源回调函数集的新实例。
+            </summary>
+            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
+            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetUpdateCallback">加载资源更新回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadAssetCallbacks.#ctor(GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,GameFramework.Resource.LoadAssetDependencyAssetCallback)">
+            <summary>
+            初始化加载资源回调函数集的新实例。
+            </summary>
+            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
+            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetDependencyAssetCallback">加载资源时加载依赖资源回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadAssetCallbacks.#ctor(GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,GameFramework.Resource.LoadAssetUpdateCallback,GameFramework.Resource.LoadAssetDependencyAssetCallback)">
+            <summary>
+            初始化加载资源回调函数集的新实例。
+            </summary>
+            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
+            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetUpdateCallback">加载资源更新回调函数。</param>
+            <param name="loadAssetDependencyAssetCallback">加载资源时加载依赖资源回调函数。</param>
+        </member>
+        <member name="P:GameFramework.Resource.LoadAssetCallbacks.LoadAssetSuccessCallback">
+            <summary>
+            获取加载资源成功回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.LoadAssetCallbacks.LoadAssetFailureCallback">
+            <summary>
+            获取加载资源失败回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.LoadAssetCallbacks.LoadAssetUpdateCallback">
+            <summary>
+            获取加载资源更新回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.LoadAssetCallbacks.LoadAssetDependencyAssetCallback">
+            <summary>
+            获取加载资源时加载依赖资源回调函数。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Resource.LoadAssetDependencyAssetCallback">
+            <summary>
+            加载资源时加载依赖资源回调函数。
+            </summary>
+            <param name="assetName">要加载的资源名称。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
+            <param name="loadedCount">当前已加载依赖资源数量。</param>
+            <param name="totalCount">总共加载依赖资源数量。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="T:GameFramework.Resource.LoadAssetFailureCallback">
             <summary>
             加载资源失败回调函数。
             </summary>
-            <param name="assetName">资源名称。</param>
+            <param name="assetName">要加载的资源名称。</param>
             <param name="status">加载资源状态。</param>
             <param name="errorMessage">错误信息。</param>
             <param name="userData">用户自定义数据。</param>
@@ -7807,8 +8496,17 @@
             <summary>
             加载资源成功回调函数。
             </summary>
-            <param name="assetName">资源名称。</param>
+            <param name="assetName">要加载的资源名称。</param>
             <param name="asset">已加载的资源。</param>
+            <param name="duration">加载持续时间。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="T:GameFramework.Resource.LoadAssetUpdateCallback">
+            <summary>
+            加载资源更新回调函数。
+            </summary>
+            <param name="assetName">要加载的资源名称。</param>
+            <param name="progress">加载资源进度。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="T:GameFramework.Resource.LoadBytesCallback">
@@ -7846,21 +8544,15 @@
             加载资源代理辅助器异步加载资源完成事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Resource.LoadResourceAgentHelperLoadCompleteEventArgs.#ctor(System.Object,System.Object)">
+        <member name="M:GameFramework.Resource.LoadResourceAgentHelperLoadCompleteEventArgs.#ctor(System.Object)">
             <summary>
             初始化加载资源代理辅助器异步加载资源完成事件的新实例。
             </summary>
-            <param name="resource">加载的资源。</param>
-            <param name="resourceInstance">加载并实例化的资源。</param>
+            <param name="asset">加载的资源。</param>
         </member>
-        <member name="P:GameFramework.Resource.LoadResourceAgentHelperLoadCompleteEventArgs.Resource">
+        <member name="P:GameFramework.Resource.LoadResourceAgentHelperLoadCompleteEventArgs.Asset">
             <summary>
             获取加载的资源。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.LoadResourceAgentHelperLoadCompleteEventArgs.ResourceInstance">
-            <summary>
-            获取加载并实例化的资源。
             </summary>
         </member>
         <member name="T:GameFramework.Resource.LoadResourceAgentHelperParseBytesCompleteEventArgs">
@@ -7928,7 +8620,7 @@
             初始化加载资源代理辅助器更新事件的新实例。
             </summary>
             <param name="type">进度类型。</param>
-            <param name="progress">加载进度。</param>
+            <param name="progress">进度。</param>
         </member>
         <member name="P:GameFramework.Resource.LoadResourceAgentHelperUpdateEventArgs.Type">
             <summary>
@@ -7937,35 +8629,7 @@
         </member>
         <member name="P:GameFramework.Resource.LoadResourceAgentHelperUpdateEventArgs.Progress">
             <summary>
-            获取加载进度。
-            </summary>
-        </member>
-        <member name="T:GameFramework.Resource.LoadResourceAgentLoadDependencyEventArgs">
-            <summary>
-            加载资源代理加载依赖资源事件。
-            </summary>
-        </member>
-        <member name="M:GameFramework.Resource.LoadResourceAgentLoadDependencyEventArgs.#ctor(System.String,System.Int32,System.Int32)">
-            <summary>
-            初始化加载资源代理加载依赖资源事件的新实例。
-            </summary>
-            <param name="dependencyResourceName">被加载的依赖资源名称。</param>
-            <param name="loadedCount">当前已加载依赖资源数量。</param>
-            <param name="totalCount">总共加载依赖资源数量。</param>
-        </member>
-        <member name="P:GameFramework.Resource.LoadResourceAgentLoadDependencyEventArgs.DependencyResourceName">
-            <summary>
-            获取被加载的依赖资源名称。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.LoadResourceAgentLoadDependencyEventArgs.LoadedCount">
-            <summary>
-            获取当前已加载依赖资源数量。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.LoadResourceAgentLoadDependencyEventArgs.TotalCount">
-            <summary>
-            获取总共加载依赖资源数量。
+            获取进度。
             </summary>
         </member>
         <member name="T:GameFramework.Resource.LoadResourceProgress">
@@ -8003,9 +8667,9 @@
             加载资源完成。
             </summary>
         </member>
-        <member name="F:GameFramework.Resource.LoadResourceStatus.NotExistOrNotReady">
+        <member name="F:GameFramework.Resource.LoadResourceStatus.NotReady">
             <summary>
-            资源不存在与资源列表中或尚未准备完毕。
+            资源尚未准备完毕。
             </summary>
         </member>
         <member name="F:GameFramework.Resource.LoadResourceStatus.NotExist">
@@ -8013,14 +8677,14 @@
             资源不存在于磁盘上。
             </summary>
         </member>
-        <member name="F:GameFramework.Resource.LoadResourceStatus.TypeError">
+        <member name="F:GameFramework.Resource.LoadResourceStatus.DependencyError">
             <summary>
-            资源类型不正确。
+            依赖资源错误。
             </summary>
         </member>
-        <member name="F:GameFramework.Resource.LoadResourceStatus.MainAssetError">
+        <member name="F:GameFramework.Resource.LoadResourceStatus.TypeError">
             <summary>
-            加载主资源错误。
+            资源类型错误。
             </summary>
         </member>
         <member name="F:GameFramework.Resource.LoadResourceStatus.ChildAssetError">
@@ -8033,13 +8697,90 @@
             加载场景资源错误。
             </summary>
         </member>
-        <member name="T:GameFramework.Resource.LoadSceneDependencyCallback">
+        <member name="T:GameFramework.Resource.LoadSceneCallbacks">
             <summary>
-            加载场景依赖资源回调函数。
+            加载场景回调函数集。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <param name="assetName">资源名称。</param>
-            <param name="dependencyResourceName">被加载的依赖资源名称。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadSceneCallbacks.#ctor(GameFramework.Resource.LoadSceneSuccessCallback)">
+            <summary>
+            初始化加载场景回调函数集的新实例。
+            </summary>
+            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadSceneCallbacks.#ctor(GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback)">
+            <summary>
+            初始化加载场景回调函数集的新实例。
+            </summary>
+            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
+            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadSceneCallbacks.#ctor(GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneUpdateCallback)">
+            <summary>
+            初始化加载场景回调函数集的新实例。
+            </summary>
+            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
+            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadSceneCallbacks.#ctor(GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneDependencyAssetCallback)">
+            <summary>
+            初始化加载场景回调函数集的新实例。
+            </summary>
+            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
+            <param name="loadSceneDependencyAssetCallback">加载场景时加载依赖资源回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadSceneCallbacks.#ctor(GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback)">
+            <summary>
+            初始化加载场景回调函数集的新实例。
+            </summary>
+            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
+            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
+            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadSceneCallbacks.#ctor(GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneDependencyAssetCallback)">
+            <summary>
+            初始化加载场景回调函数集的新实例。
+            </summary>
+            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
+            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
+            <param name="loadSceneDependencyAssetCallback">加载场景时加载依赖资源回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.LoadSceneCallbacks.#ctor(GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback,GameFramework.Resource.LoadSceneDependencyAssetCallback)">
+            <summary>
+            初始化加载场景回调函数集的新实例。
+            </summary>
+            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
+            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
+            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
+            <param name="loadSceneDependencyAssetCallback">加载场景时加载依赖资源回调函数。</param>
+        </member>
+        <member name="P:GameFramework.Resource.LoadSceneCallbacks.LoadSceneSuccessCallback">
+            <summary>
+            获取加载场景成功回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.LoadSceneCallbacks.LoadSceneFailureCallback">
+            <summary>
+            获取加载场景失败回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.LoadSceneCallbacks.LoadSceneUpdateCallback">
+            <summary>
+            获取加载场景更新回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.LoadSceneCallbacks.LoadSceneDependencyAssetCallback">
+            <summary>
+            获取加载场景时加载依赖资源回调函数。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Resource.LoadSceneDependencyAssetCallback">
+            <summary>
+            加载场景时加载依赖资源回调函数。
+            </summary>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载的场景资源名称。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
             <param name="loadedCount">当前已加载依赖资源数量。</param>
             <param name="totalCount">总共加载依赖资源数量。</param>
             <param name="userData">用户自定义数据。</param>
@@ -8048,8 +8789,8 @@
             <summary>
             加载场景失败回调函数。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <param name="assetName">资源名称。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载的场景资源名称。</param>
             <param name="status">加载场景状态。</param>
             <param name="errorMessage">错误信息。</param>
             <param name="userData">用户自定义数据。</param>
@@ -8058,17 +8799,18 @@
             <summary>
             加载场景成功回调函数。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <param name="assetName">场景资源名称。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载的场景资源名称。</param>
+            <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="T:GameFramework.Resource.LoadSceneUpdateCallback">
             <summary>
             加载场景更新回调函数。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <param name="assetName">资源名称。</param>
-            <param name="progress">加载进度。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载的场景资源名称。</param>
+            <param name="progress">加载场景进度。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="T:GameFramework.Resource.ResourceCheckCompleteEventArgs">
@@ -8118,6 +8860,58 @@
         <member name="T:GameFramework.Resource.ResourceManager">
             <summary>
             资源管理器。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Resource.ResourceManager.AssetDependencyInfo">
+            <summary>
+            资源依赖信息。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Resource.ResourceManager.AssetDependencyInfo.#ctor(System.String,System.String[],System.String[])">
+            <summary>
+            初始化资源依赖信息的新实例。
+            </summary>
+            <param name="assetName">资源名称。</param>
+            <param name="dependencyAssetNames">依赖资源名称。</param>
+            <param name="scatteredDependencyAssetNames">依赖零散资源名称。</param>
+        </member>
+        <member name="P:GameFramework.Resource.ResourceManager.AssetDependencyInfo.AssetName">
+            <summary>
+            获取资源名称。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Resource.ResourceManager.AssetDependencyInfo.GetDependencyAssetNames">
+            <summary>
+            获取依赖资源名称。
+            </summary>
+            <returns>依赖资源名称。</returns>
+        </member>
+        <member name="M:GameFramework.Resource.ResourceManager.AssetDependencyInfo.GetScatteredDependencyAssetNames">
+            <summary>
+            获取依赖零散资源名称。
+            </summary>
+            <returns>依赖零散资源名称。</returns>
+        </member>
+        <member name="T:GameFramework.Resource.ResourceManager.AssetInfo">
+            <summary>
+            资源信息。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Resource.ResourceManager.AssetInfo.#ctor(System.String,GameFramework.Resource.ResourceManager.ResourceName)">
+            <summary>
+            初始化资源信息的新实例。
+            </summary>
+            <param name="assetName">资源名称。</param>
+            <param name="resourceName">所在资源名称。</param>
+        </member>
+        <member name="P:GameFramework.Resource.ResourceManager.AssetInfo.AssetName">
+            <summary>
+            获取资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.ResourceManager.AssetInfo.ResourceName">
+            <summary>
+            获取所在资源名称。
             </summary>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.#ctor">
@@ -8216,9 +9010,14 @@
             获取等待加载资源任务数量。
             </summary>
         </member>
+        <member name="P:GameFramework.Resource.ResourceManager.AssetCapacity">
+            <summary>
+            获取或设置资源对象池的容量。
+            </summary>
+        </member>
         <member name="P:GameFramework.Resource.ResourceManager.ResourceCapacity">
             <summary>
-            获取或设置加载资源对象池的容量。
+            获取或设置资源对象池的容量。
             </summary>
         </member>
         <member name="E:GameFramework.Resource.ResourceManager.ResourceInitComplete">
@@ -8364,61 +9163,51 @@
             使用可更新模式并更新资源。
             </summary>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback)">
+        <member name="M:GameFramework.Resource.ResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetCallbacks)">
             <summary>
             异步加载资源。
             </summary>
             <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.LoadAsset(System.String,GameFramework.Resource.LoadAssetCallbacks,System.Object)">
             <summary>
             异步加载资源。
             </summary>
             <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetCallbacks">加载资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadAndInstantiateAsset(System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback)">
+        <member name="M:GameFramework.Resource.ResourceManager.InstantiateAsset(System.String,GameFramework.Resource.InstantiateAssetCallbacks)">
             <summary>
-            异步加载并实例化资源。
+            异步实例化资源。
             </summary>
-            <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="assetName">要实例化资源的名称。</param>
+            <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadAndInstantiateAsset(System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.InstantiateAsset(System.String,GameFramework.Resource.InstantiateAssetCallbacks,System.Object)">
             <summary>
-            异步加载并实例化资源。
+            异步实例化资源。
             </summary>
-            <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="assetName">要实例化资源的名称。</param>
+            <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback,GameFramework.Resource.LoadSceneDependencyCallback)">
+        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名。</param>
-            <param name="assetName">要加载场景资源的名称。</param>
-            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
-            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-            <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载场景资源的名称。</param>
+            <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback,GameFramework.Resource.LoadSceneDependencyCallback,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名。</param>
-            <param name="assetName">要加载场景资源的名称。</param>
-            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
-            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-            <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载场景资源的名称。</param>
+            <param name="loadSceneCallbacks">加载场景回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.UnloadScene(System.String)">
@@ -8428,12 +9217,11 @@
             <param name="sceneName">场景名称。</param>
             <returns>是否成功卸载场景。</returns>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.Instantiate(System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.Recycle(System.Object)">
             <summary>
-            实例化资源。
+            回收资源或资源实例。
             </summary>
-            <param name="resource">要实例化的资源。</param>
-            <returns>实例化的资源。</returns>
+            <param name="assetOrInstance">要回收的资源或资源实例。</param>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.GetResourceGroupReady(System.String)">
             <summary>
@@ -8587,13 +9375,7 @@
             获取资源是否可以从读写区移除。
             </summary>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceChecker.CheckInfo.GetAssetNames">
-            <summary>
-            获取包含的资源名称。
-            </summary>
-            <returns>包含的资源名称。</returns>
-        </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceChecker.CheckInfo.SetVersionInfo(GameFramework.Resource.ResourceManager.LoadType,System.Int32,System.Int32,System.Int32,System.Int32,System.String[])">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceChecker.CheckInfo.SetVersionInfo(GameFramework.Resource.ResourceManager.LoadType,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             设置资源在版本中的信息。
             </summary>
@@ -8602,7 +9384,6 @@
             <param name="hashCode">资源哈希值。</param>
             <param name="zipLength">压缩包大小。</param>
             <param name="zipHashCode">压缩包哈希值。</param>
-            <param name="assetNames">包含的资源名称。</param>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.ResourceChecker.CheckInfo.SetReadOnlyInfo(GameFramework.Resource.ResourceManager.LoadType,System.Int32,System.Int32)">
             <summary>
@@ -8800,6 +9581,11 @@
             加载资源器。
             </summary>
         </member>
+        <member name="T:GameFramework.Resource.ResourceManager.ResourceLoader.AssetObject">
+            <summary>
+            资源对象。
+            </summary>
+        </member>
         <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.#ctor(GameFramework.Resource.ResourceManager)">
             <summary>
             初始化加载资源器的新实例。
@@ -8826,9 +9612,14 @@
             获取等待加载资源任务数量。
             </summary>
         </member>
+        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.AssetCapacity">
+            <summary>
+            获取或设置资源对象池的容量。
+            </summary>
+        </member>
         <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.ResourceCapacity">
             <summary>
-            获取或设置加载资源对象池的容量。
+            获取或设置资源对象池的容量。
             </summary>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.Update(System.Single,System.Single)">
@@ -8859,89 +9650,60 @@
             <param name="readWritePath">资源读写区路径。</param>
             <param name="decryptResourceCallback">要设置的解密资源回调函数。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadAsset(System.String,GameFramework.Resource.ResourceManager.ResourceInfo,System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadAsset(System.String,GameFramework.Resource.LoadAssetCallbacks,System.Object)">
             <summary>
             异步加载资源。
             </summary>
             <param name="assetName">要加载资源的名称。</param>
-            <param name="resourceInfo">要加载资源的资源信息。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetCallbacks">加载资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadAndInstantiateAsset(System.String,GameFramework.Resource.ResourceManager.ResourceInfo,System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.InstantiateAsset(System.String,GameFramework.Resource.InstantiateAssetCallbacks,System.Object)">
             <summary>
-            异步加载资源并实例化。
+            异步实例化资源。
             </summary>
-            <param name="assetName">要加载资源的名称。</param>
-            <param name="resourceInfo">要加载资源的资源信息。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源并实例化成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="assetName">要实例化资源的名称。</param>
+            <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadScene(System.String,System.String,GameFramework.Resource.ResourceManager.ResourceInfo,GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback,GameFramework.Resource.LoadSceneDependencyCallback,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载场景的名称。</param>
-            <param name="assetName">要加载场景资源的名称。</param>
-            <param name="resourceInfo">要加载场景的资源信息。</param>
-            <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
-            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-            <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
+            <param name="sceneName">要加载的场景名称。</param>
+            <param name="sceneAssetName">要加载场景资源的名称。</param>
+            <param name="loadSceneCallbacks">加载场景回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="T:GameFramework.Resource.ResourceManager.ResourceLoader.LoadAndInstantiateAssetTask">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.UnloadScene(System.String)">
             <summary>
-            加载资源并实例化任务。
+            卸载场景。
             </summary>
+            <param name="sceneName">场景名称。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadAndInstantiateAssetTask.#ctor(System.String,GameFramework.Resource.ResourceManager.ResourceInfo,System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.Recycle(System.Object)">
             <summary>
-            加载资源并实例化任务的新实例。
+            回收资源或资源实例。
             </summary>
-            <param name="assetName">要加载资源的资源名称。</param>
-            <param name="resourceInfo">要加载资源的资源信息。</param>
-            <param name="resourceChildName">要加载的子资源名。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源并实例化成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="T:GameFramework.Resource.ResourceManager.ResourceLoader.LoadAssetTask">
-            <summary>
-            加载资源任务。
-            </summary>
-        </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadAssetTask.#ctor(System.String,GameFramework.Resource.ResourceManager.ResourceInfo,System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
-            <summary>
-            加载资源任务的新实例。
-            </summary>
-            <param name="assetName">要加载资源的资源名称。</param>
-            <param name="resourceInfo">要加载资源的资源信息。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
-            <param name="userData">用户自定义数据。</param>
+            <param name="assetOrInstance">要回收的资源或资源实例。</param>
         </member>
         <member name="T:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceAgent">
             <summary>
             加载资源代理。
             </summary>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceAgent.#ctor(GameFramework.Resource.ILoadResourceAgentHelper,GameFramework.Resource.IResourceHelper,GameFramework.ObjectPool.IObjectPool{GameFramework.Resource.ResourceManager.ResourceLoader.ResourceObject},System.String,System.String,GameFramework.Resource.DecryptResourceCallback,GameFramework.GameFrameworkFunc{GameFramework.Resource.ResourceManager.ResourceInfo,GameFramework.Resource.ResourceManager.ResourceInfo[]})">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceAgent.#ctor(GameFramework.Resource.ILoadResourceAgentHelper,GameFramework.Resource.IResourceHelper,GameFramework.ObjectPool.IObjectPool{GameFramework.Resource.ResourceManager.ResourceLoader.AssetObject},GameFramework.ObjectPool.IObjectPool{GameFramework.Resource.ResourceManager.ResourceLoader.ResourceObject},GameFramework.Resource.ResourceManager.ResourceLoader,System.String,System.String,GameFramework.Resource.DecryptResourceCallback)">
             <summary>
             初始化加载资源代理的新实例。
             </summary>
             <param name="loadResourceAgentHelper">加载资源代理辅助器。</param>
             <param name="resourceHelper">资源辅助器。</param>
-            <param name="resourcePool">加载资源对象池。</param>
+            <param name="assetPool">资源对象池。</param>
+            <param name="resourcePool">资源对象池。</param>
+            <param name="resourceLoader">加载资源器。</param>
             <param name="readOnlyPath">资源只读区路径。</param>
             <param name="readWritePath">资源读写区路径。</param>
             <param name="decryptResourceCallback">解密资源回调函数。</param>
-            <param name="getDependencyResourceCallback">获取依赖资源回调函数。</param>
         </member>
         <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceAgent.Task">
             <summary>
@@ -8975,68 +9737,6 @@
             <summary>
             重置加载资源代理。
             </summary>
-        </member>
-        <member name="T:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase">
-            <summary>
-            加载资源任务基类。
-            </summary>
-        </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase.#ctor(System.String,GameFramework.Resource.ResourceManager.ResourceInfo,System.String,System.Object)">
-            <summary>
-            加载资源任务基类的新实例。
-            </summary>
-            <param name="assetName">要加载资源的资源名称。</param>
-            <param name="resourceInfo">要加载资源的资源信息。</param>
-            <param name="resourceChildName">要加载的子资源名。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase.SerialId">
-            <summary>
-            获取加载资源任务的序列编号。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase.Done">
-            <summary>
-            获取或设置加载资源任务是否完成。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase.AssetName">
-            <summary>
-            获取资源名称。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase.ResourceInfo">
-            <summary>
-            获取资源信息。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase.ResourceChildName">
-            <summary>
-            获取子资源名称。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.LoadResourceTaskBase.UserData">
-            <summary>
-            获取用户自定义数据。
-            </summary>
-        </member>
-        <member name="T:GameFramework.Resource.ResourceManager.ResourceLoader.LoadSceneTask">
-            <summary>
-            加载场景任务。
-            </summary>
-        </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadSceneTask.#ctor(System.String,System.String,GameFramework.Resource.ResourceManager.ResourceInfo,GameFramework.Resource.LoadSceneSuccessCallback,GameFramework.Resource.LoadSceneFailureCallback,GameFramework.Resource.LoadSceneUpdateCallback,GameFramework.Resource.LoadSceneDependencyCallback,System.Object)">
-            <summary>
-            加载场景任务的新实例。
-            </summary>
-            <param name="sceneName">要加载场景的名称。</param>
-            <param name="assetName">要加载资源的资源名称。</param>
-            <param name="resourceInfo">要加载场景的资源信息。</param>
-            <param name="loadSceneSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-            <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-            <param name="loadSceneDependencyCallback">加载场景依赖资源回调函数。</param>
-            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="T:GameFramework.Resource.ResourceManager.ResourceLoader.ResourceObject">
             <summary>
@@ -9518,9 +10218,9 @@
             加载场景更新事件。
             </summary>
         </member>
-        <member name="E:GameFramework.Scene.ISceneManager.LoadSceneDependency">
+        <member name="E:GameFramework.Scene.ISceneManager.LoadSceneDependencyAsset">
             <summary>
-            加载场景依赖资源事件。
+            加载场景时加载依赖资源事件。
             </summary>
         </member>
         <member name="E:GameFramework.Scene.ISceneManager.UnloadSceneSuccess">
@@ -9595,48 +10295,48 @@
             <param name="userData">用户自定义数据。</param>
             <returns>是否成功卸载场景。</returns>
         </member>
-        <member name="T:GameFramework.Scene.LoadSceneDependencyEventArgs">
+        <member name="T:GameFramework.Scene.LoadSceneDependencyAssetEventArgs">
             <summary>
-            加载场景依赖资源事件。
+            加载场景时加载依赖资源事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Scene.LoadSceneDependencyEventArgs.#ctor(System.String,System.String,System.String,System.Int32,System.Int32,System.Object)">
+        <member name="M:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.#ctor(System.String,System.String,System.String,System.Int32,System.Int32,System.Object)">
             <summary>
-            初始化加载场景依赖资源事件的新实例。
+            初始化加载场景时加载依赖资源事件的新实例。
             </summary>
             <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
-            <param name="dependencyResourceName">被加载的依赖资源名称。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
             <param name="loadedCount">当前已加载依赖资源数量。</param>
             <param name="totalCount">总共加载依赖资源数量。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="P:GameFramework.Scene.LoadSceneDependencyEventArgs.SceneName">
+        <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.SceneName">
             <summary>
             获取场景名称。
             </summary>
         </member>
-        <member name="P:GameFramework.Scene.LoadSceneDependencyEventArgs.SceneAssetName">
+        <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.SceneAssetName">
             <summary>
             获取场景资源名称。
             </summary>
         </member>
-        <member name="P:GameFramework.Scene.LoadSceneDependencyEventArgs.DependencyResourceName">
+        <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.DependencyAssetName">
             <summary>
             获取被加载的依赖资源名称。
             </summary>
         </member>
-        <member name="P:GameFramework.Scene.LoadSceneDependencyEventArgs.LoadedCount">
+        <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.LoadedCount">
             <summary>
             获取当前已加载依赖资源数量。
             </summary>
         </member>
-        <member name="P:GameFramework.Scene.LoadSceneDependencyEventArgs.TotalCount">
+        <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.TotalCount">
             <summary>
             获取总共加载依赖资源数量。
             </summary>
         </member>
-        <member name="P:GameFramework.Scene.LoadSceneDependencyEventArgs.UserData">
+        <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -9680,12 +10380,13 @@
             加载场景成功事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Scene.LoadSceneSuccessEventArgs.#ctor(System.String,System.String,System.Object)">
+        <member name="M:GameFramework.Scene.LoadSceneSuccessEventArgs.#ctor(System.String,System.String,System.Single,System.Object)">
             <summary>
             初始化加载场景成功事件的新实例。
             </summary>
             <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
+            <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="P:GameFramework.Scene.LoadSceneSuccessEventArgs.SceneName">
@@ -9696,6 +10397,11 @@
         <member name="P:GameFramework.Scene.LoadSceneSuccessEventArgs.SceneAssetName">
             <summary>
             获取场景资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Scene.LoadSceneSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
             </summary>
         </member>
         <member name="P:GameFramework.Scene.LoadSceneSuccessEventArgs.UserData">
@@ -9710,11 +10416,11 @@
         </member>
         <member name="M:GameFramework.Scene.LoadSceneUpdateEventArgs.#ctor(System.String,System.String,System.Single,System.Object)">
             <summary>
-            初始化加载场景成功事件的新实例。
+            初始化加载场景更新事件的新实例。
             </summary>
             <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
-            <param name="progress">加载场景进度进度。</param>
+            <param name="progress">加载场景进度。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="P:GameFramework.Scene.LoadSceneUpdateEventArgs.SceneName">
@@ -9762,9 +10468,9 @@
             加载场景更新事件。
             </summary>
         </member>
-        <member name="E:GameFramework.Scene.SceneManager.LoadSceneDependency">
+        <member name="E:GameFramework.Scene.SceneManager.LoadSceneDependencyAsset">
             <summary>
-            加载场景依赖资源事件。
+            加载场景时加载依赖资源事件。
             </summary>
         </member>
         <member name="E:GameFramework.Scene.SceneManager.UnloadSceneSuccess">
@@ -10438,6 +11144,11 @@
             获取或设置声音最大距离。
             </summary>
         </member>
+        <member name="E:GameFramework.Sound.ISoundAgentHelper.ResetSoundAgent">
+            <summary>
+            重置声音代理事件。
+            </summary>
+        </member>
         <member name="M:GameFramework.Sound.ISoundAgentHelper.Play">
             <summary>
             播放声音。
@@ -10521,12 +11232,6 @@
             声音辅助器接口。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.ISoundHelper.ReleaseSoundAsset(System.Object)">
-            <summary>
-            释放声音资源。
-            </summary>
-            <param name="soundAsset">要释放的声音资源。</param>
-        </member>
         <member name="T:GameFramework.Sound.ISoundManager">
             <summary>
             声音管理器接口。
@@ -10535,11 +11240,6 @@
         <member name="P:GameFramework.Sound.ISoundManager.SoundGroupCount">
             <summary>
             获取声音组数量。
-            </summary>
-        </member>
-        <member name="P:GameFramework.Sound.ISoundManager.AssetCapacity">
-            <summary>
-            获取或设置声音资源对象池的容量。
             </summary>
         </member>
         <member name="E:GameFramework.Sound.ISoundManager.PlaySoundSuccess">
@@ -10552,11 +11252,15 @@
             播放声音失败事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.ISoundManager.SetObjectPoolManager(GameFramework.ObjectPool.IObjectPoolManager)">
+        <member name="E:GameFramework.Sound.ISoundManager.PlaySoundUpdate">
             <summary>
-            设置对象池管理器。
+            播放声音更新事件。
             </summary>
-            <param name="objectPoolManager">对象池管理器。</param>
+        </member>
+        <member name="E:GameFramework.Sound.ISoundManager.PlaySoundDependencyAsset">
+            <summary>
+            播放声音时加载依赖资源事件。
+            </summary>
         </member>
         <member name="M:GameFramework.Sound.ISoundManager.SetResourceManager(GameFramework.Resource.IResourceManager)">
             <summary>
@@ -10668,6 +11372,64 @@
         <member name="M:GameFramework.Sound.ISoundManager.StopAllSounds">
             <summary>
             停止所有声音。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Sound.PlaySoundDependencyAssetEventArgs">
+            <summary>
+            播放声音时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.#ctor(System.Int32,System.String,System.String,GameFramework.Sound.PlaySoundParams,System.String,System.Int32,System.Int32,System.Object)">
+            <summary>
+            初始化播放声音时加载依赖资源事件的新实例。
+            </summary>
+            <param name="serialId">声音的序列编号。</param>
+            <param name="soundAssetName">声音资源名称。</param>
+            <param name="soundGroupName">声音组名称。</param>
+            <param name="playSoundParams">播放声音参数。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
+            <param name="loadedCount">当前已加载依赖资源数量。</param>
+            <param name="totalCount">总共加载依赖资源数量。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.SerialId">
+            <summary>
+            获取声音的序列编号。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.SoundAssetName">
+            <summary>
+            获取声音资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.SoundGroupName">
+            <summary>
+            获取声音组名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.PlaySoundParams">
+            <summary>
+            获取播放声音参数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
             </summary>
         </member>
         <member name="T:GameFramework.Sound.PlaySoundErrorCode">
@@ -10812,13 +11574,14 @@
             播放声音成功事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.PlaySoundSuccessEventArgs.#ctor(System.Int32,System.String,GameFramework.Sound.ISoundAgent,System.Object)">
+        <member name="M:GameFramework.Sound.PlaySoundSuccessEventArgs.#ctor(System.Int32,System.String,GameFramework.Sound.ISoundAgent,System.Single,System.Object)">
             <summary>
             初始化播放声音成功事件的新实例。
             </summary>
             <param name="serialId">声音的序列编号。</param>
             <param name="soundAssetName">声音资源名称。</param>
             <param name="soundAgent">用于播放的声音代理。</param>
+            <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="P:GameFramework.Sound.PlaySoundSuccessEventArgs.SerialId">
@@ -10836,9 +11599,70 @@
             获取用于播放的声音代理。
             </summary>
         </member>
+        <member name="P:GameFramework.Sound.PlaySoundSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
+            </summary>
+        </member>
         <member name="P:GameFramework.Sound.PlaySoundSuccessEventArgs.UserData">
             <summary>
             获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Sound.PlaySoundUpdateEventArgs">
+            <summary>
+            播放声音更新事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Sound.PlaySoundUpdateEventArgs.#ctor(System.Int32,System.String,System.String,GameFramework.Sound.PlaySoundParams,System.Single,System.Object)">
+            <summary>
+            初始化播放声音更新事件的新实例。
+            </summary>
+            <param name="serialId">声音的序列编号。</param>
+            <param name="soundAssetName">声音资源名称。</param>
+            <param name="soundGroupName">声音组名称。</param>
+            <param name="playSoundParams">播放声音参数。</param>
+            <param name="progress">加载声音进度。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundUpdateEventArgs.SerialId">
+            <summary>
+            获取声音的序列编号。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundUpdateEventArgs.SoundAssetName">
+            <summary>
+            获取声音资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundUpdateEventArgs.SoundGroupName">
+            <summary>
+            获取声音组名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundUpdateEventArgs.PlaySoundParams">
+            <summary>
+            获取播放声音参数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundUpdateEventArgs.Progress">
+            <summary>
+            获取加载声音进度。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundUpdateEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Sound.ResetSoundAgentEventArgs">
+            <summary>
+            重置声音代理事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Sound.ResetSoundAgentEventArgs.#ctor">
+            <summary>
+            初始化重置声音代理事件的新实例。
             </summary>
         </member>
         <member name="T:GameFramework.Sound.SoundManager">
@@ -10856,11 +11680,6 @@
             获取声音组数量。
             </summary>
         </member>
-        <member name="P:GameFramework.Sound.SoundManager.AssetCapacity">
-            <summary>
-            获取或设置声音资源对象池的容量。
-            </summary>
-        </member>
         <member name="E:GameFramework.Sound.SoundManager.PlaySoundSuccess">
             <summary>
             播放声音成功事件。
@@ -10869,6 +11688,16 @@
         <member name="E:GameFramework.Sound.SoundManager.PlaySoundFailure">
             <summary>
             播放声音失败事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Sound.SoundManager.PlaySoundUpdate">
+            <summary>
+            播放声音更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.Sound.SoundManager.PlaySoundDependencyAsset">
+            <summary>
+            播放声音时加载依赖资源事件。
             </summary>
         </member>
         <member name="M:GameFramework.Sound.SoundManager.Update(System.Single,System.Single)">
@@ -10882,12 +11711,6 @@
             <summary>
             关闭并清理声音管理器。
             </summary>
-        </member>
-        <member name="M:GameFramework.Sound.SoundManager.SetObjectPoolManager(GameFramework.ObjectPool.IObjectPoolManager)">
-            <summary>
-            设置对象池管理器。
-            </summary>
-            <param name="objectPoolManager">对象池管理器。</param>
         </member>
         <member name="M:GameFramework.Sound.SoundManager.SetResourceManager(GameFramework.Resource.IResourceManager)">
             <summary>
@@ -11006,12 +11829,13 @@
             声音代理。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.#ctor(GameFramework.Sound.SoundManager.SoundGroup,GameFramework.Sound.ISoundAgentHelper)">
+        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.#ctor(GameFramework.Sound.SoundManager.SoundGroup,GameFramework.Sound.ISoundAgentHelper,GameFramework.Resource.IResourceManager)">
             <summary>
             初始化声音代理的新实例。
             </summary>
             <param name="soundGroup">所在的声音组。</param>
             <param name="soundAgentHelper">声音代理辅助器接口。</param>
+            <param name="resourceManager">资源管理器。</param>
         </member>
         <member name="P:GameFramework.Sound.SoundManager.SoundAgent.SoundGroup">
             <summary>
@@ -11119,11 +11943,6 @@
             </summary>
             <param name="bindingEntity">声音绑定的实体。</param>
         </member>
-        <member name="T:GameFramework.Sound.SoundManager.SoundAssetObject">
-            <summary>
-            声音资源对象。
-            </summary>
-        </member>
         <member name="T:GameFramework.Sound.SoundManager.SoundGroup">
             <summary>
             声音组。
@@ -11166,11 +11985,12 @@
             获取声音组辅助器。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.AddSoundAgentHelper(GameFramework.Sound.ISoundAgentHelper)">
+        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.AddSoundAgentHelper(GameFramework.Sound.ISoundAgentHelper,GameFramework.Resource.IResourceManager)">
             <summary>
             增加声音代理辅助器。
             </summary>
             <param name="soundAgentHelper">要增加的声音代理辅助器。</param>
+            <param name="resourceManager">资源管理器。</param>
         </member>
         <member name="M:GameFramework.Sound.SoundManager.SoundGroup.PlaySound(System.Int32,System.Object,GameFramework.Sound.PlaySoundParams,System.Nullable{GameFramework.Sound.PlaySoundErrorCode}@)">
             <summary>
@@ -11420,6 +12240,16 @@
             打开界面失败事件。
             </summary>
         </member>
+        <member name="E:GameFramework.UI.IUIManager.OpenUIFormUpdate">
+            <summary>
+            打开界面更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.UI.IUIManager.OpenUIFormDependencyAsset">
+            <summary>
+            打开界面时加载依赖资源事件。
+            </summary>
+        </member>
         <member name="E:GameFramework.UI.IUIManager.CloseUIFormComplete">
             <summary>
             关闭界面完成事件。
@@ -11580,6 +12410,64 @@
             <param name="uiForm">界面。</param>
             <param name="priority">界面优先级。</param>
         </member>
+        <member name="T:GameFramework.UI.OpenUIFormDependencyAssetEventArgs">
+            <summary>
+            打开界面时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.#ctor(System.Int32,System.String,System.String,System.Boolean,System.String,System.Int32,System.Int32,System.Object)">
+            <summary>
+            初始化打开界面时加载依赖资源事件的新实例。
+            </summary>
+            <param name="uiFormTypeId">界面类型编号。</param>
+            <param name="uiFormAssetName">界面资源名称。</param>
+            <param name="uiGroupName">界面组名称。</param>
+            <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
+            <param name="dependencyAssetName">被加载的依赖资源名称。</param>
+            <param name="loadedCount">当前已加载依赖资源数量。</param>
+            <param name="totalCount">总共加载依赖资源数量。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.UIFormTypeId">
+            <summary>
+            获取界面类型编号。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.UIFormAssetName">
+            <summary>
+            获取界面资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.UIGroupName">
+            <summary>
+            获取界面组名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.PauseCoveredUIForm">
+            <summary>
+            获取是否暂停被覆盖的界面。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
         <member name="T:GameFramework.UI.OpenUIFormFailureEventArgs">
             <summary>
             打开界面失败事件。
@@ -11631,12 +12519,13 @@
             打开界面成功事件。
             </summary>
         </member>
-        <member name="M:GameFramework.UI.OpenUIFormSuccessEventArgs.#ctor(System.String,GameFramework.UI.IUIForm,System.Object)">
+        <member name="M:GameFramework.UI.OpenUIFormSuccessEventArgs.#ctor(System.String,GameFramework.UI.IUIForm,System.Single,System.Object)">
             <summary>
             初始化打开界面成功事件的新实例。
             </summary>
             <param name="uiFormAssetName">界面资源名称。</param>
             <param name="uiForm">加载成功的界面。</param>
+            <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
         <member name="P:GameFramework.UI.OpenUIFormSuccessEventArgs.UIFormAssetName">
@@ -11646,10 +12535,61 @@
         </member>
         <member name="P:GameFramework.UI.OpenUIFormSuccessEventArgs.UIForm">
             <summary>
-            获取加载成功的界面。
+            获取打开成功的界面。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
             </summary>
         </member>
         <member name="P:GameFramework.UI.OpenUIFormSuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:GameFramework.UI.OpenUIFormUpdateEventArgs">
+            <summary>
+            打开界面更新事件。
+            </summary>
+        </member>
+        <member name="M:GameFramework.UI.OpenUIFormUpdateEventArgs.#ctor(System.Int32,System.String,System.String,System.Boolean,System.Single,System.Object)">
+            <summary>
+            初始化打开界面更新事件的新实例。
+            </summary>
+            <param name="uiFormTypeId">界面类型编号。</param>
+            <param name="uiFormAssetName">界面资源名称。</param>
+            <param name="uiGroupName">界面组名称。</param>
+            <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
+            <param name="progress">打开界面进度。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormUpdateEventArgs.UIFormTypeId">
+            <summary>
+            获取界面类型编号。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormUpdateEventArgs.UIFormAssetName">
+            <summary>
+            获取界面资源名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormUpdateEventArgs.UIGroupName">
+            <summary>
+            获取界面组名称。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormUpdateEventArgs.PauseCoveredUIForm">
+            <summary>
+            获取是否暂停被覆盖的界面。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormUpdateEventArgs.Progress">
+            <summary>
+            获取打开界面进度。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.OpenUIFormUpdateEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -11682,6 +12622,16 @@
         <member name="E:GameFramework.UI.UIManager.OpenUIFormFailure">
             <summary>
             打开界面失败事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.UI.UIManager.OpenUIFormUpdate">
+            <summary>
+            打开界面更新事件。
+            </summary>
+        </member>
+        <member name="E:GameFramework.UI.UIManager.OpenUIFormDependencyAsset">
+            <summary>
+            打开界面时加载依赖资源事件。
             </summary>
         </member>
         <member name="E:GameFramework.UI.UIManager.CloseUIFormComplete">

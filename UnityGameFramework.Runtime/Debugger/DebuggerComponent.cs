@@ -63,6 +63,7 @@ namespace UnityGameFramework.Runtime
         private TimeInformationWindow m_TimeInformationWindow = new TimeInformationWindow();
         private QualityInformationWindow m_QualityInformationWindow = new QualityInformationWindow();
         private ProfilerInformationWindow m_ProfilerInformationWindow = new ProfilerInformationWindow();
+        private WebPlayerInformationWindow m_WebPlayerInformationWindow = new WebPlayerInformationWindow();
         private RuntimeMemoryInformationWindow<Object> m_RuntimeMemoryAllInformationWindow = new RuntimeMemoryInformationWindow<Object>();
         private RuntimeMemoryInformationWindow<Texture> m_RuntimeMemoryTextureInformationWindow = new RuntimeMemoryInformationWindow<Texture>();
         private RuntimeMemoryInformationWindow<Mesh> m_RuntimeMemoryMeshInformationWindow = new RuntimeMemoryInformationWindow<Mesh>();
@@ -73,7 +74,6 @@ namespace UnityGameFramework.Runtime
         private RuntimeMemoryInformationWindow<GameObject> m_RuntimeMemoryGameObjectInformationWindow = new RuntimeMemoryInformationWindow<GameObject>();
         private RuntimeMemoryInformationWindow<Component> m_RuntimeMemoryComponentInformationWindow = new RuntimeMemoryInformationWindow<Component>();
         private ObjectPoolInformationWindow m_ObjectPoolInformationWindow = new ObjectPoolInformationWindow();
-        private WebPlayerInformationWindow m_WebPlayerInformationWindow = new WebPlayerInformationWindow();
 
         private GeneralSettingsWindow m_GeneralSettingsWindow = new GeneralSettingsWindow();
         private QualitySettingsWindow m_QualitySettingsWindow = new QualitySettingsWindow();
@@ -177,21 +177,21 @@ namespace UnityGameFramework.Runtime
             RegisterDebuggerWindow("Information/Other/Path", m_PathInformationWindow);
             RegisterDebuggerWindow("Information/Other/Time", m_TimeInformationWindow);
             RegisterDebuggerWindow("Information/Other/Quality", m_QualityInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Profiler", m_ProfilerInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/All", m_RuntimeMemoryAllInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/Texture", m_RuntimeMemoryTextureInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/Mesh", m_RuntimeMemoryMeshInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/Material", m_RuntimeMemoryMaterialInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/AnimationClip", m_RuntimeMemoryAnimationClipInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/AudioClip", m_RuntimeMemoryAudioClipInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/Font", m_RuntimeMemoryFontInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/GameObject", m_RuntimeMemoryGameObjectInformationWindow);
-            RegisterDebuggerWindow("Information/Other/Memory/Component", m_RuntimeMemoryComponentInformationWindow);
+            RegisterDebuggerWindow("Information/Other/Web Player", m_WebPlayerInformationWindow);
+            RegisterDebuggerWindow("Profiler/Summary", m_ProfilerInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/All", m_RuntimeMemoryAllInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Texture", m_RuntimeMemoryTextureInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Mesh", m_RuntimeMemoryMeshInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Material", m_RuntimeMemoryMaterialInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/AnimationClip", m_RuntimeMemoryAnimationClipInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/AudioClip", m_RuntimeMemoryAudioClipInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Font", m_RuntimeMemoryFontInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/GameObject", m_RuntimeMemoryGameObjectInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Component", m_RuntimeMemoryComponentInformationWindow);
             if (GameEntry.GetComponent<ObjectPoolComponent>() != null)
             {
-                RegisterDebuggerWindow("Information/Other/Object Pool", m_ObjectPoolInformationWindow);
+                RegisterDebuggerWindow("Profiler/Object Pool", m_ObjectPoolInformationWindow);
             }
-            RegisterDebuggerWindow("Information/Other/Web Player", m_WebPlayerInformationWindow);
             RegisterDebuggerWindow("Settings/General", m_GeneralSettingsWindow);
             RegisterDebuggerWindow("Settings/Quality", m_QualitySettingsWindow);
             RegisterDebuggerWindow("Settings/Operation", m_OperationSettingsWindow);

@@ -22,6 +22,18 @@ namespace UnityGameFramework.Runtime
         private EventComponent m_EventComponent = null;
 
         [SerializeField]
+        private bool m_EnableLoadDictionarySuccessEvent = true;
+
+        [SerializeField]
+        private bool m_EnableLoadDictionaryFailureEvent = true;
+
+        [SerializeField]
+        private bool m_EnableLoadDictionaryUpdateEvent = false;
+
+        [SerializeField]
+        private bool m_EnableLoadDictionaryDependencyAssetEvent = false;
+
+        [SerializeField]
         private string m_LocalizationHelperTypeName = "UnityGameFramework.Runtime.DefaultLocalizationHelper";
 
         [SerializeField]
@@ -80,6 +92,8 @@ namespace UnityGameFramework.Runtime
 
             m_LocalizationManager.LoadDictionarySuccess += OnLoadDictionarySuccess;
             m_LocalizationManager.LoadDictionaryFailure += OnLoadDictionaryFailure;
+            m_LocalizationManager.LoadDictionaryUpdate += OnLoadDictionaryUpdate;
+            m_LocalizationManager.LoadDictionaryDependencyAsset += OnLoadDictionaryDependencyAsset;
         }
 
         private void Start()
@@ -214,13 +228,35 @@ namespace UnityGameFramework.Runtime
 
         private void OnLoadDictionarySuccess(object sender, GameFramework.Localization.LoadDictionarySuccessEventArgs e)
         {
-            m_EventComponent.Fire(this, new LoadDictionarySuccessEventArgs(e));
+            if (m_EnableLoadDictionarySuccessEvent)
+            {
+                m_EventComponent.Fire(this, new LoadDictionarySuccessEventArgs(e));
+            }
         }
 
         private void OnLoadDictionaryFailure(object sender, GameFramework.Localization.LoadDictionaryFailureEventArgs e)
         {
             Log.Warning("Load dictionary failure, asset name '{0}', error message '{1}'.", e.DictionaryAssetName, e.ErrorMessage);
-            m_EventComponent.Fire(this, new LoadDictionaryFailureEventArgs(e));
+            if (m_EnableLoadDictionaryFailureEvent)
+            {
+                m_EventComponent.Fire(this, new LoadDictionaryFailureEventArgs(e));
+            }
+        }
+
+        private void OnLoadDictionaryUpdate(object sender, GameFramework.Localization.LoadDictionaryUpdateEventArgs e)
+        {
+            if (m_EnableLoadDictionaryUpdateEvent)
+            {
+                m_EventComponent.Fire(this, new LoadDictionaryUpdateEventArgs(e));
+            }
+        }
+
+        private void OnLoadDictionaryDependencyAsset(object sender, GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs e)
+        {
+            if (m_EnableLoadDictionaryDependencyAssetEvent)
+            {
+                m_EventComponent.Fire(this, new LoadDictionaryDependencyAssetEventArgs(e));
+            }
         }
     }
 }

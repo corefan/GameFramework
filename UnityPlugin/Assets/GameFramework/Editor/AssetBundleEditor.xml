@@ -8,9 +8,9 @@
         <SourceAssetSearchPath RelativePath="Relative Path From SourceAssetRootPath" />
       -->
       </SourceAssetSearchPaths>
-      <SourceAssetUnionTypeFilter>t:Scene t:Prefab t:TextAsset t:ScriptableObject t:AudioClip t:Font</SourceAssetUnionTypeFilter>
+      <SourceAssetUnionTypeFilter>t:Scene t:Prefab t:Shader t:Model t:Material t:Texture t:AudioClip t:AnimationClip t:AnimatorController t:Font t:TextAsset t:ScriptableObject</SourceAssetUnionTypeFilter>
       <SourceAssetUnionLabelFilter>l:AssetBundleMust</SourceAssetUnionLabelFilter>
-      <SourceAssetExceptTypeFilter>t:Script t:Shader</SourceAssetExceptTypeFilter>
+      <SourceAssetExceptTypeFilter>t:Script</SourceAssetExceptTypeFilter>
       <SourceAssetExceptLabelFilter>l:AssetBundleIgnore</SourceAssetExceptLabelFilter>
       <AssetSorter>Name</AssetSorter>
     </Setting>

@@ -130,6 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 76731548, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnableLoadDataTableSuccessEvent: 1
+  m_EnableLoadDataTableFailureEvent: 1
+  m_EnableLoadDataTableUpdateEvent: 0
+  m_EnableLoadDataTableDependencyAssetEvent: 0
   m_DataTableHelperTypeName: UnityGameFramework.Runtime.DefaultDataTableHelper
   m_CustomDataTableHelper: {fileID: 0}
 --- !u!1 &148383887
@@ -174,7 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ResourceMode: 1
   m_UnloadUnusedAssetsInterval: 60
-  m_ResourceCapacity: 8
+  m_AssetCapacity: 64
+  m_ResourceCapacity: 16
   m_UpdatePrefixUri: 
   m_UpdateRetryCount: 3
   m_InstanceRoot: {fileID: 0}
@@ -325,6 +330,11 @@ MonoBehaviour:
   m_Script: {fileID: 2060446670, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnableOpenUIFormSuccessEvent: 1
+  m_EnableOpenUIFormFailureEvent: 1
+  m_EnableOpenUIFormUpdateEvent: 0
+  m_EnableOpenUIFormDependencyAssetEvent: 0
+  m_EnableCloseUIFormCompleteEvent: 1
   m_InstanceCapacity: 8
   m_InstanceRoot: {fileID: 0}
   m_UIFormHelperTypeName: UnityGameFramework.Runtime.DefaultUIFormHelper
@@ -359,7 +369,11 @@ MonoBehaviour:
   m_Script: {fileID: -331106527, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetCapacity: 4
+  m_EnableShowEntitySuccessEvent: 1
+  m_EnableShowEntityFailureEvent: 1
+  m_EnableShowEntityUpdateEvent: 0
+  m_EnableShowEntityDependencyAssetEvent: 0
+  m_EnableHideEntityCompleteEvent: 1
   m_InstanceRoot: {fileID: 0}
   m_EntityHelperTypeName: UnityGameFramework.Runtime.DefaultEntityHelper
   m_CustomEntityHelper: {fileID: 0}
@@ -544,6 +558,10 @@ MonoBehaviour:
   m_Script: {fileID: 872561723, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnableLoadDictionarySuccessEvent: 1
+  m_EnableLoadDictionaryFailureEvent: 1
+  m_EnableLoadDictionaryUpdateEvent: 0
+  m_EnableLoadDictionaryDependencyAssetEvent: 0
   m_LocalizationHelperTypeName: UnityGameFramework.Runtime.DefaultLocalizationHelper
   m_CustomLocalizationHelper: {fileID: 0}
 --- !u!1 &1173349962
@@ -586,6 +604,12 @@ MonoBehaviour:
   m_Script: {fileID: -820377665, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnableLoadSceneSuccessEvent: 1
+  m_EnableLoadSceneFailureEvent: 1
+  m_EnableLoadSceneUpdateEvent: 1
+  m_EnableLoadSceneDependencyAssetEvent: 1
+  m_EnableUnloadSceneSuccessEvent: 1
+  m_EnableUnloadSceneFailureEvent: 1
 --- !u!1 &1342680738
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +650,10 @@ MonoBehaviour:
   m_Script: {fileID: -1149062388, guid: 91e46bbbbb3442042a029d418a1f8a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetCapacity: 4
+  m_EnablePlaySoundSuccessEvent: 1
+  m_EnablePlaySoundFailureEvent: 1
+  m_EnablePlaySoundUpdateEvent: 0
+  m_EnablePlaySoundDependencyAssetEvent: 0
   m_InstanceRoot: {fileID: 0}
   m_SoundHelperTypeName: UnityGameFramework.Runtime.DefaultSoundHelper
   m_CustomSoundHelper: {fileID: 0}

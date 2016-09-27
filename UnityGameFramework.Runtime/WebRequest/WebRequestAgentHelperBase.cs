@@ -19,42 +19,12 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// Web 请求代理辅助器完成事件。
         /// </summary>
-        protected EventHandler<WebRequestAgentHelperCompleteEventArgs> m_WebRequestAgentHelperCompleteEventHandler = null;
+        public abstract event EventHandler<WebRequestAgentHelperCompleteEventArgs> WebRequestAgentHelperComplete;
 
         /// <summary>
         /// Web 请求代理辅助器错误事件。
         /// </summary>
-        protected EventHandler<WebRequestAgentHelperErrorEventArgs> m_WebRequestAgentHelperErrorEventHandler = null;
-
-        /// <summary>
-        /// Web 请求代理辅助器完成事件。
-        /// </summary>
-        public event EventHandler<WebRequestAgentHelperCompleteEventArgs> WebRequestAgentHelperComplete
-        {
-            add
-            {
-                m_WebRequestAgentHelperCompleteEventHandler += value;
-            }
-            remove
-            {
-                m_WebRequestAgentHelperCompleteEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// Web 请求代理辅助器错误事件。
-        /// </summary>
-        public event EventHandler<WebRequestAgentHelperErrorEventArgs> WebRequestAgentHelperError
-        {
-            add
-            {
-                m_WebRequestAgentHelperErrorEventHandler += value;
-            }
-            remove
-            {
-                m_WebRequestAgentHelperErrorEventHandler -= value;
-            }
-        }
+        public abstract event EventHandler<WebRequestAgentHelperErrorEventArgs> WebRequestAgentHelperError;
 
         /// <summary>
         /// 通过 Web 请求代理辅助器发送 Web 请求。

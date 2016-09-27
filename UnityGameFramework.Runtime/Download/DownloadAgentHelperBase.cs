@@ -19,62 +19,17 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 下载代理辅助器更新事件。
         /// </summary>
-        protected EventHandler<DownloadAgentHelperUpdateEventArgs> m_DownloadAgentHelperUpdateEventHandler = null;
+        public abstract event EventHandler<DownloadAgentHelperUpdateEventArgs> DownloadAgentHelperUpdate;
 
         /// <summary>
         /// 下载代理辅助器完成事件。
         /// </summary>
-        protected EventHandler<DownloadAgentHelperCompleteEventArgs> m_DownloadAgentHelperCompleteEventHandler = null;
+        public abstract event EventHandler<DownloadAgentHelperCompleteEventArgs> DownloadAgentHelperComplete;
 
         /// <summary>
         /// 下载代理辅助器错误事件。
         /// </summary>
-        protected EventHandler<DownloadAgentHelperErrorEventArgs> m_DownloadAgentHelperErrorEventHandler = null;
-
-        /// <summary>
-        /// 下载代理辅助器更新事件。
-        /// </summary>
-        public event EventHandler<DownloadAgentHelperUpdateEventArgs> DownloadAgentHelperUpdate
-        {
-            add
-            {
-                m_DownloadAgentHelperUpdateEventHandler += value;
-            }
-            remove
-            {
-                m_DownloadAgentHelperUpdateEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// 下载代理辅助器完成事件。
-        /// </summary>
-        public event EventHandler<DownloadAgentHelperCompleteEventArgs> DownloadAgentHelperComplete
-        {
-            add
-            {
-                m_DownloadAgentHelperCompleteEventHandler += value;
-            }
-            remove
-            {
-                m_DownloadAgentHelperCompleteEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// 下载代理辅助器错误事件。
-        /// </summary>
-        public event EventHandler<DownloadAgentHelperErrorEventArgs> DownloadAgentHelperError
-        {
-            add
-            {
-                m_DownloadAgentHelperErrorEventHandler += value;
-            }
-            remove
-            {
-                m_DownloadAgentHelperErrorEventHandler -= value;
-            }
-        }
+        public abstract event EventHandler<DownloadAgentHelperErrorEventArgs> DownloadAgentHelperError;
 
         /// <summary>
         /// 通过下载代理辅助器下载指定地址的数据。

@@ -41,22 +41,13 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 释放实体资源。
-        /// </summary>
-        /// <param name="entityAsset">要释放的实体资源。</param>
-        public override void ReleaseEntityAsset(object entityAsset)
-        {
-            m_ResourceComponent.UnloadUnusedAssets(false);
-        }
-
-        /// <summary>
         /// 释放实体实例。
         /// </summary>
         /// <param name="entityInstance">要释放的实体实例。</param>
         public override void ReleaseEntityInstance(object entityInstance)
         {
+            m_ResourceComponent.Recycle(entityInstance);
             DestroyObject(entityInstance as GameObject);
-            m_ResourceComponent.UnloadUnusedAssets(false);
         }
 
         private void Start()

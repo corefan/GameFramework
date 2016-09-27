@@ -7,10 +7,7 @@
 
 namespace UnityGameFramework.Runtime
 {
-    /// <summary>
-    /// 默认声音辅助器。
-    /// </summary>
-    public class DefaultSoundHelper : SoundHelperBase
+    internal sealed class DummySceneObject
     {
 
     }

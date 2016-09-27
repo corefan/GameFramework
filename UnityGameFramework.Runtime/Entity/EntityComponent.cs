@@ -26,7 +26,19 @@ namespace UnityGameFramework.Runtime
         private EventComponent m_EventComponent = null;
 
         [SerializeField]
-        private int m_AssetCapacity = 4;
+        private bool m_EnableShowEntitySuccessEvent = true;
+
+        [SerializeField]
+        private bool m_EnableShowEntityFailureEvent = true;
+
+        [SerializeField]
+        private bool m_EnableShowEntityUpdateEvent = false;
+
+        [SerializeField]
+        private bool m_EnableShowEntityDependencyAssetEvent = false;
+
+        [SerializeField]
+        private bool m_EnableHideEntityCompleteEvent = true;
 
         [SerializeField]
         private Transform m_InstanceRoot = null;
@@ -69,21 +81,6 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取或设置实体资源对象池的容量。
-        /// </summary>
-        public int AssetCapacity
-        {
-            get
-            {
-                return m_EntityManager.AssetCapacity;
-            }
-            set
-            {
-                m_EntityManager.AssetCapacity = m_AssetCapacity = value;
-            }
-        }
-
-        /// <summary>
         /// 游戏框架组件初始化。
         /// </summary>
         protected internal override void Awake()
@@ -99,6 +96,8 @@ namespace UnityGameFramework.Runtime
 
             m_EntityManager.ShowEntitySuccess += OnShowEntitySuccess;
             m_EntityManager.ShowEntityFailure += OnShowEntityFailure;
+            m_EntityManager.ShowEntityUpdate += OnShowEntityUpdate;
+            m_EntityManager.ShowEntityDependencyAsset += OnShowEntityDependencyAsset;
             m_EntityManager.HideEntityComplete += OnHideEntityComplete;
         }
 
@@ -128,7 +127,6 @@ namespace UnityGameFramework.Runtime
             }
 
             m_EntityManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
-            m_EntityManager.AssetCapacity = m_AssetCapacity;
 
             EntityHelperBase entityHelper = Utility.Helper.CreateHelper(m_EntityHelperTypeName, m_CustomEntityHelper);
             if (entityHelper == null)
@@ -754,18 +752,43 @@ namespace UnityGameFramework.Runtime
 
         private void OnShowEntitySuccess(object sender, GameFramework.Entity.ShowEntitySuccessEventArgs e)
         {
-            m_EventComponent.Fire(this, new ShowEntitySuccessEventArgs(e));
+            if (m_EnableShowEntitySuccessEvent)
+            {
+                m_EventComponent.Fire(this, new ShowEntitySuccessEventArgs(e));
+            }
         }
 
         private void OnShowEntityFailure(object sender, GameFramework.Entity.ShowEntityFailureEventArgs e)
         {
             Log.Warning("Show entity failure, entity id '{0}', asset name '{1}', entity group name '{2}', error message '{3}'.", e.EntityId.ToString(), e.EntityAssetName, e.EntityGroupName, e.ErrorMessage);
-            m_EventComponent.Fire(this, new ShowEntityFailureEventArgs(e));
+            if (m_EnableShowEntityFailureEvent)
+            {
+                m_EventComponent.Fire(this, new ShowEntityFailureEventArgs(e));
+            }
+        }
+
+        private void OnShowEntityUpdate(object sender, GameFramework.Entity.ShowEntityUpdateEventArgs e)
+        {
+            if (m_EnableShowEntityUpdateEvent)
+            {
+                m_EventComponent.Fire(this, new ShowEntityUpdateEventArgs(e));
+            }
+        }
+
+        private void OnShowEntityDependencyAsset(object sender, GameFramework.Entity.ShowEntityDependencyAssetEventArgs e)
+        {
+            if (m_EnableShowEntityDependencyAssetEvent)
+            {
+                m_EventComponent.Fire(this, new ShowEntityDependencyAssetEventArgs(e));
+            }
         }
 
         private void OnHideEntityComplete(object sender, GameFramework.Entity.HideEntityCompleteEventArgs e)
         {
-            m_EventComponent.Fire(this, new HideEntityCompleteEventArgs(e));
+            if (m_EnableHideEntityCompleteEvent)
+            {
+                m_EventComponent.Fire(this, new HideEntityCompleteEventArgs(e));
+            }
         }
     }
 }

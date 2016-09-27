@@ -6,7 +6,6 @@
 //------------------------------------------------------------
 
 using GameFramework;
-using GameFramework.ObjectPool;
 using GameFramework.Resource;
 using GameFramework.Sound;
 using UnityEngine;
@@ -23,7 +22,16 @@ namespace UnityGameFramework.Runtime
         private EventComponent m_EventComponent = null;
 
         [SerializeField]
-        private int m_AssetCapacity = 4;
+        private bool m_EnablePlaySoundSuccessEvent = true;
+
+        [SerializeField]
+        private bool m_EnablePlaySoundFailureEvent = true;
+
+        [SerializeField]
+        private bool m_EnablePlaySoundUpdateEvent = false;
+
+        [SerializeField]
+        private bool m_EnablePlaySoundDependencyAssetEvent = false;
 
         [SerializeField]
         private Transform m_InstanceRoot = null;
@@ -61,21 +69,6 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取或设置声音资源对象池的容量。
-        /// </summary>
-        public int AssetCapacity
-        {
-            get
-            {
-                return m_SoundManager.AssetCapacity;
-            }
-            set
-            {
-                m_SoundManager.AssetCapacity = m_AssetCapacity = value;
-            }
-        }
-
-        /// <summary>
         /// 游戏框架组件初始化。
         /// </summary>
         protected internal override void Awake()
@@ -91,6 +84,8 @@ namespace UnityGameFramework.Runtime
 
             m_SoundManager.PlaySoundSuccess += OnPlaySoundSuccess;
             m_SoundManager.PlaySoundFailure += OnPlaySoundFailure;
+            m_SoundManager.PlaySoundUpdate += OnPlaySoundUpdate;
+            m_SoundManager.PlaySoundDependencyAsset += OnPlaySoundDependencyAsset;
         }
 
         private void Start()
@@ -117,9 +112,6 @@ namespace UnityGameFramework.Runtime
             {
                 m_SoundManager.SetResourceManager(GameFrameworkEntry.GetModule<IResourceManager>());
             }
-
-            m_SoundManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
-            m_SoundManager.AssetCapacity = m_AssetCapacity;
 
             SoundHelperBase soundHelper = Utility.Helper.CreateHelper(m_SoundHelperTypeName, m_CustomSoundHelper);
             if (soundHelper == null)
@@ -395,7 +387,10 @@ namespace UnityGameFramework.Runtime
                 e.SoundAgent.SetBindingEntity(playSoundInfo.BindingEntity);
             }
 
-            m_EventComponent.Fire(this, new PlaySoundSuccessEventArgs(e));
+            if (m_EnablePlaySoundSuccessEvent)
+            {
+                m_EventComponent.Fire(this, new PlaySoundSuccessEventArgs(e));
+            }
         }
 
         private void OnPlaySoundFailure(object sender, GameFramework.Sound.PlaySoundFailureEventArgs e)
@@ -410,7 +405,26 @@ namespace UnityGameFramework.Runtime
                 Log.Warning(logMessage);
             }
 
-            m_EventComponent.Fire(this, new PlaySoundFailureEventArgs(e));
+            if (m_EnablePlaySoundFailureEvent)
+            {
+                m_EventComponent.Fire(this, new PlaySoundFailureEventArgs(e));
+            }
+        }
+
+        private void OnPlaySoundUpdate(object sender, GameFramework.Sound.PlaySoundUpdateEventArgs e)
+        {
+            if (m_EnablePlaySoundUpdateEvent)
+            {
+                m_EventComponent.Fire(this, new PlaySoundUpdateEventArgs(e));
+            }
+        }
+
+        private void OnPlaySoundDependencyAsset(object sender, GameFramework.Sound.PlaySoundDependencyAssetEventArgs e)
+        {
+            if (m_EnablePlaySoundDependencyAssetEvent)
+            {
+                m_EventComponent.Fire(this, new PlaySoundDependencyAssetEventArgs(e));
+            }
         }
     }
 }

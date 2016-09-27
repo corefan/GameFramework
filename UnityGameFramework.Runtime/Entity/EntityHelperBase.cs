@@ -25,12 +25,6 @@ namespace UnityGameFramework.Runtime
         public abstract IEntity CreateEntity(object entityInstance, IEntityGroup entityGroup, object userData);
 
         /// <summary>
-        /// 释放实体资源。
-        /// </summary>
-        /// <param name="entityAsset">要释放的实体资源。</param>
-        public abstract void ReleaseEntityAsset(object entityAsset);
-
-        /// <summary>
         /// 释放实体实例。
         /// </summary>
         /// <param name="entityInstance">要释放的实体实例。</param>

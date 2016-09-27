@@ -37,7 +37,10 @@ namespace UnityGameFramework.Runtime
         private float m_UnloadUnusedAssetsInterval = 60f;
 
         [SerializeField]
-        private int m_ResourceCapacity = 8;
+        private int m_AssetCapacity = 64;
+
+        [SerializeField]
+        private int m_ResourceCapacity = 16;
 
         [SerializeField]
         private string m_UpdatePrefixUri = null;
@@ -274,7 +277,22 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取或设置加载资源对象池的容量。
+        /// 获取或设置资源对象池的容量。
+        /// </summary>
+        public int AssetCapacity
+        {
+            get
+            {
+                return m_ResourceManager.AssetCapacity;
+            }
+            set
+            {
+                m_ResourceManager.AssetCapacity = m_AssetCapacity = value;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池的容量。
         /// </summary>
         public int ResourceCapacity
         {
@@ -341,6 +359,7 @@ namespace UnityGameFramework.Runtime
             SetResourceMode(m_ResourceMode);
             m_ResourceManager.SetDownloadManager(GameFrameworkEntry.GetModule<IDownloadManager>());
             m_ResourceManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
+            m_ResourceManager.AssetCapacity = m_AssetCapacity;
             m_ResourceManager.ResourceCapacity = m_ResourceCapacity;
             if (m_ResourceMode == ResourceMode.Updatable)
             {
@@ -499,57 +518,54 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 读取资源清单。
+        /// 异步加载资源。
         /// </summary>
-        public void LoadManifest()
+        /// <param name="assetName">要加载资源的名称。</param>
+        /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
+        public void LoadAsset(string assetName, LoadAssetCallbacks loadAssetCallbacks)
         {
-            m_ResourceManager.LoadAsset("AssetBundleManifest", LoadManifestSuccessHandler, LoadManifestFailureHandler, null);
+            m_ResourceManager.LoadAsset(assetName, loadAssetCallbacks);
         }
 
         /// <summary>
         /// 异步加载资源。
         /// </summary>
         /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
-        public void LoadAsset(string assetName, LoadAssetSuccessCallback loadAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback)
-        {
-            m_ResourceManager.LoadAsset(assetName, loadAssetSuccessCallback, loadAssetFailureCallback);
-        }
-
-        /// <summary>
-        /// 异步加载资源。
-        /// </summary>
-        /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+        /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadAsset(string assetName, LoadAssetSuccessCallback loadAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback, object userData)
+        public void LoadAsset(string assetName, LoadAssetCallbacks loadAssetCallbacks, object userData)
         {
-            m_ResourceManager.LoadAsset(assetName, loadAssetSuccessCallback, loadAssetFailureCallback, userData);
+            m_ResourceManager.LoadAsset(assetName, loadAssetCallbacks, userData);
         }
 
         /// <summary>
-        /// 异步加载并实例化资源。
+        /// 异步实例化资源。
         /// </summary>
-        /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
-        public void LoadAndInstantiateAsset(string assetName, LoadAndInstantiateAssetSuccessCallback loadAndInstantiateAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback)
+        /// <param name="assetName">要实例化资源的名称。</param>
+        /// <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
+        public void InstantiateAsset(string assetName, InstantiateAssetCallbacks instantiateAssetCallbacks)
         {
-            m_ResourceManager.LoadAndInstantiateAsset(assetName, loadAndInstantiateAssetSuccessCallback, loadAssetFailureCallback);
+            m_ResourceManager.InstantiateAsset(assetName, instantiateAssetCallbacks);
         }
 
         /// <summary>
-        /// 异步加载并实例化资源。
+        /// 异步实例化资源。
         /// </summary>
-        /// <param name="assetName">要加载资源的名称。</param>
-        /// <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-        /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+        /// <param name="assetName">要实例化资源的名称。</param>
+        /// <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadAndInstantiateAsset(string assetName, LoadAndInstantiateAssetSuccessCallback loadAndInstantiateAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback, object userData)
+        public void InstantiateAsset(string assetName, InstantiateAssetCallbacks instantiateAssetCallbacks, object userData)
         {
-            m_ResourceManager.LoadAndInstantiateAsset(assetName, loadAndInstantiateAssetSuccessCallback, loadAssetFailureCallback, userData);
+            m_ResourceManager.InstantiateAsset(assetName, instantiateAssetCallbacks, userData);
+        }
+
+        /// <summary>
+        /// 回收资源或资源实例。
+        /// </summary>
+        /// <param name="assetOrInstance">要回收的资源或资源实例。</param>
+        public void Recycle(object assetOrInstance)
+        {
+            m_ResourceManager.Recycle(assetOrInstance);
         }
 
         /// <summary>
@@ -625,27 +641,6 @@ namespace UnityGameFramework.Runtime
             transform.localScale = Vector3.one;
 
             m_ResourceManager.AddLoadResourceAgentHelper(loadResourceAgentHelper);
-        }
-
-        private void LoadManifestSuccessHandler(string manifestAssetName, object manifestAsset, object userData)
-        {
-            AssetBundleManifest assetBundleManifest = manifestAsset as AssetBundleManifest;
-            if (assetBundleManifest != null)
-            {
-                m_ResourceHelper.AssetBundleManifest = assetBundleManifest;
-                m_EventComponent.Fire(this, new LoadManifestSuccessEventArgs(manifestAssetName));
-            }
-            else
-            {
-                m_EventComponent.Fire(this, new LoadManifestFailureEventArgs(manifestAssetName, "Loaded asset is not manifest."));
-            }
-
-            UnloadUnusedAssets(false);
-        }
-
-        private void LoadManifestFailureHandler(string manifestAssetName, LoadResourceStatus status, string errorMessage, object userData)
-        {
-            m_EventComponent.Fire(this, new LoadManifestFailureEventArgs(manifestAssetName, errorMessage));
         }
 
         private void OnResourceInitComplete(object sender, GameFramework.Resource.ResourceInitCompleteEventArgs e)

@@ -6,60 +6,71 @@
 //------------------------------------------------------------
 
 using GameFramework.Event;
+using System;
 
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 加载字典成功事件。
+    /// 加载数据表更新事件。
     /// </summary>
-    public sealed class LoadDictionarySuccessEventArgs : GameEventArgs
+    public sealed class LoadDataTableUpdateEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化加载字典成功事件的新实例。
+        /// 初始化加载数据表更新事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
-        public LoadDictionarySuccessEventArgs(GameFramework.Localization.LoadDictionarySuccessEventArgs e)
+        public LoadDataTableUpdateEventArgs(GameFramework.DataTable.LoadDataTableUpdateEventArgs e)
         {
-            LoadDictionaryInfo loadDictionaryInfo = e.UserData as LoadDictionaryInfo;
-            DictionaryName = loadDictionaryInfo.DictionaryName;
-            DictionaryAssetName = e.DictionaryAssetName;
-            Duration = e.Duration;
-            UserData = loadDictionaryInfo.UserData;
+            LoadDataTableInfo loadDataTableInfo = e.UserData as LoadDataTableInfo;
+            DataTableName = loadDataTableInfo.DataTableName;
+            DataTableType = loadDataTableInfo.DataTableType;
+            DataTableAssetName = e.DataTableAssetName;
+            Progress = e.Progress;
+            UserData = loadDataTableInfo.UserData;
         }
 
         /// <summary>
-        /// 获取加载字典成功事件编号。
+        /// 获取加载数据表失败事件编号。
         /// </summary>
         public override int Id
         {
             get
             {
-                return (int)EventId.LoadDictionarySuccess;
+                return (int)EventId.LoadDataTableFailure;
             }
         }
 
         /// <summary>
-        /// 获取字典名称。
+        /// 获取数据表名称。
         /// </summary>
-        public string DictionaryName
+        public string DataTableName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取字典资源名称。
+        /// 获取数据表类型。
         /// </summary>
-        public string DictionaryAssetName
+        public Type DataTableType
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取加载持续时间。
+        /// 获取数据表资源名称。
         /// </summary>
-        public float Duration
+        public string DataTableAssetName
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取加载数据表进度。
+        /// </summary>
+        public float Progress
         {
             get;
             private set;

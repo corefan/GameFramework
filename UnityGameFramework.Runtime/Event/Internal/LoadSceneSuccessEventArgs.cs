@@ -22,6 +22,7 @@ namespace UnityGameFramework.Runtime
         {
             SceneName = e.SceneName;
             SceneAssetName = e.SceneAssetName;
+            Duration = e.Duration;
             UserData = e.UserData;
         }
 
@@ -49,6 +50,15 @@ namespace UnityGameFramework.Runtime
         /// 获取场景资源名称。
         /// </summary>
         public string SceneAssetName
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取加载持续时间。
+        /// </summary>
+        public float Duration
         {
             get;
             private set;

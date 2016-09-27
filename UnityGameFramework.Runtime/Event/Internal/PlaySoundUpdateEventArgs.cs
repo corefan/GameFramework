@@ -11,33 +11,34 @@ using GameFramework.Sound;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 播放声音成功事件。
+    /// 播放声音更新事件。
     /// </summary>
-    public sealed class PlaySoundSuccessEventArgs : GameEventArgs
+    public sealed class PlaySoundUpdateEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化播放声音成功事件的新实例。
+        /// 初始化播放声音更新事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
-        public PlaySoundSuccessEventArgs(GameFramework.Sound.PlaySoundSuccessEventArgs e)
+        public PlaySoundUpdateEventArgs(GameFramework.Sound.PlaySoundUpdateEventArgs e)
         {
             PlaySoundInfo playSoundInfo = e.UserData as PlaySoundInfo;
             SerialId = e.SerialId;
             SoundAssetName = e.SoundAssetName;
-            SoundAgent = e.SoundAgent;
-            Duration = e.Duration;
+            SoundGroupName = e.SoundGroupName;
+            PlaySoundParams = e.PlaySoundParams;
+            Progress = e.Progress;
             BindingEntity = playSoundInfo.BindingEntity;
             UserData = playSoundInfo.UserData;
         }
 
         /// <summary>
-        /// 获取播放声音成功事件编号。
+        /// 获取播放声音更新事件编号。
         /// </summary>
         public override int Id
         {
             get
             {
-                return (int)EventId.PlaySoundSuccess;
+                return (int)EventId.PlaySoundUpdate;
             }
         }
 
@@ -60,18 +61,27 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取用于播放的声音代理。
+        /// 获取声音组名称。
         /// </summary>
-        public ISoundAgent SoundAgent
+        public string SoundGroupName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取加载持续时间。
+        /// 获取播放声音参数。
         /// </summary>
-        public float Duration
+        public PlaySoundParams PlaySoundParams
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取加载声音进度。
+        /// </summary>
+        public float Progress
         {
             get;
             private set;

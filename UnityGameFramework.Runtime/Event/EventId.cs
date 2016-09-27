@@ -123,14 +123,24 @@ namespace UnityGameFramework.Runtime
         NetworkCustomError,
 
         /// <summary>
-        /// 加载资源清单成功事件。
+        /// 加载数据表成功事件。
         /// </summary>
-        LoadManifestSuccess,
+        LoadDataTableSuccess,
 
         /// <summary>
-        /// 加载资源清单失败事件。
+        /// 加载数据表失败事件。
         /// </summary>
-        LoadManifestFailure,
+        LoadDataTableFailure,
+
+        /// <summary>
+        /// 加载数据表更新事件。
+        /// </summary>
+        LoadDataTableUpdate,
+
+        /// <summary>
+        /// 加载数据表时加载依赖资源事件。
+        /// </summary>
+        LoadDataTableDependencyAsset,
 
         /// <summary>
         /// 加载字典成功事件。
@@ -143,14 +153,14 @@ namespace UnityGameFramework.Runtime
         LoadDictionaryFailure,
 
         /// <summary>
-        /// 加载数据表成功事件。
+        /// 加载字典更新事件。
         /// </summary>
-        LoadDataTableSuccess,
+        LoadDictionaryUpdate,
 
         /// <summary>
-        /// 加载数据表失败事件。
+        /// 加载字典时加载依赖资源事件。
         /// </summary>
-        LoadDataTableFailure,
+        LoadDictionaryDependencyAsset,
 
         /// <summary>
         /// 加载场景成功事件。
@@ -168,9 +178,9 @@ namespace UnityGameFramework.Runtime
         LoadSceneUpdate,
 
         /// <summary>
-        /// 加载场景依赖资源事件。
+        /// 加载场景时加载依赖资源事件。
         /// </summary>
-        LoadSceneDependency,
+        LoadSceneDependencyAsset,
 
         /// <summary>
         /// 卸载场景成功事件。
@@ -193,6 +203,16 @@ namespace UnityGameFramework.Runtime
         PlaySoundFailure,
 
         /// <summary>
+        /// 播放声音更新事件。
+        /// </summary>
+        PlaySoundUpdate,
+
+        /// <summary>
+        /// 播放声音时加载依赖资源事件。
+        /// </summary>
+        PlaySoundDependencyAsset,
+
+        /// <summary>
         /// 显示实体成功事件。
         /// </summary>
         ShowEntitySuccess,
@@ -201,6 +221,16 @@ namespace UnityGameFramework.Runtime
         /// 显示实体失败事件。
         /// </summary>
         ShowEntityFailure,
+
+        /// <summary>
+        /// 显示实体更新事件。
+        /// </summary>
+        ShowEntityUpdate,
+
+        /// <summary>
+        /// 显示实体时加载依赖资源事件。
+        /// </summary>
+        ShowEntityDependencyAsset,
 
         /// <summary>
         /// 隐藏实体完成事件。
@@ -216,6 +246,16 @@ namespace UnityGameFramework.Runtime
         /// 打开界面失败事件。
         /// </summary>
         OpenUIFormFailure,
+
+        /// <summary>
+        /// 打开界面更新事件。
+        /// </summary>
+        OpenUIFormUpdate,
+
+        /// <summary>
+        /// 打开界面时加载依赖资源事件。
+        /// </summary>
+        OpenUIFormDependencyAsset,
 
         /// <summary>
         /// 关闭界面完成事件。

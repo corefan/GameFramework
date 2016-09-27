@@ -6,81 +6,79 @@
 //------------------------------------------------------------
 
 using GameFramework.Event;
-using GameFramework.Sound;
 
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 播放声音成功事件。
+    /// 加载场景时加载依赖资源事件。
     /// </summary>
-    public sealed class PlaySoundSuccessEventArgs : GameEventArgs
+    public sealed class LoadSceneDependencyAssetEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化播放声音成功事件的新实例。
+        /// 初始化加载场景时加载依赖资源事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
-        public PlaySoundSuccessEventArgs(GameFramework.Sound.PlaySoundSuccessEventArgs e)
+        public LoadSceneDependencyAssetEventArgs(GameFramework.Scene.LoadSceneDependencyAssetEventArgs e)
         {
-            PlaySoundInfo playSoundInfo = e.UserData as PlaySoundInfo;
-            SerialId = e.SerialId;
-            SoundAssetName = e.SoundAssetName;
-            SoundAgent = e.SoundAgent;
-            Duration = e.Duration;
-            BindingEntity = playSoundInfo.BindingEntity;
-            UserData = playSoundInfo.UserData;
+            SceneName = e.SceneName;
+            SceneAssetName = e.SceneAssetName;
+            DependencyAssetName = e.DependencyAssetName;
+            LoadedCount = e.LoadedCount;
+            TotalCount = e.TotalCount;
+            UserData = e.UserData;
         }
 
         /// <summary>
-        /// 获取播放声音成功事件编号。
+        /// 获取加载场景时加载依赖资源事件编号。
         /// </summary>
         public override int Id
         {
             get
             {
-                return (int)EventId.PlaySoundSuccess;
+                return (int)EventId.LoadSceneDependencyAsset;
             }
         }
 
         /// <summary>
-        /// 获取声音的序列编号。
+        /// 获取场景名称。
         /// </summary>
-        public int SerialId
+        public string SceneName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取声音资源名称。
+        /// 获取场景资源名称。
         /// </summary>
-        public string SoundAssetName
+        public string SceneAssetName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取用于播放的声音代理。
+        /// 获取被加载的依赖资源名称。
         /// </summary>
-        public ISoundAgent SoundAgent
+        public string DependencyAssetName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取加载持续时间。
+        /// 获取当前已加载依赖资源数量。
         /// </summary>
-        public float Duration
+        public int LoadedCount
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取声音绑定的实体。
+        /// 获取总共加载依赖资源数量。
         /// </summary>
-        public Entity BindingEntity
+        public int TotalCount
         {
             get;
             private set;

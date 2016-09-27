@@ -6,6 +6,8 @@
 //------------------------------------------------------------
 
 using GameFramework.Entity;
+using GameFramework.Sound;
+using System;
 using UnityEngine;
 
 namespace UnityGameFramework.Runtime
@@ -18,6 +20,7 @@ namespace UnityGameFramework.Runtime
         private Transform m_CachedTransform = null;
         private AudioSource m_AudioSource = null;
         private EntityLogic m_BindingEntityLogic = null;
+        private EventHandler<ResetSoundAgentEventArgs> m_ResetSoundAgentEventHandler = null;
 
         /// <summary>
         /// 获取当前是否正在播放。
@@ -167,6 +170,21 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 重置声音代理事件。
+        /// </summary>
+        public override event EventHandler<ResetSoundAgentEventArgs> ResetSoundAgent
+        {
+            add
+            {
+                m_ResetSoundAgentEventHandler += value;
+            }
+            remove
+            {
+                m_ResetSoundAgentEventHandler -= value;
+            }
+        }
+
+        /// <summary>
         /// 播放声音。
         /// </summary>
         public override void Play()
@@ -221,11 +239,6 @@ namespace UnityGameFramework.Runtime
                 return false;
             }
 
-            if (audioClip.length <= 0f)
-            {
-                return false;
-            }
-
             m_AudioSource.clip = audioClip;
             return true;
         }
@@ -239,7 +252,7 @@ namespace UnityGameFramework.Runtime
             m_BindingEntityLogic = (bindingEntity as Entity).Logic;
             if (m_BindingEntityLogic == null)
             {
-                Reset();
+                m_ResetSoundAgentEventHandler?.Invoke(this, new ResetSoundAgentEventArgs());
                 return;
             }
 
@@ -258,7 +271,7 @@ namespace UnityGameFramework.Runtime
         {
             if (!IsPlaying && m_AudioSource.clip != null)
             {
-                Reset();
+                m_ResetSoundAgentEventHandler?.Invoke(this, new ResetSoundAgentEventArgs());
                 return;
             }
 
@@ -274,7 +287,7 @@ namespace UnityGameFramework.Runtime
         {
             if (!m_BindingEntityLogic.IsAvailable)
             {
-                Reset();
+                m_ResetSoundAgentEventHandler?.Invoke(this, new ResetSoundAgentEventArgs());
                 return;
             }
 

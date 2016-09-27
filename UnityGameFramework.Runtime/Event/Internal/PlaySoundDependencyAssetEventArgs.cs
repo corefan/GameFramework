@@ -11,33 +11,36 @@ using GameFramework.Sound;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 播放声音成功事件。
+    /// 播放声音时加载依赖资源事件。
     /// </summary>
-    public sealed class PlaySoundSuccessEventArgs : GameEventArgs
+    public sealed class PlaySoundDependencyAssetEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化播放声音成功事件的新实例。
+        /// 初始化播放声音时加载依赖资源事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
-        public PlaySoundSuccessEventArgs(GameFramework.Sound.PlaySoundSuccessEventArgs e)
+        public PlaySoundDependencyAssetEventArgs(GameFramework.Sound.PlaySoundDependencyAssetEventArgs e)
         {
             PlaySoundInfo playSoundInfo = e.UserData as PlaySoundInfo;
             SerialId = e.SerialId;
             SoundAssetName = e.SoundAssetName;
-            SoundAgent = e.SoundAgent;
-            Duration = e.Duration;
+            SoundGroupName = e.SoundGroupName;
+            PlaySoundParams = e.PlaySoundParams;
+            DependencyAssetName = e.DependencyAssetName;
+            LoadedCount = e.LoadedCount;
+            TotalCount = e.TotalCount;
             BindingEntity = playSoundInfo.BindingEntity;
             UserData = playSoundInfo.UserData;
         }
 
         /// <summary>
-        /// 获取播放声音成功事件编号。
+        /// 获取播放声音时加载依赖资源事件编号。
         /// </summary>
         public override int Id
         {
             get
             {
-                return (int)EventId.PlaySoundSuccess;
+                return (int)EventId.PlaySoundDependencyAsset;
             }
         }
 
@@ -60,18 +63,45 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取用于播放的声音代理。
+        /// 获取声音组名称。
         /// </summary>
-        public ISoundAgent SoundAgent
+        public string SoundGroupName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取加载持续时间。
+        /// 获取播放声音参数。
         /// </summary>
-        public float Duration
+        public PlaySoundParams PlaySoundParams
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取被加载的依赖资源名称。
+        /// </summary>
+        public string DependencyAssetName
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取当前已加载依赖资源数量。
+        /// </summary>
+        public int LoadedCount
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取总共加载依赖资源数量。
+        /// </summary>
+        public int TotalCount
         {
             get;
             private set;

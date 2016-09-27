@@ -11,32 +11,34 @@ using System;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 加载数据表成功事件。
+    /// 加载数据表时加载依赖资源事件。
     /// </summary>
-    public sealed class LoadDataTableSuccessEventArgs : GameEventArgs
+    public sealed class LoadDataTableDependencyAssetEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化加载数据表成功事件的新实例。
+        /// 初始化加载数据表时加载依赖资源事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
-        public LoadDataTableSuccessEventArgs(GameFramework.DataTable.LoadDataTableSuccessEventArgs e)
+        public LoadDataTableDependencyAssetEventArgs(GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs e)
         {
             LoadDataTableInfo loadDataTableInfo = e.UserData as LoadDataTableInfo;
             DataTableName = loadDataTableInfo.DataTableName;
             DataTableType = loadDataTableInfo.DataTableType;
             DataTableAssetName = e.DataTableAssetName;
-            Duration = e.Duration;
+            DependencyAssetName = e.DependencyAssetName;
+            LoadedCount = e.LoadedCount;
+            TotalCount = e.TotalCount;
             UserData = loadDataTableInfo.UserData;
         }
 
         /// <summary>
-        /// 获取加载数据表成功事件编号。
+        /// 获取加载数据表失败事件编号。
         /// </summary>
         public override int Id
         {
             get
             {
-                return (int)EventId.LoadDataTableSuccess;
+                return (int)EventId.LoadDataTableFailure;
             }
         }
 
@@ -68,9 +70,27 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取加载持续时间。
+        /// 获取被加载的依赖资源名称。
         /// </summary>
-        public float Duration
+        public string DependencyAssetName
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取当前已加载依赖资源数量。
+        /// </summary>
+        public int LoadedCount
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取总共加载依赖资源数量。
+        /// </summary>
+        public int TotalCount
         {
             get;
             private set;

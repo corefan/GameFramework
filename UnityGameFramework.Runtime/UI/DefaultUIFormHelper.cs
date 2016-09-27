@@ -47,8 +47,8 @@ namespace UnityGameFramework.Runtime
         /// <param name="uiFormInstance">要释放的界面实例。</param>
         public override void ReleaseUIFormInstance(object uiFormInstance)
         {
+            m_ResourceComponent.Recycle(uiFormInstance);
             DestroyObject(uiFormInstance as GameObject);
-            m_ResourceComponent.UnloadUnusedAssets(false);
         }
 
         private void Start()

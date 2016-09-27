@@ -23,13 +23,109 @@ namespace UnityGameFramework.Runtime
         private int m_LoadType = 0;
         private string m_ResourceChildName = null;
         private string m_SceneName = null;
-        private bool m_Instantiate = false;
         private bool m_Disposed = false;
         private WWW m_WWW = null;
         private AssetBundleCreateRequest m_FileAssetBundleCreateRequest = null;
         private AssetBundleCreateRequest m_BytesAssetBundleCreateRequest = null;
         private AssetBundleRequest m_AssetBundleRequest = null;
         private AsyncOperation m_AsyncOperation = null;
+
+        private EventHandler<LoadResourceAgentHelperUpdateEventArgs> m_LoadResourceAgentHelperUpdateEventHandler = null;
+        private EventHandler<LoadResourceAgentHelperReadFileCompleteEventArgs> m_LoadResourceAgentHelperReadFileCompleteEventHandler = null;
+        private EventHandler<LoadResourceAgentHelperReadBytesCompleteEventArgs> m_LoadResourceAgentHelperReadBytesCompleteEventHandler = null;
+        private EventHandler<LoadResourceAgentHelperParseBytesCompleteEventArgs> m_LoadResourceAgentHelperParseBytesCompleteEventHandler = null;
+        private EventHandler<LoadResourceAgentHelperLoadCompleteEventArgs> m_LoadResourceAgentHelperLoadCompleteEventHandler = null;
+        private EventHandler<LoadResourceAgentHelperErrorEventArgs> m_LoadResourceAgentHelperErrorEventHandler = null;
+
+        /// <summary>
+        /// 加载资源代理辅助器异步加载资源更新事件。
+        /// </summary>
+        public override event EventHandler<LoadResourceAgentHelperUpdateEventArgs> LoadResourceAgentHelperUpdate
+        {
+            add
+            {
+                m_LoadResourceAgentHelperUpdateEventHandler += value;
+            }
+            remove
+            {
+                m_LoadResourceAgentHelperUpdateEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// 加载资源代理辅助器异步读取资源文件完成事件。
+        /// </summary>
+        public override event EventHandler<LoadResourceAgentHelperReadFileCompleteEventArgs> LoadResourceAgentHelperReadFileComplete
+        {
+            add
+            {
+                m_LoadResourceAgentHelperReadFileCompleteEventHandler += value;
+            }
+            remove
+            {
+                m_LoadResourceAgentHelperReadFileCompleteEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// 加载资源代理辅助器异步读取资源二进制流完成事件。
+        /// </summary>
+        public override event EventHandler<LoadResourceAgentHelperReadBytesCompleteEventArgs> LoadResourceAgentHelperReadBytesComplete
+        {
+            add
+            {
+                m_LoadResourceAgentHelperReadBytesCompleteEventHandler += value;
+            }
+            remove
+            {
+                m_LoadResourceAgentHelperReadBytesCompleteEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// 加载资源代理辅助器异步将资源二进制流转换为加载对象完成事件。
+        /// </summary>
+        public override event EventHandler<LoadResourceAgentHelperParseBytesCompleteEventArgs> LoadResourceAgentHelperParseBytesComplete
+        {
+            add
+            {
+                m_LoadResourceAgentHelperParseBytesCompleteEventHandler += value;
+            }
+            remove
+            {
+                m_LoadResourceAgentHelperParseBytesCompleteEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// 加载资源代理辅助器异步加载资源完成事件。
+        /// </summary>
+        public override event EventHandler<LoadResourceAgentHelperLoadCompleteEventArgs> LoadResourceAgentHelperLoadComplete
+        {
+            add
+            {
+                m_LoadResourceAgentHelperLoadCompleteEventHandler += value;
+            }
+            remove
+            {
+                m_LoadResourceAgentHelperLoadCompleteEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// 加载资源代理辅助器错误事件。
+        /// </summary>
+        public override event EventHandler<LoadResourceAgentHelperErrorEventArgs> LoadResourceAgentHelperError
+        {
+            add
+            {
+                m_LoadResourceAgentHelperErrorEventHandler += value;
+            }
+            remove
+            {
+                m_LoadResourceAgentHelperErrorEventHandler -= value;
+            }
+        }
 
         /// <summary>
         /// 通过加载资源代理辅助器开始异步读取资源文件。
@@ -84,7 +180,7 @@ namespace UnityGameFramework.Runtime
         /// 通过加载资源代理辅助器开始异步加载资源。
         /// </summary>
         /// <param name="resource">资源。</param>
-        /// <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
+        /// <param name="resourceChildName">要加载的子资源名。</param>
         public override void LoadAsset(object resource, string resourceChildName)
         {
             if (m_LoadResourceAgentHelperLoadCompleteEventHandler == null || m_LoadResourceAgentHelperUpdateEventHandler == null || m_LoadResourceAgentHelperErrorEventHandler == null)
@@ -108,31 +204,12 @@ namespace UnityGameFramework.Runtime
 
             if (string.IsNullOrEmpty(resourceChildName))
             {
-                if (assetBundle.mainAsset != null)
-                {
-                    m_LoadResourceAgentHelperLoadCompleteEventHandler(this, new LoadResourceAgentHelperLoadCompleteEventArgs(assetBundle.mainAsset, m_Instantiate ? Instantiate(assetBundle.mainAsset) : null));
-                }
-                else
-                {
-                    m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.MainAssetError, "Can not load main asset from asset bundle which main asset is null."));
-                }
-
+                m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.ChildAssetError, "Can not load asset from asset bundle which child name is invalid."));
                 return;
             }
 
             m_ResourceChildName = resourceChildName;
             m_AssetBundleRequest = assetBundle.LoadAssetAsync(resourceChildName);
-        }
-
-        /// <summary>
-        /// 通过加载资源代理辅助器开始异步加载资源并实例化。
-        /// </summary>
-        /// <param name="resource">资源。</param>
-        /// <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-        public override void LoadAndInstantiateAsset(object resource, string resourceChildName)
-        {
-            m_Instantiate = true;
-            LoadAsset(resource, resourceChildName);
         }
 
         /// <summary>
@@ -166,6 +243,16 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 实例化资源。
+        /// </summary>
+        /// <param name="asset">要实例化的资源。</param>
+        /// <returns>实例化后的资源。</returns>
+        public override object Instantiate(object asset)
+        {
+            return UnityEngine.Object.Instantiate(asset as UnityEngine.Object);
+        }
+
+        /// <summary>
         /// 重置加载资源代理辅助器。
         /// </summary>
         public override void Reset()
@@ -175,7 +262,6 @@ namespace UnityGameFramework.Runtime
             m_LoadType = 0;
             m_ResourceChildName = null;
             m_SceneName = null;
-            m_Instantiate = false;
 
             if (m_WWW != null)
             {
@@ -274,7 +360,7 @@ namespace UnityGameFramework.Runtime
                     }
                     else
                     {
-                        m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.TypeError, string.Format("Can not load asset bundle from file '{0}' which is not an asset bundle.", m_FileFullPath)));
+                        m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.NotExist, string.Format("Can not load asset bundle from file '{0}' which is not a valid asset bundle.", m_FileFullPath)));
                     }
                 }
                 else
@@ -302,7 +388,7 @@ namespace UnityGameFramework.Runtime
                     }
                     else
                     {
-                        m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.TypeError, "Can not load asset bundle from memory which is not an asset bundle."));
+                        m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.NotExist, "Can not load asset bundle from memory which is not a valid asset bundle."));
                     }
                 }
                 else
@@ -320,9 +406,8 @@ namespace UnityGameFramework.Runtime
                 {
                     if (m_AssetBundleRequest.asset != null)
                     {
-                        m_LoadResourceAgentHelperLoadCompleteEventHandler(this, new LoadResourceAgentHelperLoadCompleteEventArgs(m_AssetBundleRequest.asset, m_Instantiate ? Instantiate(m_AssetBundleRequest.asset) : null));
+                        m_LoadResourceAgentHelperLoadCompleteEventHandler(this, new LoadResourceAgentHelperLoadCompleteEventArgs(m_AssetBundleRequest.asset));
                         m_ResourceChildName = null;
-                        m_Instantiate = false;
                         m_AssetBundleRequest = null;
                     }
                     else
@@ -345,7 +430,7 @@ namespace UnityGameFramework.Runtime
                 {
                     if (m_AsyncOperation.allowSceneActivation)
                     {
-                        m_LoadResourceAgentHelperLoadCompleteEventHandler(this, new LoadResourceAgentHelperLoadCompleteEventArgs(null, null));
+                        m_LoadResourceAgentHelperLoadCompleteEventHandler(this, new LoadResourceAgentHelperLoadCompleteEventArgs(new DummySceneObject()));
                         m_SceneName = null;
                         m_AsyncOperation = null;
                     }

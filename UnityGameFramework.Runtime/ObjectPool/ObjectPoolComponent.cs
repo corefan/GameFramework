@@ -101,6 +101,16 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取所有对象池。
+        /// </summary>
+        /// <param name="ordered">是否根据对象池顺序排序。</param>
+        /// <returns>所有对象池。</returns>
+        public ObjectPoolBase[] GetAllObjectPools(bool ordered)
+        {
+            return m_ObjectPoolManager.GetAllObjectPools(ordered);
+        }
+
+        /// <summary>
         /// 创建允许单次获取的对象池。
         /// </summary>
         /// <typeparam name="T">对象类型。</typeparam>

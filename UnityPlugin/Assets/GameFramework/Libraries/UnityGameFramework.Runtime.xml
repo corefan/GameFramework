@@ -11233,21 +11233,6 @@
             下载代理辅助器基类。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Runtime.DownloadAgentHelperBase.m_DownloadAgentHelperUpdateEventHandler">
-            <summary>
-            下载代理辅助器更新事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.DownloadAgentHelperBase.m_DownloadAgentHelperCompleteEventHandler">
-            <summary>
-            下载代理辅助器完成事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.DownloadAgentHelperBase.m_DownloadAgentHelperErrorEventHandler">
-            <summary>
-            下载代理辅助器错误事件。
-            </summary>
-        </member>
         <member name="E:UnityGameFramework.Runtime.DownloadAgentHelperBase.DownloadAgentHelperUpdate">
             <summary>
             下载代理辅助器更新事件。
@@ -11376,6 +11361,21 @@
             使用 UnityWebRequest 实现的下载代理辅助器。
             </summary>
         </member>
+        <member name="E:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.DownloadAgentHelperUpdate">
+            <summary>
+            下载代理辅助器更新事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.DownloadAgentHelperComplete">
+            <summary>
+            下载代理辅助器完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.DownloadAgentHelperError">
+            <summary>
+            下载代理辅助器错误事件。
+            </summary>
+        </member>
         <member name="M:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.Download(System.String,System.Object)">
             <summary>
             通过下载代理辅助器下载指定地址的数据。
@@ -11419,6 +11419,21 @@
         <member name="T:UnityGameFramework.Runtime.WWWDownloadAgentHelper">
             <summary>
             使用 Unity WWW 实现的下载代理辅助器。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.WWWDownloadAgentHelper.DownloadAgentHelperUpdate">
+            <summary>
+            下载代理辅助器更新事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.WWWDownloadAgentHelper.DownloadAgentHelperComplete">
+            <summary>
+            下载代理辅助器完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.WWWDownloadAgentHelper.DownloadAgentHelperError">
+            <summary>
+            下载代理辅助器错误事件。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.WWWDownloadAgentHelper.Download(System.String,System.Object)">
@@ -11479,12 +11494,6 @@
             <param name="entityGroup">实体所属的实体组。</param>
             <param name="userData">用户自定义数据。</param>
             <returns>实体。</returns>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.DefaultEntityHelper.ReleaseEntityAsset(System.Object)">
-            <summary>
-            释放实体资源。
-            </summary>
-            <param name="entityAsset">要释放的实体资源。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.DefaultEntityHelper.ReleaseEntityInstance(System.Object)">
             <summary>
@@ -11590,11 +11599,6 @@
         <member name="P:UnityGameFramework.Runtime.EntityComponent.EntityGroupCount">
             <summary>
             获取实体组数量。
-            </summary>
-        </member>
-        <member name="P:UnityGameFramework.Runtime.EntityComponent.AssetCapacity">
-            <summary>
-            获取或设置实体资源对象池的容量。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.EntityComponent.Awake">
@@ -11987,12 +11991,6 @@
             <param name="userData">用户自定义数据。</param>
             <returns>实体。</returns>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityHelperBase.ReleaseEntityAsset(System.Object)">
-            <summary>
-            释放实体资源。
-            </summary>
-            <param name="entityAsset">要释放的实体资源。</param>
-        </member>
         <member name="M:UnityGameFramework.Runtime.EntityHelperBase.ReleaseEntityInstance(System.Object)">
             <summary>
             释放实体实例。
@@ -12245,14 +12243,24 @@
             用户自定义网络错误事件。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Runtime.EventId.LoadManifestSuccess">
+        <member name="F:UnityGameFramework.Runtime.EventId.LoadDataTableSuccess">
             <summary>
-            加载资源清单成功事件。
+            加载数据表成功事件。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Runtime.EventId.LoadManifestFailure">
+        <member name="F:UnityGameFramework.Runtime.EventId.LoadDataTableFailure">
             <summary>
-            加载资源清单失败事件。
+            加载数据表失败事件。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.LoadDataTableUpdate">
+            <summary>
+            加载数据表更新事件。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.LoadDataTableDependencyAsset">
+            <summary>
+            加载数据表时加载依赖资源事件。
             </summary>
         </member>
         <member name="F:UnityGameFramework.Runtime.EventId.LoadDictionarySuccess">
@@ -12265,14 +12273,14 @@
             加载字典失败事件。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Runtime.EventId.LoadDataTableSuccess">
+        <member name="F:UnityGameFramework.Runtime.EventId.LoadDictionaryUpdate">
             <summary>
-            加载数据表成功事件。
+            加载字典更新事件。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Runtime.EventId.LoadDataTableFailure">
+        <member name="F:UnityGameFramework.Runtime.EventId.LoadDictionaryDependencyAsset">
             <summary>
-            加载数据表失败事件。
+            加载字典时加载依赖资源事件。
             </summary>
         </member>
         <member name="F:UnityGameFramework.Runtime.EventId.LoadSceneSuccess">
@@ -12290,9 +12298,9 @@
             加载场景更新事件。
             </summary>
         </member>
-        <member name="F:UnityGameFramework.Runtime.EventId.LoadSceneDependency">
+        <member name="F:UnityGameFramework.Runtime.EventId.LoadSceneDependencyAsset">
             <summary>
-            加载场景依赖资源事件。
+            加载场景时加载依赖资源事件。
             </summary>
         </member>
         <member name="F:UnityGameFramework.Runtime.EventId.UnloadSceneSuccess">
@@ -12315,6 +12323,16 @@
             播放声音失败事件。
             </summary>
         </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.PlaySoundUpdate">
+            <summary>
+            播放声音更新事件。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.PlaySoundDependencyAsset">
+            <summary>
+            播放声音时加载依赖资源事件。
+            </summary>
+        </member>
         <member name="F:UnityGameFramework.Runtime.EventId.ShowEntitySuccess">
             <summary>
             显示实体成功事件。
@@ -12323,6 +12341,16 @@
         <member name="F:UnityGameFramework.Runtime.EventId.ShowEntityFailure">
             <summary>
             显示实体失败事件。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.ShowEntityUpdate">
+            <summary>
+            显示实体更新事件。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.ShowEntityDependencyAsset">
+            <summary>
+            显示实体时加载依赖资源事件。
             </summary>
         </member>
         <member name="F:UnityGameFramework.Runtime.EventId.HideEntityComplete">
@@ -12338,6 +12366,16 @@
         <member name="F:UnityGameFramework.Runtime.EventId.OpenUIFormFailure">
             <summary>
             打开界面失败事件。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.OpenUIFormUpdate">
+            <summary>
+            打开界面更新事件。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Runtime.EventId.OpenUIFormDependencyAsset">
+            <summary>
+            打开界面时加载依赖资源事件。
             </summary>
         </member>
         <member name="F:UnityGameFramework.Runtime.EventId.CloseUIFormComplete">
@@ -12566,6 +12604,57 @@
             获取用户自定义数据。
             </summary>
         </member>
+        <member name="T:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs">
+            <summary>
+            加载数据表时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.#ctor(GameFramework.DataTable.LoadDataTableDependencyAssetEventArgs)">
+            <summary>
+            初始化加载数据表时加载依赖资源事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.Id">
+            <summary>
+            获取加载数据表失败事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.DataTableName">
+            <summary>
+            获取数据表名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.DataTableType">
+            <summary>
+            获取数据表类型。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.DataTableAssetName">
+            <summary>
+            获取数据表资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
         <member name="T:UnityGameFramework.Runtime.LoadDataTableFailureEventArgs">
             <summary>
             加载数据表失败事件。
@@ -12638,7 +12727,99 @@
             获取数据表资源名称。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.LoadDataTableSuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs">
+            <summary>
+            加载数据表更新事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs.#ctor(GameFramework.DataTable.LoadDataTableUpdateEventArgs)">
+            <summary>
+            初始化加载数据表更新事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs.Id">
+            <summary>
+            获取加载数据表失败事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs.DataTableName">
+            <summary>
+            获取数据表名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs.DataTableType">
+            <summary>
+            获取数据表类型。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs.DataTableAssetName">
+            <summary>
+            获取数据表资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs.Progress">
+            <summary>
+            获取加载数据表进度。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDataTableUpdateEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs">
+            <summary>
+            加载字典时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.#ctor(GameFramework.Localization.LoadDictionaryDependencyAssetEventArgs)">
+            <summary>
+            初始化加载字典时加载依赖资源事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.Id">
+            <summary>
+            获取加载字典失败事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.DictionaryName">
+            <summary>
+            获取字典名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.DictionaryAssetName">
+            <summary>
+            获取字典资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryDependencyAssetEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -12705,101 +12886,94 @@
             获取字典资源名称。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionarySuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.LoadDictionarySuccessEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
         </member>
-        <member name="T:UnityGameFramework.Runtime.LoadManifestFailureEventArgs">
+        <member name="T:UnityGameFramework.Runtime.LoadDictionaryUpdateEventArgs">
             <summary>
-            读取资源清单失败事件。
+            加载字典更新事件。
             </summary>
         </member>
-        <member name="M:UnityGameFramework.Runtime.LoadManifestFailureEventArgs.#ctor(System.String,System.String)">
+        <member name="M:UnityGameFramework.Runtime.LoadDictionaryUpdateEventArgs.#ctor(GameFramework.Localization.LoadDictionaryUpdateEventArgs)">
             <summary>
-            初始化读取资源清单失败事件的新实例。
-            </summary>
-            <param name="manifestAssetName">资源清单名称。</param>
-            <param name="errorMessage">错误信息。</param>
-        </member>
-        <member name="P:UnityGameFramework.Runtime.LoadManifestFailureEventArgs.Id">
-            <summary>
-            获取读取资源清单失败事件编号。
-            </summary>
-        </member>
-        <member name="P:UnityGameFramework.Runtime.LoadManifestFailureEventArgs.ManifestAssetName">
-            <summary>
-            获取资源清单名称。
-            </summary>
-        </member>
-        <member name="P:UnityGameFramework.Runtime.LoadManifestFailureEventArgs.ErrorMessage">
-            <summary>
-            获取错误信息。
-            </summary>
-        </member>
-        <member name="T:UnityGameFramework.Runtime.LoadManifestSuccessEventArgs">
-            <summary>
-            读取资源清单成功事件。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.LoadManifestSuccessEventArgs.#ctor(System.String)">
-            <summary>
-            初始化读取资源清单成功事件的新实例。
-            </summary>
-            <param name="manifestAssetName">资源清单名称。</param>
-        </member>
-        <member name="P:UnityGameFramework.Runtime.LoadManifestSuccessEventArgs.Id">
-            <summary>
-            获取读取资源清单成功事件编号。
-            </summary>
-        </member>
-        <member name="P:UnityGameFramework.Runtime.LoadManifestSuccessEventArgs.ManifestAssetName">
-            <summary>
-            获取资源清单名称。
-            </summary>
-        </member>
-        <member name="T:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs">
-            <summary>
-            加载场景依赖资源事件。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.#ctor(GameFramework.Scene.LoadSceneDependencyEventArgs)">
-            <summary>
-            初始化加载场景依赖资源事件的新实例。
+            初始化加载字典更新事件的新实例。
             </summary>
             <param name="e">内部事件。</param>
         </member>
-        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.Id">
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryUpdateEventArgs.Id">
             <summary>
-            获取加载场景更新事件编号。
+            获取加载字典失败事件编号。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.SceneName">
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryUpdateEventArgs.DictionaryName">
+            <summary>
+            获取字典名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryUpdateEventArgs.DictionaryAssetName">
+            <summary>
+            获取字典资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryUpdateEventArgs.Progress">
+            <summary>
+            获取加载字典进度。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadDictionaryUpdateEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs">
+            <summary>
+            加载场景时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.#ctor(GameFramework.Scene.LoadSceneDependencyAssetEventArgs)">
+            <summary>
+            初始化加载场景时加载依赖资源事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.Id">
+            <summary>
+            获取加载场景时加载依赖资源事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.SceneName">
             <summary>
             获取场景名称。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.SceneAssetName">
+        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.SceneAssetName">
             <summary>
             获取场景资源名称。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.DependencyResourceName">
+        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.DependencyAssetName">
             <summary>
             获取被加载的依赖资源名称。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.LoadedCount">
+        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.LoadedCount">
             <summary>
             获取当前已加载依赖资源数量。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.TotalCount">
+        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.TotalCount">
             <summary>
             获取总共加载依赖资源数量。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyEventArgs.UserData">
+        <member name="P:UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -12866,6 +13040,11 @@
             获取场景资源名称。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.LoadSceneSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.LoadSceneSuccessEventArgs.UserData">
             <summary>
             获取用户自定义数据。
@@ -12878,7 +13057,7 @@
         </member>
         <member name="M:UnityGameFramework.Runtime.LoadSceneUpdateEventArgs.#ctor(GameFramework.Scene.LoadSceneUpdateEventArgs)">
             <summary>
-            初始化加载场景成功事件的新实例。
+            初始化加载场景更新事件的新实例。
             </summary>
             <param name="e">内部事件。</param>
         </member>
@@ -13068,6 +13247,62 @@
             获取用户自定义数据。
             </summary>
         </member>
+        <member name="T:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs">
+            <summary>
+            打开界面时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.#ctor(GameFramework.UI.OpenUIFormDependencyAssetEventArgs)">
+            <summary>
+            初始化打开界面时加载依赖资源事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.Id">
+            <summary>
+            获取打开界面时加载依赖资源事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.UIFormTypeId">
+            <summary>
+            获取界面类型编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.UIFormAssetName">
+            <summary>
+            获取界面资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.UIGroupName">
+            <summary>
+            获取界面组名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.PauseCoveredUIForm">
+            <summary>
+            获取是否暂停被覆盖的界面。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
         <member name="T:UnityGameFramework.Runtime.OpenUIFormFailureEventArgs">
             <summary>
             打开界面失败事件。
@@ -13137,10 +13372,122 @@
         </member>
         <member name="P:UnityGameFramework.Runtime.OpenUIFormSuccessEventArgs.UIForm">
             <summary>
-            获取加载成功的界面。
+            获取打开成功的界面。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
             </summary>
         </member>
         <member name="P:UnityGameFramework.Runtime.OpenUIFormSuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs">
+            <summary>
+            打开界面更新事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.#ctor(GameFramework.UI.OpenUIFormUpdateEventArgs)">
+            <summary>
+            初始化打开界面更新事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.Id">
+            <summary>
+            获取打开界面更新事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.UIFormTypeId">
+            <summary>
+            获取界面类型编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.UIFormAssetName">
+            <summary>
+            获取界面资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.UIGroupName">
+            <summary>
+            获取界面组名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.PauseCoveredUIForm">
+            <summary>
+            获取是否暂停被覆盖的界面。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.Progress">
+            <summary>
+            获取打开界面进度。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.OpenUIFormUpdateEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs">
+            <summary>
+            播放声音时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.#ctor(GameFramework.Sound.PlaySoundDependencyAssetEventArgs)">
+            <summary>
+            初始化播放声音时加载依赖资源事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.Id">
+            <summary>
+            获取播放声音时加载依赖资源事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.SerialId">
+            <summary>
+            获取声音的序列编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.SoundAssetName">
+            <summary>
+            获取声音资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.SoundGroupName">
+            <summary>
+            获取声音组名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.PlaySoundParams">
+            <summary>
+            获取播放声音参数。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.BindingEntity">
+            <summary>
+            获取声音绑定的实体。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundDependencyAssetEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -13232,12 +13579,68 @@
             获取用于播放的声音代理。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundSuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.PlaySoundSuccessEventArgs.BindingEntity">
             <summary>
             获取声音绑定的实体。
             </summary>
         </member>
         <member name="P:UnityGameFramework.Runtime.PlaySoundSuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs">
+            <summary>
+            播放声音更新事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.#ctor(GameFramework.Sound.PlaySoundUpdateEventArgs)">
+            <summary>
+            初始化播放声音更新事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.Id">
+            <summary>
+            获取播放声音更新事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.SerialId">
+            <summary>
+            获取声音的序列编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.SoundAssetName">
+            <summary>
+            获取声音资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.SoundGroupName">
+            <summary>
+            获取声音组名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.PlaySoundParams">
+            <summary>
+            获取播放声音参数。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.Progress">
+            <summary>
+            获取加载声音进度。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.BindingEntity">
+            <summary>
+            获取声音绑定的实体。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.PlaySoundUpdateEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -13479,6 +13882,62 @@
             获取压缩包大小。
             </summary>
         </member>
+        <member name="T:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs">
+            <summary>
+            显示实体时加载依赖资源事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.#ctor(GameFramework.Entity.ShowEntityDependencyAssetEventArgs)">
+            <summary>
+            初始化显示实体时加载依赖资源事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.Id">
+            <summary>
+            获取显示实体时加载依赖资源事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.EntityId">
+            <summary>
+            获取实体编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.EntityLogicType">
+            <summary>
+            获取实体逻辑类型。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.EntityAssetName">
+            <summary>
+            获取实体资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.EntityGroupName">
+            <summary>
+            获取实体组名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.DependencyAssetName">
+            <summary>
+            获取被加载的依赖资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.LoadedCount">
+            <summary>
+            获取当前已加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.TotalCount">
+            <summary>
+            获取总共加载依赖资源数量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityDependencyAssetEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
         <member name="T:UnityGameFramework.Runtime.ShowEntityFailureEventArgs">
             <summary>
             显示实体失败事件。
@@ -13553,10 +14012,61 @@
         </member>
         <member name="P:UnityGameFramework.Runtime.ShowEntitySuccessEventArgs.Entity">
             <summary>
-            获取加载成功的实体。
+            获取显示成功的实体。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntitySuccessEventArgs.Duration">
+            <summary>
+            获取加载持续时间。
             </summary>
         </member>
         <member name="P:UnityGameFramework.Runtime.ShowEntitySuccessEventArgs.UserData">
+            <summary>
+            获取用户自定义数据。
+            </summary>
+        </member>
+        <member name="T:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs">
+            <summary>
+            显示实体更新事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.#ctor(GameFramework.Entity.ShowEntityUpdateEventArgs)">
+            <summary>
+            初始化显示实体更新事件的新实例。
+            </summary>
+            <param name="e">内部事件。</param>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.Id">
+            <summary>
+            获取显示实体更新事件编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.EntityId">
+            <summary>
+            获取实体编号。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.EntityLogicType">
+            <summary>
+            获取实体逻辑类型。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.EntityAssetName">
+            <summary>
+            获取实体资源名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.EntityGroupName">
+            <summary>
+            获取实体组名称。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.Progress">
+            <summary>
+            获取显示实体进度。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ShowEntityUpdateEventArgs.UserData">
             <summary>
             获取用户自定义数据。
             </summary>
@@ -14299,6 +14809,13 @@
             获取所有对象池。
             </summary>
         </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.GetAllObjectPools(System.Boolean)">
+            <summary>
+            获取所有对象池。
+            </summary>
+            <param name="ordered">是否根据对象池顺序排序。</param>
+            <returns>所有对象池。</returns>
+        </member>
         <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1">
             <summary>
             创建允许单次获取的对象池。
@@ -14430,6 +14947,36 @@
             默认加载资源代理辅助器。
             </summary>
         </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadResourceAgentHelperUpdate">
+            <summary>
+            加载资源代理辅助器异步加载资源更新事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadResourceAgentHelperReadFileComplete">
+            <summary>
+            加载资源代理辅助器异步读取资源文件完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadResourceAgentHelperReadBytesComplete">
+            <summary>
+            加载资源代理辅助器异步读取资源二进制流完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadResourceAgentHelperParseBytesComplete">
+            <summary>
+            加载资源代理辅助器异步将资源二进制流转换为加载对象完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadResourceAgentHelperLoadComplete">
+            <summary>
+            加载资源代理辅助器异步加载资源完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadResourceAgentHelperError">
+            <summary>
+            加载资源代理辅助器错误事件。
+            </summary>
+        </member>
         <member name="M:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.ReadFile(System.String)">
             <summary>
             通过加载资源代理辅助器开始异步读取资源文件。
@@ -14454,14 +15001,7 @@
             通过加载资源代理辅助器开始异步加载资源。
             </summary>
             <param name="resource">资源。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadAndInstantiateAsset(System.Object,System.String)">
-            <summary>
-            通过加载资源代理辅助器开始异步加载资源并实例化。
-            </summary>
-            <param name="resource">资源。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
+            <param name="resourceChildName">要加载的子资源名。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.LoadScene(System.Object,System.String)">
             <summary>
@@ -14469,6 +15009,13 @@
             </summary>
             <param name="resource">资源。</param>
             <param name="sceneName">场景名称。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.Instantiate(System.Object)">
+            <summary>
+            实例化资源。
+            </summary>
+            <param name="asset">要实例化的资源。</param>
+            <returns>实例化后的资源。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.DefaultLoadResourceAgentHelper.Reset">
             <summary>
@@ -14498,20 +15045,6 @@
             <param name="fileUri">文件路径。</param>
             <param name="loadBytesCallback">读取数据流回调函数。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.DefaultResourceHelper.GetDependencies(System.String)">
-            <summary>
-            获取依赖资源。
-            </summary>
-            <param name="resourceName">资源名称。</param>
-            <returns>被依赖的资源名称。</returns>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.DefaultResourceHelper.Instantiate(System.Object)">
-            <summary>
-            实例化资源。
-            </summary>
-            <param name="asset">要实例化的资源。</param>
-            <returns>实例化后的资源。</returns>
-        </member>
         <member name="M:UnityGameFramework.Runtime.DefaultResourceHelper.UnloadScene(System.String)">
             <summary>
             卸载场景。
@@ -14519,45 +15052,15 @@
             <param name="sceneName">场景名称。</param>
             <returns>是否成功卸载场景。</returns>
         </member>
-        <member name="M:UnityGameFramework.Runtime.DefaultResourceHelper.ReleaseResource(System.Object)">
+        <member name="M:UnityGameFramework.Runtime.DefaultResourceHelper.Release(System.Object)">
             <summary>
             释放资源。
             </summary>
-            <param name="resource">要释放的资源。</param>
+            <param name="objectToRelease">要释放的资源。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.LoadResourceAgentHelperBase">
             <summary>
             加载资源代理辅助器基类。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.m_LoadResourceAgentHelperUpdateEventHandler">
-            <summary>
-            加载资源代理辅助器异步加载资源更新事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.m_LoadResourceAgentHelperReadFileCompleteEventHandler">
-            <summary>
-            加载资源代理辅助器异步读取资源文件完成事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.m_LoadResourceAgentHelperReadBytesCompleteEventHandler">
-            <summary>
-            加载资源代理辅助器异步读取资源二进制流完成事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.m_LoadResourceAgentHelperParseBytesCompleteEventHandler">
-            <summary>
-            加载资源代理辅助器异步将资源二进制流转换为加载对象完成事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.m_LoadResourceAgentHelperLoadCompleteEventHandler">
-            <summary>
-            加载资源代理辅助器异步加载资源完成事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.m_LoadResourceAgentHelperErrorEventHandler">
-            <summary>
-            加载资源代理辅助器错误事件。
             </summary>
         </member>
         <member name="E:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.LoadResourceAgentHelperUpdate">
@@ -14614,14 +15117,7 @@
             通过加载资源代理辅助器开始异步加载资源。
             </summary>
             <param name="resource">资源。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.LoadAndInstantiateAsset(System.Object,System.String)">
-            <summary>
-            通过加载资源代理辅助器开始异步加载资源并实例化。
-            </summary>
-            <param name="resource">资源。</param>
-            <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
+            <param name="resourceChildName">要加载的子资源名。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.LoadScene(System.Object,System.String)">
             <summary>
@@ -14629,6 +15125,13 @@
             </summary>
             <param name="resource">资源。</param>
             <param name="sceneName">场景名称。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.Instantiate(System.Object)">
+            <summary>
+            实例化资源。
+            </summary>
+            <param name="asset">要实例化的资源。</param>
+            <returns>实例化后的资源。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.LoadResourceAgentHelperBase.Reset">
             <summary>
@@ -14730,9 +15233,14 @@
             获取等待加载资源任务数量。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.ResourceComponent.AssetCapacity">
+            <summary>
+            获取或设置资源对象池的容量。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.ResourceComponent.ResourceCapacity">
             <summary>
-            获取或设置加载资源对象池的容量。
+            获取或设置资源对象池的容量。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.ResourceComponent.Awake">
@@ -14802,44 +15310,41 @@
             使用可更新模式并更新资源。
             </summary>
         </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceComponent.LoadManifest">
-            <summary>
-            读取资源清单。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceComponent.LoadAsset(System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback)">
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.LoadAsset(System.String,GameFramework.Resource.LoadAssetCallbacks)">
             <summary>
             异步加载资源。
             </summary>
             <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceComponent.LoadAsset(System.String,GameFramework.Resource.LoadAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.LoadAsset(System.String,GameFramework.Resource.LoadAssetCallbacks,System.Object)">
             <summary>
             异步加载资源。
             </summary>
             <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="loadAssetCallbacks">加载资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceComponent.LoadAndInstantiateAsset(System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback)">
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.InstantiateAsset(System.String,GameFramework.Resource.InstantiateAssetCallbacks)">
             <summary>
-            异步加载并实例化资源。
+            异步实例化资源。
             </summary>
-            <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="assetName">要实例化资源的名称。</param>
+            <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceComponent.LoadAndInstantiateAsset(System.String,GameFramework.Resource.LoadAndInstantiateAssetSuccessCallback,GameFramework.Resource.LoadAssetFailureCallback,System.Object)">
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.InstantiateAsset(System.String,GameFramework.Resource.InstantiateAssetCallbacks,System.Object)">
             <summary>
-            异步加载并实例化资源。
+            异步实例化资源。
             </summary>
-            <param name="assetName">要加载资源的名称。</param>
-            <param name="loadAndInstantiateAssetSuccessCallback">加载资源成功回调函数。</param>
-            <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
+            <param name="assetName">要实例化资源的名称。</param>
+            <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ResourceComponent.Recycle(System.Object)">
+            <summary>
+            回收资源或资源实例。
+            </summary>
+            <param name="assetOrInstance">要回收的资源或资源实例。</param>
         </member>
         <member name="M:UnityGameFramework.Runtime.ResourceComponent.GetResourceGroupReady(System.String)">
             <summary>
@@ -14888,31 +15393,12 @@
             资源辅助器基类。
             </summary>
         </member>
-        <member name="P:UnityGameFramework.Runtime.ResourceHelperBase.AssetBundleManifest">
-            <summary>
-            获取 AssetBundleManifest。
-            </summary>
-        </member>
         <member name="M:UnityGameFramework.Runtime.ResourceHelperBase.LoadBytes(System.String,GameFramework.Resource.LoadBytesCallback)">
             <summary>
             直接从指定文件路径读取数据流。
             </summary>
             <param name="fileUri">文件路径。</param>
             <param name="loadBytesCallback">读取数据流回调函数。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceHelperBase.GetDependencies(System.String)">
-            <summary>
-            获取依赖资源。
-            </summary>
-            <param name="resourceName">资源名称。</param>
-            <returns>被依赖的资源名称。</returns>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceHelperBase.Instantiate(System.Object)">
-            <summary>
-            实例化资源。
-            </summary>
-            <param name="asset">要实例化的资源。</param>
-            <returns>实例化后的资源。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.ResourceHelperBase.UnloadScene(System.String)">
             <summary>
@@ -14921,11 +15407,11 @@
             <param name="sceneName">场景名称。</param>
             <returns>是否成功卸载场景。</returns>
         </member>
-        <member name="M:UnityGameFramework.Runtime.ResourceHelperBase.ReleaseResource(System.Object)">
+        <member name="M:UnityGameFramework.Runtime.ResourceHelperBase.Release(System.Object)">
             <summary>
             释放资源。
             </summary>
-            <param name="resource">要释放的资源。</param>
+            <param name="objectToRelease">要释放的资源。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.SceneComponent">
             <summary>
@@ -15406,6 +15892,11 @@
             获取或设置声音最大距离。
             </summary>
         </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultSoundAgentHelper.ResetSoundAgent">
+            <summary>
+            重置声音代理事件。
+            </summary>
+        </member>
         <member name="M:UnityGameFramework.Runtime.DefaultSoundAgentHelper.Play">
             <summary>
             播放声音。
@@ -15453,12 +15944,6 @@
             <summary>
             默认声音辅助器。
             </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.DefaultSoundHelper.ReleaseSoundAsset(System.Object)">
-            <summary>
-            释放声音资源。
-            </summary>
-            <param name="soundAsset">要释放的声音资源。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.SoundAgentHelperBase">
             <summary>
@@ -15515,6 +16000,11 @@
             获取或设置声音最大距离。
             </summary>
         </member>
+        <member name="E:UnityGameFramework.Runtime.SoundAgentHelperBase.ResetSoundAgent">
+            <summary>
+            重置声音代理事件。
+            </summary>
+        </member>
         <member name="M:UnityGameFramework.Runtime.SoundAgentHelperBase.Play">
             <summary>
             播放声音。
@@ -15561,11 +16051,6 @@
         <member name="P:UnityGameFramework.Runtime.SoundComponent.SoundGroupCount">
             <summary>
             获取声音组数量。
-            </summary>
-        </member>
-        <member name="P:UnityGameFramework.Runtime.SoundComponent.AssetCapacity">
-            <summary>
-            获取或设置声音资源对象池的容量。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.SoundComponent.Awake">
@@ -15723,12 +16208,6 @@
             <summary>
             声音辅助器基类。
             </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.SoundHelperBase.ReleaseSoundAsset(System.Object)">
-            <summary>
-            释放声音资源。
-            </summary>
-            <param name="soundAsset">要释放的声音资源。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.DefaultUIFormHelper">
             <summary>
@@ -16157,6 +16636,16 @@
             使用 UnityWebRequest 实现的 Web 请求代理辅助器。
             </summary>
         </member>
+        <member name="E:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.WebRequestAgentHelperComplete">
+            <summary>
+            Web 请求代理辅助器完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.WebRequestAgentHelperError">
+            <summary>
+            Web 请求代理辅助器错误事件。
+            </summary>
+        </member>
         <member name="M:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.Request(System.String,System.Object)">
             <summary>
             通过 Web 请求代理辅助器发送请求。
@@ -16191,16 +16680,6 @@
         <member name="T:UnityGameFramework.Runtime.WebRequestAgentHelperBase">
             <summary>
             Web 请求代理辅助器基类。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.WebRequestAgentHelperBase.m_WebRequestAgentHelperCompleteEventHandler">
-            <summary>
-            Web 请求代理辅助器完成事件。
-            </summary>
-        </member>
-        <member name="F:UnityGameFramework.Runtime.WebRequestAgentHelperBase.m_WebRequestAgentHelperErrorEventHandler">
-            <summary>
-            Web 请求代理辅助器错误事件。
             </summary>
         </member>
         <member name="E:UnityGameFramework.Runtime.WebRequestAgentHelperBase.WebRequestAgentHelperComplete">
@@ -16348,6 +16827,16 @@
         <member name="T:UnityGameFramework.Runtime.WWWWebRequestAgentHelper">
             <summary>
             使用 Unity WWW 实现的 Web 请求代理辅助器。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.WebRequestAgentHelperComplete">
+            <summary>
+            Web 请求代理辅助器完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.WebRequestAgentHelperError">
+            <summary>
+            Web 请求代理辅助器错误事件。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.Request(System.String,System.Object)">

@@ -7,6 +7,7 @@
 
 using GameFramework.Entity;
 using GameFramework.Sound;
+using System;
 using UnityEngine;
 
 namespace UnityGameFramework.Runtime
@@ -104,6 +105,11 @@ namespace UnityGameFramework.Runtime
             get;
             set;
         }
+
+        /// <summary>
+        /// 重置声音代理事件。
+        /// </summary>
+        public abstract event EventHandler<ResetSoundAgentEventArgs> ResetSoundAgent;
 
         /// <summary>
         /// 播放声音。

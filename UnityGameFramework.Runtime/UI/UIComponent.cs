@@ -23,6 +23,21 @@ namespace UnityGameFramework.Runtime
         private EventComponent m_EventComponent = null;
 
         [SerializeField]
+        private bool m_EnableOpenUIFormSuccessEvent = true;
+
+        [SerializeField]
+        private bool m_EnableOpenUIFormFailureEvent = true;
+
+        [SerializeField]
+        private bool m_EnableOpenUIFormUpdateEvent = false;
+
+        [SerializeField]
+        private bool m_EnableOpenUIFormDependencyAssetEvent = false;
+
+        [SerializeField]
+        private bool m_EnableCloseUIFormCompleteEvent = true;
+
+        [SerializeField]
         private int m_InstanceCapacity = 8;
 
         [SerializeField]
@@ -85,6 +100,8 @@ namespace UnityGameFramework.Runtime
 
             m_UIManager.OpenUIFormSuccess += OnOpenUIFormSuccess;
             m_UIManager.OpenUIFormFailure += OnOpenUIFormFailure;
+            m_UIManager.OpenUIFormUpdate += OnOpenUIFormUpdate;
+            m_UIManager.OpenUIFormDependencyAsset += OnOpenUIFormDependencyAsset;
             m_UIManager.CloseUIFormComplete += OnCloseUIFormComplete;
         }
 
@@ -364,18 +381,43 @@ namespace UnityGameFramework.Runtime
 
         private void OnOpenUIFormSuccess(object sender, GameFramework.UI.OpenUIFormSuccessEventArgs e)
         {
-            m_EventComponent.Fire(this, new OpenUIFormSuccessEventArgs(e));
+            if (m_EnableOpenUIFormSuccessEvent)
+            {
+                m_EventComponent.Fire(this, new OpenUIFormSuccessEventArgs(e));
+            }
         }
 
         private void OnOpenUIFormFailure(object sender, GameFramework.UI.OpenUIFormFailureEventArgs e)
         {
             Log.Warning("Open UI form failure, asset name '{0}', UI group name '{1}', pause covered UI form '{2}', error message '{3}'.", e.UIFormAssetName, e.UIGroupName, e.PauseCoveredUIForm.ToString(), e.ErrorMessage);
-            m_EventComponent.Fire(this, new OpenUIFormFailureEventArgs(e));
+            if (m_EnableOpenUIFormFailureEvent)
+            {
+                m_EventComponent.Fire(this, new OpenUIFormFailureEventArgs(e));
+            }
+        }
+
+        private void OnOpenUIFormUpdate(object sender, GameFramework.UI.OpenUIFormUpdateEventArgs e)
+        {
+            if (m_EnableOpenUIFormUpdateEvent)
+            {
+                m_EventComponent.Fire(this, new OpenUIFormUpdateEventArgs(e));
+            }
+        }
+
+        private void OnOpenUIFormDependencyAsset(object sender, GameFramework.UI.OpenUIFormDependencyAssetEventArgs e)
+        {
+            if (m_EnableOpenUIFormDependencyAssetEvent)
+            {
+                m_EventComponent.Fire(this, new OpenUIFormDependencyAssetEventArgs(e));
+            }
         }
 
         private void OnCloseUIFormComplete(object sender, GameFramework.UI.CloseUIFormCompleteEventArgs e)
         {
-            m_EventComponent.Fire(this, new CloseUIFormCompleteEventArgs(e));
+            if (m_EnableCloseUIFormCompleteEvent)
+            {
+                m_EventComponent.Fire(this, new CloseUIFormCompleteEventArgs(e));
+            }
         }
     }
 }

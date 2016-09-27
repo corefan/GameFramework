@@ -15,7 +15,7 @@ namespace UnityGameFramework.Runtime
     public sealed class LoadSceneUpdateEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 初始化加载场景成功事件的新实例。
+        /// 初始化加载场景更新事件的新实例。
         /// </summary>
         /// <param name="e">内部事件。</param>
         public LoadSceneUpdateEventArgs(GameFramework.Scene.LoadSceneUpdateEventArgs e)

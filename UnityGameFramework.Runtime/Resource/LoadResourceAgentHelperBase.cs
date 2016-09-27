@@ -19,122 +19,32 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 加载资源代理辅助器异步加载资源更新事件。
         /// </summary>
-        protected EventHandler<LoadResourceAgentHelperUpdateEventArgs> m_LoadResourceAgentHelperUpdateEventHandler = null;
+        public abstract event EventHandler<LoadResourceAgentHelperUpdateEventArgs> LoadResourceAgentHelperUpdate;
 
         /// <summary>
         /// 加载资源代理辅助器异步读取资源文件完成事件。
         /// </summary>
-        protected EventHandler<LoadResourceAgentHelperReadFileCompleteEventArgs> m_LoadResourceAgentHelperReadFileCompleteEventHandler = null;
+        public abstract event EventHandler<LoadResourceAgentHelperReadFileCompleteEventArgs> LoadResourceAgentHelperReadFileComplete;
 
         /// <summary>
         /// 加载资源代理辅助器异步读取资源二进制流完成事件。
         /// </summary>
-        protected EventHandler<LoadResourceAgentHelperReadBytesCompleteEventArgs> m_LoadResourceAgentHelperReadBytesCompleteEventHandler = null;
+        public abstract event EventHandler<LoadResourceAgentHelperReadBytesCompleteEventArgs> LoadResourceAgentHelperReadBytesComplete;
 
         /// <summary>
         /// 加载资源代理辅助器异步将资源二进制流转换为加载对象完成事件。
         /// </summary>
-        protected EventHandler<LoadResourceAgentHelperParseBytesCompleteEventArgs> m_LoadResourceAgentHelperParseBytesCompleteEventHandler = null;
+        public abstract event EventHandler<LoadResourceAgentHelperParseBytesCompleteEventArgs> LoadResourceAgentHelperParseBytesComplete;
 
         /// <summary>
         /// 加载资源代理辅助器异步加载资源完成事件。
         /// </summary>
-        protected EventHandler<LoadResourceAgentHelperLoadCompleteEventArgs> m_LoadResourceAgentHelperLoadCompleteEventHandler = null;
+        public abstract event EventHandler<LoadResourceAgentHelperLoadCompleteEventArgs> LoadResourceAgentHelperLoadComplete;
 
         /// <summary>
         /// 加载资源代理辅助器错误事件。
         /// </summary>
-        protected EventHandler<LoadResourceAgentHelperErrorEventArgs> m_LoadResourceAgentHelperErrorEventHandler = null;
-
-        /// <summary>
-        /// 加载资源代理辅助器异步加载资源更新事件。
-        /// </summary>
-        public event EventHandler<LoadResourceAgentHelperUpdateEventArgs> LoadResourceAgentHelperUpdate
-        {
-            add
-            {
-                m_LoadResourceAgentHelperUpdateEventHandler += value;
-            }
-            remove
-            {
-                m_LoadResourceAgentHelperUpdateEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// 加载资源代理辅助器异步读取资源文件完成事件。
-        /// </summary>
-        public event EventHandler<LoadResourceAgentHelperReadFileCompleteEventArgs> LoadResourceAgentHelperReadFileComplete
-        {
-            add
-            {
-                m_LoadResourceAgentHelperReadFileCompleteEventHandler += value;
-            }
-            remove
-            {
-                m_LoadResourceAgentHelperReadFileCompleteEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// 加载资源代理辅助器异步读取资源二进制流完成事件。
-        /// </summary>
-        public event EventHandler<LoadResourceAgentHelperReadBytesCompleteEventArgs> LoadResourceAgentHelperReadBytesComplete
-        {
-            add
-            {
-                m_LoadResourceAgentHelperReadBytesCompleteEventHandler += value;
-            }
-            remove
-            {
-                m_LoadResourceAgentHelperReadBytesCompleteEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// 加载资源代理辅助器异步将资源二进制流转换为加载对象完成事件。
-        /// </summary>
-        public event EventHandler<LoadResourceAgentHelperParseBytesCompleteEventArgs> LoadResourceAgentHelperParseBytesComplete
-        {
-            add
-            {
-                m_LoadResourceAgentHelperParseBytesCompleteEventHandler += value;
-            }
-            remove
-            {
-                m_LoadResourceAgentHelperParseBytesCompleteEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// 加载资源代理辅助器异步加载资源完成事件。
-        /// </summary>
-        public event EventHandler<LoadResourceAgentHelperLoadCompleteEventArgs> LoadResourceAgentHelperLoadComplete
-        {
-            add
-            {
-                m_LoadResourceAgentHelperLoadCompleteEventHandler += value;
-            }
-            remove
-            {
-                m_LoadResourceAgentHelperLoadCompleteEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// 加载资源代理辅助器错误事件。
-        /// </summary>
-        public event EventHandler<LoadResourceAgentHelperErrorEventArgs> LoadResourceAgentHelperError
-        {
-            add
-            {
-                m_LoadResourceAgentHelperErrorEventHandler += value;
-            }
-            remove
-            {
-                m_LoadResourceAgentHelperErrorEventHandler -= value;
-            }
-        }
+        public abstract event EventHandler<LoadResourceAgentHelperErrorEventArgs> LoadResourceAgentHelperError;
 
         /// <summary>
         /// 通过加载资源代理辅助器开始异步读取资源文件。
@@ -159,15 +69,8 @@ namespace UnityGameFramework.Runtime
         /// 通过加载资源代理辅助器开始异步加载资源。
         /// </summary>
         /// <param name="resource">资源。</param>
-        /// <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
+        /// <param name="resourceChildName">要加载的子资源名。</param>
         public abstract void LoadAsset(object resource, string resourceChildName);
-
-        /// <summary>
-        /// 通过加载资源代理辅助器开始异步加载资源并实例化。
-        /// </summary>
-        /// <param name="resource">资源。</param>
-        /// <param name="resourceChildName">要加载的子资源名，如果为空，则加载主资源。</param>
-        public abstract void LoadAndInstantiateAsset(object resource, string resourceChildName);
 
         /// <summary>
         /// 通过加载资源代理辅助器开始异步加载场景。
@@ -175,6 +78,13 @@ namespace UnityGameFramework.Runtime
         /// <param name="resource">资源。</param>
         /// <param name="sceneName">场景名称。</param>
         public abstract void LoadScene(object resource, string sceneName);
+
+        /// <summary>
+        /// 实例化资源。
+        /// </summary>
+        /// <param name="asset">要实例化的资源。</param>
+        /// <returns>实例化后的资源。</returns>
+        public abstract object Instantiate(object asset);
 
         /// <summary>
         /// 重置加载资源代理辅助器。

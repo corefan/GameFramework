@@ -22,6 +22,55 @@ namespace UnityGameFramework.Runtime
         private int m_LastDownloadedSize = 0;
         private bool m_Disposed = false;
 
+        private EventHandler<DownloadAgentHelperUpdateEventArgs> m_DownloadAgentHelperUpdateEventHandler = null;
+        private EventHandler<DownloadAgentHelperCompleteEventArgs> m_DownloadAgentHelperCompleteEventHandler = null;
+        private EventHandler<DownloadAgentHelperErrorEventArgs> m_DownloadAgentHelperErrorEventHandler = null;
+
+        /// <summary>
+        /// 下载代理辅助器更新事件。
+        /// </summary>
+        public override event EventHandler<DownloadAgentHelperUpdateEventArgs> DownloadAgentHelperUpdate
+        {
+            add
+            {
+                m_DownloadAgentHelperUpdateEventHandler += value;
+            }
+            remove
+            {
+                m_DownloadAgentHelperUpdateEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// 下载代理辅助器完成事件。
+        /// </summary>
+        public override event EventHandler<DownloadAgentHelperCompleteEventArgs> DownloadAgentHelperComplete
+        {
+            add
+            {
+                m_DownloadAgentHelperCompleteEventHandler += value;
+            }
+            remove
+            {
+                m_DownloadAgentHelperCompleteEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// 下载代理辅助器错误事件。
+        /// </summary>
+        public override event EventHandler<DownloadAgentHelperErrorEventArgs> DownloadAgentHelperError
+        {
+            add
+            {
+                m_DownloadAgentHelperErrorEventHandler += value;
+            }
+            remove
+            {
+                m_DownloadAgentHelperErrorEventHandler -= value;
+            }
+        }
+
         /// <summary>
         /// 通过下载代理辅助器下载指定地址的数据。
         /// </summary>

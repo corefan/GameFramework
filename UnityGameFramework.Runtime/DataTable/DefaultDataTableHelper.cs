@@ -105,7 +105,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="dataTableAsset">要释放的数据表资源。</param>
         public override void ReleaseDataTableAsset(object dataTableAsset)
         {
-            m_ResourceComponent.UnloadUnusedAssets(false);
+            m_ResourceComponent.Recycle(dataTableAsset);
         }
 
         private void Start()
