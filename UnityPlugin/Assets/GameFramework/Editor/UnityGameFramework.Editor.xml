@@ -19,6 +19,11 @@
             生成资源包。
             </summary>
         </member>
+        <member name="M:UnityGameFramework.Editor.AssetBundleTools.BuildAssetBundle.Run">
+            <summary>
+            运行生成资源包。
+            </summary>
+        </member>
         <member name="T:UnityGameFramework.Editor.AssetBundleTools.Asset">
             <summary>
             资源。
@@ -104,16 +109,6 @@
             上下文相关的实用函数。
             </summary>
         </member>
-        <member name="T:UnityGameFramework.Editor.GameObjectCounter">
-            <summary>
-            统计 Game Object 数量相关的实用函数。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Editor.GameObjectCounter.CountGameObjects">
-            <summary>
-            统计 Game Object 数量。
-            </summary>
-        </member>
         <member name="T:UnityGameFramework.Editor.Help">
             <summary>
             帮助相关的实用函数。
@@ -143,64 +138,6 @@
             <summary>
             打开 Data Path 目录。
             </summary>
-        </member>
-        <member name="T:UnityGameFramework.Editor.ProjectSaver">
-            <summary>
-            存储整个工程相关的实用函数。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Editor.ProjectSaver.SaveAssets">
-            <summary>
-            存储可序列化的资源。
-            </summary>
-            <remarks>等同于执行 Unity 菜单 File/Save Project。</remarks>
-        </member>
-        <member name="T:UnityGameFramework.Editor.ScriptableObjectCreator">
-            <summary>
-            <see cref="T:UnityEngine.ScriptableObject" /> 创建器相关的实用函数。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Editor.ScriptableObjectCreator.CreateAsset``1">
-            <summary>
-            创建 <see cref="T:UnityEngine.ScriptableObject" /> 的 Asset。
-            </summary>
-            <typeparam name="T">ScriptableObject 的具体类型。</typeparam>
-        </member>
-        <member name="M:UnityGameFramework.Editor.ScriptableObjectCreator.CreateAsset(System.Type)">
-            <summary>
-            创建 <see cref="T:UnityEngine.ScriptableObject" /> 的 Asset。
-            </summary>
-            <param name="type">ScriptableObject 的具体类型。</param>
-        </member>
-        <member name="M:UnityGameFramework.Editor.ScriptableObjectCreator.CreateAsset``1(System.String)">
-            <summary>
-            创建 <see cref="T:UnityEngine.ScriptableObject" /> 的 Asset。
-            </summary>
-            <typeparam name="T">ScriptableObject 的具体类型。</typeparam>
-            <param name="name">要创建的名称。</param>
-        </member>
-        <member name="M:UnityGameFramework.Editor.ScriptableObjectCreator.CreateAsset(System.Type,System.String)">
-            <summary>
-            创建 <see cref="T:UnityEngine.ScriptableObject" /> 的 Asset。
-            </summary>
-            <param name="type">ScriptableObject 的具体类型。</param>
-            <param name="name">要创建的名称。</param>
-        </member>
-        <member name="T:UnityGameFramework.Editor.TransformPathCopier">
-            <summary>
-            Transform 路径相关的实用函数。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Editor.TransformPathCopier.CopyTransformPath">
-            <summary>
-            复制 Transform 路径的实用函数。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Editor.TransformPathCopier.Validate">
-            <summary>
-            检查是否可复制 Transform 路径。
-            </summary>
-            <returns>是否可复制 Transform 路径。</returns>
         </member>
         <member name="T:Utility.Type">
             <summary>
