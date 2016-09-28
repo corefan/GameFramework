@@ -64,6 +64,26 @@
             从内存解密加载。
             </summary>
         </member>
+        <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundleType">
+            <summary>
+            资源包类型。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Editor.AssetBundleTools.AssetBundleType.Unknown">
+            <summary>
+            未知。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Editor.AssetBundleTools.AssetBundleType.Asset">
+            <summary>
+            存放资源的资源包。
+            </summary>
+        </member>
+        <member name="F:UnityGameFramework.Editor.AssetBundleTools.AssetBundleType.Scene">
+            <summary>
+            存放场景的资源包。
+            </summary>
+        </member>
         <member name="T:UnityGameFramework.Editor.AssetBundleTools.AssetBundleEditor">
             <summary>
             资源包编辑器。
