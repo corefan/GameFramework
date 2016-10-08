@@ -136,27 +136,27 @@
         </member>
         <member name="T:UnityGameFramework.Editor.OpenFolder">
             <summary>
-            打开目录相关的实用函数。
+            打开文件夹相关的实用函数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.OpenFolder.OpenFolderTemporaryCachePath">
             <summary>
-            打开 Temporary Cache Path 目录。
+            打开 Temporary Cache Path 文件夹。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.OpenFolder.OpenFolderPersistentDataPath">
             <summary>
-            打开 Persistent Data Path 目录。
+            打开 Persistent Data Path 文件夹。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.OpenFolder.OpenFolderStreamingAssetsPath">
             <summary>
-            打开 Streaming Assets Path 目录。
+            打开 Streaming Assets Path 文件夹。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Editor.OpenFolder.OpenFolderDataPath">
             <summary>
-            打开 Data Path 目录。
+            打开 Data Path 文件夹。
             </summary>
         </member>
         <member name="T:Utility.Type">

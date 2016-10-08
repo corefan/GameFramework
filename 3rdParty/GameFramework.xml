@@ -13683,6 +13683,12 @@
             <param name="hashCode">CRC32 哈希值。</param>
             <returns>带有 CRC32 和后缀的资源名。</returns>
         </member>
+        <member name="M:Utility.Path.RemoveEmptyDirectories(System.String)">
+            <summary>
+            移除空文件夹。
+            </summary>
+            <param name="directory">要处理的文件夹。</param>
+        </member>
         <member name="T:Utility.Random">
             <summary>
             随机相关的实用函数。
