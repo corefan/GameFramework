@@ -172,5 +172,45 @@ namespace UnityGameFramework.Runtime
         {
             PlayerPrefs.SetString(key, value);
         }
+
+        /// <summary>
+        /// 从指定配置项中读取对象。
+        /// </summary>
+        /// <typeparam name="T">要读取对象的类型。</typeparam>
+        /// <param name="key">要获取配置项的名称。</param>
+        /// <returns>读取的对象。</returns>
+        public override T GetObject<T>(string key)
+        {
+            return Utility.Json.ToObject<T>(PlayerPrefs.GetString(key));
+        }
+
+        /// <summary>
+        /// 从指定配置项中读取对象。
+        /// </summary>
+        /// <typeparam name="T">要读取对象的类型。</typeparam>
+        /// <param name="key">要获取配置项的名称。</param>
+        /// <param name="defaultObj">当指定的配置项不存在时，返回此默认对象。</param>
+        /// <returns>读取的对象。</returns>
+        public override T GetObject<T>(string key, T defaultObj)
+        {
+            string json = PlayerPrefs.GetString(key, null);
+            if (string.IsNullOrEmpty(json))
+            {
+                return defaultObj;
+            }
+
+            return Utility.Json.ToObject<T>(json);
+        }
+
+        /// <summary>
+        /// 向指定配置项写入对象。
+        /// </summary>
+        /// <typeparam name="T">要写入对象的类型。</typeparam>
+        /// <param name="key">要写入配置项的名称。</param>
+        /// <param name="obj">要写入的对象。</param>
+        public override void SetObject<T>(string key, T obj)
+        {
+            PlayerPrefs.SetString(key, Utility.Json.ToJson(obj));
+        }
     }
 }

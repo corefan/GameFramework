@@ -125,5 +125,30 @@ namespace UnityGameFramework.Runtime
         /// <param name="key">要写入配置项的名称。</param>
         /// <param name="value">要写入的字符串值。</param>
         public abstract void SetString(string key, string value);
+
+        /// <summary>
+        /// 从指定配置项中读取对象。
+        /// </summary>
+        /// <typeparam name="T">要读取对象的类型。</typeparam>
+        /// <param name="key">要获取配置项的名称。</param>
+        /// <returns>读取的对象。</returns>
+        public abstract T GetObject<T>(string key);
+
+        /// <summary>
+        /// 从指定配置项中读取对象。
+        /// </summary>
+        /// <typeparam name="T">要读取对象的类型。</typeparam>
+        /// <param name="key">要获取配置项的名称。</param>
+        /// <param name="defaultObj">当指定的配置项不存在时，返回此默认对象。</param>
+        /// <returns>读取的对象。</returns>
+        public abstract T GetObject<T>(string key, T defaultObj);
+
+        /// <summary>
+        /// 向指定配置项写入对象。
+        /// </summary>
+        /// <typeparam name="T">要写入对象的类型。</typeparam>
+        /// <param name="key">要写入配置项的名称。</param>
+        /// <param name="obj">要写入的对象。</param>
+        public abstract void SetObject<T>(string key, T obj);
     }
 }
