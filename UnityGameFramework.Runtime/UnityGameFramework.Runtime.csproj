@@ -113,6 +113,7 @@ copy "$(TargetDir)UnityGameFramework.Runtime.xml" "$(SolutionDir)UnityPlugin\Ass
     <Compile Include="Base\BaseComponent.cs" />
     <Compile Include="Base\GameEntry.cs" />
     <Compile Include="Base\GameFrameworkComponent.cs" />
+    <Compile Include="Base\ShutdownType.cs" />
     <Compile Include="Base\Variable\VarBool.cs" />
     <Compile Include="Base\Variable\VarByte.cs" />
     <Compile Include="Base\Variable\VarBytes.cs" />

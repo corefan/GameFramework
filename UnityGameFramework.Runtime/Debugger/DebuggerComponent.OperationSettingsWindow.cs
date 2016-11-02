@@ -46,13 +46,17 @@ namespace UnityGameFramework.Runtime
                         }
                     }
 
-                    if (GUILayout.Button("Restart Game Framework", GUILayout.Height(30f)))
+                    if (GUILayout.Button("Shutdown Game Framework (None)", GUILayout.Height(30f)))
                     {
-                        GameEntry.Restart();
+                        GameEntry.Shutdown(ShutdownType.None);
                     }
-                    if (GUILayout.Button("Shutdown Game Framework", GUILayout.Height(30f)))
+                    if (GUILayout.Button("Shutdown Game Framework (Restart)", GUILayout.Height(30f)))
                     {
-                        GameEntry.Shutdown();
+                        GameEntry.Shutdown(ShutdownType.Restart);
+                    }
+                    if (GUILayout.Button("Shutdown Game Framework (Quit)", GUILayout.Height(30f)))
+                    {
+                        GameEntry.Shutdown(ShutdownType.Quit);
                     }
                 }
                 GUILayout.EndVertical();

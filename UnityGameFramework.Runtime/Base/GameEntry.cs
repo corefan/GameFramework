@@ -79,6 +79,31 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 关闭游戏框架。
+        /// </summary>
+        /// <param name="shutdownType">关闭游戏框架类型。</param>
+        public static void Shutdown(ShutdownType shutdownType)
+        {
+            Log.Info("Shutdown Game Framework ({0})...", shutdownType.ToString());
+            BaseComponent baseComponent = GetComponent<BaseComponent>();
+            if (baseComponent != null)
+            {
+                baseComponent.Shutdown();
+            }
+
+            s_GameFrameworkComponents.Clear();
+
+            if (shutdownType == ShutdownType.Quit)
+            {
+                Application.Quit();
+            }
+            else if (shutdownType == ShutdownType.Restart && baseComponent != null)
+            {
+                baseComponent.Reload();
+            }
+        }
+
+        /// <summary>
         /// 注册游戏框架组件。
         /// </summary>
         /// <param name="gameFrameworkComponent">要注册的游戏框架组件。</param>
@@ -99,43 +124,6 @@ namespace UnityGameFramework.Runtime
             }
 
             s_GameFrameworkComponents.AddLast(gameFrameworkComponent);
-        }
-
-        /// <summary>
-        /// 重启游戏。
-        /// </summary>
-        public static void Restart()
-        {
-            Log.Info("Restart Game Framework...");
-            BaseComponent baseComponent = GetComponent<BaseComponent>();
-            if (baseComponent != null)
-            {
-                baseComponent.Shutdown();
-            }
-
-            s_GameFrameworkComponents.Clear();
-
-            if (baseComponent != null)
-            {
-                baseComponent.Reload();
-            }
-        }
-
-        /// <summary>
-        /// 关闭游戏。
-        /// </summary>
-        public static void Shutdown()
-        {
-            Log.Info("Shutdown Game Framework...");
-            BaseComponent baseComponent = GetComponent<BaseComponent>();
-            if (baseComponent != null)
-            {
-                baseComponent.Shutdown();
-            }
-
-            s_GameFrameworkComponents.Clear();
-
-            Application.Quit();
         }
     }
 }

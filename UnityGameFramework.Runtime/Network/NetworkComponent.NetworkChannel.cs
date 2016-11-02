@@ -42,6 +42,9 @@ namespace UnityGameFramework.Runtime
             private int m_MaxPacketLength = DefaultMaxPacketLength;
 
             [SerializeField]
+            private bool m_ResetHeartBeatElapseSecondsWhenReceivePacket = false;
+
+            [SerializeField]
             private float m_HeartBeatInterval = DefaultHeartBeatInterval;
 
             /// <summary>
@@ -120,6 +123,17 @@ namespace UnityGameFramework.Runtime
             }
 
             /// <summary>
+            /// 获取当收到消息包时是否重置心跳流逝时间。
+            /// </summary>
+            public bool ResetHeartBeatElapseSecondsWhenReceivePacket
+            {
+                get
+                {
+                    return m_ResetHeartBeatElapseSecondsWhenReceivePacket;
+                }
+            }
+
+            /// <summary>
             /// 获取心跳间隔时长，以秒为单位。
             /// </summary>
             public float HeartBeatInterval
@@ -139,6 +153,7 @@ namespace UnityGameFramework.Runtime
                 }
 
                 m_NetworkChannel = networkChannel;
+                m_NetworkChannel.ResetHeartBeatElapseSecondsWhenReceivePacket = m_ResetHeartBeatElapseSecondsWhenReceivePacket;
                 m_NetworkChannel.HeartBeatInterval = m_HeartBeatInterval;
             }
 
