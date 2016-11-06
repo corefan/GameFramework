@@ -178,8 +178,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ResourceMode: 1
   m_UnloadUnusedAssetsInterval: 60
+  m_AssetAutoReleaseInterval: 60
   m_AssetCapacity: 64
+  m_AssetExpireTime: 60
+  m_ResourceAutoReleaseInterval: 60
   m_ResourceCapacity: 16
+  m_ResourceExpireTime: 60
   m_UpdatePrefixUri: 
   m_UpdateRetryCount: 3
   m_InstanceRoot: {fileID: 0}
@@ -335,7 +339,9 @@ MonoBehaviour:
   m_EnableOpenUIFormUpdateEvent: 0
   m_EnableOpenUIFormDependencyAssetEvent: 0
   m_EnableCloseUIFormCompleteEvent: 1
-  m_InstanceCapacity: 8
+  m_InstanceAutoReleaseInterval: 60
+  m_InstanceCapacity: 16
+  m_InstanceExpireTime: 60
   m_InstanceRoot: {fileID: 0}
   m_UIFormHelperTypeName: UnityGameFramework.Runtime.DefaultUIFormHelper
   m_CustomUIFormHelper: {fileID: 0}

@@ -11642,19 +11642,14 @@
             </summary>
             <returns>所有实体组。</returns>
         </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.AddEntityGroup(System.String)">
+        <member name="M:UnityGameFramework.Runtime.EntityComponent.AddEntityGroup(System.String,System.Single,System.Int32,System.Single)">
             <summary>
             增加实体组。
             </summary>
             <param name="entityGroupName">实体组名称。</param>
-            <returns>是否增加实体组成功。</returns>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.EntityComponent.AddEntityGroup(System.String,System.Int32)">
-            <summary>
-            增加实体组。
-            </summary>
-            <param name="entityGroupName">实体组名称。</param>
+            <param name="instanceAutoReleaseInterval">实体实例对象池自动释放可释放对象的间隔秒数。</param>
             <param name="instanceCapacity">实体实例对象池容量。</param>
+            <param name="instanceExpireTime">实体实例对象池对象过期秒数。</param>
             <returns>是否增加实体组成功。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.EntityComponent.HasEntity(System.Int32)">
@@ -14860,6 +14855,14 @@
             <param name="capacity">对象池的容量。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.Single)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
         <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.String,System.Int32)">
             <summary>
             创建允许单次获取的对象池。
@@ -14867,6 +14870,93 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.String,System.Single)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.Int32,System.Single)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.Int32,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.Single,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Single)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.String,System.Single,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.Int32,System.Single,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许单次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Single,System.Int32)">
+            <summary>
+            创建允许单次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1">
@@ -14892,6 +14982,14 @@
             <param name="capacity">对象池的容量。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.Single)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
         <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.String,System.Int32)">
             <summary>
             创建允许多次获取的对象池。
@@ -14899,6 +14997,93 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.String,System.Single)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.Int32,System.Single)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.Int32,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.Single,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Single)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.String,System.Single,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.Int32,System.Single,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
+            <returns>要创建的允许多次获取的对象池。</returns>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Single,System.Int32)">
+            <summary>
+            创建允许多次获取的对象池。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="name">对象池名称。</param>
+            <param name="capacity">对象池的容量。</param>
+            <param name="expireTime">对象池对象过期秒数。</param>
+            <param name="order">对象池顺序。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:UnityGameFramework.Runtime.ObjectPoolComponent.DestroyObjectPool``1">
@@ -15254,14 +15439,34 @@
             获取等待加载资源任务数量。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.ResourceComponent.AssetAutoReleaseInterval">
+            <summary>
+            获取或设置资源对象池自动释放可释放对象的间隔秒数。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.ResourceComponent.AssetCapacity">
             <summary>
             获取或设置资源对象池的容量。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.ResourceComponent.AssetExpireTime">
+            <summary>
+            获取或设置资源对象池对象过期秒数。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ResourceComponent.ResourceAutoReleaseInterval">
+            <summary>
+            获取或设置资源对象池自动释放可释放对象的间隔秒数。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.ResourceComponent.ResourceCapacity">
             <summary>
             获取或设置资源对象池的容量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.ResourceComponent.ResourceExpireTime">
+            <summary>
+            获取或设置资源对象池对象过期秒数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.ResourceComponent.Awake">
@@ -16346,9 +16551,19 @@
             获取界面组数量。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.UIComponent.InstanceAutoReleaseInterval">
+            <summary>
+            获取或设置界面实例对象池自动释放可释放对象的间隔秒数。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.UIComponent.InstanceCapacity">
             <summary>
             获取或设置界面实例对象池的容量。
+            </summary>
+        </member>
+        <member name="P:UnityGameFramework.Runtime.UIComponent.InstanceExpireTime">
+            <summary>
+            获取或设置界面实例对象池对象过期秒数。
             </summary>
         </member>
         <member name="M:UnityGameFramework.Runtime.UIComponent.Awake">

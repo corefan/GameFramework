@@ -37,10 +37,22 @@ namespace UnityGameFramework.Runtime
         private float m_UnloadUnusedAssetsInterval = 60f;
 
         [SerializeField]
+        private float m_AssetAutoReleaseInterval = 60f;
+
+        [SerializeField]
         private int m_AssetCapacity = 64;
 
         [SerializeField]
+        private float m_AssetExpireTime = 60f;
+
+        [SerializeField]
+        private float m_ResourceAutoReleaseInterval = 60f;
+
+        [SerializeField]
         private int m_ResourceCapacity = 16;
+
+        [SerializeField]
+        private float m_ResourceExpireTime = 60f;
 
         [SerializeField]
         private string m_UpdatePrefixUri = null;
@@ -277,6 +289,21 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
+        /// </summary>
+        public float AssetAutoReleaseInterval
+        {
+            get
+            {
+                return m_ResourceManager.AssetAutoReleaseInterval;
+            }
+            set
+            {
+                m_ResourceManager.AssetAutoReleaseInterval = m_AssetAutoReleaseInterval = value;
+            }
+        }
+
+        /// <summary>
         /// 获取或设置资源对象池的容量。
         /// </summary>
         public int AssetCapacity
@@ -292,6 +319,36 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置资源对象池对象过期秒数。
+        /// </summary>
+        public float AssetExpireTime
+        {
+            get
+            {
+                return m_ResourceManager.AssetExpireTime;
+            }
+            set
+            {
+                m_ResourceManager.AssetExpireTime = m_AssetExpireTime = value;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
+        /// </summary>
+        public float ResourceAutoReleaseInterval
+        {
+            get
+            {
+                return m_ResourceManager.ResourceAutoReleaseInterval;
+            }
+            set
+            {
+                m_ResourceManager.ResourceAutoReleaseInterval = m_ResourceAutoReleaseInterval = value;
+            }
+        }
+
+        /// <summary>
         /// 获取或设置资源对象池的容量。
         /// </summary>
         public int ResourceCapacity
@@ -303,6 +360,21 @@ namespace UnityGameFramework.Runtime
             set
             {
                 m_ResourceManager.ResourceCapacity = m_ResourceCapacity = value;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池对象过期秒数。
+        /// </summary>
+        public float ResourceExpireTime
+        {
+            get
+            {
+                return m_ResourceManager.ResourceExpireTime;
+            }
+            set
+            {
+                m_ResourceManager.ResourceExpireTime = m_ResourceExpireTime = value;
             }
         }
 

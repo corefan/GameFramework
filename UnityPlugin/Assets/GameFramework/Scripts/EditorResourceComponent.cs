@@ -291,6 +291,21 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
+        /// </summary>
+        public float AssetAutoReleaseInterval
+        {
+            get
+            {
+                throw new NotSupportedException("AssetAutoReleaseInterval");
+            }
+            set
+            {
+                throw new NotSupportedException("AssetAutoReleaseInterval");
+            }
+        }
+
+        /// <summary>
         /// 获取或设置资源对象池的容量。
         /// </summary>
         public int AssetCapacity
@@ -306,6 +321,36 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置资源对象池对象过期秒数。
+        /// </summary>
+        public float AssetExpireTime
+        {
+            get
+            {
+                throw new NotSupportedException("AssetExpireTime");
+            }
+            set
+            {
+                throw new NotSupportedException("AssetExpireTime");
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
+        /// </summary>
+        public float ResourceAutoReleaseInterval
+        {
+            get
+            {
+                throw new NotSupportedException("ResourceAutoReleaseInterval");
+            }
+            set
+            {
+                throw new NotSupportedException("ResourceAutoReleaseInterval");
+            }
+        }
+
+        /// <summary>
         /// 获取或设置资源对象池的容量。
         /// </summary>
         public int ResourceCapacity
@@ -317,6 +362,21 @@ namespace UnityGameFramework.Runtime
             set
             {
                 throw new NotSupportedException("ResourceCapacity");
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池对象过期秒数。
+        /// </summary>
+        public float ResourceExpireTime
+        {
+            get
+            {
+                throw new NotSupportedException("ResourceExpireTime");
+            }
+            set
+            {
+                throw new NotSupportedException("ResourceExpireTime");
             }
         }
 

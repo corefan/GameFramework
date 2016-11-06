@@ -19,7 +19,13 @@ namespace UnityGameFramework.Runtime
             private string m_Name = null;
 
             [SerializeField]
-            private int m_InstanceCapacity = 4;
+            private float m_InstanceAutoReleaseInterval = 60f;
+
+            [SerializeField]
+            private int m_InstanceCapacity = 16;
+
+            [SerializeField]
+            private float m_InstanceExpireTime = 60f;
 
             public string Name
             {
@@ -29,11 +35,27 @@ namespace UnityGameFramework.Runtime
                 }
             }
 
+            public float InstanceAutoReleaseInterval
+            {
+                get
+                {
+                    return m_InstanceAutoReleaseInterval;
+                }
+            }
+
             public int InstanceCapacity
             {
                 get
                 {
                     return m_InstanceCapacity;
+                }
+            }
+
+            public float InstanceExpireTime
+            {
+                get
+                {
+                    return m_InstanceExpireTime;
                 }
             }
         }

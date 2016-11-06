@@ -20,8 +20,6 @@ namespace UnityGameFramework.Runtime
     [AddComponentMenu("Game Framework/Entity")]
     public sealed partial class EntityComponent : GameFrameworkComponent
     {
-        private const int DefaultInstanceCapacity = 4;
-
         private IEntityManager m_EntityManager = null;
         private EventComponent m_EventComponent = null;
 
@@ -150,9 +148,9 @@ namespace UnityGameFramework.Runtime
 
             foreach (EntityGroup entityGroup in m_EntityGroups)
             {
-                if (!AddEntityGroup(entityGroup.Name, entityGroup.InstanceCapacity))
+                if (!AddEntityGroup(entityGroup.Name, entityGroup.InstanceAutoReleaseInterval, entityGroup.InstanceCapacity, entityGroup.InstanceExpireTime))
                 {
-                    Log.Warning("Add entity group '{0}'.", entityGroup.Name);
+                    Log.Warning("Add entity group '{0}' failure.", entityGroup.Name);
                     continue;
                 }
             }
@@ -191,19 +189,11 @@ namespace UnityGameFramework.Runtime
         /// 增加实体组。
         /// </summary>
         /// <param name="entityGroupName">实体组名称。</param>
-        /// <returns>是否增加实体组成功。</returns>
-        public bool AddEntityGroup(string entityGroupName)
-        {
-            return AddEntityGroup(entityGroupName, DefaultInstanceCapacity);
-        }
-
-        /// <summary>
-        /// 增加实体组。
-        /// </summary>
-        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="instanceAutoReleaseInterval">实体实例对象池自动释放可释放对象的间隔秒数。</param>
         /// <param name="instanceCapacity">实体实例对象池容量。</param>
+        /// <param name="instanceExpireTime">实体实例对象池对象过期秒数。</param>
         /// <returns>是否增加实体组成功。</returns>
-        public bool AddEntityGroup(string entityGroupName, int instanceCapacity)
+        public bool AddEntityGroup(string entityGroupName, float instanceAutoReleaseInterval, int instanceCapacity, float instanceExpireTime)
         {
             if (m_EntityManager.HasEntityGroup(entityGroupName))
             {
@@ -222,7 +212,7 @@ namespace UnityGameFramework.Runtime
             transform.SetParent(m_InstanceRoot);
             transform.localScale = Vector3.one;
 
-            return m_EntityManager.AddEntityGroup(entityGroupName, instanceCapacity, entityGroupHelper);
+            return m_EntityManager.AddEntityGroup(entityGroupName, instanceAutoReleaseInterval, instanceCapacity, instanceExpireTime, entityGroupHelper);
         }
 
         /// <summary>

@@ -38,7 +38,13 @@ namespace UnityGameFramework.Runtime
         private bool m_EnableCloseUIFormCompleteEvent = true;
 
         [SerializeField]
-        private int m_InstanceCapacity = 8;
+        private float m_InstanceAutoReleaseInterval = 60f;
+
+        [SerializeField]
+        private int m_InstanceCapacity = 16;
+
+        [SerializeField]
+        private float m_InstanceExpireTime = 60f;
 
         [SerializeField]
         private Transform m_InstanceRoot = null;
@@ -70,6 +76,21 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置界面实例对象池自动释放可释放对象的间隔秒数。
+        /// </summary>
+        public float InstanceAutoReleaseInterval
+        {
+            get
+            {
+                return m_UIManager.InstanceAutoReleaseInterval;
+            }
+            set
+            {
+                m_UIManager.InstanceAutoReleaseInterval = m_InstanceAutoReleaseInterval = value;
+            }
+        }
+
+        /// <summary>
         /// 获取或设置界面实例对象池的容量。
         /// </summary>
         public int InstanceCapacity
@@ -81,6 +102,21 @@ namespace UnityGameFramework.Runtime
             set
             {
                 m_UIManager.InstanceCapacity = m_InstanceCapacity = value;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置界面实例对象池对象过期秒数。
+        /// </summary>
+        public float InstanceExpireTime
+        {
+            get
+            {
+                return m_UIManager.InstanceExpireTime;
+            }
+            set
+            {
+                m_UIManager.InstanceExpireTime = m_InstanceExpireTime = value;
             }
         }
 
