@@ -66,12 +66,11 @@ namespace UnityGameFramework.Runtime
 
             if (unityObject is GameObject || unityObject is MonoBehaviour)
             {
-                DestroyImmediate(unityObject, true);
+                // UnloadAsset may only be used on individual assets and can not be used on GameObject's / Components or AssetBundles.
+                return;
             }
-            else
-            {
-                Resources.UnloadAsset(unityObject);
-            }
+
+            Resources.UnloadAsset(unityObject);
         }
 
         private void Start()

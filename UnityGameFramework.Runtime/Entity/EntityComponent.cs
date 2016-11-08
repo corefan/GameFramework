@@ -148,7 +148,7 @@ namespace UnityGameFramework.Runtime
 
             foreach (EntityGroup entityGroup in m_EntityGroups)
             {
-                if (!AddEntityGroup(entityGroup.Name, entityGroup.InstanceAutoReleaseInterval, entityGroup.InstanceCapacity, entityGroup.InstanceExpireTime))
+                if (!AddEntityGroup(entityGroup.Name, entityGroup.InstanceAutoReleaseInterval, entityGroup.InstanceCapacity, entityGroup.InstanceExpireTime, entityGroup.InstancePriority))
                 {
                     Log.Warning("Add entity group '{0}' failure.", entityGroup.Name);
                     continue;
@@ -192,8 +192,9 @@ namespace UnityGameFramework.Runtime
         /// <param name="instanceAutoReleaseInterval">实体实例对象池自动释放可释放对象的间隔秒数。</param>
         /// <param name="instanceCapacity">实体实例对象池容量。</param>
         /// <param name="instanceExpireTime">实体实例对象池对象过期秒数。</param>
+        /// <param name="instancePriority">实体实例对象池的优先级。</param>
         /// <returns>是否增加实体组成功。</returns>
-        public bool AddEntityGroup(string entityGroupName, float instanceAutoReleaseInterval, int instanceCapacity, float instanceExpireTime)
+        public bool AddEntityGroup(string entityGroupName, float instanceAutoReleaseInterval, int instanceCapacity, float instanceExpireTime, int instancePriority)
         {
             if (m_EntityManager.HasEntityGroup(entityGroupName))
             {
@@ -212,7 +213,7 @@ namespace UnityGameFramework.Runtime
             transform.SetParent(m_InstanceRoot);
             transform.localScale = Vector3.one;
 
-            return m_EntityManager.AddEntityGroup(entityGroupName, instanceAutoReleaseInterval, instanceCapacity, instanceExpireTime, entityGroupHelper);
+            return m_EntityManager.AddEntityGroup(entityGroupName, instanceAutoReleaseInterval, instanceCapacity, instanceExpireTime, instancePriority, entityGroupHelper);
         }
 
         /// <summary>

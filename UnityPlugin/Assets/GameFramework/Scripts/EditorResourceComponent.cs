@@ -336,6 +336,21 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置资源对象池的优先级。
+        /// </summary>
+        public int AssetPriority
+        {
+            get
+            {
+                throw new NotSupportedException("AssetPriority");
+            }
+            set
+            {
+                throw new NotSupportedException("AssetPriority");
+            }
+        }
+
+        /// <summary>
         /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
         /// </summary>
         public float ResourceAutoReleaseInterval
@@ -377,6 +392,21 @@ namespace UnityGameFramework.Runtime
             set
             {
                 throw new NotSupportedException("ResourceExpireTime");
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池的优先级。
+        /// </summary>
+        public int ResourcePriority
+        {
+            get
+            {
+                throw new NotSupportedException("ResourcePriority");
+            }
+            set
+            {
+                throw new NotSupportedException("ResourcePriority");
             }
         }
 

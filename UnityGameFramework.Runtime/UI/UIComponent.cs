@@ -47,6 +47,9 @@ namespace UnityGameFramework.Runtime
         private float m_InstanceExpireTime = 60f;
 
         [SerializeField]
+        private int m_InstancePriority = 0;
+
+        [SerializeField]
         private Transform m_InstanceRoot = null;
 
         [SerializeField]
@@ -121,6 +124,21 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置界面实例对象池的优先级。
+        /// </summary>
+        public int InstancePriority
+        {
+            get
+            {
+                return m_UIManager.InstancePriority;
+            }
+            set
+            {
+                m_UIManager.InstancePriority = m_InstancePriority = value;
+            }
+        }
+
+        /// <summary>
         /// 游戏框架组件初始化。
         /// </summary>
         protected internal override void Awake()
@@ -167,7 +185,10 @@ namespace UnityGameFramework.Runtime
             }
 
             m_UIManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
+            m_UIManager.InstanceAutoReleaseInterval = m_InstanceAutoReleaseInterval;
             m_UIManager.InstanceCapacity = m_InstanceCapacity;
+            m_UIManager.InstanceExpireTime = m_InstanceExpireTime;
+            m_UIManager.InstancePriority = m_InstancePriority;
 
             UIFormHelperBase uiFormHelper = Utility.Helper.CreateHelper(m_UIFormHelperTypeName, m_CustomUIFormHelper);
             if (uiFormHelper == null)

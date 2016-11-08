@@ -51,7 +51,7 @@ namespace UnityGameFramework.Runtime
                     DrawItem("Auto Release Interval", objectPool.AutoReleaseInterval.ToString());
                     DrawItem("Capacity", string.Format("{0} / {1}", objectPool.Count.ToString(), objectPool.Capacity.ToString()));
                     DrawItem("Expire Time", objectPool.ExpireTime.ToString());
-                    DrawItem("Order", objectPool.Order.ToString());
+                    DrawItem("Priority", objectPool.Priority.ToString());
                     ObjectInfo[] objectInfos = objectPool.GetAllObjectInfos();
                     GUILayout.BeginHorizontal();
                     {

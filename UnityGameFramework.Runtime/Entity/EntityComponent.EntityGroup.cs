@@ -27,6 +27,9 @@ namespace UnityGameFramework.Runtime
             [SerializeField]
             private float m_InstanceExpireTime = 60f;
 
+            [SerializeField]
+            private int m_InstancePriority = 0;
+
             public string Name
             {
                 get
@@ -56,6 +59,14 @@ namespace UnityGameFramework.Runtime
                 get
                 {
                     return m_InstanceExpireTime;
+                }
+            }
+
+            public int InstancePriority
+            {
+                get
+                {
+                    return m_InstancePriority;
                 }
             }
         }

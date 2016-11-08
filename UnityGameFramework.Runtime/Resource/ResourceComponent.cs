@@ -46,6 +46,9 @@ namespace UnityGameFramework.Runtime
         private float m_AssetExpireTime = 60f;
 
         [SerializeField]
+        private int m_AssetPriority = 0;
+
+        [SerializeField]
         private float m_ResourceAutoReleaseInterval = 60f;
 
         [SerializeField]
@@ -53,6 +56,9 @@ namespace UnityGameFramework.Runtime
 
         [SerializeField]
         private float m_ResourceExpireTime = 60f;
+
+        [SerializeField]
+        private int m_ResourcePriority = 0;
 
         [SerializeField]
         private string m_UpdatePrefixUri = null;
@@ -334,6 +340,21 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取或设置资源对象池的优先级。
+        /// </summary>
+        public int AssetPriority
+        {
+            get
+            {
+                return m_ResourceManager.AssetPriority;
+            }
+            set
+            {
+                m_ResourceManager.AssetPriority = m_AssetPriority = value;
+            }
+        }
+
+        /// <summary>
         /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
         /// </summary>
         public float ResourceAutoReleaseInterval
@@ -375,6 +396,21 @@ namespace UnityGameFramework.Runtime
             set
             {
                 m_ResourceManager.ResourceExpireTime = m_ResourceExpireTime = value;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置资源对象池的优先级。
+        /// </summary>
+        public int ResourcePriority
+        {
+            get
+            {
+                return m_ResourceManager.ResourcePriority;
+            }
+            set
+            {
+                m_ResourceManager.ResourcePriority = m_ResourcePriority = value;
             }
         }
 
@@ -431,8 +467,14 @@ namespace UnityGameFramework.Runtime
             SetResourceMode(m_ResourceMode);
             m_ResourceManager.SetDownloadManager(GameFrameworkEntry.GetModule<IDownloadManager>());
             m_ResourceManager.SetObjectPoolManager(GameFrameworkEntry.GetModule<IObjectPoolManager>());
+            m_ResourceManager.AssetAutoReleaseInterval = m_AssetAutoReleaseInterval;
             m_ResourceManager.AssetCapacity = m_AssetCapacity;
+            m_ResourceManager.AssetExpireTime = m_AssetExpireTime;
+            m_ResourceManager.AssetPriority = m_AssetPriority;
+            m_ResourceManager.ResourceAutoReleaseInterval = m_ResourceAutoReleaseInterval;
             m_ResourceManager.ResourceCapacity = m_ResourceCapacity;
+            m_ResourceManager.ResourceExpireTime = m_ResourceExpireTime;
+            m_ResourceManager.ResourcePriority = m_ResourcePriority;
             if (m_ResourceMode == ResourceMode.Updatable)
             {
                 m_ResourceManager.UpdatePrefixUri = m_UpdatePrefixUri;

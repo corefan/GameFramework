@@ -3457,7 +3457,7 @@
             </summary>
             <returns>所有实体组。</returns>
         </member>
-        <member name="M:GameFramework.Entity.EntityManager.AddEntityGroup(System.String,System.Single,System.Int32,System.Single,GameFramework.Entity.IEntityGroupHelper)">
+        <member name="M:GameFramework.Entity.EntityManager.AddEntityGroup(System.String,System.Single,System.Int32,System.Single,System.Int32,GameFramework.Entity.IEntityGroupHelper)">
             <summary>
             增加实体组。
             </summary>
@@ -3465,6 +3465,7 @@
             <param name="instanceAutoReleaseInterval">实体实例对象池自动释放可释放对象的间隔秒数。</param>
             <param name="instanceCapacity">实体实例对象池容量。</param>
             <param name="instanceExpireTime">实体实例对象池对象过期秒数。</param>
+            <param name="instancePriority">实体实例对象池的优先级。</param>
             <param name="entityGroupHelper">实体组辅助器。</param>
             <returns>是否增加实体组成功。</returns>
         </member>
@@ -3722,7 +3723,7 @@
             实体组。
             </summary>
         </member>
-        <member name="M:GameFramework.Entity.EntityManager.EntityGroup.#ctor(System.String,System.Single,System.Int32,System.Single,GameFramework.Entity.IEntityGroupHelper,GameFramework.ObjectPool.IObjectPoolManager)">
+        <member name="M:GameFramework.Entity.EntityManager.EntityGroup.#ctor(System.String,System.Single,System.Int32,System.Single,System.Int32,GameFramework.Entity.IEntityGroupHelper,GameFramework.ObjectPool.IObjectPoolManager)">
             <summary>
             初始化实体组的新实例。
             </summary>
@@ -3730,6 +3731,7 @@
             <param name="instanceAutoReleaseInterval">实体实例对象池自动释放可释放对象的间隔秒数。</param>
             <param name="instanceCapacity">实体实例对象池容量。</param>
             <param name="instanceExpireTime">实体实例对象池对象过期秒数。</param>
+            <param name="instancePriority">实体实例对象池的优先级。</param>
             <param name="entityGroupHelper">实体组辅助器。</param>
             <param name="objectPoolManager">对象池管理器。</param>
         </member>
@@ -3756,6 +3758,11 @@
         <member name="P:GameFramework.Entity.EntityManager.EntityGroup.InstanceExpireTime">
             <summary>
             获取或设置实体组实例对象池对象过期秒数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Entity.EntityManager.EntityGroup.InstancePriority">
+            <summary>
+            获取或设置实体组实例对象池的优先级。
             </summary>
         </member>
         <member name="P:GameFramework.Entity.EntityManager.EntityGroup.Helper">
@@ -3930,6 +3937,11 @@
             获取或设置实体组实例对象池对象过期秒数。
             </summary>
         </member>
+        <member name="P:GameFramework.Entity.IEntityGroup.InstancePriority">
+            <summary>
+            获取或设置实体组实例对象池的优先级。
+            </summary>
+        </member>
         <member name="P:GameFramework.Entity.IEntityGroup.Helper">
             <summary>
             获取实体组辅助器。
@@ -4038,7 +4050,7 @@
             </summary>
             <returns>所有实体组。</returns>
         </member>
-        <member name="M:GameFramework.Entity.IEntityManager.AddEntityGroup(System.String,System.Single,System.Int32,System.Single,GameFramework.Entity.IEntityGroupHelper)">
+        <member name="M:GameFramework.Entity.IEntityManager.AddEntityGroup(System.String,System.Single,System.Int32,System.Single,System.Int32,GameFramework.Entity.IEntityGroupHelper)">
             <summary>
             增加实体组。
             </summary>
@@ -4046,6 +4058,7 @@
             <param name="instanceAutoReleaseInterval">实体实例对象池自动释放可释放对象的间隔秒数。</param>
             <param name="instanceCapacity">实体实例对象池容量。</param>
             <param name="instanceExpireTime">实体实例对象池对象过期秒数。</param>
+            <param name="instancePriority">实体实例对象池的优先级。</param>
             <param name="entityGroupHelper">实体组辅助器。</param>
             <returns>是否增加实体组成功。</returns>
         </member>
@@ -6752,27 +6765,9 @@
             获取或设置对象池对象过期秒数。
             </summary>
         </member>
-        <member name="P:GameFramework.ObjectPool.IObjectPool`1.Order">
+        <member name="P:GameFramework.ObjectPool.IObjectPool`1.Priority">
             <summary>
-            获取或设置对象池顺序。
-            </summary>
-        </member>
-        <member name="M:GameFramework.ObjectPool.IObjectPool`1.SetRefreshObjectCallback(GameFramework.ObjectPool.RefreshObjectCallback{`0})">
-            <summary>
-            设置刷新对象函数。
-            </summary>
-            <param name="refreshObjectCallback">刷新对象函数。</param>
-        </member>
-        <member name="M:GameFramework.ObjectPool.IObjectPool`1.SetReleaseObjectFilterCallback(GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
-            <summary>
-            设置释放对象筛选函数。
-            </summary>
-            <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
-            <remarks>如果不设置，将使用默认的释放对象筛选函数。</remarks>
-        </member>
-        <member name="M:GameFramework.ObjectPool.IObjectPool`1.Refresh">
-            <summary>
-            刷新对象池中的所有对象。
+            获取或设置对象池的优先级。
             </summary>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPool`1.Register(`0,System.Boolean)">
@@ -6853,6 +6848,12 @@
             释放对象池中的可释放对象。
             </summary>
         </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPool`1.Release(GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
+            <summary>
+            释放对象池中的可释放对象。
+            </summary>
+            <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
+        </member>
         <member name="M:GameFramework.ObjectPool.IObjectPool`1.ReleaseAllUnused">
             <summary>
             释放对象池中的所有未使用对象。
@@ -6908,7 +6909,7 @@
             <summary>
             获取所有对象池。
             </summary>
-            <param name="ordered">是否根据对象池顺序排序。</param>
+            <param name="sort">是否根据对象池的优先级排序。</param>
             <returns>所有对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1">
@@ -6975,7 +6976,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1(System.Single,System.Int32)">
@@ -6984,7 +6985,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Single)">
@@ -7004,7 +7005,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Single,System.Int32)">
@@ -7014,7 +7015,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1(System.Int32,System.Single,System.Int32)">
@@ -7024,7 +7025,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Single,System.Int32)">
@@ -7035,7 +7036,7 @@
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1">
@@ -7102,7 +7103,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1(System.Single,System.Int32)">
@@ -7111,7 +7112,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Single)">
@@ -7131,7 +7132,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Single,System.Int32)">
@@ -7141,7 +7142,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1(System.Int32,System.Single,System.Int32)">
@@ -7151,7 +7152,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Single,System.Int32)">
@@ -7162,7 +7163,7 @@
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPoolManager.DestroyObjectPool``1">
@@ -7377,9 +7378,9 @@
             获取或设置对象池对象过期秒数。
             </summary>
         </member>
-        <member name="P:GameFramework.ObjectPool.ObjectPoolBase.Order">
+        <member name="P:GameFramework.ObjectPool.ObjectPoolBase.Priority">
             <summary>
-            获取或设置对象池顺序。
+            获取或设置对象池的优先级。
             </summary>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolBase.Release">
@@ -7471,7 +7472,7 @@
             <summary>
             获取所有对象池。
             </summary>
-            <param name="ordered">是否根据对象池顺序排序。</param>
+            <param name="sort">是否根据对象池的优先级排序。</param>
             <returns>所有对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1">
@@ -7538,7 +7539,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1(System.Single,System.Int32)">
@@ -7547,7 +7548,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Single)">
@@ -7567,7 +7568,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Single,System.Int32)">
@@ -7577,7 +7578,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1(System.Int32,System.Single,System.Int32)">
@@ -7587,7 +7588,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateSingleSpawnObjectPool``1(System.String,System.Int32,System.Single,System.Int32)">
@@ -7598,7 +7599,7 @@
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许单次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1">
@@ -7665,7 +7666,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1(System.Single,System.Int32)">
@@ -7674,7 +7675,7 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Single)">
@@ -7694,7 +7695,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Single,System.Int32)">
@@ -7704,7 +7705,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="name">对象池名称。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1(System.Int32,System.Single,System.Int32)">
@@ -7714,7 +7715,7 @@
             <typeparam name="T">对象类型。</typeparam>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.CreateMultiSpawnObjectPool``1(System.String,System.Int32,System.Single,System.Int32)">
@@ -7725,7 +7726,7 @@
             <param name="name">对象池名称。</param>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
             <returns>要创建的允许多次获取的对象池。</returns>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.DestroyObjectPool``1">
@@ -7840,7 +7841,7 @@
             <param name="allowMultiSpawn">是否允许对象被多次获取。</param>
             <param name="capacity">对象池的容量。</param>
             <param name="expireTime">对象池对象过期秒数。</param>
-            <param name="order">对象池顺序。</param>
+            <param name="priority">对象池的优先级。</param>
         </member>
         <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.ObjectType">
             <summary>
@@ -7872,27 +7873,9 @@
             获取或设置对象池对象过期秒数。
             </summary>
         </member>
-        <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Order">
+        <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Priority">
             <summary>
-            获取或设置对象池顺序。
-            </summary>
-        </member>
-        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.SetRefreshObjectCallback(GameFramework.ObjectPool.RefreshObjectCallback{`0})">
-            <summary>
-            设置刷新对象函数。
-            </summary>
-            <param name="refreshObjectCallback">刷新对象函数。</param>
-        </member>
-        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.SetReleaseObjectFilterCallback(GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
-            <summary>
-            设置释放对象筛选函数。
-            </summary>
-            <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
-            <remarks>如果不设置，将使用默认的释放对象筛选函数。</remarks>
-        </member>
-        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Refresh">
-            <summary>
-            刷新对象池中的所有对象。
+            获取或设置对象池的优先级。
             </summary>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Register(`0,System.Boolean)">
@@ -7973,6 +7956,12 @@
             释放对象池中的可释放对象。
             </summary>
         </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Release(GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
+            <summary>
+            释放对象池中的可释放对象。
+            </summary>
+            <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
+        </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.ReleaseAllUnused">
             <summary>
             释放对象池中的所有未使用对象。
@@ -7983,13 +7972,6 @@
             获取所有对象信息。
             </summary>
             <returns>所有对象信息。</returns>
-        </member>
-        <member name="T:GameFramework.ObjectPool.RefreshObjectCallback`1">
-            <summary>
-            刷新对象函数。
-            </summary>
-            <typeparam name="T">对象类型。</typeparam>
-            <param name="obj">对象。</param>
         </member>
         <member name="T:GameFramework.ObjectPool.ReleaseObjectFilterCallback`1">
             <summary>
@@ -8531,6 +8513,11 @@
             获取或设置资源对象池对象过期秒数。
             </summary>
         </member>
+        <member name="P:GameFramework.Resource.IResourceManager.AssetPriority">
+            <summary>
+            获取或设置资源对象池的优先级。
+            </summary>
+        </member>
         <member name="P:GameFramework.Resource.IResourceManager.ResourceAutoReleaseInterval">
             <summary>
             获取或设置资源对象池自动释放可释放对象的间隔秒数。
@@ -8544,6 +8531,11 @@
         <member name="P:GameFramework.Resource.IResourceManager.ResourceExpireTime">
             <summary>
             获取或设置资源对象池对象过期秒数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.IResourceManager.ResourcePriority">
+            <summary>
+            获取或设置资源对象池的优先级。
             </summary>
         </member>
         <member name="E:GameFramework.Resource.IResourceManager.ResourceInitComplete">
@@ -9402,6 +9394,11 @@
             获取或设置资源对象池对象过期秒数。
             </summary>
         </member>
+        <member name="P:GameFramework.Resource.ResourceManager.AssetPriority">
+            <summary>
+            获取或设置资源对象池的优先级。
+            </summary>
+        </member>
         <member name="P:GameFramework.Resource.ResourceManager.ResourceAutoReleaseInterval">
             <summary>
             获取或设置资源对象池自动释放可释放对象的间隔秒数。
@@ -9415,6 +9412,11 @@
         <member name="P:GameFramework.Resource.ResourceManager.ResourceExpireTime">
             <summary>
             获取或设置资源对象池对象过期秒数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.ResourceManager.ResourcePriority">
+            <summary>
+            获取或设置资源对象池的优先级。
             </summary>
         </member>
         <member name="E:GameFramework.Resource.ResourceManager.ResourceInitComplete">
@@ -10024,6 +10026,11 @@
             获取或设置资源对象池对象过期秒数。
             </summary>
         </member>
+        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.AssetPriority">
+            <summary>
+            获取或设置资源对象池的优先级。
+            </summary>
+        </member>
         <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.ResourceAutoReleaseInterval">
             <summary>
             获取或设置资源对象池自动释放可释放对象的间隔秒数。
@@ -10037,6 +10044,11 @@
         <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.ResourceExpireTime">
             <summary>
             获取或设置资源对象池对象过期秒数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.ResourceManager.ResourceLoader.ResourcePriority">
+            <summary>
+            获取或设置资源对象池的优先级。
             </summary>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.Update(System.Single,System.Single)">
@@ -11724,6 +11736,12 @@
             声音辅助器接口。
             </summary>
         </member>
+        <member name="M:GameFramework.Sound.ISoundHelper.ReleaseSoundAsset(System.Object)">
+            <summary>
+            释放声音资源。
+            </summary>
+            <param name="soundAsset">要释放的声音资源。</param>
+        </member>
         <member name="T:GameFramework.Sound.ISoundManager">
             <summary>
             声音管理器接口。
@@ -12321,13 +12339,13 @@
             声音代理。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.#ctor(GameFramework.Sound.SoundManager.SoundGroup,GameFramework.Sound.ISoundAgentHelper,GameFramework.Resource.IResourceManager)">
+        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.#ctor(GameFramework.Sound.SoundManager.SoundGroup,GameFramework.Sound.ISoundHelper,GameFramework.Sound.ISoundAgentHelper)">
             <summary>
             初始化声音代理的新实例。
             </summary>
             <param name="soundGroup">所在的声音组。</param>
+            <param name="soundHelper">声音辅助器接口。</param>
             <param name="soundAgentHelper">声音代理辅助器接口。</param>
-            <param name="resourceManager">资源管理器。</param>
         </member>
         <member name="P:GameFramework.Sound.SoundManager.SoundAgent.SoundGroup">
             <summary>
@@ -12477,12 +12495,12 @@
             获取声音组辅助器。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.AddSoundAgentHelper(GameFramework.Sound.ISoundAgentHelper,GameFramework.Resource.IResourceManager)">
+        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.AddSoundAgentHelper(GameFramework.Sound.ISoundHelper,GameFramework.Sound.ISoundAgentHelper)">
             <summary>
             增加声音代理辅助器。
             </summary>
+            <param name="soundHelper">声音辅助器接口。</param>
             <param name="soundAgentHelper">要增加的声音代理辅助器。</param>
-            <param name="resourceManager">资源管理器。</param>
         </member>
         <member name="M:GameFramework.Sound.SoundManager.SoundGroup.PlaySound(System.Int32,System.Object,GameFramework.Sound.PlaySoundParams,System.Nullable{GameFramework.Sound.PlaySoundErrorCode}@)">
             <summary>
@@ -12730,6 +12748,11 @@
         <member name="P:GameFramework.UI.IUIManager.InstanceExpireTime">
             <summary>
             获取或设置界面实例对象池对象过期秒数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.IUIManager.InstancePriority">
+            <summary>
+            获取或设置界面实例对象池的优先级。
             </summary>
         </member>
         <member name="E:GameFramework.UI.IUIManager.OpenUIFormSuccess">
@@ -13124,6 +13147,11 @@
         <member name="P:GameFramework.UI.UIManager.InstanceExpireTime">
             <summary>
             获取或设置界面实例对象池对象过期秒数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.UI.UIManager.InstancePriority">
+            <summary>
+            获取或设置界面实例对象池的优先级。
             </summary>
         </member>
         <member name="E:GameFramework.UI.UIManager.OpenUIFormSuccess">
@@ -14195,11 +14223,12 @@
             <param name="hashCode">CRC32 哈希值。</param>
             <returns>带有 CRC32 和后缀的资源名。</returns>
         </member>
-        <member name="M:Utility.Path.RemoveEmptyDirectories(System.String)">
+        <member name="M:Utility.Path.RemoveEmptyDirectory(System.String)">
             <summary>
             移除空文件夹。
             </summary>
-            <param name="directory">要处理的文件夹。</param>
+            <param name="directoryName">要处理的文件夹名称。</param>
+            <returns>是否移除空文件夹成功。</returns>
         </member>
         <member name="T:Utility.Random">
             <summary>
