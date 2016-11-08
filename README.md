@@ -1,7 +1,8 @@
 ## HOMEPAGE
 
 - **English** - Coming soon.
-- **简体中文** - [http://gameframework.cn/](http://gameframework.cn/) **QQ 讨论群** 216332935
+- **简体中文** - [http://gameframework.cn/](http://gameframework.cn/)
+  - **QQ 讨论群** 216332935
 
 ---
 
