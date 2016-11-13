@@ -29,12 +29,10 @@ namespace UnityGameFramework.Runtime
                     DrawItem("Shader Level:", GetShaderLevelString(SystemInfo.graphicsShaderLevel));
                     DrawItem("NPOT Support:", SystemInfo.npotSupport.ToString());
                     DrawItem("Max Texture Size:", SystemInfo.maxTextureSize.ToString());
-                    DrawItem("Copy Texture Support:", SystemInfo.copyTextureSupport.ToString());
                     DrawItem("Supported Render Target Count:", SystemInfo.supportedRenderTargetCount.ToString());
                     DrawItem("Supports Stencil:", SystemInfo.supportsStencil.ToString());
                     DrawItem("Supports Render Textures:", SystemInfo.supportsRenderTextures.ToString());
                     DrawItem("Supports Sparse Textures:", SystemInfo.supportsSparseTextures.ToString());
-                    DrawItem("Supports 2D Array Textures:", SystemInfo.supports2DArrayTextures.ToString());
                     DrawItem("Supports 3D Textures:", SystemInfo.supports3DTextures.ToString());
                     DrawItem("Supports Shadows:", SystemInfo.supportsShadows.ToString());
                     DrawItem("Supports Raw Shadow Depth Sampling:", SystemInfo.supportsRawShadowDepthSampling.ToString());
@@ -42,7 +40,6 @@ namespace UnityGameFramework.Runtime
                     DrawItem("Supports Compute Shader:", SystemInfo.supportsComputeShaders.ToString());
                     DrawItem("Supports Instancing:", SystemInfo.supportsInstancing.ToString());
                     DrawItem("Supports Image Effects:", SystemInfo.supportsImageEffects.ToString());
-                    DrawItem("Supports Motion Vectors:", SystemInfo.supportsMotionVectors.ToString());
                 }
                 GUILayout.EndVertical();
             }

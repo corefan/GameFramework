@@ -196,12 +196,6 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            if (assetBundle.isStreamedSceneAssetBundle)
-            {
-                m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.TypeError, "Can not load asset bundle from loaded resource which is a streamed scene asset bundle."));
-                return;
-            }
-
             if (string.IsNullOrEmpty(resourceChildName))
             {
                 m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.ChildAssetError, "Can not load asset from asset bundle which child name is invalid."));
@@ -229,12 +223,6 @@ namespace UnityGameFramework.Runtime
             if (assetBundle == null)
             {
                 m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.TypeError, "Can not load asset bundle from loaded resource which is not an asset bundle."));
-                return;
-            }
-
-            if (!assetBundle.isStreamedSceneAssetBundle)
-            {
-                m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.TypeError, "Can not load asset bundle from loaded resource which is not a streamed scene asset bundle."));
                 return;
             }
 

@@ -9,16 +9,16 @@ using GameFramework;
 using GameFramework.Download;
 using System;
 using System.Collections.Generic;
-using UnityEngine.Networking;
+using UnityEngine;
 
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 使用 UnityWebRequest 实现的下载代理辅助器。
+    /// 默认下载代理辅助器。
     /// </summary>
-    public class UnityWebRequestDownloadAgentHelper : DownloadAgentHelperBase, IDisposable
+    public class DefaultDownloadAgentHelper : DownloadAgentHelperBase, IDisposable
     {
-        private UnityWebRequest m_UnityWebRequest = null;
+        private WWW m_WWW = null;
         private int m_LastDownloadedSize = 0;
         private bool m_Disposed = false;
 
@@ -84,8 +84,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            m_UnityWebRequest = UnityWebRequest.Get(downloadUri);
-            m_UnityWebRequest.Send();
+            m_WWW = new WWW(downloadUri);
         }
 
         /// <summary>
@@ -104,8 +103,7 @@ namespace UnityGameFramework.Runtime
 
             Dictionary<string, string> header = new Dictionary<string, string>();
             header.Add("Range", string.Format("bytes={0}-", fromPosition.ToString()));
-            m_UnityWebRequest = UnityWebRequest.Post(downloadUri, header);
-            m_UnityWebRequest.Send();
+            m_WWW = new WWW(downloadUri, null, header);
         }
 
         /// <summary>
@@ -125,8 +123,7 @@ namespace UnityGameFramework.Runtime
 
             Dictionary<string, string> header = new Dictionary<string, string>();
             header.Add("Range", string.Format("bytes={0}-{1}", fromPosition.ToString(), toPosition.ToString()));
-            m_UnityWebRequest = UnityWebRequest.Post(downloadUri, header);
-            m_UnityWebRequest.Send();
+            m_WWW = new WWW(downloadUri, null, header);
         }
 
         /// <summary>
@@ -134,10 +131,10 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         public override void Reset()
         {
-            if (m_UnityWebRequest != null)
+            if (m_WWW != null)
             {
-                m_UnityWebRequest.Dispose();
-                m_UnityWebRequest = null;
+                m_WWW.Dispose();
+                m_WWW = null;
             }
 
             m_LastDownloadedSize = 0;
@@ -165,10 +162,10 @@ namespace UnityGameFramework.Runtime
 
             if (disposing)
             {
-                if (m_UnityWebRequest != null)
+                if (m_WWW != null)
                 {
-                    m_UnityWebRequest.Dispose();
-                    m_UnityWebRequest = null;
+                    m_WWW.Dispose();
+                    m_WWW = null;
                 }
             }
 
@@ -177,29 +174,29 @@ namespace UnityGameFramework.Runtime
 
         private void Update()
         {
-            if (m_UnityWebRequest == null)
+            if (m_WWW == null)
             {
                 return;
             }
 
-            if (!m_UnityWebRequest.isDone)
+            if (!m_WWW.isDone)
             {
-                if (m_LastDownloadedSize < (int)m_UnityWebRequest.downloadedBytes)
+                if (m_LastDownloadedSize < m_WWW.bytesDownloaded)
                 {
-                    m_LastDownloadedSize = (int)m_UnityWebRequest.downloadedBytes;
-                    m_DownloadAgentHelperUpdateEventHandler(this, new DownloadAgentHelperUpdateEventArgs((int)m_UnityWebRequest.downloadedBytes, null));
+                    m_LastDownloadedSize = m_WWW.bytesDownloaded;
+                    m_DownloadAgentHelperUpdateEventHandler(this, new DownloadAgentHelperUpdateEventArgs(m_WWW.bytesDownloaded, null));
                 }
 
                 return;
             }
 
-            if (m_UnityWebRequest.isError)
+            if (!string.IsNullOrEmpty(m_WWW.error))
             {
-                m_DownloadAgentHelperErrorEventHandler(this, new DownloadAgentHelperErrorEventArgs(m_UnityWebRequest.error));
+                m_DownloadAgentHelperErrorEventHandler(this, new DownloadAgentHelperErrorEventArgs(m_WWW.error));
             }
-            else if (m_UnityWebRequest.downloadHandler.isDone)
+            else
             {
-                m_DownloadAgentHelperCompleteEventHandler(this, new DownloadAgentHelperCompleteEventArgs((int)m_UnityWebRequest.downloadedBytes, m_UnityWebRequest.downloadHandler.data));
+                m_DownloadAgentHelperCompleteEventHandler(this, new DownloadAgentHelperCompleteEventArgs(m_WWW.bytesDownloaded, m_WWW.bytes));
             }
         }
     }

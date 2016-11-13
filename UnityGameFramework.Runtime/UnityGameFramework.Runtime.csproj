@@ -175,10 +175,9 @@ copy "$(TargetDir)UnityGameFramework.Runtime.xml" "$(SolutionDir)UnityPlugin\Ass
     <Compile Include="Debugger\DebuggerComponent.SystemInformationWindow.cs" />
     <Compile Include="Debugger\DebuggerComponent.TimeInformationWindow.cs" />
     <Compile Include="Debugger\DebuggerComponent.WebPlayerInformationWindow.cs" />
+    <Compile Include="Download\DefaultDownloadAgentHelper.cs" />
     <Compile Include="Download\DownloadAgentHelperBase.cs" />
     <Compile Include="Download\DownloadComponent.cs" />
-    <Compile Include="Download\UnityWebRequestDownloadAgentHelper.cs" />
-    <Compile Include="Download\WWWDownloadAgentHelper.cs" />
     <Compile Include="Entity\AttachEntityInfo.cs" />
     <Compile Include="Entity\DefaultEntityGroupHelper.cs" />
     <Compile Include="Entity\DefaultEntityHelper.cs" />
@@ -286,10 +285,9 @@ copy "$(TargetDir)UnityGameFramework.Runtime.xml" "$(SolutionDir)UnityPlugin\Ass
     <Compile Include="Utility\JsonHelper.cs" />
     <Compile Include="Utility\UnityExtension.cs" />
     <Compile Include="Utility\ZipHelper.cs" />
-    <Compile Include="WebRequest\UnityWebRequestAgentHelper.cs" />
+    <Compile Include="WebRequest\DefaultWebRequestAgentHelper.cs" />
     <Compile Include="WebRequest\WebRequestAgentHelperBase.cs" />
     <Compile Include="WebRequest\WebRequestComponent.cs" />
     <Compile Include="WebRequest\WWWFormInfo.cs" />
-    <Compile Include="WebRequest\WWWWebRequestAgentHelper.cs" />
   </ItemGroup>
 </Project>

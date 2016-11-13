@@ -1995,6 +1995,16 @@
             <param name="id">数据表行的编号。</param>
             <returns>数据表行。</returns>
         </member>
+        <member name="P:GameFramework.DataTable.DataTableManager.DataTable`1.MinIdDataRow">
+            <summary>
+            获取编号最小的数据表行。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.DataTableManager.DataTable`1.MaxIdDataRow">
+            <summary>
+            获取编号最大的数据表行。
+            </summary>
+        </member>
         <member name="M:GameFramework.DataTable.DataTableManager.DataTable`1.Shutdown">
             <summary>
             关闭并清理数据表。
@@ -2112,6 +2122,16 @@
             </summary>
             <param name="id">数据表行的编号。</param>
             <returns>数据表行。</returns>
+        </member>
+        <member name="P:GameFramework.DataTable.IDataTable`1.MinIdDataRow">
+            <summary>
+            获取编号最小的数据表行。
+            </summary>
+        </member>
+        <member name="P:GameFramework.DataTable.IDataTable`1.MaxIdDataRow">
+            <summary>
+            获取编号最大的数据表行。
+            </summary>
         </member>
         <member name="M:GameFramework.DataTable.IDataTable`1.HasDataRow(System.Int32)">
             <summary>

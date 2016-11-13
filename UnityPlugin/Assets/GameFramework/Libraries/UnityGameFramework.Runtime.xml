@@ -11244,6 +11244,66 @@
             <param name="path">调试窗口路径。</param>
             <returns>要获取的调试窗口。</returns>
         </member>
+        <member name="T:UnityGameFramework.Runtime.DefaultDownloadAgentHelper">
+            <summary>
+            默认下载代理辅助器。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.DownloadAgentHelperUpdate">
+            <summary>
+            下载代理辅助器更新事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.DownloadAgentHelperComplete">
+            <summary>
+            下载代理辅助器完成事件。
+            </summary>
+        </member>
+        <member name="E:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.DownloadAgentHelperError">
+            <summary>
+            下载代理辅助器错误事件。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.Download(System.String,System.Object)">
+            <summary>
+            通过下载代理辅助器下载指定地址的数据。
+            </summary>
+            <param name="downloadUri">下载地址。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.Download(System.String,System.Int32,System.Object)">
+            <summary>
+            通过下载代理辅助器下载指定地址的数据。
+            </summary>
+            <param name="downloadUri">下载地址。</param>
+            <param name="fromPosition">下载数据起始位置。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.Download(System.String,System.Int32,System.Int32,System.Object)">
+            <summary>
+            通过下载代理辅助器下载指定地址的数据。
+            </summary>
+            <param name="downloadUri">下载地址。</param>
+            <param name="fromPosition">下载数据起始位置。</param>
+            <param name="toPosition">下载数据结束位置。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.Reset">
+            <summary>
+            重置下载代理辅助器。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.Dispose">
+            <summary>
+            释放资源。
+            </summary>
+        </member>
+        <member name="M:UnityGameFramework.Runtime.DefaultDownloadAgentHelper.Dispose(System.Boolean)">
+            <summary>
+            释放资源。
+            </summary>
+            <param name="disposing">释放资源标记。</param>
+        </member>
         <member name="T:UnityGameFramework.Runtime.DownloadAgentHelperBase">
             <summary>
             下载代理辅助器基类。
@@ -11371,126 +11431,6 @@
             增加下载代理辅助器。
             </summary>
             <param name="index">下载代理辅助器索引。</param>
-        </member>
-        <member name="T:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper">
-            <summary>
-            使用 UnityWebRequest 实现的下载代理辅助器。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.DownloadAgentHelperUpdate">
-            <summary>
-            下载代理辅助器更新事件。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.DownloadAgentHelperComplete">
-            <summary>
-            下载代理辅助器完成事件。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.DownloadAgentHelperError">
-            <summary>
-            下载代理辅助器错误事件。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.Download(System.String,System.Object)">
-            <summary>
-            通过下载代理辅助器下载指定地址的数据。
-            </summary>
-            <param name="downloadUri">下载地址。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.Download(System.String,System.Int32,System.Object)">
-            <summary>
-            通过下载代理辅助器下载指定地址的数据。
-            </summary>
-            <param name="downloadUri">下载地址。</param>
-            <param name="fromPosition">下载数据起始位置。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.Download(System.String,System.Int32,System.Int32,System.Object)">
-            <summary>
-            通过下载代理辅助器下载指定地址的数据。
-            </summary>
-            <param name="downloadUri">下载地址。</param>
-            <param name="fromPosition">下载数据起始位置。</param>
-            <param name="toPosition">下载数据结束位置。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.Reset">
-            <summary>
-            重置下载代理辅助器。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.Dispose">
-            <summary>
-            释放资源。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestDownloadAgentHelper.Dispose(System.Boolean)">
-            <summary>
-            释放资源。
-            </summary>
-            <param name="disposing">释放资源标记。</param>
-        </member>
-        <member name="T:UnityGameFramework.Runtime.WWWDownloadAgentHelper">
-            <summary>
-            使用 Unity WWW 实现的下载代理辅助器。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.WWWDownloadAgentHelper.DownloadAgentHelperUpdate">
-            <summary>
-            下载代理辅助器更新事件。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.WWWDownloadAgentHelper.DownloadAgentHelperComplete">
-            <summary>
-            下载代理辅助器完成事件。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.WWWDownloadAgentHelper.DownloadAgentHelperError">
-            <summary>
-            下载代理辅助器错误事件。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWDownloadAgentHelper.Download(System.String,System.Object)">
-            <summary>
-            通过下载代理辅助器下载指定地址的数据。
-            </summary>
-            <param name="downloadUri">下载地址。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWDownloadAgentHelper.Download(System.String,System.Int32,System.Object)">
-            <summary>
-            通过下载代理辅助器下载指定地址的数据。
-            </summary>
-            <param name="downloadUri">下载地址。</param>
-            <param name="fromPosition">下载数据起始位置。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWDownloadAgentHelper.Download(System.String,System.Int32,System.Int32,System.Object)">
-            <summary>
-            通过下载代理辅助器下载指定地址的数据。
-            </summary>
-            <param name="downloadUri">下载地址。</param>
-            <param name="fromPosition">下载数据起始位置。</param>
-            <param name="toPosition">下载数据结束位置。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWDownloadAgentHelper.Reset">
-            <summary>
-            重置下载代理辅助器。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWDownloadAgentHelper.Dispose">
-            <summary>
-            释放资源。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWDownloadAgentHelper.Dispose(System.Boolean)">
-            <summary>
-            释放资源。
-            </summary>
-            <param name="disposing">释放资源标记。</param>
         </member>
         <member name="T:UnityGameFramework.Runtime.DefaultEntityGroupHelper">
             <summary>
@@ -16970,29 +16910,29 @@
             获取或设置主键。
             </summary>
         </member>
-        <member name="T:UnityGameFramework.Runtime.UnityWebRequestAgentHelper">
+        <member name="T:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper">
             <summary>
-            使用 UnityWebRequest 实现的 Web 请求代理辅助器。
+            默认 Web 请求代理辅助器。
             </summary>
         </member>
-        <member name="E:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.WebRequestAgentHelperComplete">
+        <member name="E:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper.WebRequestAgentHelperComplete">
             <summary>
             Web 请求代理辅助器完成事件。
             </summary>
         </member>
-        <member name="E:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.WebRequestAgentHelperError">
+        <member name="E:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper.WebRequestAgentHelperError">
             <summary>
             Web 请求代理辅助器错误事件。
             </summary>
         </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.Request(System.String,System.Object)">
+        <member name="M:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper.Request(System.String,System.Object)">
             <summary>
             通过 Web 请求代理辅助器发送请求。
             </summary>
             <param name="webRequestUri">要发送的远程地址。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.Request(System.String,System.Byte[],System.Object)">
+        <member name="M:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper.Request(System.String,System.Byte[],System.Object)">
             <summary>
             通过 Web 请求代理辅助器发送请求。
             </summary>
@@ -17000,17 +16940,17 @@
             <param name="postData">要发送的数据流。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.Reset">
+        <member name="M:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper.Reset">
             <summary>
             重置 Web 请求代理辅助器。
             </summary>
         </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.Dispose">
+        <member name="M:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper.Dispose">
             <summary>
             释放资源。
             </summary>
         </member>
-        <member name="M:UnityGameFramework.Runtime.UnityWebRequestAgentHelper.Dispose(System.Boolean)">
+        <member name="M:UnityGameFramework.Runtime.DefaultWebRequestAgentHelper.Dispose(System.Boolean)">
             <summary>
             释放资源。
             </summary>
@@ -17162,52 +17102,6 @@
             <param name="wwwForm">WWW 表单。</param>
             <param name="userData">用户自定义数据。</param>
             <returns>新增 Web 请求任务的序列编号。</returns>
-        </member>
-        <member name="T:UnityGameFramework.Runtime.WWWWebRequestAgentHelper">
-            <summary>
-            使用 Unity WWW 实现的 Web 请求代理辅助器。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.WebRequestAgentHelperComplete">
-            <summary>
-            Web 请求代理辅助器完成事件。
-            </summary>
-        </member>
-        <member name="E:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.WebRequestAgentHelperError">
-            <summary>
-            Web 请求代理辅助器错误事件。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.Request(System.String,System.Object)">
-            <summary>
-            通过 Web 请求代理辅助器发送请求。
-            </summary>
-            <param name="webRequestUri">要发送的远程地址。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.Request(System.String,System.Byte[],System.Object)">
-            <summary>
-            通过 Web 请求代理辅助器发送请求。
-            </summary>
-            <param name="webRequestUri">要发送的远程地址。</param>
-            <param name="postData">要发送的数据流。</param>
-            <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.Reset">
-            <summary>
-            重置 Web 请求代理辅助器。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.Dispose">
-            <summary>
-            释放资源。
-            </summary>
-        </member>
-        <member name="M:UnityGameFramework.Runtime.WWWWebRequestAgentHelper.Dispose(System.Boolean)">
-            <summary>
-            释放资源。
-            </summary>
-            <param name="disposing">释放资源标记。</param>
         </member>
         <member name="T:Utility.Helper">
             <summary>

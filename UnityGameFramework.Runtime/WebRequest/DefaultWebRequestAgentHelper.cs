@@ -13,9 +13,9 @@ using UnityEngine;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 使用 Unity WWW 实现的 Web 请求代理辅助器。
+    /// 默认 Web 请求代理辅助器。
     /// </summary>
-    public class WWWWebRequestAgentHelper : WebRequestAgentHelperBase, IDisposable
+    public class DefaultWebRequestAgentHelper : WebRequestAgentHelperBase, IDisposable
     {
         private WWW m_WWW = null;
         private bool m_Disposed = false;

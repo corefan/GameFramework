@@ -8,7 +8,7 @@
 
 ## INTRODUCTION
 
-Game Framework is literally a game framework, based on Unity 5.4 game engine. It encapsulates commonly used game modules during development, and, to a large degree, standardises the process, enhances the development speed and ensures the product quality.
+Game Framework is literally a game framework, based on Unity 5.3+ game engine. It encapsulates commonly used game modules during development, and, to a large degree, standardises the process, enhances the development speed and ensures the product quality.
 
 Game Framework provides the following 17 builtin modules, and more will be developed later for game developers to use.
 

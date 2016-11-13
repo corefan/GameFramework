@@ -27,7 +27,6 @@ namespace UnityGameFramework.Runtime
                     DrawItem("Processor Frequency:", string.Format("{0} MHz", SystemInfo.processorFrequency.ToString()));
                     DrawItem("Memory Size:", string.Format("{0} MB", SystemInfo.systemMemorySize.ToString()));
                     DrawItem("Operating System:", SystemInfo.operatingSystem);
-                    DrawItem("Supports Audio:", SystemInfo.supportsAudio.ToString());
                     DrawItem("Supports Location Service:", SystemInfo.supportsLocationService.ToString());
                     DrawItem("Supports Accelerometer:", SystemInfo.supportsAccelerometer.ToString());
                     DrawItem("Supports Gyroscope:", SystemInfo.supportsGyroscope.ToString());
