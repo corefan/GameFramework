@@ -11204,9 +11204,14 @@
             默认调试器窗口缩放比例。
             </summary>
         </member>
+        <member name="P:UnityGameFramework.Runtime.DebuggerComponent.ActiveWindow">
+            <summary>
+            获取或设置调试窗口是否激活。
+            </summary>
+        </member>
         <member name="P:UnityGameFramework.Runtime.DebuggerComponent.ShowFullWindow">
             <summary>
-            获取或设置是否显示调试器。
+            获取或设置是否显示完整调试器界面。
             </summary>
         </member>
         <member name="P:UnityGameFramework.Runtime.DebuggerComponent.IconRect">

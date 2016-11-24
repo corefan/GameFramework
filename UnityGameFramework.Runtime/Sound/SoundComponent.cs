@@ -7,6 +7,7 @@
 
 using GameFramework;
 using GameFramework.Resource;
+using GameFramework.Scene;
 using GameFramework.Sound;
 using UnityEngine;
 
@@ -19,7 +20,9 @@ namespace UnityGameFramework.Runtime
     public sealed partial class SoundComponent : GameFrameworkComponent
     {
         private ISoundManager m_SoundManager = null;
+        private ISceneManager m_SceneManager = null;
         private EventComponent m_EventComponent = null;
+        private AudioListener m_AudioListener = null;
 
         [SerializeField]
         private bool m_EnablePlaySoundSuccessEvent = true;
@@ -86,6 +89,18 @@ namespace UnityGameFramework.Runtime
             m_SoundManager.PlaySoundFailure += OnPlaySoundFailure;
             m_SoundManager.PlaySoundUpdate += OnPlaySoundUpdate;
             m_SoundManager.PlaySoundDependencyAsset += OnPlaySoundDependencyAsset;
+
+            m_SceneManager = GameFrameworkEntry.GetModule<ISceneManager>();
+            if (m_SceneManager == null)
+            {
+                Log.Fatal("Scene manager is invalid.");
+                return;
+            }
+
+            m_SceneManager.LoadSceneSuccess += OnLoadSceneSuccess;
+            m_SceneManager.LoadSceneFailure += OnLoadSceneFailure;
+            m_SceneManager.UnloadSceneSuccess += OnUnloadSceneSuccess;
+            m_SceneManager.UnloadSceneFailure += OnUnloadSceneFailure;
         }
 
         private void Start()
@@ -141,6 +156,9 @@ namespace UnityGameFramework.Runtime
                     continue;
                 }
             }
+
+            m_AudioListener = gameObject.GetOrAddComponent<AudioListener>();
+            RefreshAudioListener();
         }
 
         /// <summary>
@@ -425,6 +443,31 @@ namespace UnityGameFramework.Runtime
             {
                 m_EventComponent.Fire(this, new PlaySoundDependencyAssetEventArgs(e));
             }
+        }
+
+        private void OnLoadSceneSuccess(object sender, GameFramework.Scene.LoadSceneSuccessEventArgs e)
+        {
+            RefreshAudioListener();
+        }
+
+        private void OnLoadSceneFailure(object sender, GameFramework.Scene.LoadSceneFailureEventArgs e)
+        {
+            RefreshAudioListener();
+        }
+
+        private void OnUnloadSceneSuccess(object sender, GameFramework.Scene.UnloadSceneSuccessEventArgs e)
+        {
+            RefreshAudioListener();
+        }
+
+        private void OnUnloadSceneFailure(object sender, GameFramework.Scene.UnloadSceneFailureEventArgs e)
+        {
+            RefreshAudioListener();
+        }
+
+        private void RefreshAudioListener()
+        {
+            m_AudioListener.enabled = FindObjectsOfType<AudioListener>().Length <= 1;
         }
     }
 }

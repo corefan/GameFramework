@@ -9,6 +9,7 @@
       <AndroidSelected>True</AndroidSelected>
       <WindowsStoreSelected>False</WindowsStoreSelected>
       <ZipSelected>True</ZipSelected>
+      <RecordScatteredDependencyAssetsSelected>False</RecordScatteredDependencyAssetsSelected>
       <UncompressedAssetBundleSelected>False</UncompressedAssetBundleSelected>
       <DisableWriteTypeTreeSelected>False</DisableWriteTypeTreeSelected>
       <DeterministicAssetBundleSelected>True</DeterministicAssetBundleSelected>

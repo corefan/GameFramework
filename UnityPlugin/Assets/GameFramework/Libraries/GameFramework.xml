@@ -6765,6 +6765,11 @@
             获取对象池中对象的数量。
             </summary>
         </member>
+        <member name="P:GameFramework.ObjectPool.IObjectPool`1.CanReleaseCount">
+            <summary>
+            获取对象池中能被释放的对象的数量。
+            </summary>
+        </member>
         <member name="P:GameFramework.ObjectPool.IObjectPool`1.AllowMultiSpawn">
             <summary>
             获取是否允许对象被多次获取。
@@ -6868,10 +6873,23 @@
             释放对象池中的可释放对象。
             </summary>
         </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPool`1.Release(System.Int32)">
+            <summary>
+            释放对象池中的可释放对象。
+            </summary>
+            <param name="toReleaseCount">尝试释放对象数量。</param>
+        </member>
         <member name="M:GameFramework.ObjectPool.IObjectPool`1.Release(GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
             <summary>
             释放对象池中的可释放对象。
             </summary>
+            <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
+        </member>
+        <member name="M:GameFramework.ObjectPool.IObjectPool`1.Release(System.Int32,GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
+            <summary>
+            释放对象池中的可释放对象。
+            </summary>
+            <param name="toReleaseCount">尝试释放对象数量。</param>
             <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
         </member>
         <member name="M:GameFramework.ObjectPool.IObjectPool`1.ReleaseAllUnused">
@@ -7378,6 +7396,11 @@
             获取对象池中对象的数量。
             </summary>
         </member>
+        <member name="P:GameFramework.ObjectPool.ObjectPoolBase.CanReleaseCount">
+            <summary>
+            获取对象池中能被释放的对象的数量。
+            </summary>
+        </member>
         <member name="P:GameFramework.ObjectPool.ObjectPoolBase.AllowMultiSpawn">
             <summary>
             获取是否允许对象被多次获取。
@@ -7407,6 +7430,12 @@
             <summary>
             释放对象池中的可释放对象。
             </summary>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolBase.Release(System.Int32)">
+            <summary>
+            释放对象池中的可释放对象。
+            </summary>
+            <param name="toReleaseCount">尝试释放对象数量。</param>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolBase.ReleaseAllUnused">
             <summary>
@@ -7873,6 +7902,11 @@
             获取对象池中对象的数量。
             </summary>
         </member>
+        <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.CanReleaseCount">
+            <summary>
+            获取对象池中能被释放的对象的数量。
+            </summary>
+        </member>
         <member name="P:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.AllowMultiSpawn">
             <summary>
             获取是否允许对象被多次获取。
@@ -7976,10 +8010,23 @@
             释放对象池中的可释放对象。
             </summary>
         </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Release(System.Int32)">
+            <summary>
+            释放对象池中的可释放对象。
+            </summary>
+            <param name="toReleaseCount">尝试释放对象数量。</param>
+        </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Release(GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
             <summary>
             释放对象池中的可释放对象。
             </summary>
+            <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
+        </member>
+        <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.Release(System.Int32,GameFramework.ObjectPool.ReleaseObjectFilterCallback{`0})">
+            <summary>
+            释放对象池中的可释放对象。
+            </summary>
+            <param name="toReleaseCount">尝试释放对象数量。</param>
             <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
         </member>
         <member name="M:GameFramework.ObjectPool.ObjectPoolManager.ObjectPool`1.ReleaseAllUnused">

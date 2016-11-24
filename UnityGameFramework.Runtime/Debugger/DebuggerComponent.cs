@@ -82,7 +82,22 @@ namespace UnityGameFramework.Runtime
         private FpsCounter m_FpsCounter = null;
 
         /// <summary>
-        /// 获取或设置是否显示调试器。
+        /// 获取或设置调试窗口是否激活。
+        /// </summary>
+        public bool ActiveWindow
+        {
+            get
+            {
+                return m_DebuggerManager.ActiveWindow;
+            }
+            set
+            {
+                m_DebuggerManager.ActiveWindow = value;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置是否显示完整调试器界面。
         /// </summary>
         public bool ShowFullWindow
         {
@@ -155,8 +170,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            m_DebuggerManager.ActiveWindow = Debug.isDebugBuild;
-
+            ActiveWindow = Debug.isDebugBuild;
             m_FpsCounter = new FpsCounter(0.5f);
         }
 
