@@ -236,7 +236,7 @@ namespace UnityGameFramework.Runtime
 
             for (int i = 0; i < soundAgentHelperCount; i++)
             {
-                if (!AddSoundAgentHelper(soundGroupName, i))
+                if (!AddSoundAgentHelper(soundGroupName, transform, i))
                 {
                     return false;
                 }
@@ -376,9 +376,10 @@ namespace UnityGameFramework.Runtime
         /// 增加声音代理辅助器。
         /// </summary>
         /// <param name="soundGroupName">声音组名称。</param>
+        /// <param name="parentTransform">父节点位置。</param>
         /// <param name="index">声音代理辅助器索引。</param>
         /// <returns>是否增加声音代理辅助器成功。</returns>
-        private bool AddSoundAgentHelper(string soundGroupName, int index)
+        private bool AddSoundAgentHelper(string soundGroupName, Transform parentTransform, int index)
         {
             SoundAgentHelperBase soundAgentHelper = Utility.Helper.CreateHelper(m_SoundAgentHelperTypeName, m_CustomSoundAgentHelper, index);
             if (soundAgentHelper == null)
@@ -389,7 +390,7 @@ namespace UnityGameFramework.Runtime
 
             soundAgentHelper.name = string.Format("Sound Agent Helper - {0} - {1}", soundGroupName, index.ToString());
             Transform transform = soundAgentHelper.transform;
-            transform.SetParent(base.transform);
+            transform.SetParent(parentTransform);
             transform.localScale = Vector3.one;
 
             m_SoundManager.AddSoundAgentHelper(soundGroupName, soundAgentHelper);

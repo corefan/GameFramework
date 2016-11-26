@@ -16454,11 +16454,12 @@
             停止所有声音。
             </summary>
         </member>
-        <member name="M:UnityGameFramework.Runtime.SoundComponent.AddSoundAgentHelper(System.String,System.Int32)">
+        <member name="M:UnityGameFramework.Runtime.SoundComponent.AddSoundAgentHelper(System.String,UnityEngine.Transform,System.Int32)">
             <summary>
             增加声音代理辅助器。
             </summary>
             <param name="soundGroupName">声音组名称。</param>
+            <param name="parentTransform">父节点位置。</param>
             <param name="index">声音代理辅助器索引。</param>
             <returns>是否增加声音代理辅助器成功。</returns>
         </member>
