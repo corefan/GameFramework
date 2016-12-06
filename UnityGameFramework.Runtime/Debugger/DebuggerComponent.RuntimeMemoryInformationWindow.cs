@@ -1,6 +1,6 @@
 ﻿//------------------------------------------------------------
 // Game Framework v2.x
-// Copyright © 2014-2016 Jiang Yin. All rights reserved.
+// Copyright © 2014-2017 Jiang Yin. All rights reserved.
 // Homepage: http://gameframework.cn/
 // Feedback: mailto:i@jiangyin.me
 //------------------------------------------------------------

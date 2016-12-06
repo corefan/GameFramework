@@ -1,6 +1,6 @@
 ﻿//------------------------------------------------------------
 // Game Framework v2.x
-// Copyright © 2014-2016 Jiang Yin. All rights reserved.
+// Copyright © 2014-2017 Jiang Yin. All rights reserved.
 // Homepage: http://gameframework.cn/
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
@@ -300,7 +300,7 @@ namespace UnityGameFramework.Runtime
             UpdateWWW();
             UpdateFileAssetBundleCreateRequest();
             UpdateBytesAssetBundleCreateRequest();
-            AssetBundleRequest();
+            UpdateAssetBundleRequest();
             UpdateAsyncOperation();
         }
 
@@ -386,7 +386,7 @@ namespace UnityGameFramework.Runtime
             }
         }
 
-        private void AssetBundleRequest()
+        private void UpdateAssetBundleRequest()
         {
             if (m_AssetBundleRequest != null)
             {

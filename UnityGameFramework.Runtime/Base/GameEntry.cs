@@ -1,6 +1,6 @@
 ﻿//------------------------------------------------------------
 // Game Framework v2.x
-// Copyright © 2014-2016 Jiang Yin. All rights reserved.
+// Copyright © 2014-2017 Jiang Yin. All rights reserved.
 // Homepage: http://gameframework.cn/
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
@@ -17,7 +17,7 @@ namespace UnityGameFramework.Runtime
     /// </summary>
     public static class GameEntry
     {
-        private const string UnityGameFrameworkVersion = "2.2.4";
+        private const string UnityGameFrameworkVersion = "2.2.5";
         private static readonly LinkedList<GameFrameworkComponent> s_GameFrameworkComponents = new LinkedList<GameFrameworkComponent>();
 
         /// <summary>

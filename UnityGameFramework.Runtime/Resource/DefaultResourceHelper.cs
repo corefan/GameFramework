@@ -1,6 +1,6 @@
 ﻿//------------------------------------------------------------
 // Game Framework v2.x
-// Copyright © 2014-2016 Jiang Yin. All rights reserved.
+// Copyright © 2014-2017 Jiang Yin. All rights reserved.
 // Homepage: http://gameframework.cn/
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
@@ -51,6 +51,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
+            /* Unity 当前 Resources.UnloadAsset 在 iOS 设备上会导致一些诡异问题，先不用这部分
             DummySceneObject dummySceneObject = objectToRelease as DummySceneObject;
             if (dummySceneObject != null)
             {
@@ -71,6 +72,7 @@ namespace UnityGameFramework.Runtime
             }
 
             Resources.UnloadAsset(unityObject);
+            */
         }
 
         private void Start()
