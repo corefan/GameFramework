@@ -212,11 +212,11 @@ namespace UnityGameFramework.Runtime
 
             m_InstanceRoot.gameObject.layer = LayerMask.NameToLayer("UI");
 
-            foreach (UIGroup uiGroup in m_UIGroups)
+            for (int i = 0; i < m_UIGroups.Length; i++)
             {
-                if (!AddUIGroup(uiGroup.Name, uiGroup.Depth))
+                if (!AddUIGroup(m_UIGroups[i].Name, m_UIGroups[i].Depth))
                 {
-                    Log.Warning("Add UI group '{0}' failure.", uiGroup.Name);
+                    Log.Warning("Add UI group '{0}' failure.", m_UIGroups[i].Name);
                     continue;
                 }
             }

@@ -40,8 +40,9 @@ namespace UnityGameFramework.Editor
 
             if (EditorApplication.isPlaying)
             {
-                EditorGUILayout.LabelField("Loaded Scene Names", GetSceneNameString(t.GetLoadedSceneNames()));
-                EditorGUILayout.LabelField("Loading Scene Names", GetSceneNameString(t.GetLoadingSceneNames()));
+                EditorGUILayout.LabelField("Loaded Scene Asset Names", GetSceneNameString(t.GetLoadedSceneAssetNames()));
+                EditorGUILayout.LabelField("Loading Scene Asset Names", GetSceneNameString(t.GetLoadingSceneAssetNames()));
+                EditorGUILayout.LabelField("Unloading Scene Asset Names", GetSceneNameString(t.GetUnloadingSceneAssetNames()));
                 EditorGUILayout.ObjectField("Main Camera", t.MainCamera, typeof(Camera), true);
 
                 Repaint();
@@ -58,9 +59,25 @@ namespace UnityGameFramework.Editor
             m_EnableUnloadSceneFailureEvent = serializedObject.FindProperty("m_EnableUnloadSceneFailureEvent");
         }
 
-        private string GetSceneNameString(string[] sceneNames)
+        private string GetSceneNameString(string[] sceneAssetNames)
         {
-            return sceneNames == null || sceneNames.Length <= 0 ? "<Empty>" : string.Join(", ", sceneNames);
+            if (sceneAssetNames == null || sceneAssetNames.Length <= 0)
+            {
+                return "<Empty>";
+            }
+
+            string sceneNameString = string.Empty;
+            foreach (string sceneAssetName in sceneAssetNames)
+            {
+                if (!string.IsNullOrEmpty(sceneNameString))
+                {
+                    sceneNameString += ", ";
+                }
+
+                sceneNameString += SceneComponent.GetSceneName(sceneAssetName);
+            }
+
+            return sceneNameString;
         }
     }
 }

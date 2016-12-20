@@ -20,7 +20,6 @@ namespace UnityGameFramework.Runtime
         /// <param name="e">内部事件。</param>
         public LoadSceneDependencyAssetEventArgs(GameFramework.Scene.LoadSceneDependencyAssetEventArgs e)
         {
-            SceneName = e.SceneName;
             SceneAssetName = e.SceneAssetName;
             DependencyAssetName = e.DependencyAssetName;
             LoadedCount = e.LoadedCount;
@@ -37,15 +36,6 @@ namespace UnityGameFramework.Runtime
             {
                 return (int)EventId.LoadSceneDependencyAsset;
             }
-        }
-
-        /// <summary>
-        /// 获取场景名称。
-        /// </summary>
-        public string SceneName
-        {
-            get;
-            private set;
         }
 
         /// <summary>

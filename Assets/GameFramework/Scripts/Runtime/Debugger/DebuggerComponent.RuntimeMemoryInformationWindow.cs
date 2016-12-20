@@ -67,13 +67,13 @@ namespace UnityGameFramework.Runtime
                         }
 
                         int count = 0;
-                        foreach (Sample sample in m_Samples)
+                        for (int i = 0; i < m_Samples.Count; i++)
                         {
                             GUILayout.BeginHorizontal();
                             {
-                                GUILayout.Label(sample.Highlight ? string.Format("<color=yellow>{0}</color>", sample.Name) : sample.Name);
-                                GUILayout.Label(sample.Highlight ? string.Format("<color=yellow>{0}</color>", sample.Type) : sample.Type, GUILayout.Width(240f));
-                                GUILayout.Label(sample.Highlight ? string.Format("<color=yellow>{0}</color>", GetSizeString(sample.Size)) : GetSizeString(sample.Size), GUILayout.Width(80f));
+                                GUILayout.Label(m_Samples[i].Highlight ? string.Format("<color=yellow>{0}</color>", m_Samples[i].Name) : m_Samples[i].Name);
+                                GUILayout.Label(m_Samples[i].Highlight ? string.Format("<color=yellow>{0}</color>", m_Samples[i].Type) : m_Samples[i].Type, GUILayout.Width(240f));
+                                GUILayout.Label(m_Samples[i].Highlight ? string.Format("<color=yellow>{0}</color>", GetSizeString(m_Samples[i].Size)) : GetSizeString(m_Samples[i].Size), GUILayout.Width(80f));
                             }
                             GUILayout.EndHorizontal();
 
@@ -97,11 +97,11 @@ namespace UnityGameFramework.Runtime
                 m_Samples.Clear();
 
                 T[] samples = Resources.FindObjectsOfTypeAll<T>();
-                foreach (T sample in samples)
+                for (int i = 0; i < samples.Length; i++)
                 {
-                    int sampleSize = Profiler.GetRuntimeMemorySize(sample);
+                    int sampleSize = Profiler.GetRuntimeMemorySize(samples[i]);
                     m_SampleSize += sampleSize;
-                    m_Samples.Add(new Sample(sample.name, sample.GetType().Name, sampleSize));
+                    m_Samples.Add(new Sample(samples[i].name, samples[i].GetType().Name, sampleSize));
                 }
 
                 m_Samples.Sort(SampleComparer);

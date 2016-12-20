@@ -36,9 +36,9 @@ namespace UnityGameFramework.Runtime
                 }
                 GUILayout.EndVertical();
                 ObjectPoolBase[] objectPools = m_ObjectPoolComponent.GetAllObjectPools(true);
-                foreach (ObjectPoolBase objectPool in objectPools)
+                for (int i = 0; i < objectPools.Length; i++)
                 {
-                    DrawObjectPool(objectPool);
+                    DrawObjectPool(objectPools[i]);
                 }
             }
 
@@ -65,15 +65,15 @@ namespace UnityGameFramework.Runtime
 
                     if (objectInfos.Length > 0)
                     {
-                        foreach (ObjectInfo objectInfo in objectInfos)
+                        for (int i = 0; i < objectInfos.Length; i++)
                         {
                             GUILayout.BeginHorizontal();
                             {
-                                GUILayout.Label(objectInfo.Name);
-                                GUILayout.Label(objectInfo.Locked.ToString(), GUILayout.Width(60f));
-                                GUILayout.Label(objectPool.AllowMultiSpawn ? objectInfo.SpawnCount.ToString() : objectInfo.IsInUse.ToString(), GUILayout.Width(60f));
-                                GUILayout.Label(objectInfo.Priority.ToString(), GUILayout.Width(60f));
-                                GUILayout.Label(objectInfo.LastUseTime.ToString("yyyy-MM-dd HH:mm:ss"), GUILayout.Width(120f));
+                                GUILayout.Label(objectInfos[i].Name);
+                                GUILayout.Label(objectInfos[i].Locked.ToString(), GUILayout.Width(60f));
+                                GUILayout.Label(objectPool.AllowMultiSpawn ? objectInfos[i].SpawnCount.ToString() : objectInfos[i].IsInUse.ToString(), GUILayout.Width(60f));
+                                GUILayout.Label(objectInfos[i].Priority.ToString(), GUILayout.Width(60f));
+                                GUILayout.Label(objectInfos[i].LastUseTime.ToString("yyyy-MM-dd HH:mm:ss"), GUILayout.Width(120f));
                             }
                             GUILayout.EndHorizontal();
                         }

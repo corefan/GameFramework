@@ -116,14 +116,14 @@ namespace UnityGameFramework.Runtime
             try
             {
                 string[] rowTexts = Utility.Text.SplitToLines(text);
-                foreach (string rowText in rowTexts)
+                for (int i = 0; i < rowTexts.Length; i++)
                 {
-                    if (rowText.Length <= 0 || rowText[0] == '#')
+                    if (rowTexts[i].Length <= 0 || rowTexts[i][0] == '#')
                     {
                         continue;
                     }
 
-                    string[] splitLine = rowText.Split(ColumnSplit, StringSplitOptions.None);
+                    string[] splitLine = rowTexts[i].Split(ColumnSplit, StringSplitOptions.None);
                     if (splitLine.Length != ColumnCount)
                     {
                         Log.Warning("Can not parse dictionary '{0}'.", text);

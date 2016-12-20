@@ -86,9 +86,9 @@ namespace UnityGameFramework.Runtime
 
             m_NetworkManager.SetNetworkHelper(networkHelper);
 
-            foreach (NetworkChannel networkChannel in m_NetworkChannels)
+            for (int i = 0; i < m_NetworkChannels.Length; i++)
             {
-                networkChannel.SetNetworkChannel(CreateNetworkChannel(networkChannel.Name));
+                m_NetworkChannels[i].SetNetworkChannel(CreateNetworkChannel(m_NetworkChannels[i].Name));
             }
         }
 
@@ -155,13 +155,13 @@ namespace UnityGameFramework.Runtime
                 name = string.Empty;
             }
 
-            foreach (NetworkChannel networkChannel in m_NetworkChannels)
+            for (int i = 0; i < m_NetworkChannels.Length; i++)
             {
-                if (networkChannel.Name == name)
+                if (m_NetworkChannels[i].Name == name)
                 {
-                    networkChannel.UseIPv6 = useIPv6;
-                    networkChannel.HostOrIPString = hostOrIPString;
-                    networkChannel.Port = port;
+                    m_NetworkChannels[i].UseIPv6 = useIPv6;
+                    m_NetworkChannels[i].HostOrIPString = hostOrIPString;
+                    m_NetworkChannels[i].Port = port;
                     return;
                 }
             }
@@ -180,11 +180,11 @@ namespace UnityGameFramework.Runtime
                 name = string.Empty;
             }
 
-            foreach (NetworkChannel networkChannel in m_NetworkChannels)
+            for (int i = 0; i < m_NetworkChannels.Length; i++)
             {
-                if (networkChannel.Name == name)
+                if (m_NetworkChannels[i].Name == name)
                 {
-                    networkChannel.Initialize();
+                    m_NetworkChannels[i].Initialize();
                     return;
                 }
             }
@@ -265,11 +265,11 @@ namespace UnityGameFramework.Runtime
                 name = string.Empty;
             }
 
-            foreach (NetworkChannel networkChannel in m_NetworkChannels)
+            for (int i = 0; i < m_NetworkChannels.Length; i++)
             {
-                if (networkChannel.Name == name)
+                if (m_NetworkChannels[i].Name == name)
                 {
-                    networkChannel.Connect(userData);
+                    m_NetworkChannels[i].Connect(userData);
                     return;
                 }
             }

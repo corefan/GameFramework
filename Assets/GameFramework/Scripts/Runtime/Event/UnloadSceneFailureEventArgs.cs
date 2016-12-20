@@ -20,7 +20,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="e">内部事件。</param>
         public UnloadSceneFailureEventArgs(GameFramework.Scene.UnloadSceneFailureEventArgs e)
         {
-            SceneName = e.SceneName;
+            SceneAssetName = e.SceneAssetName;
             UserData = e.UserData;
         }
 
@@ -36,9 +36,9 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取场景名称。
+        /// 获取场景资源名称。
         /// </summary>
-        public string SceneName
+        public string SceneAssetName
         {
             get;
             private set;

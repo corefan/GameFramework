@@ -20,7 +20,6 @@ namespace UnityGameFramework.Runtime
         /// <param name="e">内部事件。</param>
         public LoadSceneUpdateEventArgs(GameFramework.Scene.LoadSceneUpdateEventArgs e)
         {
-            SceneName = e.SceneName;
             SceneAssetName = e.SceneAssetName;
             Progress = e.Progress;
             UserData = e.UserData;
@@ -35,15 +34,6 @@ namespace UnityGameFramework.Runtime
             {
                 return (int)EventId.LoadSceneUpdate;
             }
-        }
-
-        /// <summary>
-        /// 获取场景名称。
-        /// </summary>
-        public string SceneName
-        {
-            get;
-            private set;
         }
 
         /// <summary>

@@ -148,11 +148,11 @@ namespace UnityGameFramework.Runtime
                 m_InstanceRoot.SetParent(gameObject.transform);
             }
 
-            foreach (SoundGroup soundGroup in m_SoundGroups)
+            for (int i = 0; i < m_SoundGroups.Length; i++)
             {
-                if (!AddSoundGroup(soundGroup.Name, soundGroup.AvoidBeingReplacedBySamePriority, soundGroup.Mute, soundGroup.Volume, soundGroup.AgentHelperCount))
+                if (!AddSoundGroup(m_SoundGroups[i].Name, m_SoundGroups[i].AvoidBeingReplacedBySamePriority, m_SoundGroups[i].Mute, m_SoundGroups[i].Volume, m_SoundGroups[i].AgentHelperCount))
                 {
-                    Log.Warning("Add sound group '{0}' failure.", soundGroup.Name);
+                    Log.Warning("Add sound group '{0}' failure.", m_SoundGroups[i].Name);
                     continue;
                 }
             }

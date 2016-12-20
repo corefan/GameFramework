@@ -22,7 +22,6 @@ namespace UnityGameFramework.Runtime
         private string m_BytesFullPath = null;
         private int m_LoadType = 0;
         private string m_ResourceChildName = null;
-        private string m_SceneName = null;
         private bool m_Disposed = false;
         private WWW m_WWW = null;
         private AssetBundleCreateRequest m_FileAssetBundleCreateRequest = null;
@@ -181,7 +180,8 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="resource">资源。</param>
         /// <param name="resourceChildName">要加载的子资源名。</param>
-        public override void LoadAsset(object resource, string resourceChildName)
+        /// <param name="isScene">要加载的资源是否是场景。</param>
+        public override void LoadAsset(object resource, string resourceChildName, bool isScene)
         {
             if (m_LoadResourceAgentHelperLoadCompleteEventHandler == null || m_LoadResourceAgentHelperUpdateEventHandler == null || m_LoadResourceAgentHelperErrorEventHandler == null)
             {
@@ -203,31 +203,16 @@ namespace UnityGameFramework.Runtime
             }
 
             m_ResourceChildName = resourceChildName;
-            m_AssetBundleRequest = assetBundle.LoadAssetAsync(resourceChildName);
-        }
-
-        /// <summary>
-        /// 通过加载资源代理辅助器开始异步加载场景。
-        /// </summary>
-        /// <param name="resource">资源。</param>
-        /// <param name="sceneName">场景名称。</param>
-        public override void LoadScene(object resource, string sceneName)
-        {
-            if (m_LoadResourceAgentHelperLoadCompleteEventHandler == null || m_LoadResourceAgentHelperUpdateEventHandler == null || m_LoadResourceAgentHelperErrorEventHandler == null)
+            if (isScene)
             {
-                Log.Fatal("Load resource agent helper handler is invalid.");
-                return;
+                int sceneNamePosition = resourceChildName.IndexOf('.');
+                string sceneName = sceneNamePosition > 0 ? resourceChildName.Substring(0, sceneNamePosition) : resourceChildName;
+                m_AsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             }
-
-            AssetBundle assetBundle = resource as AssetBundle;
-            if (assetBundle == null)
+            else
             {
-                m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.TypeError, "Can not load asset bundle from loaded resource which is not an asset bundle."));
-                return;
+                m_AssetBundleRequest = assetBundle.LoadAssetAsync(resourceChildName);
             }
-
-            m_SceneName = sceneName;
-            m_AsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         }
 
         /// <summary>
@@ -249,7 +234,6 @@ namespace UnityGameFramework.Runtime
             m_BytesFullPath = null;
             m_LoadType = 0;
             m_ResourceChildName = null;
-            m_SceneName = null;
 
             if (m_WWW != null)
             {
@@ -419,12 +403,12 @@ namespace UnityGameFramework.Runtime
                     if (m_AsyncOperation.allowSceneActivation)
                     {
                         m_LoadResourceAgentHelperLoadCompleteEventHandler(this, new LoadResourceAgentHelperLoadCompleteEventArgs(new DummySceneObject()));
-                        m_SceneName = null;
+                        m_ResourceChildName = null;
                         m_AsyncOperation = null;
                     }
                     else
                     {
-                        m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.SceneAssetError, string.Format("Can not load scene '{0}' from asset bundle.", m_SceneName)));
+                        m_LoadResourceAgentHelperErrorEventHandler(this, new LoadResourceAgentHelperErrorEventArgs(LoadResourceStatus.SceneAssetError, string.Format("Can not load scene asset '{0}' from asset bundle.", m_ResourceChildName)));
                     }
                 }
                 else

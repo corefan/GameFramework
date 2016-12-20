@@ -19,6 +19,9 @@ namespace UnityGameFramework.Runtime
     [AddComponentMenu("Game Framework/Base")]
     public sealed class BaseComponent : GameFrameworkComponent
     {
+        private const string MinUnityVersion = "5.3";
+        private const int DefaultDpi = 96;  // default windows dpi
+
         /// <summary>
         /// 游戏框架所在的场景编号。
         /// </summary>
@@ -213,10 +216,17 @@ namespace UnityGameFramework.Runtime
             Utility.Converter.ScreenDpi = Screen.dpi;
             if (Utility.Converter.ScreenDpi <= 0)
             {
-                Utility.Converter.ScreenDpi = 96; // default windows dpi
+                Utility.Converter.ScreenDpi = DefaultDpi;
             }
 
             Log.Info("Game Framework version is {0}. Unity Game Framework version is {1}.", GameFrameworkEntry.Version, GameEntry.Version);
+
+            string unityVersion = Application.unityVersion;
+            if (unityVersion.CompareTo(MinUnityVersion) < 0)
+            {
+                Log.Error("Game Framework only applies with Unity {0} and above, but current Unity version is {1}.", MinUnityVersion, unityVersion);
+                return;
+            }
 
             m_EditorResourceMode &= Application.isEditor;
             if (m_EditorResourceMode)

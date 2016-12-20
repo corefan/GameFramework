@@ -86,14 +86,14 @@ namespace UnityGameFramework.Runtime
         {
             List<string> texts = new List<string>();
             string[] rowTexts = Utility.Text.SplitToLines(text);
-            foreach (string rowText in rowTexts)
+            for (int i = 0; i < rowTexts.Length; i++)
             {
-                if (rowText.Length <= 0 || rowText[0] == '#')
+                if (rowTexts[i].Length <= 0 || rowTexts[i][0] == '#')
                 {
                     continue;
                 }
 
-                texts.Add(rowText);
+                texts.Add(rowTexts[i]);
             }
 
             return texts.ToArray();

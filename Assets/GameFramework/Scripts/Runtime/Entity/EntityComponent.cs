@@ -146,11 +146,11 @@ namespace UnityGameFramework.Runtime
                 m_InstanceRoot.SetParent(gameObject.transform);
             }
 
-            foreach (EntityGroup entityGroup in m_EntityGroups)
+            for (int i = 0; i < m_EntityGroups.Length; i++)
             {
-                if (!AddEntityGroup(entityGroup.Name, entityGroup.InstanceAutoReleaseInterval, entityGroup.InstanceCapacity, entityGroup.InstanceExpireTime, entityGroup.InstancePriority))
+                if (!AddEntityGroup(m_EntityGroups[i].Name, m_EntityGroups[i].InstanceAutoReleaseInterval, m_EntityGroups[i].InstanceCapacity, m_EntityGroups[i].InstanceExpireTime, m_EntityGroups[i].InstancePriority))
                 {
-                    Log.Warning("Add entity group '{0}' failure.", entityGroup.Name);
+                    Log.Warning("Add entity group '{0}' failure.", m_EntityGroups[i].Name);
                     continue;
                 }
             }

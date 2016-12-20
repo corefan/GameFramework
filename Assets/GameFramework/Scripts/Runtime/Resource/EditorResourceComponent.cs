@@ -30,70 +30,8 @@ namespace UnityGameFramework.Runtime
     {
         private string m_ReadOnlyPath = null;
         private string m_ReadWritePath = null;
-        private List<LoadSceneInfo> m_LoadSceneInfos = null;
-
-        private void Awake()
-        {
-            m_ReadOnlyPath = null;
-            m_ReadWritePath = null;
-            m_LoadSceneInfos = new List<LoadSceneInfo>();
-
-            BaseComponent baseComponent = GetComponent<BaseComponent>();
-            if (baseComponent == null)
-            {
-                Log.Error("Can not find base component.");
-                return;
-            }
-
-            if (baseComponent.EditorResourceMode)
-            {
-                baseComponent.EditorResourceHelper = this;
-                enabled = true;
-            }
-            else
-            {
-                enabled = false;
-            }
-        }
-
-        private void Update()
-        {
-            if (m_LoadSceneInfos.Count <= 0)
-            {
-                return;
-            }
-
-            LoadSceneInfo[] loadSceneInfos = m_LoadSceneInfos.ToArray();
-            for (int i = 0; i < loadSceneInfos.Length; i++)
-            {
-                if (loadSceneInfos[i].AsyncOperation.isDone)
-                {
-                    if (loadSceneInfos[i].AsyncOperation.allowSceneActivation)
-                    {
-                        if (loadSceneInfos[i].LoadSceneCallbacks.LoadSceneSuccessCallback != null)
-                        {
-                            loadSceneInfos[i].LoadSceneCallbacks.LoadSceneSuccessCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, (float)(DateTime.Now - loadSceneInfos[i].StartTime).TotalSeconds, loadSceneInfos[i].UserData);
-                        }
-                    }
-                    else
-                    {
-                        if (loadSceneInfos[i].LoadSceneCallbacks.LoadSceneFailureCallback != null)
-                        {
-                            loadSceneInfos[i].LoadSceneCallbacks.LoadSceneFailureCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, LoadResourceStatus.NotExist, "Can not load this scene from asset database.", loadSceneInfos[i].UserData);
-                        }
-                    }
-
-                    m_LoadSceneInfos.Remove(loadSceneInfos[i]);
-                }
-                else
-                {
-                    if (loadSceneInfos[i].LoadSceneCallbacks.LoadSceneUpdateCallback != null)
-                    {
-                        loadSceneInfos[i].LoadSceneCallbacks.LoadSceneUpdateCallback(loadSceneInfos[i].SceneName, loadSceneInfos[i].SceneAssetName, loadSceneInfos[i].AsyncOperation.progress, loadSceneInfos[i].UserData);
-                    }
-                }
-            }
-        }
+        private LinkedList<LoadSceneInfo> m_LoadSceneInfos = null;
+        private LinkedList<UnloadSceneInfo> m_UnloadSceneInfos = null;
 
         /// <summary>
         /// 获取资源只读区路径。
@@ -410,7 +348,7 @@ namespace UnityGameFramework.Runtime
             }
         }
 
-#pragma warning disable 0067
+#pragma warning disable 0067, 0414
 
         /// <summary>
         /// 资源初始化完成事件。
@@ -457,7 +395,108 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         public event EventHandler<GameFramework.Resource.ResourceUpdateAllCompleteEventArgs> ResourceUpdateAllComplete = null;
 
-#pragma warning restore 0067
+#pragma warning restore 0067, 0414
+
+        private void Awake()
+        {
+            m_ReadOnlyPath = null;
+            m_ReadWritePath = null;
+            m_LoadSceneInfos = new LinkedList<LoadSceneInfo>();
+            m_UnloadSceneInfos = new LinkedList<UnloadSceneInfo>();
+
+            BaseComponent baseComponent = GetComponent<BaseComponent>();
+            if (baseComponent == null)
+            {
+                Log.Error("Can not find base component.");
+                return;
+            }
+
+            if (baseComponent.EditorResourceMode)
+            {
+                baseComponent.EditorResourceHelper = this;
+                enabled = true;
+            }
+            else
+            {
+                enabled = false;
+            }
+        }
+
+        private void Update()
+        {
+            if (m_LoadSceneInfos.Count > 0)
+            {
+                LinkedListNode<LoadSceneInfo> current = m_LoadSceneInfos.First;
+                while (current != null)
+                {
+                    LoadSceneInfo loadSceneInfo = current.Value;
+                    if (loadSceneInfo.AsyncOperation.isDone)
+                    {
+                        if (loadSceneInfo.AsyncOperation.allowSceneActivation)
+                        {
+                            if (loadSceneInfo.LoadSceneCallbacks.LoadSceneSuccessCallback != null)
+                            {
+                                loadSceneInfo.LoadSceneCallbacks.LoadSceneSuccessCallback(loadSceneInfo.SceneAssetName, (float)(DateTime.Now - loadSceneInfo.StartTime).TotalSeconds, loadSceneInfo.UserData);
+                            }
+                        }
+                        else
+                        {
+                            if (loadSceneInfo.LoadSceneCallbacks.LoadSceneFailureCallback != null)
+                            {
+                                loadSceneInfo.LoadSceneCallbacks.LoadSceneFailureCallback(loadSceneInfo.SceneAssetName, LoadResourceStatus.NotExist, "Can not load this scene from asset database.", loadSceneInfo.UserData);
+                            }
+                        }
+
+                        LinkedListNode<LoadSceneInfo> next = current.Next;
+                        m_LoadSceneInfos.Remove(loadSceneInfo);
+                        current = next;
+                    }
+                    else
+                    {
+                        if (loadSceneInfo.LoadSceneCallbacks.LoadSceneUpdateCallback != null)
+                        {
+                            loadSceneInfo.LoadSceneCallbacks.LoadSceneUpdateCallback(loadSceneInfo.SceneAssetName, loadSceneInfo.AsyncOperation.progress, loadSceneInfo.UserData);
+                        }
+
+                        current = current.Next;
+                    }
+                }
+            }
+
+            if (m_UnloadSceneInfos.Count > 0)
+            {
+                LinkedListNode<UnloadSceneInfo> current = m_UnloadSceneInfos.First;
+                while (current != null)
+                {
+                    UnloadSceneInfo unloadSceneInfo = current.Value;
+                    if (unloadSceneInfo.AsyncOperation.isDone)
+                    {
+                        if (unloadSceneInfo.AsyncOperation.allowSceneActivation)
+                        {
+                            if (unloadSceneInfo.UnloadSceneCallbacks.UnloadSceneSuccessCallback != null)
+                            {
+                                unloadSceneInfo.UnloadSceneCallbacks.UnloadSceneSuccessCallback(unloadSceneInfo.SceneAssetName, unloadSceneInfo.UserData);
+                            }
+                        }
+                        else
+                        {
+                            if (unloadSceneInfo.UnloadSceneCallbacks.UnloadSceneFailureCallback != null)
+                            {
+                                unloadSceneInfo.UnloadSceneCallbacks.UnloadSceneFailureCallback(unloadSceneInfo.SceneAssetName, unloadSceneInfo.UserData);
+                            }
+                        }
+
+                        LinkedListNode<UnloadSceneInfo> next = current.Next;
+                        m_UnloadSceneInfos.Remove(unloadSceneInfo);
+                        current = next;
+                    }
+                    else
+                    {
+                        current = current.Next;
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// 设置资源只读区路径。
@@ -467,7 +506,8 @@ namespace UnityGameFramework.Runtime
         {
             if (string.IsNullOrEmpty(readOnlyPath))
             {
-                throw new GameFrameworkException("Readonly path is invalid.");
+                Log.Error("Readonly path is invalid.");
+                return;
             }
 
             m_ReadOnlyPath = readOnlyPath;
@@ -481,7 +521,8 @@ namespace UnityGameFramework.Runtime
         {
             if (string.IsNullOrEmpty(readWritePath))
             {
-                throw new GameFrameworkException("Read-write path is invalid.");
+                Log.Error("Read-write path is invalid.");
+                return;
             }
 
             m_ReadWritePath = readWritePath;
@@ -615,9 +656,16 @@ namespace UnityGameFramework.Runtime
         /// <param name="userData">用户自定义数据。</param>
         public void LoadAsset(string assetName, LoadAssetCallbacks loadAssetCallbacks, object userData)
         {
+            if (string.IsNullOrEmpty(assetName))
+            {
+                Log.Error("Asset name is invalid.");
+                return;
+            }
+
             if (loadAssetCallbacks == null)
             {
-                throw new GameFrameworkException("Load asset callbacks is invalid.");
+                Log.Error("Load asset callbacks is invalid.");
+                return;
             }
 
 #if UNITY_EDITOR
@@ -658,9 +706,16 @@ namespace UnityGameFramework.Runtime
         /// <param name="userData">用户自定义数据。</param>
         public void InstantiateAsset(string assetName, InstantiateAssetCallbacks instantiateAssetCallbacks, object userData)
         {
+            if (string.IsNullOrEmpty(assetName))
+            {
+                Log.Error("Asset name is invalid.");
+                return;
+            }
+
             if (instantiateAssetCallbacks == null)
             {
-                throw new GameFrameworkException("Instantiate asset callbacks is invalid.");
+                Log.Error("Instantiate asset callbacks is invalid.");
+                return;
             }
 
 #if UNITY_EDITOR
@@ -690,51 +745,101 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 异步加载场景。
         /// </summary>
-        /// <param name="sceneName">要加载的场景名称。</param>
         /// <param name="sceneAssetName">要加载场景资源的名称。</param>
         /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
-        public void LoadScene(string sceneName, string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks)
+        public void LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks)
         {
-            LoadScene(sceneName, sceneAssetName, loadSceneCallbacks, null);
+            LoadScene(sceneAssetName, loadSceneCallbacks, null);
         }
 
         /// <summary>
         /// 异步加载场景。
         /// </summary>
-        /// <param name="sceneName">要加载的场景名称。</param>
         /// <param name="sceneAssetName">要加载场景资源的名称。</param>
         /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadScene(string sceneName, string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks, object userData)
+        public void LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks, object userData)
         {
-            if (loadSceneCallbacks == null)
+            if (string.IsNullOrEmpty(sceneAssetName))
             {
-                throw new GameFrameworkException("Load scene callbacks is invalid.");
+                Log.Error("Scene asset name is invalid.");
+                return;
             }
 
-            if (string.IsNullOrEmpty(sceneName))
+            if (loadSceneCallbacks == null)
             {
-                throw new GameFrameworkException("Scene name is invalid.");
+                Log.Error("Load scene callbacks is invalid.");
+                return;
             }
 
             DateTime startTime = DateTime.Now;
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+#if UNITY_5_3 || UNITY_5_4
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(SceneComponent.GetSceneName(sceneAssetName), LoadSceneMode.Additive);
+#else
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneAssetName, LoadSceneMode.Additive);
+#endif
             if (asyncOperation == null)
             {
                 return;
             }
 
-            m_LoadSceneInfos.Add(new LoadSceneInfo(asyncOperation, sceneName, sceneAssetName, startTime, loadSceneCallbacks, userData));
+            m_LoadSceneInfos.AddLast(new LoadSceneInfo(asyncOperation, sceneAssetName, startTime, loadSceneCallbacks, userData));
         }
 
         /// <summary>
-        /// 卸载场景。
+        /// 异步卸载场景。
         /// </summary>
-        /// <param name="sceneName">场景名称。</param>
-        /// <returns>是否成功卸载场景。</returns>
-        public bool UnloadScene(string sceneName)
+        /// <param name="sceneAssetName">要卸载场景资源的名称。</param>
+        /// <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+        public void UnloadScene(string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks)
         {
-            return SceneManager.UnloadScene(sceneName);
+            UnloadScene(sceneAssetName, unloadSceneCallbacks, null);
+        }
+
+        /// <summary>
+        /// 异步卸载场景。
+        /// </summary>
+        /// <param name="sceneAssetName">要卸载场景资源的名称。</param>
+        /// <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public void UnloadScene(string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks, object userData)
+        {
+            if (string.IsNullOrEmpty(sceneAssetName))
+            {
+                Log.Error("Scene asset name is invalid.");
+                return;
+            }
+
+            if (unloadSceneCallbacks == null)
+            {
+                Log.Error("Unload scene callbacks is invalid.");
+                return;
+            }
+
+#if UNITY_5_3 || UNITY_5_4
+            if (SceneManager.UnloadScene(SceneComponent.GetSceneName(sceneAssetName)))
+            {
+                if (unloadSceneCallbacks.UnloadSceneSuccessCallback != null)
+                {
+                    unloadSceneCallbacks.UnloadSceneSuccessCallback(sceneAssetName, userData);
+                }
+            }
+            else
+            {
+                if (unloadSceneCallbacks.UnloadSceneFailureCallback != null)
+                {
+                    unloadSceneCallbacks.UnloadSceneFailureCallback(sceneAssetName, userData);
+                }
+            }
+#else
+            AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(sceneAssetName);
+            if (asyncOperation == null)
+            {
+                return;
+            }
+
+            m_UnloadSceneInfos.AddLast(new UnloadSceneInfo(asyncOperation, sceneAssetName, unloadSceneCallbacks, userData));
+#endif
         }
 
         /// <summary>
@@ -803,16 +908,14 @@ namespace UnityGameFramework.Runtime
         private class LoadSceneInfo
         {
             private readonly AsyncOperation m_AsyncOperation;
-            private readonly string m_SceneName;
             private readonly string m_SceneAssetName;
             private readonly DateTime m_StartTime;
             private readonly LoadSceneCallbacks m_LoadSceneCallbacks;
             private readonly object m_UserData;
 
-            public LoadSceneInfo(AsyncOperation asyncOperation, string sceneName, string sceneAssetName, DateTime startTime, LoadSceneCallbacks loadSceneCallbacks, object userData)
+            public LoadSceneInfo(AsyncOperation asyncOperation, string sceneAssetName, DateTime startTime, LoadSceneCallbacks loadSceneCallbacks, object userData)
             {
                 m_AsyncOperation = asyncOperation;
-                m_SceneName = sceneName;
                 m_SceneAssetName = sceneAssetName;
                 m_StartTime = startTime;
                 m_LoadSceneCallbacks = loadSceneCallbacks;
@@ -824,14 +927,6 @@ namespace UnityGameFramework.Runtime
                 get
                 {
                     return m_AsyncOperation;
-                }
-            }
-
-            public string SceneName
-            {
-                get
-                {
-                    return m_SceneName;
                 }
             }
 
@@ -856,6 +951,54 @@ namespace UnityGameFramework.Runtime
                 get
                 {
                     return m_LoadSceneCallbacks;
+                }
+            }
+
+            public object UserData
+            {
+                get
+                {
+                    return m_UserData;
+                }
+            }
+        }
+
+        private class UnloadSceneInfo
+        {
+            private readonly AsyncOperation m_AsyncOperation;
+            private readonly string m_SceneAssetName;
+            private readonly UnloadSceneCallbacks m_UnloadSceneCallbacks;
+            private readonly object m_UserData;
+
+            public UnloadSceneInfo(AsyncOperation asyncOperation, string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks, object userData)
+            {
+                m_AsyncOperation = asyncOperation;
+                m_SceneAssetName = sceneAssetName;
+                m_UnloadSceneCallbacks = unloadSceneCallbacks;
+                m_UserData = userData;
+            }
+
+            public AsyncOperation AsyncOperation
+            {
+                get
+                {
+                    return m_AsyncOperation;
+                }
+            }
+
+            public string SceneAssetName
+            {
+                get
+                {
+                    return m_SceneAssetName;
+                }
+            }
+
+            public UnloadSceneCallbacks UnloadSceneCallbacks
+            {
+                get
+                {
+                    return m_UnloadSceneCallbacks;
                 }
             }
 

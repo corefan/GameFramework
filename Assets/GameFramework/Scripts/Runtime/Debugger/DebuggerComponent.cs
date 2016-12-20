@@ -273,9 +273,9 @@ namespace UnityGameFramework.Runtime
         {
             List<string> names = new List<string>();
             string[] debuggerWindowNames = debuggerWindowGroup.GetDebuggerWindowNames();
-            foreach (string debuggerWindowName in debuggerWindowNames)
+            for (int i = 0; i < debuggerWindowNames.Length; i++)
             {
-                names.Add(string.Format("<b>{0}</b>", debuggerWindowName));
+                names.Add(string.Format("<b>{0}</b>", debuggerWindowNames[i]));
             }
 
             if (debuggerWindowGroup == m_DebuggerManager.DebuggerWindowRoot)

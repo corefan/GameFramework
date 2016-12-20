@@ -25,9 +25,10 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 卸载场景。
         /// </summary>
-        /// <param name="sceneName">场景名称。</param>
-        /// <returns>是否成功卸载场景。</returns>
-        public abstract bool UnloadScene(string sceneName);
+        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public abstract void UnloadScene(string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks, object userData);
 
         /// <summary>
         /// 释放资源。

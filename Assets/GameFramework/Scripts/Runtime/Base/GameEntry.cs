@@ -48,12 +48,15 @@ namespace UnityGameFramework.Runtime
         /// <returns>要获取的游戏框架组件。</returns>
         public static GameFrameworkComponent GetComponent(Type type)
         {
-            foreach (GameFrameworkComponent component in s_GameFrameworkComponents)
+            LinkedListNode<GameFrameworkComponent> current = s_GameFrameworkComponents.First;
+            while (current != null)
             {
-                if (component.GetType() == type)
+                if (current.Value.GetType() == type)
                 {
-                    return component;
+                    return current.Value;
                 }
+
+                current = current.Next;
             }
 
             return null;
@@ -66,13 +69,16 @@ namespace UnityGameFramework.Runtime
         /// <returns>要获取的游戏框架组件。</returns>
         public static GameFrameworkComponent GetComponent(string typeName)
         {
-            foreach (GameFrameworkComponent component in s_GameFrameworkComponents)
+            LinkedListNode<GameFrameworkComponent> current = s_GameFrameworkComponents.First;
+            while (current != null)
             {
-                Type type = component.GetType();
+                Type type = current.Value.GetType();
                 if (type.FullName == typeName || type.Name == typeName)
                 {
-                    return component;
+                    return current.Value;
                 }
+
+                current = current.Next;
             }
 
             return null;
@@ -111,16 +117,22 @@ namespace UnityGameFramework.Runtime
         {
             if (gameFrameworkComponent == null)
             {
-                throw new GameFrameworkException("Game framework component is invalid.");
+                Log.Error("Game framework component is invalid.");
+                return;
             }
 
             Type type = gameFrameworkComponent.GetType();
-            foreach (GameFrameworkComponent component in s_GameFrameworkComponents)
+
+            LinkedListNode<GameFrameworkComponent> current = s_GameFrameworkComponents.First;
+            while (current != null)
             {
-                if (component.GetType() == type)
+                if (current.Value.GetType() == type)
                 {
-                    throw new GameFrameworkException(string.Format("Game framework component type '{0}' is already exist.", type.FullName));
+                    Log.Error("Game framework component type '{0}' is already exist.", type.FullName);
+                    return;
                 }
+
+                current = current.Next;
             }
 
             s_GameFrameworkComponents.AddLast(gameFrameworkComponent);

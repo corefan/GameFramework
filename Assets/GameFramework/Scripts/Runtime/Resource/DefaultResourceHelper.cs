@@ -30,11 +30,29 @@ namespace UnityGameFramework.Runtime
         /// <summary>
         /// 卸载场景。
         /// </summary>
-        /// <param name="sceneName">场景名称。</param>
-        /// <returns>是否成功卸载场景。</returns>
-        public override bool UnloadScene(string sceneName)
+        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public override void UnloadScene(string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks, object userData)
         {
-            return SceneManager.UnloadScene(sceneName);
+#if UNITY_5_3 || UNITY_5_4
+            if (SceneManager.UnloadScene(SceneComponent.GetSceneName(sceneAssetName)))
+            {
+                if (unloadSceneCallbacks.UnloadSceneSuccessCallback != null)
+                {
+                    unloadSceneCallbacks.UnloadSceneSuccessCallback(sceneAssetName, userData);
+                }
+            }
+            else
+            {
+                if (unloadSceneCallbacks.UnloadSceneFailureCallback != null)
+                {
+                    unloadSceneCallbacks.UnloadSceneFailureCallback(sceneAssetName, userData);
+                }
+            }
+#else
+            StartCoroutine(UnloadSceneCo(sceneAssetName, unloadSceneCallbacks, userData));
+#endif
         }
 
         /// <summary>
@@ -93,5 +111,35 @@ namespace UnityGameFramework.Runtime
                 loadBytesCallback(fileUri, bytes, errorMessage);
             }
         }
+
+#if !UNITY_5_3 && !UNITY_5_4
+
+        private IEnumerator UnloadSceneCo(string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks, object userData)
+        {
+            AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(sceneAssetName);
+            if (asyncOperation == null)
+            {
+                yield break;
+            }
+
+            yield return asyncOperation;
+
+            if (asyncOperation.allowSceneActivation)
+            {
+                if (unloadSceneCallbacks.UnloadSceneSuccessCallback != null)
+                {
+                    unloadSceneCallbacks.UnloadSceneSuccessCallback(sceneAssetName, userData);
+                }
+            }
+            else
+            {
+                if (unloadSceneCallbacks.UnloadSceneFailureCallback != null)
+                {
+                    unloadSceneCallbacks.UnloadSceneFailureCallback(sceneAssetName, userData);
+                }
+            }
+        }
+
+#endif
     }
 }

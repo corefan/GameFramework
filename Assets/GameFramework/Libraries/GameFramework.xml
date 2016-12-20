@@ -8311,19 +8311,13 @@
             </summary>
             <param name="bytes">要加载资源的二进制流。</param>
         </member>
-        <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.LoadAsset(System.Object,System.String)">
+        <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.LoadAsset(System.Object,System.String,System.Boolean)">
             <summary>
             通过加载资源代理辅助器开始异步加载资源。
             </summary>
             <param name="resource">资源。</param>
             <param name="resourceChildName">要加载的子资源名。</param>
-        </member>
-        <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.LoadScene(System.Object,System.String)">
-            <summary>
-            通过加载资源代理辅助器开始异步加载场景。
-            </summary>
-            <param name="resource">资源。</param>
-            <param name="sceneName">场景名称。</param>
+            <param name="isScene">要加载的资源是否是场景。</param>
         </member>
         <member name="M:GameFramework.Resource.ILoadResourceAgentHelper.Instantiate(System.Object)">
             <summary>
@@ -8462,12 +8456,13 @@
             <param name="fileUri">文件路径。</param>
             <param name="loadBytesCallback">读取数据流回调函数。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceHelper.UnloadScene(System.String)">
+        <member name="M:GameFramework.Resource.IResourceHelper.UnloadScene(System.String,GameFramework.Resource.UnloadSceneCallbacks,System.Object)">
             <summary>
             卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <returns>是否成功卸载场景。</returns>
+            <param name="sceneAssetName">场景资源名称。</param>
+            <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:GameFramework.Resource.IResourceHelper.Release(System.Object)">
             <summary>
@@ -8766,29 +8761,35 @@
             <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks)">
+        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,GameFramework.Resource.LoadSceneCallbacks)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载场景资源的名称。</param>
             <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
+        <member name="M:GameFramework.Resource.IResourceManager.LoadScene(System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载场景资源的名称。</param>
             <param name="loadSceneCallbacks">加载场景回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.IResourceManager.UnloadScene(System.String)">
+        <member name="M:GameFramework.Resource.IResourceManager.UnloadScene(System.String,GameFramework.Resource.UnloadSceneCallbacks)">
             <summary>
-            卸载场景。
+            异步卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <returns>是否成功卸载场景。</returns>
+            <param name="sceneAssetName">要卸载场景资源的名称。</param>
+            <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+        </member>
+        <member name="M:GameFramework.Resource.IResourceManager.UnloadScene(System.String,GameFramework.Resource.UnloadSceneCallbacks,System.Object)">
+            <summary>
+            异步卸载场景。
+            </summary>
+            <param name="sceneAssetName">要卸载场景资源的名称。</param>
+            <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:GameFramework.Resource.IResourceManager.Recycle(System.Object)">
             <summary>
@@ -9214,7 +9215,6 @@
             <summary>
             加载场景时加载依赖资源回调函数。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载的场景资源名称。</param>
             <param name="dependencyAssetName">被加载的依赖资源名称。</param>
             <param name="loadedCount">当前已加载依赖资源数量。</param>
@@ -9225,7 +9225,6 @@
             <summary>
             加载场景失败回调函数。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载的场景资源名称。</param>
             <param name="status">加载场景状态。</param>
             <param name="errorMessage">错误信息。</param>
@@ -9235,7 +9234,6 @@
             <summary>
             加载场景成功回调函数。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载的场景资源名称。</param>
             <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
@@ -9244,7 +9242,6 @@
             <summary>
             加载场景更新回调函数。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载的场景资源名称。</param>
             <param name="progress">加载场景进度。</param>
             <param name="userData">用户自定义数据。</param>
@@ -9659,29 +9656,35 @@
             <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks)">
+        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,GameFramework.Resource.LoadSceneCallbacks)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载场景资源的名称。</param>
             <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载场景资源的名称。</param>
             <param name="loadSceneCallbacks">加载场景回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.UnloadScene(System.String)">
+        <member name="M:GameFramework.Resource.ResourceManager.UnloadScene(System.String,GameFramework.Resource.UnloadSceneCallbacks)">
             <summary>
-            卸载场景。
+            异步卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <returns>是否成功卸载场景。</returns>
+            <param name="sceneAssetName">要卸载场景资源的名称。</param>
+            <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+        </member>
+        <member name="M:GameFramework.Resource.ResourceManager.UnloadScene(System.String,GameFramework.Resource.UnloadSceneCallbacks,System.Object)">
+            <summary>
+            异步卸载场景。
+            </summary>
+            <param name="sceneAssetName">要卸载场景资源的名称。</param>
+            <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.Recycle(System.Object)">
             <summary>
@@ -10162,20 +10165,21 @@
             <param name="instantiateAssetCallbacks">实例化资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadScene(System.String,System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.LoadScene(System.String,GameFramework.Resource.LoadSceneCallbacks,System.Object)">
             <summary>
             异步加载场景。
             </summary>
-            <param name="sceneName">要加载的场景名称。</param>
             <param name="sceneAssetName">要加载场景资源的名称。</param>
             <param name="loadSceneCallbacks">加载场景回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.UnloadScene(System.String)">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.UnloadScene(System.String,GameFramework.Resource.UnloadSceneCallbacks,System.Object)">
             <summary>
-            卸载场景。
+            异步卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">要卸载场景资源的名称。</param>
+            <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
+            <param name="userData">用户自定义数据。</param>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.ResourceLoader.Recycle(System.Object)">
             <summary>
@@ -10650,6 +10654,48 @@
             获取压缩包大小。
             </summary>
         </member>
+        <member name="T:GameFramework.Resource.UnloadSceneCallbacks">
+            <summary>
+            卸载场景回调函数集。
+            </summary>
+        </member>
+        <member name="M:GameFramework.Resource.UnloadSceneCallbacks.#ctor(GameFramework.Resource.UnloadSceneSuccessCallback)">
+            <summary>
+            初始化卸载场景回调函数集的新实例。
+            </summary>
+            <param name="unloadSceneSuccessCallback">卸载场景成功回调函数。</param>
+        </member>
+        <member name="M:GameFramework.Resource.UnloadSceneCallbacks.#ctor(GameFramework.Resource.UnloadSceneSuccessCallback,GameFramework.Resource.UnloadSceneFailureCallback)">
+            <summary>
+            初始化卸载场景回调函数集的新实例。
+            </summary>
+            <param name="unloadSceneSuccessCallback">卸载场景成功回调函数。</param>
+            <param name="unloadSceneFailureCallback">卸载场景失败回调函数。</param>
+        </member>
+        <member name="P:GameFramework.Resource.UnloadSceneCallbacks.UnloadSceneSuccessCallback">
+            <summary>
+            获取卸载场景成功回调函数。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Resource.UnloadSceneCallbacks.UnloadSceneFailureCallback">
+            <summary>
+            获取卸载场景失败回调函数。
+            </summary>
+        </member>
+        <member name="T:GameFramework.Resource.UnloadSceneFailureCallback">
+            <summary>
+            卸载场景失败回调函数。
+            </summary>
+            <param name="sceneAssetName">要卸载的场景资源名称。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="T:GameFramework.Resource.UnloadSceneSuccessCallback">
+            <summary>
+            卸载场景成功回调函数。
+            </summary>
+            <param name="sceneAssetName">要卸载的场景资源名称。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
         <member name="T:GameFramework.Resource.VersionListUpdateFailureEventArgs">
             <summary>
             版本资源列表更新失败事件。
@@ -10739,40 +10785,51 @@
             <summary>
             获取场景是否已加载。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <returns>场景是否已加载。</returns>
         </member>
-        <member name="M:GameFramework.Scene.ISceneManager.GetLoadedSceneNames">
+        <member name="M:GameFramework.Scene.ISceneManager.GetLoadedSceneAssetNames">
             <summary>
-            获取已加载场景的名称。
+            获取已加载场景的资源名称。
             </summary>
-            <returns></returns>
+            <returns>已加载场景的资源名称。</returns>
         </member>
         <member name="M:GameFramework.Scene.ISceneManager.SceneIsLoading(System.String)">
             <summary>
             获取场景是否正在加载。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <returns>场景是否正在加载。</returns>
         </member>
-        <member name="M:GameFramework.Scene.ISceneManager.GetLoadingSceneNames">
+        <member name="M:GameFramework.Scene.ISceneManager.GetLoadingSceneAssetNames">
             <summary>
-            获取正在加载场景的名称。
+            获取正在加载场景的资源名称。
             </summary>
-            <returns></returns>
+            <returns>正在加载场景的资源名称。</returns>
         </member>
-        <member name="M:GameFramework.Scene.ISceneManager.LoadScene(System.String,System.String)">
+        <member name="M:GameFramework.Scene.ISceneManager.SceneIsUnloading(System.String)">
+            <summary>
+            获取场景是否正在卸载。
+            </summary>
+            <param name="sceneAssetName">场景资源名称。</param>
+            <returns>场景是否正在卸载。</returns>
+        </member>
+        <member name="M:GameFramework.Scene.ISceneManager.GetUnloadingSceneAssetNames">
+            <summary>
+            获取正在卸载场景的资源名称。
+            </summary>
+            <returns>正在卸载场景的资源名称。</returns>
+        </member>
+        <member name="M:GameFramework.Scene.ISceneManager.LoadScene(System.String)">
             <summary>
             加载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
         </member>
-        <member name="M:GameFramework.Scene.ISceneManager.LoadScene(System.String,System.String,System.Object)">
+        <member name="M:GameFramework.Scene.ISceneManager.LoadScene(System.String,System.Object)">
             <summary>
             加载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
@@ -10780,37 +10837,29 @@
             <summary>
             卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <returns>是否成功卸载场景。</returns>
+            <param name="sceneAssetName">场景资源名称。</param>
         </member>
         <member name="M:GameFramework.Scene.ISceneManager.UnloadScene(System.String,System.Object)">
             <summary>
             卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <param name="userData">用户自定义数据。</param>
-            <returns>是否成功卸载场景。</returns>
         </member>
         <member name="T:GameFramework.Scene.LoadSceneDependencyAssetEventArgs">
             <summary>
             加载场景时加载依赖资源事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.#ctor(System.String,System.String,System.String,System.Int32,System.Int32,System.Object)">
+        <member name="M:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.#ctor(System.String,System.String,System.Int32,System.Int32,System.Object)">
             <summary>
             初始化加载场景时加载依赖资源事件的新实例。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
             <param name="dependencyAssetName">被加载的依赖资源名称。</param>
             <param name="loadedCount">当前已加载依赖资源数量。</param>
             <param name="totalCount">总共加载依赖资源数量。</param>
             <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.SceneName">
-            <summary>
-            获取场景名称。
-            </summary>
         </member>
         <member name="P:GameFramework.Scene.LoadSceneDependencyAssetEventArgs.SceneAssetName">
             <summary>
@@ -10842,19 +10891,13 @@
             加载场景失败事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Scene.LoadSceneFailureEventArgs.#ctor(System.String,System.String,System.String,System.Object)">
+        <member name="M:GameFramework.Scene.LoadSceneFailureEventArgs.#ctor(System.String,System.String,System.Object)">
             <summary>
             初始化加载场景失败事件的新实例。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
             <param name="errorMessage">错误信息。</param>
             <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="P:GameFramework.Scene.LoadSceneFailureEventArgs.SceneName">
-            <summary>
-            获取场景名称。
-            </summary>
         </member>
         <member name="P:GameFramework.Scene.LoadSceneFailureEventArgs.SceneAssetName">
             <summary>
@@ -10876,19 +10919,13 @@
             加载场景成功事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Scene.LoadSceneSuccessEventArgs.#ctor(System.String,System.String,System.Single,System.Object)">
+        <member name="M:GameFramework.Scene.LoadSceneSuccessEventArgs.#ctor(System.String,System.Single,System.Object)">
             <summary>
             初始化加载场景成功事件的新实例。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
             <param name="duration">加载持续时间。</param>
             <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="P:GameFramework.Scene.LoadSceneSuccessEventArgs.SceneName">
-            <summary>
-            获取场景名称。
-            </summary>
         </member>
         <member name="P:GameFramework.Scene.LoadSceneSuccessEventArgs.SceneAssetName">
             <summary>
@@ -10910,19 +10947,13 @@
             加载场景更新事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Scene.LoadSceneUpdateEventArgs.#ctor(System.String,System.String,System.Single,System.Object)">
+        <member name="M:GameFramework.Scene.LoadSceneUpdateEventArgs.#ctor(System.String,System.Single,System.Object)">
             <summary>
             初始化加载场景更新事件的新实例。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
             <param name="progress">加载场景进度。</param>
             <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="P:GameFramework.Scene.LoadSceneUpdateEventArgs.SceneName">
-            <summary>
-            获取场景名称。
-            </summary>
         </member>
         <member name="P:GameFramework.Scene.LoadSceneUpdateEventArgs.SceneAssetName">
             <summary>
@@ -11001,40 +11032,51 @@
             <summary>
             获取场景是否已加载。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <returns>场景是否已加载。</returns>
         </member>
-        <member name="M:GameFramework.Scene.SceneManager.GetLoadedSceneNames">
+        <member name="M:GameFramework.Scene.SceneManager.GetLoadedSceneAssetNames">
             <summary>
-            获取已加载场景的名称。
+            获取已加载场景的资源名称。
             </summary>
-            <returns></returns>
+            <returns>已加载场景的资源名称。</returns>
         </member>
         <member name="M:GameFramework.Scene.SceneManager.SceneIsLoading(System.String)">
             <summary>
             获取场景是否正在加载。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <returns>场景是否正在加载。</returns>
         </member>
-        <member name="M:GameFramework.Scene.SceneManager.GetLoadingSceneNames">
+        <member name="M:GameFramework.Scene.SceneManager.GetLoadingSceneAssetNames">
             <summary>
-            获取正在加载场景的名称。
+            获取正在加载场景的资源名称。
             </summary>
-            <returns></returns>
+            <returns>正在加载场景的资源名称。</returns>
         </member>
-        <member name="M:GameFramework.Scene.SceneManager.LoadScene(System.String,System.String)">
+        <member name="M:GameFramework.Scene.SceneManager.SceneIsUnloading(System.String)">
+            <summary>
+            获取场景是否正在卸载。
+            </summary>
+            <param name="sceneAssetName">场景资源名称。</param>
+            <returns>场景是否正在卸载。</returns>
+        </member>
+        <member name="M:GameFramework.Scene.SceneManager.GetUnloadingSceneAssetNames">
+            <summary>
+            获取正在卸载场景的资源名称。
+            </summary>
+            <returns>正在卸载场景的资源名称。</returns>
+        </member>
+        <member name="M:GameFramework.Scene.SceneManager.LoadScene(System.String)">
             <summary>
             加载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
         </member>
-        <member name="M:GameFramework.Scene.SceneManager.LoadScene(System.String,System.String,System.Object)">
+        <member name="M:GameFramework.Scene.SceneManager.LoadScene(System.String,System.Object)">
             <summary>
             加载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
             <param name="sceneAssetName">场景资源名称。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
@@ -11042,16 +11084,14 @@
             <summary>
             卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
-            <returns>是否成功卸载场景。</returns>
+            <param name="sceneAssetName">场景资源名称。</param>
         </member>
         <member name="M:GameFramework.Scene.SceneManager.UnloadScene(System.String,System.Object)">
             <summary>
             卸载场景。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <param name="userData">用户自定义数据。</param>
-            <returns>是否成功卸载场景。</returns>
         </member>
         <member name="T:GameFramework.Scene.UnloadSceneFailureEventArgs">
             <summary>
@@ -11062,12 +11102,12 @@
             <summary>
             初始化卸载场景失败事件的新实例。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="P:GameFramework.Scene.UnloadSceneFailureEventArgs.SceneName">
+        <member name="P:GameFramework.Scene.UnloadSceneFailureEventArgs.SceneAssetName">
             <summary>
-            获取场景名称。
+            获取场景资源名称。
             </summary>
         </member>
         <member name="P:GameFramework.Scene.UnloadSceneFailureEventArgs.UserData">
@@ -11084,12 +11124,12 @@
             <summary>
             初始化卸载场景成功事件的新实例。
             </summary>
-            <param name="sceneName">场景名称。</param>
+            <param name="sceneAssetName">场景资源名称。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
-        <member name="P:GameFramework.Scene.UnloadSceneSuccessEventArgs.SceneName">
+        <member name="P:GameFramework.Scene.UnloadSceneSuccessEventArgs.SceneAssetName">
             <summary>
-            获取场景名称。
+            获取场景资源名称。
             </summary>
         </member>
         <member name="P:GameFramework.Scene.UnloadSceneSuccessEventArgs.UserData">

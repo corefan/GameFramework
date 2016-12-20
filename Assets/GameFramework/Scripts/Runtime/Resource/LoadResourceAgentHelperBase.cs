@@ -70,14 +70,8 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="resource">资源。</param>
         /// <param name="resourceChildName">要加载的子资源名。</param>
-        public abstract void LoadAsset(object resource, string resourceChildName);
-
-        /// <summary>
-        /// 通过加载资源代理辅助器开始异步加载场景。
-        /// </summary>
-        /// <param name="resource">资源。</param>
-        /// <param name="sceneName">场景名称。</param>
-        public abstract void LoadScene(object resource, string sceneName);
+        /// <param name="isScene">要加载的资源是否是场景。</param>
+        public abstract void LoadAsset(object resource, string resourceChildName, bool isScene);
 
         /// <summary>
         /// 实例化资源。
