@@ -69,7 +69,3 @@ We'll refer to Game Framework as GF and Unity Game Framework as UGF for short in
 - **JIANG Yin (Ellan)**
   - ellan@gameframework.cn
   - [https://github.com/ellanjiang/](https://github.com/ellanjiang/)
-
-- **JIANG Han (Garfield)**
-  - garfield@gameframework.cn
-  - [https://github.com/garfieldjiang/](https://github.com/garfieldjiang/)
