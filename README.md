@@ -1,4 +1,4 @@
-## HOMEPAGE 网站
+## HOMEPAGE
 
 - **English** - Coming soon.
 - **简体中文** - [http://gameframework.cn/](http://gameframework.cn/)
@@ -6,21 +6,13 @@
 
 ---
 
-## INTRODUCTION 简介
+## INTRODUCTION
 
 Game Framework is literally a game framework, based on Unity 5.3+ game engine. It encapsulates commonly used game modules during development, and, to a large degree, standardises the process, enhances the development speed and ensures the product quality.
 
-Game Framework 是一个基于 Unity 5.3+ 引擎的游戏框架，主要对游戏开发过程中常用模块进行了封装，很大程度地规范开发过程、加快开发速度并保证产品质量。
-
 Game Framework provides the following 17 builtin modules, and more will be developed later for game developers to use.
 
-在最新的 Game Framework 版本中，包含以下 17 个内置模块，后续我们还将开发更多的扩展模块供开发者使用。
-
-**1. DataNode 数据结点**
-
-DataNode saves arbitrary types of data within tree structures in order to manage various data during game runtime.
-
-数据结点将任意类型的数据以树状结构的形式进行保存，用于管理游戏运行时的各种数据。
+1. **Data Node** - DataNode saves arbitrary types of data within tree structures in order to manage various data during game runtime.
 
 2. **Data Table** - is intended to invoke game data in the form of pre-configured tables (such as Microsoft Excel sheets). The format of the tables can be customised.
 
