@@ -1,3 +1,7 @@
+## NOTICE
+
+此项目已完全开源，请访问另一个工程 [https://github.com/GameFramework/GameFramework](https://github.com/GameFramework/GameFramework)
+
 ## HOMEPAGE
 
 - **English** - Coming soon.
